@@ -1,0 +1,36 @@
+[submodule ".emacs.d"]
+	path = .emacs.d
+	url = https://rosstimson@github.com/rosstimson/emacs-config.git
+[submodule ".vim"]
+	path = .vim
+	url = https://github.com/carlhuda/janus.git
+[submodule ".zsh"]
+	path = .zsh
+	url = https://rosstimson@github.com/rosstimson/oh-my-zsh.git
+[submodule ".janus/c"]
+	path = .janus/c
+	url = https://github.com/vim-scripts/c.vim.git
+[submodule ".janus/nginx"]
+	path = .janus/nginx
+	url = https://github.com/vim-scripts/nginx.vim.git
+[submodule ".janus/slim"]
+	path = .janus/slim
+	url = https://github.com/bbommarito/vim-slim
+[submodule ".janus/erlang"]
+	path = .janus/erlang
+	url = https://github.com/jimenezrick/vimerl.git
+[submodule ".janus/gnupg"]
+	path = .janus/gnupg
+	url = https://github.com/vim-scripts/gnupg.vim.git
+[submodule ".janus/abolish"]
+	path = .janus/abolish
+	url = https://github.com/tpope/vim-abolish.git
+[submodule ".janus/repeat"]
+	path = .janus/repeat
+	url = https://github.com/tpope/vim-repeat.git
+[submodule ".janus/vala"]
+	path = .janus/vala
+	url = https://github.com/rainux/vim-vala.git
+[submodule ".janus/modx"]
+	path = .janus/modx
+	url = https://rosstimson@github.com/rosstimson/modx.vim.git

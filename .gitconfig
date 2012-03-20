@@ -1,0 +1,44 @@
+[user]
+    name = Ross Timson
+    email = ross@rosstimson.com
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    ui = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+[github]
+    user = rosstimson
+    token = ADD GITHUB TOKEN HERE
+[core]
+    excludesfile = ~/.gitignore
+    pager = less -FSRX
+    editor = vim
+    # Nice on a Mac for using MacVim and iTerm
+    # editor = "mvim -f -c 'au VimLeave * !open -a iTerm'"
+[merge]
+    tool = vim
+[mergetool "vim"]
+    cmd = /usr/local/bin/vim -d "$LOCAL" "$MERGED" "$REMOTE"
+    keepBackup = false
+    trustExitCode = false
+[diff]
+    tool = vim
+[difftool "vim"]
+    cmd = /usr/local/bin/vim -d "$LOCAL" "$REMOTE"
+    keepBackup = false
+    trustExitCode = false
+[difftool]
+    prompt = false

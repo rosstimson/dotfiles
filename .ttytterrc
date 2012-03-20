@@ -1,0 +1,15 @@
+ansi=1
+hold=0
+ssl=1
+vcheck=1
+
+# 3 second delay before posting (ctrl-c will cancel tweet)
+slowpost=3
+
+# Disable background auto refresh to stop race between it an
+# my typing when trying to tweet.  Must hit enter at prompt
+# to refresh timeline.
+synch=1
+
+# Only check for DMs every 5 timeline refreshes.
+dmpause=5

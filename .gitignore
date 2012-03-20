@@ -1,0 +1,30 @@
+## OS FLUFF
+.DS_Store
+Thumbs.db
+
+## EDITOR CRAP
+## MISC
+.idea
+.nbproject
+
+## TEXTMATE
+*.tmproj
+tmtags
+
+## EMACS
+*~
+\#*
+.\#*
+
+## VIM
+*.swp
+
+## SUBVERSION
+.svn
+
+## MISC
+tags
+log/
+config/database.yml
+db/*.sqlite3
+.sass-cache/
