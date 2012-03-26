@@ -24,6 +24,7 @@
     token = ADD GITHUB TOKEN HERE
 [core]
     excludesfile = ~/.gitignore
+    autocrlf = true
     pager = less -FSRX
     editor = vim
     # Nice on a Mac for using MacVim and iTerm
