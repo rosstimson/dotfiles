@@ -56,18 +56,18 @@ setopt hist_no_store
 
 # Set an alias for 'ls'
 case `uname` in
-	FreeBSD)
-		alias ls='gnuls --color=auto -GF'
-	;;
-	NetBSD)
-		alias ls='ls -F'
-	;;
-	OpenBSD)
-		alias ls='colorls -GF'
-	;;
-	Linux)
-		alias ls='ls --color=always -F'
-	;;
+  FreeBSD)
+    alias ls='gnuls --color=auto -GF'
+  ;;
+  NetBSD)
+    alias ls='ls -F'
+  ;;
+  OpenBSD)
+    alias ls='colorls -GF'
+  ;;
+  Linux)
+    alias ls='ls --color=always -F'
+  ;;
 esac
 
 # Setting Term
@@ -80,6 +80,8 @@ export PATH='/usr/bin:/bin:/usr/sbin:/sbin'
 export PATH='/usr/local/bin:/usr/local/sbin:$PATH'
 export PATH='/usr/local/mysql/bin:$PATH'
 export PATH='$HOME/bin:$PATH'
+# Added for BDSM
+export PATH='${PATH}:$HOME/.sm/bin:$HOME/.sm/pkg/active/bin:$HOME/.sm/pkg/active/sbin'
 # Setting path for NodeJS libs.  
 # npm ls -g will show you where this should be (add node_modules to output).
 export NODE_PATH='/usr/local/lib/node_modules'

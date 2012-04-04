@@ -1,0 +1,38 @@
+#
+# Environmental Settings. By default we assume that this will be a production environment.
+#
+
+# If you are using the project
+# Set how deep one can search for projects in the project tree
+# export project_search_maxdepth="2"
+
+#
+# NOTE / WARNING
+# The items below will soon be moved into a project module config directory:
+#   ~/.sm/project/defaults
+#
+# This is the logical environment we are operating in.
+# It is used in several path and file calculations.
+export environment="production"
+
+#
+#  The below settings are for repository options.
+#
+
+# The name of the project (the repository is expected to be in ~/shared/$project).
+
+export project="rosstimson"
+
+# The repository URL for retrieving the code.
+# For Github use shortcut: user/repository
+repository_url="git://github.com/sm/sm"
+
+# The branch of your application.
+branch="master"
+
+# The tag of your application, if any.
+# tag="v1.0.0"
+
+# Add here modules that should be always loaded with SM
+preload_modules=( )
+

@@ -3,7 +3,7 @@
 export LANG=en_GB.UTF-8 LC_ALL=en_GB.UTF-8
 
 # Read in .Xresources
-# xrdb -merge ~/.Xresources
+# [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 # Set wallpaper
 feh --bg-scale ~/Pictures/wallpapers/Take_Me_Elsewhere-1600x1200.jpg &
@@ -25,7 +25,6 @@ xscreensaver -no-splash &
 
 # Start misc apps
 numlockx &
-mpd &
 # exec conky &
 
 # Window managers / environments

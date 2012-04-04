@@ -1,1 +1,4 @@
-call janus#disable_plugin('css-color')
+"call janus#disable_plugin('css-color')
+
+" Set Powerline to use patched font symbols
+let g:Powerline_symbols = 'fancy'

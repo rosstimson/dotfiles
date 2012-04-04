@@ -2,6 +2,7 @@
 set colorcolumn=80
 
 " Set colour theme
+set background=dark
 color solarized
 
 " Set CTRLP working dir to nearest ancestor that contains
