@@ -20,6 +20,9 @@ xsetroot -cursor_name left_ptr &
 # Set a standard PC keyboard, British layout and swap ctrl / caps-lock.
 setxkbmap -model pc104 -layout gb -option ctrl:swapcaps &
 
+# Reverse scrolling similar to Mac OSX Lion 'natural scrolling'.
+xmodmap -e "pointer = 1 2 3 5 4"
+
 # Set screensaver
 xscreensaver -no-splash &
 
@@ -31,19 +34,19 @@ numlockx &
 # exec openbox-session
 # exec spectrwm
 # exec startxfce4
-
+#
 # Enable a choice within SLiM, defaults to OpenBox (experimental)
 # Press F1 in SLiM to select
-DEFAULT_SESSION=spectrwm
-
-case $1 in
-openbox)
-        exec openbox-session
-        ;;
-xfce4)
-        exec startxfce4
-        ;;
-*)
-        exec $DEFAULT_SESSION
-        ;;
-esac
+# DEFAULT_SESSION=spectrwm
+#
+# case $1 in
+# openbox)
+#         exec openbox-session
+#         ;;
+# xfce4)
+#         exec startxfce4
+#         ;;
+# *)
+#         exec $DEFAULT_SESSION
+#         ;;
+# esac
