@@ -34,9 +34,6 @@
 [submodule ".janus/modx"]
 	path = .janus/modx
 	url = https://rosstimson@github.com/rosstimson/modx.vim.git
-[submodule ".janus/lustyjuggler"]
-	path = .janus/lustyjuggler
-	url = https://github.com/vim-scripts/LustyJuggler.git
 [submodule ".janus/indent-guides"]
 	path = .janus/indent-guides
 	url = https://github.com/nathanaelkane/vim-indent-guides.git
