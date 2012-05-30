@@ -1,12 +1,3 @@
-[submodule ".emacs.d"]
-	path = .emacs.d
-	url = https://rosstimson@github.com/rosstimson/emacs-config.git
-[submodule ".vim"]
-	path = .vim
-	url = https://github.com/carlhuda/janus.git
-[submodule ".zsh"]
-	path = .zsh
-	url = https://rosstimson@github.com/rosstimson/oh-my-zsh.git
 [submodule ".janus/c"]
 	path = .janus/c
 	url = https://github.com/vim-scripts/c.vim.git
