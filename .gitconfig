@@ -19,9 +19,6 @@
     added = green
     changed = yellow
     untracked = red
-[github]
-    user = rosstimson
-    token = ADD GITHUB TOKEN HERE
 [core]
     excludesfile = ~/.gitignore
     autocrlf = input
