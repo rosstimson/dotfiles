@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh configuration.
-export ZSH=$HOME/dotfiles/.zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set to the name theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -16,7 +16,7 @@ export DISABLE_AUTO_UPDATE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew bundler gem git github rails3 ruby)
+plugins=(bundler debian extract gem git git-flow github history-substring-search knife rails3 vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -24,26 +24,11 @@ source $ZSH/oh-my-zsh.sh
 
 ###  My stuff:
 
-# Timezone
-export TZ='Europe/London'
-
-# Setting Language / Locale
-export LANG='en_US.UTF-8'
-export LC_ALL='C'
-
-# Coloured ManPages
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
-
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=50000
 SAVEHIST=50000
+REPORTTIME=10 # print elapsed time when more than 10 seconds
 
 setopt append_history
 setopt share_history
@@ -75,50 +60,20 @@ esac
 
 # Set PATH, CDPATH, EDITOR, etc.
 export EDITOR='vim -f'
-export PAGER='less -R'
-export PATH='/usr/bin:/bin:/usr/sbin:/sbin'
-export PATH='/usr/local/bin:/usr/local/sbin:$PATH'
-export PATH='/usr/local/mysql/bin:$PATH'
-export PATH='$HOME/bin:$PATH'
-# Added for BDSM
-export PATH='${PATH}:$HOME/.sm/bin:$HOME/.sm/pkg/active/bin:$HOME/.sm/pkg/active/sbin'
-# Setting path for NodeJS libs.  
-# npm ls -g will show you where this should be (add node_modules to output).
-export NODE_PATH='/usr/local/lib/node_modules'
+export PAGER='less -FSRX'
 
-# Added for RVM (Ruby Version Manager)
-if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
-
-# Added for Tmuxinator
-if [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] ; then source $HOME/.tmuxinator/scripts/tmuxinator ; fi
+# Less Colors for Man Pages
+# http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
+export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
+export LESS_TERMCAP_me=$'\E[0m'           # end mode
+export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+export LESS_TERMCAP_so=$'\E[38;33;246m'   # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 # Added for using GPG secured emails
 export GPGKEY=97865D41
 
 # Other misc settings
 LISTMAX=0
-
-# Needed for using Janus alongside RVM:
-# https://github.com/carlhuda/janus/wiki/Rvm
-#
-# Define Vim wrappers which unsets GEM_HOME and GEM_PATH before
-# invoking vim and all known aliases
-#
-# @author Wael Nasreddine <wael.nasreddine@gmail.com>
-function define_vim_wrappers()
-{
-  vim_commands=(
-    eview evim gview gvim gvimdiff gvimtutor rgview
-    rgvim rview rvim vim vimdiff vimtutor xxd mvim
-  )
-
-  for cmd in ${vim_commands[@]}; do
-    cmd_path=`/usr/bin/env which -a "${cmd}" 2>/dev/null | grep '^/'`
-    if [ -x "${cmd_path}" ]; then
-      eval "function ${cmd} () { (unset GEM_HOME; unset GEM_PATH; $cmd_path \$@) }"
-    fi
-  done
-}
-
-# Call function defined above.
-define_vim_wrappers
