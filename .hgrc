@@ -1,0 +1,22 @@
+[ui]
+username = Ross Timson <ross@rosstimson.com>
+editor = vim
+commitsubrepos = False
+ignore = ~/.hgignore
+
+[progress]
+delay = 1.0
+
+[merge-tools]
+splice.executable = vim
+splice.args = -f $base $local $other $output -c 'SpliceInit'
+splice.premerge = keep
+splice.priority = 1
+
+keepthat.executable = sh
+keepthat.args = -c 'cp "$local" "$output.original" && cp "$other" "$output"'
+keepthat.premerge = True
+
+keepthis.executable = sh
+keepthis.args = -c 'cp "$other" "$output.incoming" && cp "$local" "$output"'
+keepthis.premerge = True
