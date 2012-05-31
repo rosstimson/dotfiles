@@ -72,8 +72,5 @@ export LESS_TERMCAP_so=$'\E[38;33;246m'   # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
-# Added for using GPG secured emails
-export GPGKEY=97865D41
-
 # Other misc settings
 LISTMAX=0
