@@ -1,0 +1,7 @@
+# ~/.login_conf
+# vim:set et sw=2:
+
+me:\
+	:charset=UTF-8:\
+	:lang=en_GB.UTF-8:\
+	:setenv=LC_COLLATE=C:
