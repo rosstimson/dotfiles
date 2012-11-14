@@ -3,7 +3,7 @@ set colorcolumn=80
 
 " Set colour theme
 set background=dark
-color solarized
+"color solarized
 
 " Set CTRLP working dir to nearest ancestor that contains
 " .git/, .hg/, .bzr/, _darcs/ or root.dir

@@ -3,6 +3,9 @@
 " Set Powerline to use patched font symbols
 let g:Powerline_symbols = 'fancy'
 
+" Don't use arrows for dirs in NERDTree.
+let g:NERDTreeDirArrows = 0
+
 " Set 256 colours, commented out as this should usually be handled
 " automatically via termcap/terminfo.
 "set t_Co=256
