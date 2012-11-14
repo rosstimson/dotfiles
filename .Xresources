@@ -2,7 +2,7 @@
 urxvt*termName: rxvt-unicode-256color
 urxvt*.scrollBar_right: false
 urxvt*scrollBar: false
-urxvt*borderLess: false
+urxvt*borderLess: true
 
 ! -- Font settings -- !
 xft.autohint: 0
@@ -17,5 +17,10 @@ xft.rgba: rgb
 urxvt.font:xft:Inconsolata:medium:size=12
 
 ! -- Colours -- !
+!#include ".Xcolors/Molokai"
+!#include ".Xcolors/Solarized"
+!#include ".Xcolors/Technicolor_I"
+!#include ".Xcolors/Technicolor_II"
+!#include ".Xcolors/Technobass"
 #include ".Xcolors/TomorrowNightEighties"
-!#include "~/.Xcolors/TomorrowNight"
+!#include ".Xcolors/Xtrail"

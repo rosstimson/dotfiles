@@ -1,0 +1,38 @@
+!! Technicolor I // Daisuke Aramaki
+
+! Foreground / Background
+*foreground: #b4b4b4
+*background: #121212
+!!!*background: #222222
+
+! Black
+*color0:  #000000
+*color8:  #555753
+
+! Red
+*color1:  #9e1828
+*color9:  #cf6171
+
+! Green
+*color2:  #80852d
+*color10: #7cbc8c
+
+! Yellow
+*color3:  #968a38
+*color11: #fff796
+
+! Blue
+*color4:  #414171
+*color12: #4186be
+
+! Magenta
+*color5:  #963c59
+*color13: #cf9ebe
+
+! Cyan
+*color6:  #418179
+*color14: #71bebe
+
+! White
+*color7:  #aaaaaa
+*color15: #c3c2c5
