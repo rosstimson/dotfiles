@@ -1,0 +1,21 @@
+! -- Urxvt -- !
+urxvt*termName: rxvt-unicode-256color
+urxvt*.scrollBar_right: false
+urxvt*scrollBar: false
+urxvt*borderLess: false
+
+! -- Font settings -- !
+xft.autohint: 0
+xft.lcdfilter: lcddefault
+xft.hintstyle: hintslight
+xft.hinting: 1
+xft.antialias: 1
+xft.dpi: 96
+xft.rgba: rgb
+
+! -- Fonts -- !
+urxvt.font:xft:Inconsolata:medium:size=12
+
+! -- Colours -- !
+#include ".Xcolors/TomorrowNightEighties"
+!#include "~/.Xcolors/TomorrowNight"
