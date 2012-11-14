@@ -58,6 +58,12 @@ esac
 # Setting Term
 #export TERM=rxvt-unicode
 
+# Recognise custom termcap
+if [ -f ${HOME}/.termcap ]; then
+  TERMCAP=$(< ${HOME}/.termcap)
+  export TERMCAP
+fi
+
 # Set PATH, CDPATH, EDITOR, etc.
 export EDITOR='vim -f'
 export PAGER='less -FSRX'
