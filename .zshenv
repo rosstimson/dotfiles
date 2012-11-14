@@ -7,8 +7,9 @@ done
 for dir in /usr/bin /usr/bin/X11 /usr/games /var/lib/gems/1.8/bin /usr/local/sbin /usr/sbin /sbin /usr/etc; do
   [ -d "$dir" ] && path=($path $dir)
 done
-# Usual suspects + ghar for managing dotfiles & rbenv for managing Rubies.
-path=($HOME/bin $HOME/tools/ghar/bin $HOME/.rbenv/bin $path /usr/bin/X11 /usr/games /usr/local/sbin /usr/sbin /sbin)
+# Usual suspects & rbenv for managing Rubies.
+path=($HOME/bin $HOME/.rbenv/bin $path /usr/bin/X11 /usr/games /usr/local/sbin /usr/sbin /sbin)
+
 # Enable rbenv shims.
 eval "$(rbenv init -)"
 
@@ -21,3 +22,6 @@ export LC_ALL='C'
 
 # Secure emails etc. with GPG
 export GPGKEY=97865D41
+
+# Use Ruby 1.9 mode in Rubinius
+export RBXOPT='-X19'
