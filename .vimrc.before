@@ -2,3 +2,7 @@
 
 " Set Powerline to use patched font symbols
 let g:Powerline_symbols = 'fancy'
+
+" Set 256 colours, commented out as this should usually be handled
+" automatically via termcap/terminfo.
+"set t_Co=256
