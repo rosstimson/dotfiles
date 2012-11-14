@@ -2,7 +2,7 @@
 urxvt*termName: rxvt-unicode-256color
 urxvt*.scrollBar_right: false
 urxvt*scrollBar: false
-urxvt*borderLess: true
+urxvt*borderLess: false
 
 ! -- Font settings -- !
 xft.autohint: 0
