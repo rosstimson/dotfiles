@@ -3,22 +3,22 @@
 export LANG=en_GB.UTF-8 LC_ALL=en_GB.UTF-8
 
 # Read in .Xresources
-# [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+xrdb -merge ~/.Xresources
 
 # Set wallpaper
-feh --bg-scale ~/Pictures/wallpapers/Take_Me_Elsewhere-1600x1200.jpg &
+feh --bg-scale ~/Pictures/wallpapers/bury_your_secrets.jpg &
 
 # URxvt daemon
 urxvtd -q -o -f &
 
 # Removing the ugly x cursor
-xsetroot -cursor_name left_ptr &
+xsetroot -cursor_name left_ptr
 
 # Set keyboard to Apple Mac KB and swap ctrl / caps-lock.
 # setxkbmap -model apple -layout us -variant mac -option ctrl:swapcaps &
 
 # Set a standard PC keyboard, British layout and swap ctrl / caps-lock.
-setxkbmap -model pc104 -layout gb -option ctrl:swapcaps &
+setxkbmap -model pc104 -layout gb -option ctrl:swapcaps
 
 # Reverse scrolling similar to Mac OSX Lion 'natural scrolling'.
 xmodmap -e "pointer = 1 2 3 5 4"
@@ -32,7 +32,7 @@ numlockx &
 
 # Window managers / environments
 # exec openbox-session
-# exec spectrwm
+exec spectrwm
 # exec startxfce4
 #
 # Enable a choice within SLiM, defaults to OpenBox (experimental)
