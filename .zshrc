@@ -64,7 +64,18 @@ if [ -f ${HOME}/.termcap ]; then
   export TERMCAP
 fi
 
-# Set PATH, CDPATH, EDITOR, etc.
+# GPG Agent
+if [ -f "${HOME}/.gpg-agent-info" ]; then
+  . "${HOME}/.gpg-agent-info"
+  export GPG_AGENT_INFO
+  export SSH_AUTH_SOCK
+  export SSH_AGENT_PID
+fi
+
+GPG_TTY=${tty}
+export GPG_TTY
+
+# Set EDITOR, PAGER etc.
 export EDITOR='vim -f'
 export PAGER='less -FSRX'
 

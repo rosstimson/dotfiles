@@ -5,6 +5,10 @@ export LANG=en_GB.UTF-8 LC_ALL=en_GB.UTF-8
 # Read in .Xresources
 xrdb -merge ~/.Xresources
 
+# Start GPG agent & also handle SSH
+eval $(gpg-agent --daemon --enable-ssh-support \
+                 --write-env-file "${HOME}/.gpg-agent-info") &
+
 # Set wallpaper
 feh --bg-scale ~/Pictures/wallpapers/bury_your_secrets.jpg &
 
