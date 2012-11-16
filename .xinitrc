@@ -15,7 +15,7 @@ urxvtd -q -o -f &
 xsetroot -cursor_name left_ptr
 
 # Set keyboard to Apple Mac KB and swap ctrl / caps-lock.
-# setxkbmap -model apple -layout us -variant mac -option ctrl:swapcaps &
+# setxkbmap -model apple -layout us -variant mac -option ctrl:swapcaps
 
 # Set a standard PC keyboard, British layout and swap ctrl / caps-lock.
 setxkbmap -model pc104 -layout gb -option ctrl:swapcaps
@@ -24,7 +24,8 @@ setxkbmap -model pc104 -layout gb -option ctrl:swapcaps
 xmodmap -e "pointer = 1 2 3 5 4"
 
 # Set screensaver
-xscreensaver -no-splash &
+#xscreensaver -no-splash &
+xautolock -time 5 -locker "xlock -mode random +showdate -lockdelay 600 -timeout 20" &
 
 # Start misc apps
 numlockx &
