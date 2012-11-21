@@ -1,7 +1,7 @@
 [general]
 ui = ttyui
 accounts = RossTimson, Gmail
-pythonfile = ~/path/to/script.py
+pythonfile = ~/bin/offlineimap_secrets.py
 fsync = False
 # Max number of concurrent connections.
 maxsyncaccounts = 2
@@ -28,7 +28,7 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 [Repository RossTimson-Remote]
 type = Gmail
 remoteuser = ross@rosstimson.com
-remotepasseval = 
+remotepasseval = grab_secret('AppSpecific/offlineimap-rosstimson')
 ssl = yes
 sslcacertfile = /usr/local/share/certs/ca-root-nss.crt
 realdelete = no
@@ -65,7 +65,7 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 [Repository Gmail-Remote]
 type = Gmail
 remoteuser = rosstimson@gmail.com
-remotepasseval = 
+remotepasseval = grab_secret('AppSpecific/offlineimap-gmail')
 ssl = yes
 sslcacertfile = /usr/local/share/certs/ca-root-nss.crt
 realdelete = no
