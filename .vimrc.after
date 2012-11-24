@@ -5,6 +5,10 @@ set colorcolumn=80
 set background=dark
 "color solarized
 
+" Underline spelling errors a colour them red.
+hi clear SpellBad
+hi SpellBad cterm=underline ctermfg=red
+
 " Set CTRLP working dir to nearest ancestor that contains
 " .git/, .hg/, .bzr/, _darcs/ or root.dir
 let g:ctrlp_working_path_mode = 2
