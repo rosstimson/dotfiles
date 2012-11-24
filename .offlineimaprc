@@ -54,12 +54,12 @@ postsynchook = notmuch new
 
 [Repository Gmail-Local]
 type = Maildir
-localfolders = ~/.mail/rosstimon-gmail.com
-nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
-                            'sent':    '[Gmail]/Sent Mail',
-                            'flagged': '[Gmail]/Starred',
-                            'trash':   '[Gmail]/Trash',
-                            'archive': '[Gmail]/All Mail',
+localfolders = ~/.mail/rosstimson-gmail.com
+nametrans = lambda folder: {'drafts':  '[Google Mail]/Drafts',
+                            'sent':    '[Google Mail]/Sent Mail',
+                            'flagged': '[Google Mail]/Starred',
+                            'trash':   '[Google Mail]/Trash',
+                            'archive': '[Google Mail]/All Mail',
                             }.get(folder, folder)
 
 [Repository Gmail-Remote]
@@ -69,13 +69,13 @@ remotepasseval = grab_secret('AppSpecific/offlineimap-gmail')
 ssl = yes
 sslcacertfile = /usr/local/share/certs/ca-root-nss.crt
 realdelete = no
-nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
-                            '[Gmail]/Sent Mail': 'sent',
-                            '[Gmail]/Starred':   'flagged',
-                            '[Gmail]/Trash':     'trash',
-                            '[Gmail]/All Mail':  'archive',
+nametrans = lambda folder: {'[Google Mail]/Drafts':    'drafts',
+                            '[Google Mail]/Sent Mail': 'sent',
+                            '[Google Mail]/Starred':   'flagged',
+                            '[Google Mail]/Trash':     'trash',
+                            '[Google Mail]/All Mail':  'archive',
                             }.get(folder, folder)
-folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
-                                             '[Gmail]/Important',
-                                             '[Gmail]/Spam',
+folderfilter = lambda folder: folder not in ['[Google Mail]/Trash',
+                                             '[Google Mail]/Important',
+                                             '[Google Mail]/Spam',
                                              ]
