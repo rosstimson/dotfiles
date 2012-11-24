@@ -18,7 +18,7 @@ export TZ='Europe/London'
 
 # Setting Language / Locale
 export LANG='en_GB.UTF-8'
-export LC_ALL='C'
+export LC_COLLATE='C'
 
 # Secure emails etc. with GPG
 export GPGKEY=97865D41
