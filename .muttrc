@@ -1,81 +1,165 @@
-# vim: filetype=muttrc
+# ~/.muttrc
 
-# Set Editor -----------------------------------------------------------------
-#
-#
+# Paths ----------------------------------------------------------------------
+set folder              = ~/.mail                   # mailbox location
+set alias_file          = ~/.mutt/alias             # where to store aliases
+set header_cache        = ~/.mutt/cache/headers     # where to store headers
+set message_cachedir    = ~/.mutt/cache/bodies      # where to store bodies
+set certificate_file    = ~/.mutt/certificates      # where to store certs
+set mailcap_path        = ~/.mutt/mailcap           # entries for filetypes
+set tmpdir              = ~/.mutt/temp              # where to keep temp files
+set signature           = ~/.mutt/sig               # my signature file
+
+
+# Basic Options --------------------------------------------------------------
+set wait_key = no         # shut up, mutt
+set mbox_type = Maildir   # mailbox type
+set timeout = 3           # idle time before scanning
+set mail_check = 0        # minimum time between scans
+unset move                # gmail does that
+set delete                # don't ask, just do
+unset confirmappend       # don't ask, just do!
+set quit                  # don't ask, just do!!
+unset mark_old            # read/new is good enough for me
+set beep_new              # bell on new mails
+set pipe_decode           # strip headers and eval mimes when piping
+set thorough_search       # strip headers and eval mimes before searching
+
+# Sidebar Patch --------------------------------------------------------------
+set sidebar_delim = '  | '
+set sidebar_visible = yes
+set sidebar_width = 24
+
+# Status Bar -----------------------------------------------------------------
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Header Options -------------------------------------------------------------
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+
+# Account Settings -----------------------------------------------------------
+set spoolfile = "+ross-rosstimson.com/INBOX"  # Default inbox
+
+mailboxes +ross-rosstimson.com/INBOX \
+          +ross-rosstimson.com/sent \
+          +ross-rosstimson.com/drafts \
+          +ross-rosstimson.com/archive
+
+mailboxes +rosstimson-gmail.com/INBOX \
+          +rosstimson-gmail.com/sent \
+          +rosstimson-gmail.com/drafts \
+          +rosstimson-gmail.com/archive
+
+# Sending (via MSMTP)
+folder-hook 'ross-rosstimson.com' "set sendmail = '/usr/local/bin/msmtp -a rosstimson'"
+folder-hook 'ross-rosstimson.com' "set from = 'ross@rosstimson.com'"
+
+folder-hook 'rosstimson-gmail.com' "set sendmail = '/usr/local/bin/msmtp -a gmail'"
+folder-hook 'rosstimson-gmail.com' "set from = 'rosstimson@gmail.com'"
+
+# Misc sending settings
+set sendmail_wait = 0 # Wait for msmtp to finish sending before returning control
+unset record # No need to save sent mail to HDD as Gmail will do this for us
+
+# Other special folders
+folder-hook 'ross-rosstimson.com' "set mbox = '+ross-rosstimson.com/archive'"
+folder-hook 'ross-rosstimson.com' "set postponed = '+ross-rosstimson.com/drafts'"
+
+folder-hook 'rosstimson-gmail.com' "set mbox = '+rosstimson-gmail.com/archive'"
+folder-hook 'rosstimson-gmail.com' "set postponed = '+rosstimson-gmail.com/drafts'"
+
+# Index View Options ---------------------------------------------------------
+set date_format = "%m/%d"
+set index_format = "[%Z]  %D  %-20.20F  %s"
+set sort = threads                         # like gmail
+set sort_aux = reverse-last-date-received  # like gmail
+set uncollapse_jump                        # don't collapse on an unread message
+set sort_re                                # thread based on regex
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# Index Key Bindings ---------------------------------------------------------
+bind index gg       first-entry
+bind index G        last-entry
+
+bind index R        group-reply
+bind index <tab>    sync-mailbox
+bind index <space>  collapse-thread
+
+# Ctrl-R to mark all as read
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+
+# Sync email
+macro index O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
+macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+
+# Saner copy/move dialogs
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+# Shortcuts for handling spam
+macro index,pager S "<save-message>=[Gmail]/Spam<enter>"  "mark as spam"
+macro index,pager H "<save-message>=INBOX<enter>"         "mark as ham"
+
+# Sidebar Navigation ---------------------------------------------------------
+bind index,pager <down>   sidebar-next
+bind index,pager <up>     sidebar-prev
+bind index,pager <right>  sidebar-open
+
+# Pager View Options ---------------------------------------------------------
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+# Pager Key Bindings ---------------------------------------------------------
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+bind pager R  group-reply
+
+# View attachments properly.
+bind attach <return> view-mailcap
+
+# Compose View Options -------------------------------------------------------
+set realname = "Ross Timson"         # who am i?
+set envelope_from                    # which from?
+set sig_dashes                       # dashes before sig
+set edit_headers                     # show headers when composing
+set fast_reply                       # skip to compose when replying
+set askcc                            # ask for CC:
+set fcc_attach                       # save attachments with the body
+unset mime_forward                   # forward attachments as part of body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
 set editor = "vim -c \"set spell spelllang=en_gb\""
 
-# Accounts setup -------------------------------------------------------------
-#
-#
-# Account Hooks
-#-------------------------------------
-account-hook . 'unset imap_user; unset imap_pass; unset tunnel' # unset first!
-account-hook 'imaps://rosstimson@imap.gmail.com/' "\
-              set imap_user='rosstimson@gmail.com' imap_pass='INSERT_PASSWORD' "
-account-hook 'imaps://ross@rosstimson.com@imap.gmail.com/' "\
-              set imap_user='ross@rosstimson.com' imap_pass='INSERT_PASSWORD' "
+# Colour Theme ---------------------------------------------------------------
+#source ~/.mutt/colors/mutt-colors-solarized-dark-256.muttrc
+# Basic Colours
+color normal default default
+color indicator black yellow
+color status brightcyan brightblack
+color hdrdefault magenta default
+color tree green default
 
-# Folders, mailboxes and folder hooks
-#-------------------------------------
-# Setup for GoogleMail account:
-set folder="imaps://rosstimson@imap.gmail.com/"
-mailboxes =INBOX =[Gmail]/Drafts =[Gmail]/'Sent Mail' =[Gmail]/Spam
-folder-hook 'imaps://rosstimson@imap.gmail.com' " \
-        set     folder=imaps://rosstimson@imap.gmail.com/ \
-                postponed=+[Gmail]/Drafts \
-                smtp_url=smtps://rosstimson@smtp.gmail.com \
-                smtp_pass='INSERT_PASSWORD' \
-                from='Ross Timson <rosstimson@gmail.com> ' \
-                realname='Ross Timson' "
-
-# Setup for ross@rosstimson.com (Google Apps):
-set folder="imaps://ross@rosstimson.com@imap.gmail.com/"
-mailboxes =INBOX =[Gmail]/Drafts =[Gmail]/'Sent Mail' =[Gmail]/Spam
-folder-hook 'imaps://ross@rosstimson.com@imap.gmail.com' " \
-        set     folder=imaps://ross@rosstimson.com@imap.gmail.com/ \
-                postponed=+[Gmail]/Drafts \
-                smtp_url=smtps://ross@rosstimson.com@smtp.gmail.com \
-                smtp_pass='INSERT_PASSWORD' \
-                from='Ross Timson <ross@rosstimson.com> ' \
-                realname='Ross Timson' "
-#
-#-------------------------------------
-# Macros to make life easier
-#-------------------------------------
-macro index <f2> '<change-folder>imaps://rosstimson@imap.gmail.com/INBOX<enter>'
-macro index <f3> '<change-folder>imaps://ross@rosstimson.com@imap.gmail.com/INBOX<enter>'
-
-
-# Set GoogleMail Inbox to open by default on startup
-set spoolfile = "imaps://rosstimson@imap.gmail.com"
-
-# mark message as spam
-macro index,pager S "<save-message>=[Gmail]/Spam<enter>"
-# mark message as ham
-macro index,pager H "<save-message>=INBOX<enter>"
-
-set header_cache=~/.mutt/cache/headers
-set message_cachedir=~/.mutt/cache/bodies
-set certificate_file=~/.mutt/certificates
-
-set move = no
-set timeout=15
-auto_view text/html
-
-set sort = 'threads'
-set sort_aux = 'last-date-received'
-set imap_check_subscribed
-
-ignore "Authentication-Results:"
-ignore "DomainKey-Signature:"
-ignore "DKIM-Signature:"
-hdr_order Date From To Cc
-
+# Sidebar
+color sidebar_new default red
 
 # GNUPG Encryption -----------------------------------------------------------
-#
-#
 set pgp_decode_command="gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"
 set pgp_verify_command="gpg --no-verbose --batch --output - --verify %s %f"
 set pgp_decrypt_command="gpg --passphrase-fd 0 --no-verbose --batch --output - %f"
@@ -93,155 +177,3 @@ set pgp_sign_as=0x97865D41
 set pgp_replyencrypt=yes
 set pgp_timeout=1800
 set pgp_good_sign="^gpg: Good signature from"
-
-
-
-# Solarized ColourScheme -----------------------------------------------------
-#
-# make sure that you are using mutt linked against slang, not ncurses, or
-# suffer the consequences of weird color issues. use "mutt -v" to check this.
-
-# custom body highlights -----------------------------------------------
-# highlight my name and other personally relevant strings
-#color body          yellow          default         "(ethan|schoonover)"
-# custom index highlights ----------------------------------------------
-# messages which mention my name in the body
-#color index         yellow          default         "~b \"phil(_g|\!| gregory| gold)|pgregory\" !~N !~T !~F !~p !~P"
-#color index         J_cream         brightwhite     "~b \"phil(_g|\!| gregory| gold)|pgregory\" ~N !~T !~F !~p !~P"
-#color index         yellow          cyan            "~b \"phil(_g|\!| gregory| gold)|pgregory\" ~T !~F !~p !~P"
-#color index         yellow          J_magent        "~b \"phil(_g|\!| gregory| gold)|pgregory\" ~F !~p !~P"
-## messages which are in reference to my mails
-#color index         J_magent        default         "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" !~N !~T !~F !~p !~P"
-#color index         J_magent        brightwhite     "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" ~N !~T !~F !~p !~P"
-#color index         J_magent        cyan            "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" ~T !~F !~p !~P"
-#color index         J_magent        red             "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" ~F !~p !~P"
-
-# for background in 16 color terminal, valid background colors include:
-# base03, bg, black, any of the non brights
-
-# basic colors ---------------------------------------------------------
-color normal        brightyellow    default         
-color error         red             default         
-color tilde         black           default         
-color message       cyan            default         
-color markers       red             white           
-color attachment    white           default         
-color search        brightmagenta   default         
-#color status        J_black         J_status        
-color status        brightyellow    black           
-color indicator     brightblack     yellow          
-color tree          yellow          default                                     # arrow in threads
-
-# basic monocolor screen
-mono  bold          bold
-mono  underline     underline
-mono  indicator     reverse
-mono  error         bold
-
-# index ----------------------------------------------------------------
-
-#color index         red             default         "~D(!~p|~p)"               # deleted
-#color index         black           default         ~F                         # flagged
-#color index         brightred       default         ~=                         # duplicate messages
-#color index         brightgreen     default         "~A!~N!~T!~p!~Q!~F!~D!~P"  # the rest
-#color index         J_base          default         "~A~N!~T!~p!~Q!~F!~D"      # the rest, new
-color index         red             default         "~A"                        # all messages
-color index         brightred       default         "~E"                        # expired messages
-color index         blue            default         "~N"                        # new messages
-color index         blue            default         "~O"                        # old messages
-color index         brightmagenta   default         "~Q"                        # messages that have been replied to
-color index         brightgreen     default         "~R"                        # read messages
-color index         blue            default         "~U"                        # unread messages
-color index         blue            default         "~U~$"                      # unread, unreferenced messages
-color index         brightyellow    default         "~v"                        # messages part of a collapsed thread
-color index         brightyellow    default         "~P"                        # messages from me
-color index         cyan            default         "~p!~F"                     # messages to me
-color index         cyan            default         "~N~p!~F"                   # new messages to me
-color index         cyan            default         "~U~p!~F"                   # unread messages to me
-color index         brightgreen     default         "~R~p!~F"                   # messages to me
-color index         red             default         "~F"                        # flagged messages
-color index         red             default         "~F~p"                      # flagged messages to me
-color index         red             default         "~N~F"                      # new flagged messages
-color index         red             default         "~N~F~p"                    # new flagged messages to me
-color index         red             default         "~U~F~p"                    # new flagged messages to me
-color index         black           red             "~D"                        # deleted messages
-color index         brightcyan      default         "~v~(!~N)"                  # collapsed thread with no unread
-color index         yellow          default         "~v~(~N)"                   # collapsed thread with some unread
-color index         green           default         "~N~v~(~N)"                 # collapsed thread with unread parent
-# statusbg used to indicated flagged when foreground color shows other status
-# for collapsed thread
-color index         red             black           "~v~(~F)!~N"                # collapsed thread with flagged, no unread
-color index         yellow          black           "~v~(~F~N)"                 # collapsed thread with some unread & flagged
-color index         green           black           "~N~v~(~F~N)"               # collapsed thread with unread parent & flagged
-color index         green           black           "~N~v~(~F)"                 # collapsed thread with unread parent, no unread inside, but some flagged
-color index         cyan            black           "~v~(~p)"                   # collapsed thread with unread parent, no unread inside, some to me directly
-color index         yellow          red             "~v~(~D)"                   # thread with deleted (doesn't differentiate between all or partial)
-#color index         yellow          default         "~(~N)"                    # messages in threads with some unread
-#color index         green           default         "~S"                       # superseded messages
-#color index         red             default         "~T"                       # tagged messages
-#color index         brightred       red             "~="                       # duplicated messages
-
-# message headers ------------------------------------------------------
-
-#color header        brightgreen     default         "^"
-color hdrdefault    brightgreen     default         
-color header        brightyellow    default         "^(From)"
-color header        blue            default         "^(Subject)"
-
-# body -----------------------------------------------------------------
-
-color quoted        blue            default         
-color quoted1       cyan            default         
-color quoted2       yellow          default         
-color quoted3       red             default         
-color quoted4       brightred       default         
-
-color signature     brightgreen     default         
-color bold          black           default         
-color underline     black           default         
-color normal        default         default         
-#
-color body          brightcyan      default         "[;:][-o][)/(|]"    # emoticons
-color body          brightcyan      default         "[;:][)(|]"         # emoticons
-color body          brightcyan      default         "[*]?((N)?ACK|CU|LOL|SCNR|BRB|BTW|CWYL|\
-                                                     |FWIW|vbg|GD&R|HTH|HTHBE|IMHO|IMNSHO|\
-                                                     |IRL|RTFM|ROTFL|ROFL|YMMV)[*]?"
-color body          brightcyan      default         "[ ][*][^*]*[*][ ]?" # more emoticon?
-color body          brightcyan      default         "[ ]?[*][^*]*[*][ ]" # more emoticon?
-
-## pgp
-
-color body          red             default         "(BAD signature)"
-color body          cyan            default         "(Good signature)"
-color body          brightblack     default         "^gpg: Good signature .*"
-color body          brightyellow    default         "^gpg: "
-color body          brightyellow    red             "^gpg: BAD signature from.*"
-mono  body          bold                            "^gpg: Good signature"
-mono  body          bold                            "^gpg: BAD signature from.*"
-
-# yes, an insance URL regex
-color body          red             default         "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
-# and a heavy handed email regex
-#color body          J_magent        default         "((@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]),)*@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]):)?[0-9a-z_.+%$-]+@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\])"
-
-# Various smilies and the like
-#color body          brightwhite     default         "<[Gg]>"                            # <g>
-#color body          brightwhite     default         "<[Bb][Gg]>"                        # <bg>
-#color body          yellow          default         " [;:]-*[})>{(<|]"                  # :-) etc...
-# *bold*
-#color body          blue            default         "(^|[[:space:][:punct:]])\\*[^*]+\\*([[:space:][:punct:]]|$)"
-#mono  body          bold                            "(^|[[:space:][:punct:]])\\*[^*]+\\*([[:space:][:punct:]]|$)"
-# _underline_
-#color body          blue            default         "(^|[[:space:][:punct:]])_[^_]+_([[:space:][:punct:]]|$)"
-#mono  body          underline                       "(^|[[:space:][:punct:]])_[^_]+_([[:space:][:punct:]]|$)"
-# /italic/  (Sometimes gets directory names)
-#color body         blue            default         "(^|[[:space:][:punct:]])/[^/]+/([[:space:][:punct:]]|$)"
-#mono body          underline                       "(^|[[:space:][:punct:]])/[^/]+/([[:space:][:punct:]]|$)"
-
-# Border lines.
-#color body          blue            default         "( *[-+=#*~_]){6,}"
-
-#folder-hook .                  "color status        J_black         J_status        "
-#folder-hook gmail/inbox        "color status        J_black         yellow          "
-#folder-hook gmail/important    "color status        J_black         yellow          "
-
