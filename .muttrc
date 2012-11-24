@@ -100,8 +100,16 @@ macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 
 # Shortcuts for handling spam
-macro index,pager S "<save-message>=[Gmail]/Spam<enter>"  "mark as spam"
-macro index,pager H "<save-message>=INBOX<enter>"         "mark as ham"
+macro index,pager S "<save-message>=Spam<enter>"  "mark as spam"
+macro index,pager H "<save-message>=INBOX<enter>"  "mark as ham"
+
+# Searching ------------------------------------------------------------------
+bind index N search-opposite    # goto previous match
+bind pager N search-opposite
+macro index a "<limit>all\n"    "show all messages (undo limit)"
+macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.mail/temporary/search<enter><change-folder-readonly>+temporary/search<enter>" "search mail (using notmuch)"
+mailboxes +temporary/search     # read-only folder for displaying search results
+
 
 # Sidebar Navigation ---------------------------------------------------------
 bind index,pager <down>   sidebar-next
