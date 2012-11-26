@@ -204,7 +204,6 @@ statusbar = {
         window = { };
         window_empty = { };
         lag = { priority = "-1"; };
-        act = { priority = "10"; };
         more = { priority = "-1"; alignment = "right"; };
         barend = { priority = "100"; alignment = "right"; };
       };
@@ -270,6 +269,12 @@ settings = {
     nick = "rosstimson";
   };
   "fe-text" = { actlist_sort = "refnum"; };
+  "perl/core/scripts" = {
+    awl_display_key = "$Q%K|$N%n $H$C$S";
+    awl_display_key_active = "$Q%K|$N%n $H%U$C%n$S";
+    awl_display_nokey = "[$N]$H$C$S";
+    awl_block = "1";
+  };
 };
 windows = {
   1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
