@@ -22,7 +22,16 @@ servers = (
   { address = "irc.webchat.org"; chatnet = "WebChat"; port = "6667"; },
   { address = "irc.rizon.net"; chatnet = "Rizon"; port = "6667"; },
   { address = "irc.link-net.org"; chatnet = "LinkNet"; port = "6667"; },
-  { address = "silc.silcnet.org"; chatnet = "SILC"; port = "706"; }
+  { address = "silc.silcnet.org"; chatnet = "SILC"; port = "706"; },
+  {
+    address = "irc.freenode.net";
+    chatnet = "freenode";
+    port = "7000";
+    use_ssl = "yes";
+    ssl_verify = "yes";
+    ssl_cafile = "/usr/local/share/certs/ca-root-nss.crt";
+    autoconnect = "yes";
+  }
 );
 
 chatnets = {
@@ -88,6 +97,11 @@ chatnets = {
     max_whois = "30";
   };
   SILC = { type = "SILC"; };
+  freenode = {
+    type = "IRC";
+    nick = "rosstimson";
+    realname = "Ross Timson";
+  };
 };
 
 channels = (
