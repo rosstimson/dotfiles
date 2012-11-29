@@ -281,6 +281,7 @@ settings = {
     real_name = "Ross Timson";
     user_name = "rosstimson";
     nick = "rosstimson";
+    timestamp_format = "%H:%M";
   };
   "fe-text" = { actlist_sort = "refnum"; };
   "perl/core/scripts" = {
@@ -288,6 +289,8 @@ settings = {
     awl_display_key_active = "$Q%K|$N%n $H%U$C%n$S";
     awl_display_nokey = "[$N]$H$C$S";
     awl_block = "1";
+    nicklist_height = "40";
+    nicklist_width = "20";
   };
 };
 windows = {
