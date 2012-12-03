@@ -14,7 +14,9 @@ xft.dpi: 96
 xft.rgba: rgb
 
 ! -- Fonts -- !
-urxvt.font:xft:Inconsolata:medium:size=12
+!urxvt.font:xft:Inconsolata:medium:size=12
+urxvt.font:xft:Source Code Pro for Powerline:RegularForPowerline:12
+urxvt.boldFont:xft:Source Code Pro for Powerline:BoldForPowerline:12
 
 ! -- Colours -- !
 !#include ".Xcolors/Molokai"
