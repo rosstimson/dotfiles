@@ -3,7 +3,6 @@
 Thumbs.db
 
 ## EDITOR CRAP
-## MISC
 .idea
 .nbproject
 
@@ -21,6 +20,9 @@ tmtags
 
 ## SUBVERSION
 .svn
+
+## Rubinius
+.rbx/
 
 ## MISC
 tags
