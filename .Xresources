@@ -3,6 +3,22 @@ urxvt*termName: rxvt-unicode-256color
 urxvt*.scrollBar_right: false
 urxvt*scrollBar: false
 urxvt*borderLess: false
+! - Extensions
+urxvt.perl-lib: /home/rosstimson/.urxvt-perls/
+urxvt.perl-ext-common: keyboard-select,url-select,clipboard
+! keyboard-select
+urxvt.keysym.M-Escape: perl:keyboard-select:activate
+urxvt.keysym.M-s: perl:keyboard-select:search
+! url-select
+urxvt.keysym.M-u: perl:url-select:select_next
+urxvt.url-select.launcher: chrome
+urxvt.url-select.underline: true
+! clipboard
+urxvt.clipboard.copycmd:  xclip -i -selection clipboard
+urxvt.clipboard.pastecmd: xclip -o -selection clipboard
+urxvt.keysym.M-c: perl:clipboard:copy
+urxvt.keysym.M-v: perl:clipboard:paste
+urxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 
 ! -- Font settings -- !
 xft.autohint: 0
