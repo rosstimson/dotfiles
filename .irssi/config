@@ -289,7 +289,7 @@ settings = {
     awl_display_key_active = "$Q%K|$N%n $H%U$C%n$S";
     awl_display_nokey = "[$N]$H$C$S";
     awl_block = "1";
-    nicklist_height = "40";
+    nicklist_height = "34";
     nicklist_width = "20";
   };
 };
@@ -298,6 +298,7 @@ windows = {
   2 = { name = "hilight"; sticky = "yes"; };
 };
 mainwindows = {
-  1 = { first_line = "8"; lines = "31"; };
-  2 = { first_line = "1"; lines = "7"; };
+  1 = { first_line = "9"; lines = "24"; };
+  2 = { first_line = "1"; lines = "8"; };
 };
+ignores = ( { level = "JOINS PARTS QUITS"; } );
