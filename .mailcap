@@ -1,0 +1,8 @@
+application/x-gzip;zless %s
+text/html;chrome %s
+application/pdf;gsview %s
+application/postscript;gsview %s
+image/gif;feh %s
+image/jpg;feh %s
+image/jpeg;feh %s
+image/png;feh %s

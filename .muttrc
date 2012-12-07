@@ -134,6 +134,9 @@ bind pager gg top
 bind pager G  bottom
 bind pager R  group-reply
 
+# View URLs (urlview)
+macro pager \Cu "|urlview<enter>" "call urlview to open links"
+
 # View attachments properly.
 bind attach <return> view-mailcap
 
