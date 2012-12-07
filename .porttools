@@ -1,0 +1,10 @@
+# FreeBSD Port Tools configuration file - see porttools(5)
+# vim: ft=sh
+EMAIL="ross@rosstimson.com"
+FULLNAME="Ross Timson"
+ORGANIZATION=""
+BUILDROOT="/tmp"
+ARCHIVE_DIR=""
+DIFF_MODE="CVS"
+DIFF_VIEWER="cdiff"
+PORTLINT_FLAGS="abct"
