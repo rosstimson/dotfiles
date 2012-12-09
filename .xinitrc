@@ -33,6 +33,7 @@ xautolock -time 5 -locker "xlock -mode random +showdate -lockdelay 600 -timeout 
 
 # Start misc apps
 numlockx &
+musicpd & # FreeBSD has a mpd in base system, mpd should be used instead in Linux.
 # exec conky &
 
 # Window managers / environments
