@@ -1,8 +1,11 @@
 ! -- Urxvt -- !
-urxvt*termName: rxvt-unicode-256color
-urxvt*.scrollBar_right: false
-urxvt*scrollBar: false
-urxvt*borderLess: false
+urxvt.termName: rxvt-unicode-256color
+urxvt.scrollBar: false
+urxvt.borderLess: false
+urxvt.jumpScroll: true
+urxvt.scrollTtyOutput: false
+urxvt.scrollTtyKeypress: true
+urxvt.saveLines: 1000
 ! - Extensions
 urxvt.perl-lib: /home/rosstimson/.urxvt-perls/
 urxvt.perl-ext-common: keyboard-select,url-select,clipboard
@@ -31,7 +34,7 @@ xft.rgba: rgb
 
 ! -- Fonts -- !
 !urxvt.font:xft:Inconsolata:medium:size=12
-urxvt.font:xft:Source Code Pro for Powerline:RegularForPowerline:12
+urxvt.font:xft:Source Code Pro for Powerline:RegularForPowerline:12:encoding=iso10646-1
 urxvt.boldFont:xft:Source Code Pro for Powerline:BoldForPowerline:12
 
 ! -- Colours -- !
