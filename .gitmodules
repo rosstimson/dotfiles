@@ -4,9 +4,6 @@
 [submodule ".janus/nginx"]
 	path = .janus/nginx
 	url = https://github.com/vim-scripts/nginx.vim.git
-[submodule ".janus/slim"]
-	path = .janus/slim
-	url = https://github.com/bbommarito/vim-slim
 [submodule ".janus/erlang"]
 	path = .janus/erlang
 	url = https://github.com/jimenezrick/vimerl.git
@@ -16,15 +13,12 @@
 [submodule ".janus/abolish"]
 	path = .janus/abolish
 	url = https://github.com/tpope/vim-abolish.git
-[submodule ".janus/repeat"]
-	path = .janus/repeat
-	url = https://github.com/tpope/vim-repeat.git
 [submodule ".janus/vala"]
 	path = .janus/vala
 	url = https://github.com/rainux/vim-vala.git
 [submodule ".janus/modx"]
 	path = .janus/modx
-	url = https://rosstimson@github.com/rosstimson/modx.vim.git
+	url = https://github.com/rosstimson/modx.vim.git
 [submodule ".janus/indent-guides"]
 	path = .janus/indent-guides
 	url = https://github.com/nathanaelkane/vim-indent-guides.git
@@ -33,4 +27,4 @@
 	url = https://github.com/Lokaltog/vim-powerline.git
 [submodule ".janus/zencoding"]
 	path = .janus/zencoding
-	url = https://rosstimson@github.com/rosstimson/zencoding-vim.git
+	url = https://github.com/rosstimson/zencoding-vim.git
