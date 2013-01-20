@@ -27,6 +27,8 @@ source $ZSH/oh-my-zsh.sh
 # Use chruby for managing Ruby versions
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
+# Setting a default Ruby
+chruby ruby-1.9.3-p374
 
 # History
 HISTFILE=~/.zsh_history
