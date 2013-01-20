@@ -1,11 +1,12 @@
+call janus#disable_plugin('nerdtree')
 "call janus#disable_plugin('css-color')
 
 " Set Powerline to use patched font symbols
-let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'compatible'
 
 " Don't use arrows for dirs in NERDTree.
-let g:NERDTreeDirArrows = 0
+" let g:NERDTreeDirArrows = 0
 
 " Set 256 colours, commented out as this should usually be handled
 " automatically via termcap/terminfo.
-"set t_Co=256
+" set t_Co=256

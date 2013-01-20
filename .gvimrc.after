@@ -1,5 +1,5 @@
 " Font
-set gfn=Source\ Code\ Pro\ for\ Powerline\ 12
+set gfn=Source\ Code\ Pro\ 11
 
 " No audible bell
 set vb
