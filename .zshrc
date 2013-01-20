@@ -24,6 +24,10 @@ source $ZSH/oh-my-zsh.sh
 
 ###  My stuff:
 
+# Use chruby for managing Ruby versions
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
+
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=50000

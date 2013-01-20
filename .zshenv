@@ -8,10 +8,7 @@ for dir in /usr/bin /usr/bin/X11 /usr/games /var/lib/gems/1.8/bin /usr/local/sbi
   [ -d "$dir" ] && path=($path $dir)
 done
 # Usual suspects & rbenv for managing Rubies.
-path=($HOME/bin $HOME/.rbenv/bin $path /usr/bin/X11 /usr/games /usr/local/sbin /usr/sbin /sbin)
-
-# Enable rbenv shims.
-eval "$(rbenv init -)"
+path=($HOME/bin $path /usr/bin/X11 /usr/games /usr/local/sbin /usr/sbin /sbin)
 
 # Timezone
 export TZ='Europe/London'
