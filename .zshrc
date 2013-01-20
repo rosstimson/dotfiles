@@ -16,7 +16,7 @@ export DISABLE_AUTO_UPDATE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(bundler extract gem git git-flow github history-substring-search knife rails3 vagrant)
+plugins=(bundler extract gem git git-flow github gpg-agent history-substring-search knife rails3 vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -69,17 +69,6 @@ if [ -f ${HOME}/.termcap ]; then
   TERMCAP=$(< ${HOME}/.termcap)
   export TERMCAP
 fi
-
-# GPG Agent
-if [ -f "${HOME}/.gpg-agent-info" ]; then
-  . "${HOME}/.gpg-agent-info"
-  export GPG_AGENT_INFO
-  export SSH_AUTH_SOCK
-  export SSH_AGENT_PID
-fi
-
-GPG_TTY=${tty}
-export GPG_TTY
 
 # Set EDITOR, PAGER etc.
 export EDITOR='vim -f'
