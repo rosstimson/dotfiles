@@ -6,7 +6,7 @@ export LANG=en_GB.UTF-8 LC_ALL=en_GB.UTF-8
 xrdb -merge ~/.Xresources
 
 # Set wallpaper
-feh --bg-scale ~/Pictures/wallpapers/bury_your_secrets.jpg &
+feh --bg-scale ~/Pictures/wallpapers/wallpaper.jpg
 
 # URxvt daemon
 urxvtd -q -o -f &
