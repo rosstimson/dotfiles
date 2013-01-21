@@ -16,13 +16,17 @@ export DISABLE_AUTO_UPDATE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(bundler extract gem git git-flow github gpg-agent history-substring-search knife rails3 vagrant)
+plugins=(bundler extract gem git git-flow github history-substring-search knife rails3 vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
 ###  My stuff:
+
+# gpg-agent
+GPG_TTY=$(tty)
+export GPG_TTY
 
 # Use chruby for managing Ruby versions
 source /usr/local/share/chruby/chruby.sh
