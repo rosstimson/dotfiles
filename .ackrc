@@ -1,0 +1,9 @@
+--type-add=css=.sass,.scss,.less
+--type-add=html=.haml,.slim,.html.erb,.html.haml,.html.slim
+--type-add=ruby=.rake,.rsel,.builder,.thor
+--type-add=js=.js.erb,.coffee
+--smart-case
+--sort-files
+--color
+--follow
+--group
