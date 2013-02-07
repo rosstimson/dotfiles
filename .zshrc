@@ -28,11 +28,15 @@ source $ZSH/oh-my-zsh.sh
 GPG_TTY=$(tty)
 export GPG_TTY
 
+# Default mail sending to msmtp - needed for send-pr to use msmtp too.
+export GNATS_ADDR=FreeBSD-gnats-submit@freebsd.org
+export MAIL_AGENT="${MAIL_AGENT:-/usr/local/bin/msmtp -f ${USER}/.msmtprc -a rosstimson ${GNATS_ADDR}}"
+
 # Use chruby for managing Ruby versions
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 # Setting a default Ruby
-chruby ruby-1.9.3-p374
+chruby ruby-1.9.3-p385
 
 # History
 HISTFILE=~/.zsh_history
