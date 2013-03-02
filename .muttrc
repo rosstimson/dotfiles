@@ -64,6 +64,10 @@ folder-hook 'rosstimson-gmail.com' "set from = 'rosstimson@gmail.com'"
 set sendmail_wait = 0 # Wait for msmtp to finish sending before returning control
 unset record # No need to save sent mail to HDD as Gmail will do this for us
 
+# Postpone / draft emails
+bind compose p postpone-message
+bind index p recall-message
+
 # Other special folders
 folder-hook 'ross-rosstimson.com' "set mbox = '+ross-rosstimson.com/archive'"
 folder-hook 'ross-rosstimson.com' "set postponed = '+ross-rosstimson.com/drafts'"
