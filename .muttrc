@@ -28,7 +28,7 @@ set thorough_search       # strip headers and eval mimes before searching
 # Sidebar Patch --------------------------------------------------------------
 set sidebar_delim = '  | '
 set sidebar_visible = yes
-set sidebar_width = 24
+set sidebar_width = 30
 
 # Status Bar -----------------------------------------------------------------
 set status_chars  = " *%A"
