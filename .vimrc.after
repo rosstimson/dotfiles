@@ -12,3 +12,6 @@ hi SpellBad cterm=underline ctermfg=red
 " Set CTRLP working dir to nearest ancestor that contains
 " .git/, .hg/, .bzr/, _darcs/ or root.dir
 let g:ctrlp_working_path_mode = 2
+
+" Rules for following FreeBSD C programming style
+autocmd FileType c source ~/.janus/freebsd/freebsd.vim
