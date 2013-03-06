@@ -1,3 +1,6 @@
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
+	url = https://github.com/rosstimson/oh-my-zsh.git
 [submodule ".janus/c"]
 	path = .janus/c
 	url = https://github.com/vim-scripts/c.vim.git
