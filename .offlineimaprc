@@ -4,7 +4,7 @@ accounts = RossTimson, Gmail
 pythonfile = ~/bin/offlineimap_secrets.py
 fsync = False
 # Max number of concurrent connections.
-maxsyncaccounts = 2
+maxsyncaccounts = 1
 
 # My main email account for real people:  ross@rosstimson.com
 [Account RossTimson]
