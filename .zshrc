@@ -38,6 +38,10 @@ source /usr/local/share/chruby/auto.sh
 # Setting a default Ruby
 chruby 2.0.0-p0
 
+# Python Virtualenv
+export WORKON_HOME=$HOME/code/python
+source /usr/local/bin/virtualenvwrapper_lazy.sh
+
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=50000
