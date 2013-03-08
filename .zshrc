@@ -24,6 +24,13 @@ source $ZSH/oh-my-zsh.sh
 
 ###  My stuff:
 
+# Stop autocorrecting everything, list exempt commands in ~/.zsh_nocorrect
+if [ -f ~/.zsh_nocorrect ]; then
+  while read -r COMMAND; do
+    alias $COMMAND="nocorrect $COMMAND"
+  done < ~/.zsh_nocorrect
+fi
+
 # gpg-agent
 GPG_TTY=$(tty)
 export GPG_TTY
