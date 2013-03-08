@@ -28,6 +28,8 @@ developer-remove:
 	-@rm -f ~/.smrc
 
 email-install:
+	# TODO Alias INBOX of boths account in ~/.mail so they are named nicely in
+	# sidebar. Create ~/.mail directories with correct perms and symlink INBOX.
 	ln -sfvn ${DOTFILES}/.mailcap ~/.mailcap
 	ln -sfvn ${DOTFILES}/.msmtprc ~/.msmtprc
 	chmod 600 ~/.msmtprc # MSMTP will not work until correct permissions set.
@@ -103,12 +105,14 @@ shells-install:
 	git submodule update --init # Grab oh-my-zsh first.
 	ln -sfvn ${DOTFILES}/.oh-my-zsh ~/.oh-my-zsh
 	ln -sfvn ${DOTFILES}/.zprofile ~/.zprofile
+	ln -sfvn ${DOTFILES}/.zsh_nocorrect ~/.zsh_nocorrect
 	ln -sfvn ${DOTFILES}/.zshenv ~/.zshenv
 	ln -sfvn ${DOTFILES}/.zshrc ~/.zshrc
 
 shells-remove:
 	-@rm -f ~/.oh-my-zsh
 	-@rm -f ~/.zprofile
+	-@rm -f ~/.zsh_nocorrect
 	-@rm -f ~/.zshenv
 	-@rm -f ~/.zshrc
 
@@ -156,6 +160,11 @@ xorg-remove:
 	-@rm -f ~/.spectrwm.conf
 	-@rm -f ~/.xinitrc
 	-@rm -f ~/.xserverrc
+
+
+# Use shunit2 to run some tests.
+run-tests:
+	./bin/test_dotfiles
 
 
 .PHONY: all clean
