@@ -5,6 +5,11 @@ set colorcolumn=80
 set background=dark
 "color solarized
 
+" Use external tool Par for formatting text (eg with 'gq' command).
+" Par has default max line width of 72 chars, use the following to 
+" change specify a different width: 'set formatprg=par\ -w50'
+set formatprg=par
+
 " Underline spelling errors a colour them red.
 hi clear SpellBad
 hi SpellBad cterm=underline ctermfg=red
