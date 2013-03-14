@@ -40,3 +40,5 @@
     trustExitCode = false
 [difftool]
     prompt = false
+[github]
+	  user = rosstimson
