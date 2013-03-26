@@ -31,3 +31,6 @@
 [submodule ".janus/zencoding"]
 	path = .janus/zencoding
 	url = https://github.com/rosstimson/zencoding-vim.git
+[submodule ".janus/markdown-folding"]
+	path = .janus/markdown-folding
+	url = https://github.com/nelstrom/vim-markdown-folding.git

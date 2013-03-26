@@ -5,6 +5,20 @@ set colorcolumn=80
 set background=dark
 "color solarized
 
+" Folding
+set foldmethod=indent
+set foldlevelstart=99
+set foldminlines=3
+set foldnestmax=2
+" Space to toggle folds.
+nnoremap <Space> za
+vnoremap <Space> za
+" Refocus folds
+nnoremap ,z zMzvzz
+" Make zO recursively open whatever top level fold we're in, no matter where
+" the cursor happens to be.
+nnoremap zO zCzO
+
 " Use external tool Par for formatting text (eg with 'gq' command).
 " Par has default max line width of 72 chars, use the following to 
 " change specify a different width: 'set formatprg=par\ -w50'
@@ -20,3 +34,6 @@ let g:ctrlp_working_path_mode = 2
 
 " Rules for following FreeBSD C programming style
 autocmd FileType c source ~/.janus/freebsd/freebsd.vim
+
+" Change location of default Vimwiki
+let g:vimwiki_list = [{'path': '~/annex/vimwiki'}]
