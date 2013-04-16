@@ -20,9 +20,6 @@ export LC_COLLATE='C'
 # Secure emails etc. with GPG
 export GPGKEY=97865D41
 
-# Use Ruby 1.9 mode in Rubinius
-export RBXOPT='-X19'
-
 # Go-lang variables
 export GOOS=freebsd
 export GOARCH=amd64
