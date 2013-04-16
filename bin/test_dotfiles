@@ -29,11 +29,9 @@ echo "Testing symlinks..."
 test_symlink_presence(){
   if [ -h ${HOME}/$1 ]; then
     echo -en "${GREEN}.${CLEAR}"
-    return 0
   else
     echo -en "${RED}E${CLEAR}"
     errors=( "${errors[@]}" "$1" ) # Append error to array to echo later.
-    return 0
   fi
 }
 
