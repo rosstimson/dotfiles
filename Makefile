@@ -5,166 +5,165 @@ DOTFILES=`pwd`
 
 all: 	developer-install email-install general-install gpg-agent-install \
 			misc-install music-install scripts-install shells-install vcs-install \
-			vim-install xorg-install
+			vim-install xorg-install run-tests
 
 clean: 	developer-remove email-remove general-remove gpg-agent-remove \
 				misc-remove music-remove scripts-remove shells-remove vcs-remove \
 				vim-remove xorg-remove
 
 developer-install:
-	ln -sfvn ${DOTFILES}/.ackrc ~/.ackrc
-	ln -sfvn ${DOTFILES}/.gemrc ~/.gemrc
-	ln -sfvn ${DOTFILES}/.irbrc ~/.irbrc
-	ln -sfvn ${DOTFILES}/.jshintrc ~/.jshintrc
-	ln -sfvn ${DOTFILES}/.porttools ~/.porttools
-	ln -sfvn ${DOTFILES}/.smrc ~/.smrc
+	ln -sfn ${DOTFILES}/.ackrc ${HOME}/.ackrc
+	ln -sfn ${DOTFILES}/.gemrc ${HOME}/.gemrc
+	ln -sfn ${DOTFILES}/.irbrc ${HOME}/.irbrc
+	ln -sfn ${DOTFILES}/.jshintrc ${HOME}/.jshintrc
+	ln -sfn ${DOTFILES}/.porttools ${HOME}/.porttools
+	ln -sfn ${DOTFILES}/.smrc ${HOME}/.smrc
 
 developer-remove:
-	-@rm -f ~/.ackrc
-	-@rm -f ~/.gemrc
-	-@rm -f ~/.irbrc
-	-@rm -f ~/.jshintrc
-	-@rm -f ~/.porttools
-	-@rm -f ~/.smrc
+	-@rm -f ${HOME}/.ackrc
+	-@rm -f ${HOME}/.gemrc
+	-@rm -f ${HOME}/.irbrc
+	-@rm -f ${HOME}/.jshintrc
+	-@rm -f ${HOME}/.porttools
+	-@rm -f ${HOME}/.smrc
 
 email-install:
-	# TODO Alias INBOX of boths account in ~/.mail so they are named nicely in
-	# sidebar. Create ~/.mail directories with correct perms and symlink INBOX.
-	ln -sfvn ${DOTFILES}/.mailcap ~/.mailcap
-	ln -sfvn ${DOTFILES}/.msmtprc ~/.msmtprc
-	chmod 600 ~/.msmtprc # MSMTP will not work until correct permissions set.
-	ln -sfvn ${DOTFILES}/.mutt ~/.mutt
-	ln -sfvn ${DOTFILES}/.muttrc ~/.muttrc
-	ln -sfvn ${DOTFILES}/.notmuch-config ~/.notmuch-config
-	ln -sfvn ${DOTFILES}/.offlineimaprc ~/.offlineimaprc
-	ln -sfvn ${DOTFILES}/.urlview ~/.urlview
+	mkdir -p ${HOME}/.mail/ross-rosstimson.com
+	mkdir -p ${HOME}/.mail/rosstimson-gmail.com
+	chmod -R 700 ${HOME}/.mail
+	ln -sfn ${DOTFILES}/.mailcap ${HOME}/.mailcap
+	ln -sfn ${DOTFILES}/.msmtprc ${HOME}/.msmtprc
+	chmod 600 ${HOME}/.msmtprc # MSMTP will not work until correct permissions set.
+	ln -sfn ${DOTFILES}/.mutt ${HOME}/.mutt
+	ln -sfn ${DOTFILES}/.muttrc ${HOME}/.muttrc
+	ln -sfn ${DOTFILES}/.notmuch-config ${HOME}/.notmuch-config
+	ln -sfn ${DOTFILES}/.offlineimaprc ${HOME}/.offlineimaprc
+	ln -sfn ${DOTFILES}/.urlview ${HOME}/.urlview
 
 email-remove:
-	-@rm -f ~/.mailcap
-	-@rm -f ~/.msmtprc
-	-@rm -f ~/.mutt
-	-@rm -f ~/.muttrc
-	-@rm -f ~/.notmuch-config
-	-@rm -f ~/.offlineimaprc
-	-@rm -f ~/.urlview
+	-@echo "Not blitzing email store ${HOME}/.mail"
+	-@rm -f ${HOME}/.mailcap
+	-@rm -f ${HOME}/.msmtprc
+	-@rm -f ${HOME}/.mutt
+	-@rm -f ${HOME}/.muttrc
+	-@rm -f ${HOME}/.notmuch-config
+	-@rm -f ${HOME}/.offlineimaprc
+	-@rm -f ${HOME}/.urlview
 
 general-install:
-	ln -sfvn ${DOTFILES}/.cshrc ~/.cshrc
-	ln -sfvn ${DOTFILES}/.exrc ~/.exrc
-	ln -sfvn ${DOTFILES}/.login ~/.login
-	ln -sfvn ${DOTFILES}/.login_conf ~/.login_conf
-	ln -sfvn ${DOTFILES}/.profile ~/.profile
-	ln -sfvn ${DOTFILES}/.shrc ~/.shrc
-	ln -sfvn ${DOTFILES}/.termcap ~/.termcap
+	ln -sfn ${DOTFILES}/.cshrc ${HOME}/.cshrc
+	ln -sfn ${DOTFILES}/.exrc ${HOME}/.exrc
+	ln -sfn ${DOTFILES}/.login ${HOME}/.login
+	ln -sfn ${DOTFILES}/.login_conf ${HOME}/.login_conf
+	ln -sfn ${DOTFILES}/.profile ${HOME}/.profile
+	ln -sfn ${DOTFILES}/.shrc ${HOME}/.shrc
+	ln -sfn ${DOTFILES}/.termcap ${HOME}/.termcap
 
 general-remove:
-	-@rm -f ~/.cshrc
-	-@rm -f ~/.exrc
-	-@rm -f ~/.login
-	-@rm -f ~/.login_conf
-	-@rm -f ~/.profile
-	-@rm -f ~/.shrc
-	-@rm -f ~/.termcap
+	-@rm -f ${HOME}/.cshrc
+	-@rm -f ${HOME}/.exrc
+	-@rm -f ${HOME}/.login
+	-@rm -f ${HOME}/.login_conf
+	-@rm -f ${HOME}/.profile
+	-@rm -f ${HOME}/.shrc
+	-@rm -f ${HOME}/.termcap
 
 gpg-agent-install:
-	[ -d ~/.gnupg ] || mkdir -m 700 ~/.gnupg
-	ln -sfvn ${DOTFILES}/.gpg-agent.conf ~/.gnupg/.gpg-agent.conf
+	[ -d ${HOME}/.gnupg ] || mkdir -v -m 700 ${HOME}/.gnupg
+	ln -sfvn ${DOTFILES}/.gpg-agent.conf ${HOME}/.gnupg/.gpg-agent.conf
 
-# Not blitzing ~/.gnupg directory that got created incase there are keys
-# etc. in it.
 gpg-agent-remove:
-	-@rm -f ~/.gnupg/.gpg-agent.conf
+	-@echo "Not blitzing ${HOME}/.gnupg directory in case there are keys in it."
+	-@rm -f ${HOME}/.gnupg/.gpg-agent.conf
 
 misc-install:
-	ln -sfvn ${DOTFILES}/.irssi ~/.irssi
-	ln -sfvn ${DOTFILES}/.tmux.conf ~/.tmux.conf
+	ln -sfn ${DOTFILES}/.irssi ${HOME}/.irssi
+	ln -sfn ${DOTFILES}/.tmux.conf ${HOME}/.tmux.conf
 
 misc-remove:
-	-@rm -f ~/.irssi
-	-@rm -f ~/.tmux.conf
+	-@rm -f ${HOME}/.irssi
+	-@rm -f ${HOME}/.tmux.conf
 
 music-install:
-	ln -sfvn ${DOTFILES}/.abcde.conf ~/.abcde.conf
-	ln -sfvn ${DOTFILES}/.mpdconf ~/.mpdconf
-	ln -sfvn ${DOTFILES}/.ncmpcpp ~/.ncmpcpp
+	ln -sfn ${DOTFILES}/.abcde.conf ${HOME}/.abcde.conf
+	ln -sfn ${DOTFILES}/.mpdconf ${HOME}/.mpdconf
+	ln -sfn ${DOTFILES}/.ncmpcpp ${HOME}/.ncmpcpp
 
 music-remove:
-	-@rm -f ~/.abcde.conf
-	-@rm -f ~/.mpdconf
-	-@rm -f ~/.ncmpcpp
+	-@rm -f ${HOME}/.abcde.conf
+	-@rm -f ${HOME}/.mpdconf
+	-@rm -f ${HOME}/.ncmpcpp
 
 scripts-install:
-	ln -sfvn ${DOTFILES}/bin ~/bin
-	ln -sfvn ${DOTFILES}/.urxvt-perls ~/.urxvt-perls
+	ln -sfn ${DOTFILES}/bin ${HOME}/bin
+	ln -sfn ${DOTFILES}/.urxvt-perls ${HOME}/.urxvt-perls
 
 scripts-remove:
-	-@rm -f ${DOTFILES}/bin ~/bin
-	-@rm -f ${DOTFILES}/.urxvt-perls ~/.urxvt-perls
+	-@rm -f ${HOME}/bin
+	-@rm -f ${HOME}/.urxvt-perls
 
 shells-install:
 	git submodule update --init # Grab oh-my-zsh first.
-	ln -sfvn ${DOTFILES}/.oh-my-zsh ~/.oh-my-zsh
-	ln -sfvn ${DOTFILES}/.zprofile ~/.zprofile
-	ln -sfvn ${DOTFILES}/.zsh_nocorrect ~/.zsh_nocorrect
-	ln -sfvn ${DOTFILES}/.zshenv ~/.zshenv
-	ln -sfvn ${DOTFILES}/.zshrc ~/.zshrc
+	ln -sfn ${DOTFILES}/.oh-my-zsh ${HOME}/.oh-my-zsh
+	ln -sfn ${DOTFILES}/.zprofile ${HOME}/.zprofile
+	ln -sfn ${DOTFILES}/.zsh_nocorrect ${HOME}/.zsh_nocorrect
+	ln -sfn ${DOTFILES}/.zshenv ${HOME}/.zshenv
+	ln -sfn ${DOTFILES}/.zshrc ${HOME}/.zshrc
 
 shells-remove:
-	-@rm -f ~/.oh-my-zsh
-	-@rm -f ~/.zprofile
-	-@rm -f ~/.zsh_nocorrect
-	-@rm -f ~/.zshenv
-	-@rm -f ~/.zshrc
+	-@rm -f ${HOME}/.oh-my-zsh
+	-@rm -f ${HOME}/.zprofile
+	-@rm -f ${HOME}/.zsh_nocorrect
+	-@rm -f ${HOME}/.zshenv
+	-@rm -f ${HOME}/.zshrc
 
 vcs-install:
-	ln -sfvn ${DOTFILES}/.bazaar ~/.bazaar
-	ln -sfvn ${DOTFILES}/.gitconfig ~/.gitconfig
-	ln -sfvn ${DOTFILES}/.gitignore ~/.gitignore
-	ln -sfvn ${DOTFILES}/.hgignore ~/.hgignore
-	ln -sfvn ${DOTFILES}/.hgrc ~/.hgrc
+	ln -sfn ${DOTFILES}/.bazaar ${HOME}/.bazaar
+	ln -sfn ${DOTFILES}/.gitconfig ${HOME}/.gitconfig
+	ln -sfn ${DOTFILES}/.gitignore ${HOME}/.gitignore
+	ln -sfn ${DOTFILES}/.hgignore ${HOME}/.hgignore
+	ln -sfn ${DOTFILES}/.hgrc ${HOME}/.hgrc
 
 vcs-remove:
-	-@rm -f ~/.bazaar
-	-@rm -f ~/.gitconfig
-	-@rm -f ~/.gitignore
-	-@rm -f ~/.hgignore
-	-@rm -f ~/.hgrc
+	-@rm -f ${HOME}/.bazaar
+	-@rm -f ${HOME}/.gitconfig
+	-@rm -f ${HOME}/.gitignore
+	-@rm -f ${HOME}/.hgignore
+	-@rm -f ${HOME}/.hgrc
 
 vim-install:
 	git submodule update --init # Grab extra plugins not included in Janus
-	ln -sfvn ${DOTFILES}/.janus ~/.janus
-	ln -sfvn ${DOTFILES}/.vimrc.before ~/.vimrc.before
-	ln -sfvn ${DOTFILES}/.vimrc.after ~/.vimrc.after
-	ln -sfvn ${DOTFILES}/.gvimrc.before ~/.gvimrc.before
-	ln -sfvn ${DOTFILES}/.gvimrc.after ~/.gvimrc.after
+	ln -sfn ${DOTFILES}/.janus ${HOME}/.janus
+	ln -sfn ${DOTFILES}/.vimrc.before ${HOME}/.vimrc.before
+	ln -sfn ${DOTFILES}/.vimrc.after ${HOME}/.vimrc.after
+	ln -sfn ${DOTFILES}/.gvimrc.before ${HOME}/.gvimrc.before
+	ln -sfn ${DOTFILES}/.gvimrc.after ${HOME}/.gvimrc.after
 
 vim-remove:
-	-@rm -f ~/.janus
-	-@rm -f ~/.vimrc.before
-	-@rm -f ~/.vimrc.after
-	-@rm -f ~/.gvimrc.before
-	-@rm -f ~/.gvimrc.after
+	-@rm -f ${HOME}/.janus
+	-@rm -f ${HOME}/.vimrc.before
+	-@rm -f ${HOME}/.vimrc.after
+	-@rm -f ${HOME}/.gvimrc.before
+	-@rm -f ${HOME}/.gvimrc.after
 
 xorg-install:
-	ln -sfvn ${DOTFILES}/.Xcolors ~/.Xcolors
-	ln -sfvn ${DOTFILES}/.Xresources ~/.Xresources
-	ln -sfvn ${DOTFILES}/.fonts.conf ~/.fonts.conf
-	ln -sfvn ${DOTFILES}/.spectrwm.conf ~/.spectrwm.conf
-	ln -sfvn ${DOTFILES}/.xinitrc ~/.xinitrc
-	ln -sfvn ${DOTFILES}/.xserverrc ~/.xserverrc
+	ln -sfn ${DOTFILES}/.Xcolors ${HOME}/.Xcolors
+	ln -sfn ${DOTFILES}/.Xresources ${HOME}/.Xresources
+	ln -sfn ${DOTFILES}/.fonts.conf ${HOME}/.fonts.conf
+	ln -sfn ${DOTFILES}/.spectrwm.conf ${HOME}/.spectrwm.conf
+	ln -sfn ${DOTFILES}/.xinitrc ${HOME}/.xinitrc
+	ln -sfn ${DOTFILES}/.xserverrc ${HOME}/.xserverrc
 
 xorg-remove:
-	-@rm -f ~/.Xcolors
-	-@rm -f ~/.Xresources
-	-@rm -f ~/.fonts.conf
-	-@rm -f ~/.spectrwm.conf
-	-@rm -f ~/.xinitrc
-	-@rm -f ~/.xserverrc
+	-@rm -f ${HOME}/.Xcolors
+	-@rm -f ${HOME}/.Xresources
+	-@rm -f ${HOME}/.fonts.conf
+	-@rm -f ${HOME}/.spectrwm.conf
+	-@rm -f ${HOME}/.xinitrc
+	-@rm -f ${HOME}/.xserverrc
 
-
-# Use shunit2 to run some tests.
 run-tests:
-	./bin/test_dotfiles
+	${DOTFILES}/bin/test_dotfiles
 
 
 .PHONY: all clean
