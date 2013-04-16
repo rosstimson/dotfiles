@@ -1,0 +1,53 @@
+#!/usr/local/bin/bash
+
+set -e
+
+CLEAR='\e[0m'
+GREEN='\e[0;32m'
+RED='\e[0;31m'
+
+echo "Running tests..."
+echo ""
+
+symlinks=( .Xcolors .Xresources .abcde.conf .ackrc .cshrc .exrc .fonts.conf \
+           .gemrc .gitconfig .gitignore .gvimrc.after .gvimrc.before .hgignore \
+           .hgrc .irbrc .irssi .janus .jshintrc .login .login_conf .mailcap \
+           .mpdconf .msmtprc .mutt .muttrc .ncmpcpp .notmuch-config \
+           .offlineimaprc .oh-my-zsh .porttools .profile .shrc .smrc \
+           .spectrwm.conf .tarignore .termcap .tmux.conf .urlview .urxvt-perls \
+           .vimrc.after .vimrc.before .xinitrc .xserverrc .zprofile \
+           .zsh_nocorrect .zshenv .zshrc bin )
+
+directories=()
+
+errors=()
+
+symlink_count=${#symlinks[*]}
+dir_count=${#dirs[*]}
+
+echo "Testing symlinks..."
+test_symlink_presence(){
+  if [ -h ${HOME}/$1 ]; then
+    echo -en "${GREEN}.${CLEAR}"
+    return 0
+  else
+    echo -en "${RED}E${CLEAR}"
+    errors=( "${errors[@]}" "$1" ) # Append error to array to echo later.
+    return 0
+  fi
+}
+
+i="0"
+while [ $i -lt $symlink_count ]
+do
+  test_symlink_presence ${symlinks[$i]}
+  i=$[$i+1]
+done
+
+# List out array of errors
+echo ""
+echo ""
+echo "ERRORS - The following dotfiles are not present:"
+echo ""
+echo "${errors[@]}"
+
