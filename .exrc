@@ -2,7 +2,6 @@
 " Options for Vi
 "
 set autoindent
-set nomore
 set number
 set report=1
 set ruler
