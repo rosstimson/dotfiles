@@ -199,4 +199,5 @@ set pgp_autosign=yes
 set pgp_sign_as=0x97865D41
 set pgp_replyencrypt=yes
 set pgp_timeout=1800
+set pgp_auto_decode=yes
 set pgp_good_sign="^gpg: Good signature from"
