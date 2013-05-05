@@ -33,7 +33,7 @@ email-install:
 	chmod -R 700 ${HOME}/.mail
 	ln -sfn ${DOTFILES}/.mailcap ${HOME}/.mailcap
 	ln -sfn ${DOTFILES}/.msmtprc ${HOME}/.msmtprc
-	chmod 600 ${HOME}/.msmtprc # MSMTP will not work until correct permissions set.
+	chmod 600 ${HOME}/.msmtprc
 	ln -sfn ${DOTFILES}/.mutt ${HOME}/.mutt
 	ln -sfn ${DOTFILES}/.muttrc ${HOME}/.muttrc
 	ln -sfn ${DOTFILES}/.notmuch-config ${HOME}/.notmuch-config
@@ -132,7 +132,7 @@ vcs-remove:
 	-@rm -f ${HOME}/.hgrc
 
 vim-install:
-	git submodule update --init # Grab extra plugins not included in Janus
+	git submodule update --init
 	ln -sfn ${DOTFILES}/.janus ${HOME}/.janus
 	ln -sfn ${DOTFILES}/.vimrc.before ${HOME}/.vimrc.before
 	ln -sfn ${DOTFILES}/.vimrc.after ${HOME}/.vimrc.after

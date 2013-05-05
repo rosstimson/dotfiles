@@ -1,47 +1,79 @@
 Ross Timson's Dotfiles
-=======================
+======================
 
-My config files for *nix systems including Vim and Emacs.  I predominately use Z shell (zsh) and the configs are geared towards Ruby on Rails development.  These should work fine on a Mac (for which they were originally developed), however I have recently switched to FreeBSD as my main machine.
+$HOME Sweet $HOME -- My dotfiles.
 
-Installation
-------------
+## Install
 
-Clone the repository into your home directory with:
+There is a Makefile that will symlink the dotfiles along with any extra
+setup, read the Makefile for details and names of sub-tasks.  *Repo must
+be cloned to `~/dotfiles`*
 
-      $ git clone git://github.com/rosstimson/dotfiles.git
+    git clone git://github.com/rosstimson/dotfiles.git ~/dotfiles
+    cd ~/dotfiles
+    make
 
-Next run the dotsetup.sh script to download all the Git submodules and symlink the dotfiles.
+## Test
 
-      $ ~/dotfiles/dotsetup.sh
-      
-__Note:__ REMEMBER to edit the following files to add in private data (there are placeholders in the files):
-  + .gitconfig - add in Github token.
-  + .muttrc - add in email account passwords.
-      
-Dependencies
-------------
+There is a shell script in `bin/test_dotfiles`, the Makefile should use
+this script to test it has succeeded.  It is also useful for showing
+which symlinks are missing if only some of the dotfiles have been linked
+manually or via a Make sub-task.
+
+## Prerequisites
+
+I primarily use FreeBSD and cli tools/software these days, however a lot
+of these will still work on Mac and Linux as I originally started out on
+those operating systems.
+
+The dotfiles will expect certain software to be present which is listed
+below.  *Note these are the name and locations in the FreeBSD ports
+tree, other distros will differ.*
+
+### Passwords
+
+    sysutils/password-store
+
+There are no passwords in these files, instead there are scripts which
+pull in passwords via [Pass](http://zx2c4.com/projects/password-store/).
+The files expect passwords in the following structure.
+
+    Password Store
+    └── AppSpecific
+        ├── msmtp-gmail
+        ├── msmtp-rosstimson
+        ├── offlineimap-gmail
+        └── offlineimap-rosstimson
+
+### Email / Mutt
+    graphics/feh
+    print/gv
+    mail/offlineimap
+    mail/msmtp
+    mail/notmuch
+
+### Music
+    audio/mpc
+    audio/musicpd
+    audio/ncmpcpp
 
 ### Vim
-  + Exuberant Ctags [Ctags](http://ctags.sourceforge.net/ "Ctags")
-  + Ncurses-term (in Linux only)
+    devel/ctags
+    devel/git
+    lang/ruby20
+    textproc/par
+    textproc/the_silver_searcher
 
-### IRB
-  + Uses [irbtools](https://github.com/janlelis/irbtools), install with:
+### Xorg
+    graphics/scrot
+    x11/xautolock
+    x11/rxvt-unicode
+    x11/numlockx
+    x11-wm/openbox
+    x11-wm/spectrwm
 
-      $ gem install irbtools  
+## Contact
 
-Credits
--------
+Email: [ross@rosstimson.com](mailto:ross@rosstimson.com)
 
-Much of the code here has been unashamedly pilfered from various sources and tweaked; I cannot remember everywhere I have found stuff used however the Vim and Emacs files are based on:
-
-+  [Fabio Akita's (Akita on Rails) Vimfiles](http://github.com/akitaonrails/vimfiles "Akita on Rails Vimfiles")
-
-+  [Geoffrey Grosenbachs (Topfunky) Emacs-Starter-Kit](http://github.com/topfunky/emacs-starter-kit "Topfunky's Emacs-Starter-Kit")
-
-Contact
--------
-
-Please feel free to contact me at: <ross@rosstimson.com>
-
-Or on Twitter [@rosstimson](http://twitter.com/rosstimson)
+Twitter: [@rosstimson](http://twitter.com/rosstimson)
