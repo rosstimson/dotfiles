@@ -3,6 +3,7 @@ username = Ross Timson <ross@rosstimson.com>
 editor = vim
 commitsubrepos = False
 ignore = ~/.hgignore
+ssh = ssh -C
 
 [progress]
 delay = 1.0
