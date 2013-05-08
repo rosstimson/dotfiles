@@ -103,7 +103,8 @@ scripts-remove:
 	-@rm -f ${HOME}/.urxvt-perls
 
 shells-install:
-	git submodule update --init # Grab oh-my-zsh first.
+	git submodule update --init
+	ln -sfn ${DOTFILES}/.inputrc ${HOME}/.inputrc
 	ln -sfn ${DOTFILES}/.oh-my-zsh ${HOME}/.oh-my-zsh
 	ln -sfn ${DOTFILES}/.zprofile ${HOME}/.zprofile
 	ln -sfn ${DOTFILES}/.zsh_nocorrect ${HOME}/.zsh_nocorrect
@@ -111,6 +112,7 @@ shells-install:
 	ln -sfn ${DOTFILES}/.zshrc ${HOME}/.zshrc
 
 shells-remove:
+	-@rm -f ${HOME}/.inputrc
 	-@rm -f ${HOME}/.oh-my-zsh
 	-@rm -f ${HOME}/.zprofile
 	-@rm -f ${HOME}/.zsh_nocorrect

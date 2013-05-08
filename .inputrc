@@ -1,0 +1,6 @@
+# Search through history (eg "cd /" then up arrow will match everything in
+# history that starts with "cd /"
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+set show-all-if-ambiguous on
+set completion-ignore-case on

@@ -11,8 +11,8 @@ echo ""
 
 symlinks=( .Xcolors .Xresources .abcde.conf .ackrc .cshrc .exrc .fonts.conf \
            .gemrc .gitconfig .gitignore .gvimrc.after .gvimrc.before .hgignore \
-           .hgrc .irbrc .irssi .janus .jshintrc .login .login_conf .mailcap \
-           .mpdconf .msmtprc .mutt .muttrc .ncmpcpp .notmuch-config \
+           .hgrc .inputrc .irbrc .irssi .janus .jshintrc .login .login_conf \
+           .mailcap .mpdconf .msmtprc .mutt .muttrc .ncmpcpp .notmuch-config \
            .offlineimaprc .oh-my-zsh .porttools .profile .shrc .smrc \
            .spectrwm.conf .tarignore .termcap .tmux.conf .urlview .urxvt-perls \
            .vimrc.after .vimrc.before .xinitrc .xserverrc .zprofile \
