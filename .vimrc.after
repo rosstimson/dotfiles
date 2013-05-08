@@ -37,3 +37,7 @@ autocmd FileType c source ~/.janus/freebsd/freebsd.vim
 
 " Change location of default Vimwiki
 let g:vimwiki_list = [{'path': '~/annex/vimwiki'}]
+
+" More natural split opening
+set splitbelow
+set splitright
