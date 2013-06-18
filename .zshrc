@@ -43,7 +43,7 @@ export MAIL_AGENT="${MAIL_AGENT:-/usr/local/bin/msmtp -f ${USER}/.msmtprc -a ros
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 # Setting a default Ruby
-chruby 2.0.0-p0
+chruby 2.0
 
 # Python Virtualenv
 export WORKON_HOME=$HOME/code/python
