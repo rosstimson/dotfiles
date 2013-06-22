@@ -34,3 +34,6 @@
 [submodule ".janus/markdown-folding"]
 	path = .janus/markdown-folding
 	url = https://github.com/nelstrom/vim-markdown-folding.git
+[submodule ".janus/bats"]
+	path = .janus/bats
+	url = https://github.com/rosstimson/bats.vim.git
