@@ -41,3 +41,6 @@ let g:vimwiki_list = [{'path': '~/annex/vimwiki'}]
 " More natural split opening
 set splitbelow
 set splitright
+
+" Map F6 to strip trailing whitespace
+:nnoremap <silent> <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
