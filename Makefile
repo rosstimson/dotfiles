@@ -80,11 +80,13 @@ misc-install:
 	ln -sfn ${DOTFILES}/.irssi ${HOME}/.irssi
 	ln -sfn ${DOTFILES}/.tarignore ${HOME}/.tarignore
 	ln -sfn ${DOTFILES}/.tmux.conf ${HOME}/.tmux.conf
+	ln -sfn ${DOTFILES}/.ttytterrc ${HOME}/.ttytterrc
 
 misc-remove:
 	-@rm -f ${HOME}/.irssi
 	-@rm -f ${HOME}/.tarignore
 	-@rm -f ${HOME}/.tmux.conf
+	-@rm -f ${HOME}/.ttytterrc
 
 music-install:
 	ln -sfn ${DOTFILES}/.abcde.conf ${HOME}/.abcde.conf
