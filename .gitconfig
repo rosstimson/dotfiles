@@ -1,6 +1,7 @@
 [user]
     name = Ross Timson
     email = ross@rosstimson.com
+    SigningKey = 97865D41
 [color]
     branch = auto
     diff = auto
