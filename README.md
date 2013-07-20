@@ -53,9 +53,11 @@ The files expect passwords in the following structure.
     mail/notmuch
 
 ### Music
+    audio/abcde
     audio/mpc
     audio/musicpd
     audio/ncmpcpp
+    audio/py-musicbrainz2
 
 ### Vim
     devel/ctags
