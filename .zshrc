@@ -16,7 +16,7 @@ export DISABLE_AUTO_UPDATE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(bower bundler composer debian extract gem git git-flow github \
+plugins=(bower bundler composer extract gem git git-flow github \
          history-substring-search knife laravel pass rails4 vagrant)
 
 source $ZSH/oh-my-zsh.sh
