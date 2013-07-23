@@ -25,6 +25,10 @@
 
 set gfn=Source\ Code\ Pro\ 11     " Font
 set vb                            " Visual bell, not audible
-set guioptions-=T                 " Remove toolbar
+set guioptions-=T                 " Remove toolbar, left & right scrollbar
+set guioptions-=l
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
 set guioptions+=c                 " Use console dialogs
 color ir_black                    " Set colour scheme

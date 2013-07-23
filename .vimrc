@@ -40,8 +40,49 @@ Bundle 'gmarik/vundle'
 
 " Tools
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-eunuch'
+Bundle 'tpope/vim-dispatch'
+Bundle 'mileszs/ack.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'LustyJuggler'
+Bundle 'SirVer/ultisnips'
+Bundle 'mattn/gist-vim'
+Bundle 'vimwiki'
+Bundle 'majutsushi/tagbar'
+Bundle 'ZoomWin'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'gnupg'
+Bundle 'nelstrom/vim-markdown-folding'
+Bundle 'joonty/vim-phpqa'
+Bundle 'joonty/vdebug'
+
+" Langs
+Bundle 'tpope/vim-git'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'tpope/vim-git'
+Bundle 'jnwhiteh/vim-golang'
+Bundle 'nono/vim-handlebars'
+Bundle 'pangloss/vim-javascript'
+Bundle 'tpope/vim-markdown'
+Bundle 'sunaku/vim-ruby-minitest'
+Bundle 'tpope/vim-rails'
+Bundle 'skwp/vim-rspec'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'cakebaker/scss-syntax.vim'
+Bundle 'lotheac/pf.vim'
+Bundle 'nginx.vim'
+Bundle 'othree/html5.vim'
+Bundle 'rosstimson/bats.vim'
+Bundle 'rosstimson/modx.vim'
+Bundle 'php.vim'
+
 
 " Colour schemes
 Bundle 'twerth/ir_black'
@@ -51,7 +92,6 @@ Bundle 'twerth/ir_black'
 " Basic settings
 
 filetype plugin indent on " Required! Enable detection, plugins and indenting
-set showmode              " Always show what mode we're in
 set number                " Show line number
 set ruler                 " Show line and column numbers
 syntax enable             " Turn on syntax highlighting
@@ -85,6 +125,9 @@ set lazyredraw            " Don't update the display while executing macros
 set laststatus=2          "   tell VIM to always put a status line in, even
                           "   if there is only one window
 set cmdheight=2           " Use a status bar that is 2 rows high
+set pastetoggle=<F2>      " When in insert mode, press <F2> to go to
+                          "   paste mode, where you can paste mass data that
+                          "   won't be autoindented
 
 
 " -----------------------------------------------------------------------------
@@ -183,8 +226,8 @@ nnoremap <C-H> <C-W><C-H>
 " Key mappings
 
 " Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>    " Edit vimrc
-nmap <silent> <leader>sv :so $MYVIMRC<CR>   " Reload vimrc
+nnoremap <silent> <leader>ev :e $MYVIMRC<CR>    " Edit vimrc
+nnoremap <silent> <leader>sv :so $MYVIMRC<CR>   " Reload vimrc
 
 " Toggle show/hide invisible chars
 nnoremap <leader>i :set list!<cr>
@@ -219,6 +262,35 @@ vnoremap <Tab> %
 " Strip all trailing whitespace from a file, using ,W
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
+" Fugitive:
+nmap <leader>gb :Gblame<CR>
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gd :Gdiff<CR>
+nmap <leader>gl :Glog<CR>
+nmap <leader>gc :Gcommit<CR>
+nmap <leader>gp :Git push<CR>
+
+" Dispatch: Mapping F9 to :Dispatch
+nnoremap <F9> :Dispatch<CR>
+
+" Tagbar: Mapping F8 to toggle Tagbar
+nnoremap <F8> :TagbarToggle<CR>
+
+" Lusty Juggler: Mapping ,b to Lusty Juggler
+nnoremap <silent> <Leader>b :LustyJuggler<CR>
+
+" Ack: Mapping ,f :Ack
+nnoremap <leader>f :Ack<space>
+
+" Quote words under cursor
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+
+" Quote current selection
+" TODO: This only works for selections that are created "forwardly"
+vnoremap <leader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
+vnoremap <leader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
+
 
 " -----------------------------------------------------------------------------
 " Plugin settings
@@ -233,6 +305,13 @@ let g:ctrlp_working_path_mode = 2
 " about with patched fonts.
 let g:Powerline_symbols = 'compatible'
 
+" Ack
+" Use the_silver_searcher program instead of ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" VimWiki
+" Change location of default Vimwiki to a sensible Git Annex directory
+let g:vimwiki_list = [{'path': '~/annex/vimwiki'}]
 
 " -----------------------------------------------------------------------------
 " Custom functions
