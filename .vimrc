@@ -235,6 +235,9 @@ nnoremap <leader>i :set list!<cr>
 " Toggle line numbers
 nnoremap <leader>N :setlocal number!<cr>
 
+" Shortcut to make
+nnoremap mk :make<CR>
+
 " Quick yanking to the end of the line
 nnoremap Y y$
 
