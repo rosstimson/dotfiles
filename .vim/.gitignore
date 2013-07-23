@@ -1,0 +1,7 @@
+# Use Vundle to manager Vim plugins and keep out of the of Git.
+
+# First ignore everything in bundle directory.
+bundle/*
+
+# Now whitelist Vundle
+!bundle/vundle
