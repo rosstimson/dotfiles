@@ -10,6 +10,7 @@
 "                 --enable-gui=yes \
 "                 --with-x \
 "                 --enable-pythoninterp \
+"                 --enable-rubyinterp \
 "                 --enable-multibyte \
 "                 --enable-fontset \
 "                 --enable-cscope \
