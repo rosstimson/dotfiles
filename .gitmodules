@@ -1,39 +1,3 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/rosstimson/oh-my-zsh.git
-[submodule ".janus/c"]
-	path = .janus/c
-	url = https://github.com/vim-scripts/c.vim.git
-[submodule ".janus/nginx"]
-	path = .janus/nginx
-	url = https://github.com/vim-scripts/nginx.vim.git
-[submodule ".janus/erlang"]
-	path = .janus/erlang
-	url = https://github.com/jimenezrick/vimerl.git
-[submodule ".janus/gnupg"]
-	path = .janus/gnupg
-	url = https://github.com/vim-scripts/gnupg.vim.git
-[submodule ".janus/abolish"]
-	path = .janus/abolish
-	url = https://github.com/tpope/vim-abolish.git
-[submodule ".janus/vala"]
-	path = .janus/vala
-	url = https://github.com/rainux/vim-vala.git
-[submodule ".janus/modx"]
-	path = .janus/modx
-	url = https://github.com/rosstimson/modx.vim.git
-[submodule ".janus/indent-guides"]
-	path = .janus/indent-guides
-	url = https://github.com/nathanaelkane/vim-indent-guides.git
-[submodule ".janus/powerline"]
-	path = .janus/powerline
-	url = https://github.com/Lokaltog/vim-powerline.git
-[submodule ".janus/zencoding"]
-	path = .janus/zencoding
-	url = https://github.com/rosstimson/zencoding-vim.git
-[submodule ".janus/markdown-folding"]
-	path = .janus/markdown-folding
-	url = https://github.com/nelstrom/vim-markdown-folding.git
-[submodule ".janus/bats"]
-	path = .janus/bats
-	url = https://github.com/rosstimson/bats.vim.git
