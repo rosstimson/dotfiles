@@ -31,6 +31,16 @@ filetype off 		" Required !
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+" ------------------------------------------------------------------------------
+" Bundles
+
 " Let Vundle manage Vundle (ooh how meta)
 Bundle 'gmarik/vundle'
 
+" Tools
+Bundle 'tpope/vim-fugitive'
+Bundle 'kien/ctrlp.vim'
+
+
+
+filetype plugin indent on
