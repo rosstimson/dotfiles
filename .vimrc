@@ -90,7 +90,8 @@ Bundle 'othree/html5.vim'
 Bundle 'rosstimson/bats.vim'
 Bundle 'rosstimson/modx.vim'
 Bundle 'php.vim'
-
+Bundle 'remind'
+Bundle 'xsbeats/vim-blade'
 
 " Colour schemes
 Bundle 'twerth/ir_black'
