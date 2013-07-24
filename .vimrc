@@ -63,6 +63,7 @@ Bundle 'gnupg'
 Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'joonty/vim-phpqa'
 Bundle 'joonty/vdebug'
+Bundle 'sjl/gundo.vim'
 
 " Langs
 Bundle 'tpope/vim-git'
@@ -286,8 +287,11 @@ nnoremap <F8> :TagbarToggle<CR>
 " Lusty Juggler: Mapping ,b to Lusty Juggler
 nnoremap <silent> <Leader>b :LustyJuggler<CR>
 
-" Ack: Mapping ,f :Ack
+" Ack: Mapping ,f to :Ack for searching
 nnoremap <leader>f :Ack<space>
+
+" Gundo: Mapping ,F7 to toggle Gundo
+nnoremap <F7> :GundoToggle<CR>
 
 " Quote words under cursor
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
