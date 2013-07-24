@@ -1,3 +1,4 @@
+" Preamble ---------------------------------------------------------------- {{{
 "
 " ~/.vimrc
 " My Vim preference
@@ -32,9 +33,10 @@ filetype off      " Required !
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+" }}}
 
-" -----------------------------------------------------------------------------
-" Bundles
+
+" Bundles ----------------------------------------------------------------- {{{
 
 " Let Vundle manage Vundle (ooh how meta)
 Bundle 'gmarik/vundle'
@@ -93,9 +95,10 @@ Bundle 'php.vim'
 " Colour schemes
 Bundle 'twerth/ir_black'
 
+" }}}
 
-" -----------------------------------------------------------------------------
-" Basic settings
+
+" Basic settings ---------------------------------------------------------- {{{
 
 filetype plugin indent on " Required! Enable detection, plugins and indenting
 set number                " Show line number
@@ -136,9 +139,10 @@ set pastetoggle=<F2>      " When in insert mode, press <F2> to go to
                           "   won't be autoindented
 au VimResized * :wincmd = " Resize splits when Vim is resized
 
+" }}}
 
-" -----------------------------------------------------------------------------
-"  Whitespace
+
+" Whitespace -------------------------------------------------------------- {{{
 
 set nowrap                        " Don't wrap lines
 set tabstop=2                     " A tab is 2 spaces
@@ -165,21 +169,45 @@ set listchars+=precedes:<   " The character to show in the last column when
                             "   wrap is off and the line continues beyond the
                             "   left of the screen
 
+" }}}
 
-" -----------------------------------------------------------------------------
-" Folding
-set foldmethod=indent
-set foldlevelstart=99
-set foldminlines=3
-set foldnestmax=2
+
+" Folding ----------------------------------------------------------------- {{{
+
+set foldenable              " Enable folding
+set foldcolumn=2            " Add a fold column
+set foldmethod=marker       " Detect triple-{ style fold markers
+set foldlevelstart=99       " Start with everything unfolded
+set foldminlines=3          " Don't fold if only a few lines
+set foldnestmax=2           " Don't nest fold too much
 
 nnoremap <Space> za         " User space to toggle folds in normal mode
 vnoremap <Space> za         " User space to toggle folds in visual mode
 nnoremap zO zCzO            " Make zO recursively open whatever top level fold
                             "   we're in, no matter where the cursor is
 
-" -----------------------------------------------------------------------------
-" Searching
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction " }}}
+
+set foldtext=MyFoldText()
+
+" }}}
+
+
+" Searching --------------------------------------------------------------- {{{
 
 set hlsearch                " highlight matches
 set incsearch               " incremental searching
@@ -191,9 +219,10 @@ set smartcase               " ... unless they contain at least one capital
 nnoremap n n:call PulseCursorLine()<cr>
 nnoremap N N:call PulseCursorLine()<cr>
 
+" }}}
 
-" -----------------------------------------------------------------------------
-" Wild settings
+
+" Wild settings ----------------------------------------------------------- {{{
 
 set wildmenu            " make tab completion for files/buffers act like bash
 set wildmode=list:full  " show a list when pressing tab and complete
@@ -214,9 +243,10 @@ set wildignore+=*/tmp/cache/assets/*/sprockets/*,*/tmp/cache/assets/*/sass/*
 " Disable temp and backup files
 set wildignore+=*.swp,*~,._*
 
+" }}}
 
-" -----------------------------------------------------------------------------
-" Navigation
+
+" Navigation -------------------------------------------------------------- {{{
 
 " Remap j and k to act as expected when used on long, wrapped, lines
 nnoremap j gj
@@ -228,9 +258,9 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" }}}
 
-" -----------------------------------------------------------------------------
-" Key mappings
+" Key Mappings ------------------------------------------------------------ {{{
 
 " Quickly edit/reload the vimrc file
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>    " Edit vimrc
@@ -321,9 +351,10 @@ endif
 " Rainbow_Parentheses: Mapping ,r to toggle colour highlighting of parentheses
 nmap <leader>r :RainbowParenthesesToggle<CR>
 
+" }}}
 
-" -----------------------------------------------------------------------------
-" Plugin settings
+
+" Plugin settings / options ----------------------------------------------- {{{
 
 " CtrlP
 " Set CTRLP working dir to nearest ancestor that contains
@@ -347,10 +378,12 @@ let g:vimwiki_list = [{'path': '~/annex/vimwiki'}]
 " Run current file through Ruby interpreter and check syntax
 autocmd FileType ruby let b:dispatch = 'ruby -wc %'
 
-" -----------------------------------------------------------------------------
-" Custom functions
+" }}}
 
-" Pulse -----
+
+" Custom functions -------------------------------------------------------- {{{
+
+" Pulse {{{
 function! PulseCursorLine()
     let current_window = winnr()
 
@@ -387,10 +420,10 @@ function! PulseCursorLine()
     execute current_window . 'wincmd w'
 endfunction
 
-" -----
+" }}}
 
 
-" Toggle Scratch Window -----
+" Scratch {{{
 command! ScratchToggle call ScratchToggle()
 
 function! ScratchToggle()
@@ -405,4 +438,6 @@ endfunction
 
 nnoremap <silent> <leader><tab> :ScratchToggle<cr>
 
-" -----
+" }}}
+
+" }}}
