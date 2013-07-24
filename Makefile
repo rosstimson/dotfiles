@@ -139,18 +139,14 @@ vcs-remove:
 
 vim-install:
 	git submodule update --init
-	ln -sfn ${DOTFILES}/.janus ${HOME}/.janus
-	ln -sfn ${DOTFILES}/.vimrc.before ${HOME}/.vimrc.before
-	ln -sfn ${DOTFILES}/.vimrc.after ${HOME}/.vimrc.after
-	ln -sfn ${DOTFILES}/.gvimrc.before ${HOME}/.gvimrc.before
-	ln -sfn ${DOTFILES}/.gvimrc.after ${HOME}/.gvimrc.after
+	ln -sfn ${DOTFILES}/.vim ${HOME}/.vim
+	ln -sfn ${DOTFILES}/.vimrc ${HOME}/.vimrc
+	ln -sfn ${DOTFILES}/.gvimrc ${HOME}/.gvimrc
 
 vim-remove:
-	-@rm -f ${HOME}/.janus
-	-@rm -f ${HOME}/.vimrc.before
-	-@rm -f ${HOME}/.vimrc.after
-	-@rm -f ${HOME}/.gvimrc.before
-	-@rm -f ${HOME}/.gvimrc.after
+	-@rm -f ${HOME}/.vim
+	-@rm -f ${HOME}/.vimrc
+	-@rm -f ${HOME}/.gvimrc
 
 xorg-install:
 	ln -sfn ${DOTFILES}/.Xcolors ${HOME}/.Xcolors
