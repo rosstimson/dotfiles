@@ -230,6 +230,9 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>    " Edit vimrc
 nnoremap <silent> <leader>sv :so $MYVIMRC<CR>   " Reload vimrc
 
+"Remap Ctrl-C to go back to normal mode
+inoremap <C-c> <Esc>
+
 " Toggle show/hide invisible chars
 nnoremap <leader>i :set list!<cr>
 
@@ -291,7 +294,6 @@ nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 
 " Quote current selection
-" TODO: This only works for selections that are created "forwardly"
 vnoremap <leader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
 vnoremap <leader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
 
@@ -316,6 +318,10 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " VimWiki
 " Change location of default Vimwiki to a sensible Git Annex directory
 let g:vimwiki_list = [{'path': '~/annex/vimwiki'}]
+
+" Dispatch
+" Run current file through Ruby interpreter and check syntax
+autocmd FileType ruby let b:dispatch = 'ruby -wc %'
 
 " -----------------------------------------------------------------------------
 " Custom functions
