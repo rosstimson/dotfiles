@@ -138,6 +138,7 @@ set pastetoggle=<F2>      " When in insert mode, press <F2> to go to
                           "   paste mode, where you can paste mass data that
                           "   won't be autoindented
 au VimResized * :wincmd = " Resize splits when Vim is resized
+set background=dark       " Setting background to dark
 
 " }}}
 
@@ -252,6 +253,10 @@ set wildignore+=*.swp,*~,._*
 nnoremap j gj
 nnoremap k gk
 
+" Speed up scrolling of viewport (move 3 lines at a time instead of 1)
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
 " Easy window navigation (instead of ctrl-w then j it's just ctrl-j)
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -356,7 +361,6 @@ nmap <leader>r :RainbowParenthesesToggle<CR>
 " Filetype specific ------------------------------------------------------- {{{
 
 " CSS and Scss {{{
-
 augroup ft_css
     au!
 
@@ -398,6 +402,85 @@ augroup END
 
 " }}}
 
+" Javascript {{{
+augroup ft_javascript
+    au!
+
+    au FileType javascript setlocal foldmethod=marker
+    au FileType javascript setlocal foldmarker={,}
+    au FileType javascript call MakeSpacelessBufferIabbrev('clog', 'console.log();<left><left>')
+
+    " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
+    " positioned inside of them AND the following code doesn't get unfolded.
+    au Filetype javascript inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
+augroup END
+
+" }}}
+
+" Mail {{{
+augroup ft_mail
+    au!
+
+    au Filetype mail setlocal spell
+augroup END
+
+" }}}
+
+" Mutt {{{
+augroup ft_muttrc
+    au!
+
+    au BufRead,BufNewFile *.muttrc set ft=muttrc
+
+    au FileType muttrc setlocal foldmethod=marker foldmarker={{{,}}}
+augroup END
+
+" }}}
+
+" Nginx {{{
+augroup ft_nginx
+    au!
+
+    au BufRead,BufNewFile /etc/nginx/conf/*                      set ft=nginx
+    au BufRead,BufNewFile /etc/nginx/sites-available/*           set ft=nginx
+    au BufRead,BufNewFile /usr/local/etc/nginx/sites-available/* set ft=nginx
+    au BufRead,BufNewFile vhost.nginx                            set ft=nginx
+
+    au FileType nginx setlocal tabstop=4 shiftwidth=4 foldmethod=marker foldmarker={,}
+augroup END
+
+" }}}
+
+" PF {{{
+augroup ft_pf
+    au!
+
+    au BufRead,BufNewFile /etc/pf.conf        set ft=pf
+augroup END
+
+" }}}
+
+" PHP {{{
+augroup ft_php
+    au!
+
+    au Filetype php setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldmethod=syntax
+
+    " Load braces for RainbowParentheses
+    au BufNewFile,BufRead *.scss,*.css RainbowParenthesesLoadBraces
+augroup END
+
+" }}}
+
+" Ruby {{{
+augroup ft_ruby
+    au!
+    au Filetype ruby setlocal foldmethod=syntax
+augroup END
+
+" }}}
+
+
 
 " }}}
 
@@ -419,11 +502,16 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " VimWiki
 " Change location of default Vimwiki to a sensible Git Annex directory
-let g:vimwiki_list = [{'path': '~/annex/vimwiki'}]
+let g:vimwiki_list = [{'path': '$HOME/annex/vimwiki'}]
 
 " Dispatch
 " Run current file through Ruby interpreter and check syntax
 autocmd FileType ruby let b:dispatch = 'ruby -wc %'
+
+" UltiSnips
+" Define custom snippets directory
+let g:UltiSnipsSnippetsDir = "$HOME/.vim/snippets"
+
 
 " }}}
 
