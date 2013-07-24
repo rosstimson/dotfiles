@@ -58,12 +58,16 @@ Bundle 'mattn/gist-vim'
 Bundle 'vimwiki'
 Bundle 'majutsushi/tagbar'
 Bundle 'ZoomWin'
+Bundle 'YankRing.vim'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'gnupg'
 Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'joonty/vim-phpqa'
 Bundle 'joonty/vdebug'
 Bundle 'sjl/gundo.vim'
+Bundle 'scratch'
+Bundle 'godlygeek/tabular'
+Bundle 'kien/rainbow_parentheses.vim'
 
 " Langs
 Bundle 'tpope/vim-git'
@@ -130,6 +134,7 @@ set cmdheight=2           " Use a status bar that is 2 rows high
 set pastetoggle=<F2>      " When in insert mode, press <F2> to go to
                           "   paste mode, where you can paste mass data that
                           "   won't be autoindented
+au VimResized * :wincmd = " Resize splits when Vim is resized
 
 
 " -----------------------------------------------------------------------------
@@ -290,8 +295,12 @@ nnoremap <silent> <Leader>b :LustyJuggler<CR>
 " Ack: Mapping ,f to :Ack for searching
 nnoremap <leader>f :Ack<space>
 
-" Gundo: Mapping ,F7 to toggle Gundo
+" Gundo: Mapping F7 to toggle Gundo
 nnoremap <F7> :GundoToggle<CR>
+
+" YankRing: Mapping F3 to toggle :YRShoww
+nnoremap <silent> <F3> :YRShow<cr>
+inoremap <silent> <F3> <ESC>:YRShow<cr>
 
 " Quote words under cursor
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
@@ -300,6 +309,17 @@ nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 " Quote current selection
 vnoremap <leader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
 vnoremap <leader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
+
+" Tabularize: Set mappings for common usage
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+
+" Rainbow_Parentheses: Mapping ,r to toggle colour highlighting of parentheses
+nmap <leader>r :RainbowParenthesesToggle<CR>
 
 
 " -----------------------------------------------------------------------------
@@ -330,8 +350,7 @@ autocmd FileType ruby let b:dispatch = 'ruby -wc %'
 " -----------------------------------------------------------------------------
 " Custom functions
 
-" Pulse
-
+" Pulse -----
 function! PulseCursorLine()
     let current_window = winnr()
 
@@ -368,3 +387,22 @@ function! PulseCursorLine()
     execute current_window . 'wincmd w'
 endfunction
 
+" -----
+
+
+" Toggle Scratch Window -----
+command! ScratchToggle call ScratchToggle()
+
+function! ScratchToggle()
+    if exists("w:is_scratch_window")
+        unlet w:is_scratch_window
+        exec "q"
+    else
+        exec "normal! :ScratchOpen\<cr>\<C-W>K"
+        let w:is_scratch_window = 1
+    endif
+endfunction
+
+nnoremap <silent> <leader><tab> :ScratchToggle<cr>
+
+" -----
