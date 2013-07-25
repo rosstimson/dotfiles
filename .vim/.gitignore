@@ -5,3 +5,6 @@ bundle/*
 
 # Now whitelist Vundle
 !bundle/vundle
+
+# Ignore the binary spelling file
+*.spl
