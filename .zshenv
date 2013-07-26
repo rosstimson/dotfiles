@@ -21,8 +21,6 @@ export LC_COLLATE='C'
 export GPGKEY=97865D41
 
 # Go-lang variables
-export GOOS='freebsd'
-export GOARCH='amd64'
 export GOPATH="$HOME/code/go"
 # Append Go bin to PATH
 export PATH=$PATH:$GOPATH/bin
