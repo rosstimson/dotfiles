@@ -7,7 +7,7 @@ done
 for dir in /usr/bin /usr/bin/X11 /usr/games /var/lib/gems/1.8/bin /usr/local/sbin /usr/sbin /sbin /usr/etc; do
   [ -d "$dir" ] && path=($path $dir)
 done
-# Usual suspects & rbenv for managing Rubies.
+# Usual suspects.
 path=($HOME/bin $path /usr/bin/X11 /usr/games /usr/local/sbin /usr/sbin /sbin)
 
 # Timezone
@@ -21,6 +21,8 @@ export LC_COLLATE='C'
 export GPGKEY=97865D41
 
 # Go-lang variables
-export GOOS=freebsd
-export GOARCH=amd64
-export GOROOT=/usr/local/go
+export GOOS='freebsd'
+export GOARCH='amd64'
+export GOPATH="$HOME/code/go"
+# Append Go bin to PATH
+export PATH=$PATH:$GOPATH/bin

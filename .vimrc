@@ -92,6 +92,7 @@ Bundle 'rosstimson/modx.vim'
 Bundle 'php.vim'
 Bundle 'remind'
 Bundle 'xsbeats/vim-blade'
+Bundle 'fsouza/go.vim'
 
 " Colour schemes
 Bundle 'vim-scripts/Colour-Sampler-Pack'
