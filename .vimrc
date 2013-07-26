@@ -94,7 +94,14 @@ Bundle 'remind'
 Bundle 'xsbeats/vim-blade'
 
 " Colour schemes
+Bundle 'vim-scripts/Colour-Sampler-Pack'
+Bundle 'larssmit/vim-getafe'
+Bundle 'vim-scripts/molokai'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'tpope/vim-vividchalk'
 Bundle 'twerth/ir_black'
+Bundle 'sjl/badwolf'
+Bundle 'chriskempson/vim-tomorrow-theme'
 
 " }}}
 
