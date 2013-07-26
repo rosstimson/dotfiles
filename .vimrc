@@ -94,7 +94,14 @@ Bundle 'remind'
 Bundle 'xsbeats/vim-blade'
 
 " Colour schemes
+Bundle 'vim-scripts/Colour-Sampler-Pack'
+Bundle 'larssmit/vim-getafe'
+Bundle 'vim-scripts/molokai'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'tpope/vim-vividchalk'
 Bundle 'twerth/ir_black'
+Bundle 'sjl/badwolf'
+Bundle 'chriskempson/vim-tomorrow-theme'
 
 " }}}
 
@@ -139,7 +146,11 @@ set pastetoggle=<F2>      " When in insert mode, press <F2> to go to
                           "   paste mode, where you can paste mass data that
                           "   won't be autoindented
 au VimResized * :wincmd = " Resize splits when Vim is resized
+set spelllang=en_gb       " Let's use real English
+set spellfile=~/.vim/spell/en.utf-8.add   " Custom dictionary
+
 set background=dark       " Setting background to dark
+" TODO colorscheme ????      " Setting colourscheme
 
 " }}}
 
@@ -422,6 +433,20 @@ augroup ft_mail
     au!
 
     au Filetype mail setlocal spell
+augroup END
+
+" }}}
+
+" Markdown {{{
+augroup ft_markdown
+    au!
+
+    au BufNewFile,BufRead *.m*down setlocal filetype=markdown foldlevel=1 spell
+
+    " Use <localleader>1/2/3 to add headings.
+    au Filetype markdown nnoremap <buffer> <localleader>1 yypVr=:redraw<cr>
+    au Filetype markdown nnoremap <buffer> <localleader>2 yypVr-:redraw<cr>
+    au Filetype markdown nnoremap <buffer> <localleader>3 mzI###<space>`zllll <ESC>
 augroup END
 
 " }}}
