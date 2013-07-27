@@ -442,12 +442,14 @@ augroup END
 augroup ft_markdown
     au!
 
-    au BufNewFile,BufRead *.m*down setlocal filetype=markdown foldlevel=1 spell
+    au BufNewFile,BufRead *.m*down setlocal filetype=markdown 
+    au FileType markdown setlocal foldlevel=1
+    au FileType markdown setlocal spell
 
     " Use <localleader>1/2/3 to add headings.
     au Filetype markdown nnoremap <buffer> <localleader>1 yypVr=:redraw<cr>
     au Filetype markdown nnoremap <buffer> <localleader>2 yypVr-:redraw<cr>
-    au Filetype markdown nnoremap <buffer> <localleader>3 mzI###<space>`zllll <ESC>
+    au Filetype markdown nnoremap <buffer> <localleader>3 mzI###<space><ESC>
 augroup END
 
 " }}}
