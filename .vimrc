@@ -119,6 +119,7 @@ let mapleader=","         " Change leader key from \ to ,
 let maplocalleader="\\"   " Set local leader to \\
 set hidden                " Hide buffers instead of closing
 set showmatch             " Show matching parantesis
+set nrformats=            " Treat all numerals as decimals
 set nobackup              " Don't keep backup files, it's 70's style cluttering
 set noswapfile            " Don't write annoying intermediate swap files,
                           "   who did ever restore from swap files anyway?
