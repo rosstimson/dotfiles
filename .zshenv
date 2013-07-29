@@ -22,5 +22,5 @@ export GPGKEY=97865D41
 
 # Go-lang variables
 export GOPATH="$HOME/code/go"
-# Append Go bin to PATH
-export PATH=$PATH:$GOPATH/bin
+# Append Go stuff to PATH
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
