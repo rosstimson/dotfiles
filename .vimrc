@@ -53,7 +53,7 @@ Bundle 'tpope/vim-eunuch'
 Bundle 'tpope/vim-dispatch'
 Bundle 'mileszs/ack.vim'
 Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline'
 Bundle 'LustyJuggler'
 Bundle 'SirVer/ultisnips'
 Bundle 'mattn/gist-vim'
@@ -444,7 +444,7 @@ augroup END
 augroup ft_markdown
     au!
 
-    au BufNewFile,BufRead *.m*down setlocal filetype=markdown 
+    au BufNewFile,BufRead *.m*down setlocal filetype=markdown
     au FileType markdown setlocal foldlevel=1
     au FileType markdown setlocal spell
 
@@ -521,10 +521,10 @@ augroup END
 " .git/, .hg/, .bzr/, _darcs/ or root.dir
 let g:ctrlp_working_path_mode = 2
 
-" Powerline
-" Use compatible (non-fancy) Powerline to stop font weirdness and faffing
-" about with patched fonts.
-let g:Powerline_symbols = 'compatible'
+" Vim-Airline
+" TODO Use fancy symbols without patched font, certain chars aren't working 
+" when using the new Powerline recommended fontconfig way.
+" let g:airline_powerline_fonts = 1
 
 " Ack
 " Use the_silver_searcher program instead of ack

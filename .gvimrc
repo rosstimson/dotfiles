@@ -23,7 +23,7 @@
 "     vim -u NONE
 "
 
-set gfn=Source\ Code\ Pro\ 11     " Font
+set gfn=Source\ Code\ Pro\ Medium\ 11      " Font
 set vb                            " Visual bell, not audible
 set guioptions-=T                 " Remove toolbar, left & right scrollbar
 set guioptions-=l
@@ -31,4 +31,4 @@ set guioptions-=L
 set guioptions-=r
 set guioptions-=R
 set guioptions+=c                 " Use console dialogs
-colorscheme ir_black                    " Set colour scheme
+colorscheme ir_black              " Set colour scheme
