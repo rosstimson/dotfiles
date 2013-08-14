@@ -151,6 +151,7 @@ au VimResized * :wincmd = " Resize splits when Vim is resized
 set spelllang=en_gb       " Let's use real English
 set spellfile=~/.vim/spell/en.utf-8.add   " Custom dictionary
 
+set t_Co=256              " Pretty colours
 set background=dark       " Setting background to dark
 " TODO colorscheme ????      " Setting colourscheme
 
