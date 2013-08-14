@@ -53,6 +53,7 @@ email-remove:
 general-install:
 	ln -sfn ${DOTFILES}/.cshrc ${HOME}/.cshrc
 	ln -sfn ${DOTFILES}/.exrc ${HOME}/.exrc
+	ln -sfn ${DOTFILES}/.fonts ${HOME}/.fonts
 	ln -sfn ${DOTFILES}/.login ${HOME}/.login
 	ln -sfn ${DOTFILES}/.login_conf ${HOME}/.login_conf
 	ln -sfn ${DOTFILES}/.profile ${HOME}/.profile
@@ -62,6 +63,7 @@ general-install:
 general-remove:
 	-@rm -f ${HOME}/.cshrc
 	-@rm -f ${HOME}/.exrc
+	-@rm -f ${HOME}/.fonts
 	-@rm -f ${HOME}/.login
 	-@rm -f ${HOME}/.login_conf
 	-@rm -f ${HOME}/.profile
