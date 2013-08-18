@@ -109,7 +109,6 @@ scripts-remove:
 	-@rm -f ${HOME}/.urxvt-perls
 
 shells-install:
-	git submodule update --init
 	ln -sfn ${DOTFILES}/.inputrc ${HOME}/.inputrc
 	ln -sfn ${DOTFILES}/.zsh ${HOME}/.zsh
 	ln -sfn ${DOTFILES}/.zsh_nocorrect ${HOME}/.zsh_nocorrect
