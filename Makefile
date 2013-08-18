@@ -111,16 +111,14 @@ scripts-remove:
 shells-install:
 	git submodule update --init
 	ln -sfn ${DOTFILES}/.inputrc ${HOME}/.inputrc
-	ln -sfn ${DOTFILES}/.oh-my-zsh ${HOME}/.oh-my-zsh
-	ln -sfn ${DOTFILES}/.zprofile ${HOME}/.zprofile
+	ln -sfn ${DOTFILES}/.zsh ${HOME}/.zsh
 	ln -sfn ${DOTFILES}/.zsh_nocorrect ${HOME}/.zsh_nocorrect
 	ln -sfn ${DOTFILES}/.zshenv ${HOME}/.zshenv
 	ln -sfn ${DOTFILES}/.zshrc ${HOME}/.zshrc
 
 shells-remove:
 	-@rm -f ${HOME}/.inputrc
-	-@rm -f ${HOME}/.oh-my-zsh
-	-@rm -f ${HOME}/.zprofile
+	-@rm -f ${HOME}/.zsh
 	-@rm -f ${HOME}/.zsh_nocorrect
 	-@rm -f ${HOME}/.zshenv
 	-@rm -f ${HOME}/.zshrc
