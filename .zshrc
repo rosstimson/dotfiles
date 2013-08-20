@@ -335,4 +335,11 @@ compdef _git glp=git-log
 
 # }}}
 
+# Laravel {{{
+
+alias artisan='php artisan'
+alias bob='php artisan bob::build'
+
+# }}}
+
 # ------------------------------------------------------------------------- }}}
