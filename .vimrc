@@ -93,6 +93,7 @@ Bundle 'php.vim'
 Bundle 'remind'
 Bundle 'xsbeats/vim-blade'
 Bundle 'fsouza/go.vim'
+Bundle 'tpope/vim-liquid'
 
 " Colour schemes
 Bundle 'vim-scripts/Colour-Sampler-Pack'
