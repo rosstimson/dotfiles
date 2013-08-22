@@ -418,6 +418,18 @@ augroup END
 
 " }}}
 
+" Go {{{
+augroup ft_go
+    au!
+
+    au Filetype go setlocal shiftwidth=4 tabstop=4 noexpandtab foldmethod=syntax
+
+    " Load braces for RainbowParentheses
+    au BufNewFile,BufRead *.go RainbowParenthesesLoadBraces
+augroup END
+
+" }}}
+
 " Javascript {{{
 augroup ft_javascript
     au!
