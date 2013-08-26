@@ -60,7 +60,6 @@ Bundle 'mattn/gist-vim'
 Bundle 'vimwiki'
 Bundle 'majutsushi/tagbar'
 Bundle 'ZoomWin'
-Bundle 'YankRing.vim'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'gnupg'
 Bundle 'nelstrom/vim-markdown-folding'
