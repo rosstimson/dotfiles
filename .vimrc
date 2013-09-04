@@ -69,6 +69,7 @@ Bundle 'sjl/gundo.vim'
 Bundle 'scratch'
 Bundle 'godlygeek/tabular'
 Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'skwp/vim-rspec'
 
 " Langs
 Bundle 'tpope/vim-git'
@@ -80,7 +81,6 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-markdown'
 Bundle 'sunaku/vim-ruby-minitest'
 Bundle 'tpope/vim-rails'
-Bundle 'skwp/vim-rspec'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'lotheac/pf.vim'
@@ -93,6 +93,7 @@ Bundle 'remind'
 Bundle 'xsbeats/vim-blade'
 Bundle 'fsouza/go.vim'
 Bundle 'tpope/vim-liquid'
+Bundle 'Keithbsmiley/rspec.vim'
 
 " Colour schemes
 Bundle 'vim-scripts/Colour-Sampler-Pack'
@@ -521,8 +522,6 @@ augroup ft_ruby
 augroup END
 
 " }}}
-
-
 
 " }}}
 
