@@ -69,7 +69,7 @@ Bundle 'sjl/gundo.vim'
 Bundle 'scratch'
 Bundle 'godlygeek/tabular'
 Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'skwp/vim-rspec'
+Bundle 'thoughtbot/vim-rspec'
 
 " Langs
 Bundle 'tpope/vim-git'
@@ -552,6 +552,14 @@ autocmd FileType ruby let b:dispatch = 'ruby -wc %'
 " UltiSnips
 " Define custom snippets directory
 let g:UltiSnipsSnippetsDir = "$HOME/.vim/snippets"
+
+" Rspec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+" Support custom commands / test runners
+" let g:rspec_command = "Dispatch zeus rspec {spec}"
 
 
 " }}}
