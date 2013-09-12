@@ -33,8 +33,7 @@ if [ -f ${HOME}/.termcap ]; then
 fi
 
 # Stop autocorrecting everything, list exempt commands in ~/.zsh_nocorrect
-if [ -f ~/.zsh_nocorrect ]; then
-  while read -r COMMAND; do
+if [ -f ~/.zsh_nocorrect ]; then while read -r COMMAND; do
     alias $COMMAND="nocorrect $COMMAND"
   done < ~/.zsh_nocorrect
 fi
@@ -103,14 +102,18 @@ export GITHUB_USER='rosstimson'
 # Tools settings ---------------------------------------------------------- {{{
 
 # Use chruby for managing Ruby versions
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
-# Setting a default Ruby
-chruby 2.0
+if [ -d /usr/local/share/chruby ]; then
+  source /usr/local/share/chruby/chruby.sh
+  source /usr/local/share/chruby/auto.sh
+  # Setting a default Ruby
+  chruby 2.0
+fi
 
 # Python Virtualenv
-export WORKON_HOME=$HOME/code/python
-source /usr/local/bin/virtualenvwrapper_lazy.sh
+if [ -f /usr/local/bin/virtualwrapper_lazy.sh ]; then
+  export WORKON_HOME=$HOME/code/python
+  source /usr/local/bin/virtualenvwrapper_lazy.sh
+fi
 
 # ------------------------------------------------------------------------- }}}
 # Prompt ------------------------------------------------------------------ {{{
