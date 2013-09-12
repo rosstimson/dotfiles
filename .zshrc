@@ -1,9 +1,12 @@
 # Setup ------------------------------------------------------------------- {{{
 
-# sourcing lib files
+# Sourcing lib files
 for lib_file ($HOME/.zsh/lib/*.zsh); do
   source $lib_file
 done
+
+# Sourcing script for Git prompt
+. $HOME/.zsh/lib/git-prompt/zshrc.sh
 
 # Sourcing the script for z completion (https://github.com/rupa/z)
 . $HOME/.zsh/lib/z.sh
@@ -140,24 +143,8 @@ export light_cyan=$'%{\e[1;36m%}'
 export white=$'%{\e[1;37m%}'
 export reset_color=$'%{\e[0m%}'
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[blue]%}[%{$fg[yellow]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}]"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%}]"
 
-ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} + %{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%} * %{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} x %{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[blue]%} _ %{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[cyan]%} = %{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[purple]%} ? %{$reset_color%}"
-
-# Default prompt
-PROMPT='${blue}%n${reset_color}@${green}%m${red} %~$(git_prompt_info) ${blue}<${reset_color}%T${blue}>${reset_color}
-$ '
-
-# Right prompt - Git status
-RPROMPT='$(git_prompt_status)%{$reset_color%}'
+PROMPT='${green}%m${reset_color}:%c$(git_super_status) %# '
 
 # ------------------------------------------------------------------------- }}}
 # Aliases ----------------------------------------------------------------- {{{
