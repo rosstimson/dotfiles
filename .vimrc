@@ -8,13 +8,17 @@
 "
 "     ./configure --with-features=huge \
 "                 --prefix=/usr/local \
-"                 --enable-gui=yes \
 "                 --with-x \
+"                 --enable-gui=yes \
+"                 --enable-perlinterp \
 "                 --enable-pythoninterp \
 "                 --enable-rubyinterp \
+"                 --enable-xim \
 "                 --enable-multibyte \
+"                 --with-tlib=ncurses \
 "                 --enable-fontset \
 "                 --enable-cscope \
+"                 --disable-tclinterp \
 "                 --disable-netbeans \
 "                 --with-compiledby="Ross Timson <ross@rosstimson.com>"
 "
