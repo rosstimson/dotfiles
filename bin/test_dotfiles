@@ -10,13 +10,12 @@ echo "Running tests..."
 echo ""
 
 symlinks=( .Xcolors .Xresources .abcde.conf .ackrc .cshrc .exrc .fonts \
-           .fonts.conf .gemrc .gitconfig .gitignore .gvimrc.after \
-           .gvimrc.before .hgignore .hgrc .inputrc .irbrc .irssi .janus \
-           .jshintrc .login .login_conf .mailcap .mpdconf .msmtprc .mutt \
-           .muttrc .ncmpcpp .notmuch-config .offlineimaprc .porttools .profile \
-           .shrc .smrc .spectrwm.conf .tarignore .termcap .tmux.conf \
-           .ttytterrc .urlview .urxvt-perls .vimrc.after .vimrc.before \
-           .xinitrc .xserverrc .zprofile .zsh .zsh_nocorrect .zshenv .zshrc bin )
+           .fonts.conf .gemrc .gitconfig .gitignore .hgignore .hgrc .inputrc \
+           .irbrc .irssi .jshintrc .login .login_conf .mailcap .mpdconf \
+           .msmtprc .mutt .muttrc .ncmpcpp .notmuch-config .offlineimaprc \
+           .porttools .profile .shrc .smrc .spectrwm.conf .tarignore .termcap \
+           .tmux.conf .ttytterrc .urlview .urxvt-perls .xinitrc .xserverrc \
+           .zsh .zsh_nocorrect .zshenv .zshrc bin )
 
 directories=()
 
