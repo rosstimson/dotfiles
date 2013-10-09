@@ -56,9 +56,9 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-eunuch'
 Bundle 'tpope/vim-dispatch'
 Bundle 'mileszs/ack.vim'
-Bundle 'kien/ctrlp.vim'
+Bundle 'Shougo/vimproc.vim'
+Bundle 'Shougo/unite.vim'
 Bundle 'bling/vim-airline'
-Bundle 'LustyJuggler'
 Bundle 'SirVer/ultisnips'
 Bundle 'mattn/gist-vim'
 Bundle 'vimwiki'
@@ -344,9 +344,6 @@ nnoremap <F9> :Dispatch<CR>
 " Tagbar: Mapping F8 to toggle Tagbar
 nnoremap <F8> :TagbarToggle<CR>
 
-" Lusty Juggler: Mapping ,b to Lusty Juggler
-nnoremap <silent> <Leader>b :LustyJuggler<CR>
-
 " Ack: Mapping ,a to :Ack for searching (actually use the_silver_searcher)
 nnoremap <leader>a :Ack<space>
 
@@ -381,6 +378,17 @@ map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>sf :call RunCurrentSpecFile()<CR>
 map <Leader>sl :call RunLastSpec()<CR>
 map <Leader>sa :call RunAllSpecs()<CR>
+
+" Unite.vim mappings
+nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files -start-insert file<cr>
+nnoremap <leader>fr :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async<cr>
+nnoremap <leader>ft :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=tabopen file_rec/async<cr>
+nnoremap <leader>fs :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=split file_rec/async<cr>
+nnoremap <leader>fv :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=vsplit file_rec/async<cr>
+nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffers -quick-match buffer<cr>
+nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru -start-insert file_mru<cr>
+nnoremap <leader>yh :<C-u>Unite -no-split -buffer-name=yank_history history/yank<cr>
 
 " }}}
 
@@ -537,11 +545,6 @@ augroup END
 
 " Plugin settings / options ----------------------------------------------- {{{
 
-" CtrlP
-" Set CTRLP working dir to nearest ancestor that contains
-" .git/, .hg/, .bzr/, _darcs/ or root.dir
-let g:ctrlp_working_path_mode = 2
-
 " Vim-Airline
 " TODO Use fancy symbols without patched font, certain chars aren't working 
 " when using the new Powerline recommended fontconfig way.
@@ -566,6 +569,17 @@ let g:UltiSnipsSnippetsDir = "$HOME/.vim/snippets"
 " Rspec.vim
 " Support custom commands / test runners
 " let g:rspec_command = "Dispatch zeus rspec {spec}"
+
+" Unite.vim
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
 
 
 " }}}
