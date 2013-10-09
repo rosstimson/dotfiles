@@ -347,8 +347,8 @@ nnoremap <F8> :TagbarToggle<CR>
 " Lusty Juggler: Mapping ,b to Lusty Juggler
 nnoremap <silent> <Leader>b :LustyJuggler<CR>
 
-" Ack: Mapping ,f to :Ack for searching
-nnoremap <leader>f :Ack<space>
+" Ack: Mapping ,a to :Ack for searching (actually use the_silver_searcher)
+nnoremap <leader>a :Ack<space>
 
 " Gundo: Mapping F7 to toggle Gundo
 nnoremap <F7> :GundoToggle<CR>
@@ -367,14 +367,20 @@ vnoremap <leader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
 
 " Tabularize: Set mappings for common usage
 if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
+  nmap <Leader>t= :Tabularize /=<CR>
+  vmap <Leader>t= :Tabularize /=<CR>
+  nmap <Leader>t: :Tabularize /:\zs<CR>
+  vmap <Leader>t: :Tabularize /:\zs<CR>
 endif
 
 " Rainbow_Parentheses: Mapping ,r to toggle colour highlighting of parentheses
 nmap <leader>r :RainbowParenthesesToggle<CR>
+
+" Rspec.vim mappings
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>sf :call RunCurrentSpecFile()<CR>
+map <Leader>sl :call RunLastSpec()<CR>
+map <Leader>sa :call RunAllSpecs()<CR>
 
 " }}}
 
@@ -557,11 +563,7 @@ autocmd FileType ruby let b:dispatch = 'ruby -wc %'
 " Define custom snippets directory
 let g:UltiSnipsSnippetsDir = "$HOME/.vim/snippets"
 
-" Rspec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+" Rspec.vim
 " Support custom commands / test runners
 " let g:rspec_command = "Dispatch zeus rspec {spec}"
 
