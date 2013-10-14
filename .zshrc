@@ -13,6 +13,11 @@ done
 
 fpath=($HOME/.zsh/completions $fpath)
 
+# Helper function to test if command exists
+_command_exists() {
+  type "$1" &> /dev/null;
+}
+
 # ------------------------------------------------------------------------- }}}
 # Custom ZSH -------------------------------------------------------------- {{{
 
@@ -117,6 +122,12 @@ if [ -f /usr/local/bin/virtualwrapper_lazy.sh ]; then
   export WORKON_HOME=$HOME/code/python
   source /usr/local/bin/virtualenvwrapper_lazy.sh
 fi
+
+# Use gh (Github CLI client / helper)
+if _command_exists gh; then
+  eval  "$(gh alias -s)"
+fi
+
 
 # ------------------------------------------------------------------------- }}}
 # Prompt ------------------------------------------------------------------ {{{
