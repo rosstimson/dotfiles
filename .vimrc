@@ -440,6 +440,7 @@ augroup ft_go
     au!
 
     au Filetype go setlocal shiftwidth=4 tabstop=4 noexpandtab foldmethod=syntax
+    autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
     " Load braces for RainbowParentheses
     au BufNewFile,BufRead *.go RainbowParenthesesLoadBraces
