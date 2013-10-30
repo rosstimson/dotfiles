@@ -561,6 +561,8 @@ let g:vimwiki_list = [{'path': '$HOME/annex/vimwiki'}]
 " Dispatch
 " Run current file through Ruby interpreter and check syntax
 autocmd FileType ruby let b:dispatch = 'ruby -wc %'
+autocmd FileType go let b:dispatch = 'go build %'
+
 
 " UltiSnips
 " Define custom snippets directory
