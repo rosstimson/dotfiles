@@ -20,7 +20,13 @@ export LC_COLLATE='C'
 # Secure emails etc. with GPG
 export GPGKEY=97865D41
 
+# Set Python path
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages
+
 # Go-lang variables
 export GOPATH="$HOME/code/go"
 # Append Go stuff to PATH
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
+# Cask, Emacs dependency management made easy
+export PATH=$PATH:$HOME/.cask/bin

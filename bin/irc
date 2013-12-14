@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/usr/bin/env bash
 export IRSSI_PATH="~/.irssi"
 
 if [ -z "$IRSSI_PATH" ]

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Installs Adobe Source Code Pro OTF font for user on Linux.
 

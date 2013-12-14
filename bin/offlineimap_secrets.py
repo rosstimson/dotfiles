@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/env python
 
 # Simple wrapper for offlineimap to grab password stored in Pass - The Standard
 # Unix Password Manager available at: http://zx2c4.com/projects/password-store

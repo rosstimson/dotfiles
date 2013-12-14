@@ -97,6 +97,7 @@ Bundle 'xsbeats/vim-blade'
 Bundle 'fsouza/go.vim'
 Bundle 'tpope/vim-liquid'
 Bundle 'Keithbsmiley/rspec.vim'
+Bundle 'slim-template/vim-slim'
 
 " Colour schemes
 Bundle 'vim-scripts/Colour-Sampler-Pack'

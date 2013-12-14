@@ -1,0 +1,6 @@
+# name: #+begin_...#+end_
+# key: begin
+# --
+#+begin_$1 $2
+$0
+#+end_$1

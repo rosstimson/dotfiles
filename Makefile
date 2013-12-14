@@ -3,13 +3,13 @@
 
 DOTFILES=`pwd`
 
-all: 	developer-install email-install general-install gpg-agent-install \
-			misc-install music-install scripts-install shells-install vcs-install \
-			vim-install xorg-install run-tests
+all: 	developer-install emacs-install email-install general-install \
+			gpg-agent-install misc-install music-install scripts-install \
+			shells-install vcs-install vim-install xorg-install run-tests
 
-clean: 	developer-remove email-remove general-remove gpg-agent-remove \
-				misc-remove music-remove scripts-remove shells-remove vcs-remove \
-				vim-remove xorg-remove
+clean: 	developer-remove emacs-remove email-remove general-remove \
+				gpg-agent-remove misc-remove music-remove scripts-remove shells-remove \
+				vcs-remove vim-remove xorg-remove
 
 developer-install:
 	ln -sfn ${DOTFILES}/.ackrc ${HOME}/.ackrc
@@ -26,6 +26,12 @@ developer-remove:
 	-@rm -f ${HOME}/.jshintrc
 	-@rm -f ${HOME}/.porttools
 	-@rm -f ${HOME}/.smrc
+
+emacs-install:
+	ln -sfn ${DOTFILES}/.emacs.d ${HOME}/.emacs.d
+
+emacs-remove:
+	-@rm -f ${HOME}/.emacs.d
 
 email-install:
 	mkdir -p ${HOME}/.mail/ross-rosstimson.com
