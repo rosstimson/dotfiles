@@ -1,0 +1,6 @@
+#! /bin/sh
+
+# Runs Redshift for adjusting screen depening on time of day
+# Includes lat / long for my home
+
+redshift -l 55.168133:-1.552848 -t 6500:4000
