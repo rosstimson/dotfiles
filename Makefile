@@ -2,7 +2,7 @@
 # $HOME Sweet $HOME
 
 DOTFILES=`pwd`
-RT_RT_HOME='/home/rosstimson'
+RT_HOME='/home/rosstimson'
 
 all: 	developer-install emacs-install email-install general-install \
 			gpg-agent-install misc-install music-install scripts-install \
