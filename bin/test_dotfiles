@@ -2,6 +2,8 @@
 
 set -e
 
+RT_HOME='/home/rosstimson'
+
 CLEAR='\e[0m'
 GREEN='\e[0;32m'
 RED='\e[0;31m'
@@ -13,7 +15,7 @@ symlinks=( .Xcolors .Xresources .abcde.conf .ackrc .cshrc .emacs.d .exrc \
            .fonts .fonts.conf .gemrc .gitconfig .gitignore .hgignore .hgrc \
            .inputrc .irbrc .irssi .jshintrc .login .login_conf .mailcap \
            .mpdconf .msmtprc .mutt .muttrc .ncmpcpp .notmuch-config \
-           .offlineimaprc .porttools .profile .shrc .smrc .spectrwm.conf \
+           .offlineimaprc .porttools .profile .shrc .spectrwm.conf \
            .tarignore .termcap .tmux.conf .ttytterrc .urlview .urxvt-perls \
            .xinitrc .xserverrc .zsh .zsh_nocorrect .zshenv .zshrc bin )
 
@@ -26,7 +28,7 @@ dir_count=${#dirs[*]}
 
 echo "Testing symlinks..."
 test_symlink_presence(){
-  if [ -h ${HOME}/$1 ]; then
+  if [ -h ${RT_HOME}/$1 ]; then
     echo -en "${GREEN}.${CLEAR}"
   else
     echo -en "${RED}E${CLEAR}"

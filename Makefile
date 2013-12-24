@@ -2,6 +2,7 @@
 # $HOME Sweet $HOME
 
 DOTFILES=`pwd`
+RT_RT_HOME='/home/rosstimson'
 
 all: 	developer-install emacs-install email-install general-install \
 			gpg-agent-install misc-install music-install scripts-install \
@@ -12,162 +13,160 @@ clean: 	developer-remove emacs-remove email-remove general-remove \
 				vcs-remove vim-remove xorg-remove
 
 developer-install:
-	ln -sfn ${DOTFILES}/.ackrc ${HOME}/.ackrc
-	ln -sfn ${DOTFILES}/.gemrc ${HOME}/.gemrc
-	ln -sfn ${DOTFILES}/.irbrc ${HOME}/.irbrc
-	ln -sfn ${DOTFILES}/.jshintrc ${HOME}/.jshintrc
-	ln -sfn ${DOTFILES}/.porttools ${HOME}/.porttools
-	ln -sfn ${DOTFILES}/.smrc ${HOME}/.smrc
+	ln -sfn ${DOTFILES}/.ackrc ${RT_HOME}/.ackrc
+	ln -sfn ${DOTFILES}/.gemrc ${RT_HOME}/.gemrc
+	ln -sfn ${DOTFILES}/.irbrc ${RT_HOME}/.irbrc
+	ln -sfn ${DOTFILES}/.jshintrc ${RT_HOME}/.jshintrc
+	ln -sfn ${DOTFILES}/.porttools ${RT_HOME}/.porttools
 
 developer-remove:
-	-@rm -f ${HOME}/.ackrc
-	-@rm -f ${HOME}/.gemrc
-	-@rm -f ${HOME}/.irbrc
-	-@rm -f ${HOME}/.jshintrc
-	-@rm -f ${HOME}/.porttools
-	-@rm -f ${HOME}/.smrc
+	-@rm -f ${RT_HOME}/.ackrc
+	-@rm -f ${RT_HOME}/.gemrc
+	-@rm -f ${RT_HOME}/.irbrc
+	-@rm -f ${RT_HOME}/.jshintrc
+	-@rm -f ${RT_HOME}/.porttools
 
 emacs-install:
-	ln -sfn ${DOTFILES}/.emacs.d ${HOME}/.emacs.d
+	ln -sfn ${DOTFILES}/.emacs.d ${RT_HOME}/.emacs.d
 
 emacs-remove:
-	-@rm -f ${HOME}/.emacs.d
+	-@rm -f ${RT_HOME}/.emacs.d
 
 email-install:
-	mkdir -p ${HOME}/.mail/ross-rosstimson.com
-	mkdir -p ${HOME}/.mail/rosstimson-gmail.com
-	chmod -R 700 ${HOME}/.mail
-	ln -sfn ${DOTFILES}/.mailcap ${HOME}/.mailcap
-	ln -sfn ${DOTFILES}/.msmtprc ${HOME}/.msmtprc
-	chmod 600 ${HOME}/.msmtprc
-	ln -sfn ${DOTFILES}/.mutt ${HOME}/.mutt
-	ln -sfn ${DOTFILES}/.muttrc ${HOME}/.muttrc
-	ln -sfn ${DOTFILES}/.notmuch-config ${HOME}/.notmuch-config
-	ln -sfn ${DOTFILES}/.offlineimaprc ${HOME}/.offlineimaprc
-	ln -sfn ${DOTFILES}/.urlview ${HOME}/.urlview
+	mkdir -p ${RT_HOME}/.mail/ross-rosstimson.com
+	mkdir -p ${RT_HOME}/.mail/rosstimson-gmail.com
+	chmod -R 700 ${RT_HOME}/.mail
+	ln -sfn ${DOTFILES}/.mailcap ${RT_HOME}/.mailcap
+	ln -sfn ${DOTFILES}/.msmtprc ${RT_HOME}/.msmtprc
+	chmod 600 ${RT_HOME}/.msmtprc
+	ln -sfn ${DOTFILES}/.mutt ${RT_HOME}/.mutt
+	ln -sfn ${DOTFILES}/.muttrc ${RT_HOME}/.muttrc
+	ln -sfn ${DOTFILES}/.notmuch-config ${RT_HOME}/.notmuch-config
+	ln -sfn ${DOTFILES}/.offlineimaprc ${RT_HOME}/.offlineimaprc
+	ln -sfn ${DOTFILES}/.urlview ${RT_HOME}/.urlview
 
 email-remove:
-	-@echo "Not blitzing email store ${HOME}/.mail"
-	-@rm -f ${HOME}/.mailcap
-	-@rm -f ${HOME}/.msmtprc
-	-@rm -f ${HOME}/.mutt
-	-@rm -f ${HOME}/.muttrc
-	-@rm -f ${HOME}/.notmuch-config
-	-@rm -f ${HOME}/.offlineimaprc
-	-@rm -f ${HOME}/.urlview
+	-@echo "Not blitzing email store ${RT_HOME}/.mail"
+	-@rm -f ${RT_HOME}/.mailcap
+	-@rm -f ${RT_HOME}/.msmtprc
+	-@rm -f ${RT_HOME}/.mutt
+	-@rm -f ${RT_HOME}/.muttrc
+	-@rm -f ${RT_HOME}/.notmuch-config
+	-@rm -f ${RT_HOME}/.offlineimaprc
+	-@rm -f ${RT_HOME}/.urlview
 
 general-install:
-	ln -sfn ${DOTFILES}/.cshrc ${HOME}/.cshrc
-	ln -sfn ${DOTFILES}/.exrc ${HOME}/.exrc
-	ln -sfn ${DOTFILES}/.fonts ${HOME}/.fonts
-	ln -sfn ${DOTFILES}/.login ${HOME}/.login
-	ln -sfn ${DOTFILES}/.login_conf ${HOME}/.login_conf
-	ln -sfn ${DOTFILES}/.profile ${HOME}/.profile
-	ln -sfn ${DOTFILES}/.shrc ${HOME}/.shrc
-	ln -sfn ${DOTFILES}/.termcap ${HOME}/.termcap
+	ln -sfn ${DOTFILES}/.cshrc ${RT_HOME}/.cshrc
+	ln -sfn ${DOTFILES}/.exrc ${RT_HOME}/.exrc
+	ln -sfn ${DOTFILES}/.fonts ${RT_HOME}/.fonts
+	ln -sfn ${DOTFILES}/.login ${RT_HOME}/.login
+	ln -sfn ${DOTFILES}/.login_conf ${RT_HOME}/.login_conf
+	ln -sfn ${DOTFILES}/.profile ${RT_HOME}/.profile
+	ln -sfn ${DOTFILES}/.shrc ${RT_HOME}/.shrc
+	ln -sfn ${DOTFILES}/.termcap ${RT_HOME}/.termcap
 
 general-remove:
-	-@rm -f ${HOME}/.cshrc
-	-@rm -f ${HOME}/.exrc
-	-@rm -f ${HOME}/.fonts
-	-@rm -f ${HOME}/.login
-	-@rm -f ${HOME}/.login_conf
-	-@rm -f ${HOME}/.profile
-	-@rm -f ${HOME}/.shrc
-	-@rm -f ${HOME}/.termcap
+	-@rm -f ${RT_HOME}/.cshrc
+	-@rm -f ${RT_HOME}/.exrc
+	-@rm -f ${RT_HOME}/.fonts
+	-@rm -f ${RT_HOME}/.login
+	-@rm -f ${RT_HOME}/.login_conf
+	-@rm -f ${RT_HOME}/.profile
+	-@rm -f ${RT_HOME}/.shrc
+	-@rm -f ${RT_HOME}/.termcap
 
 gpg-agent-install:
-	[ -d ${HOME}/.gnupg ] || mkdir -v -m 700 ${HOME}/.gnupg
-	ln -sfvn ${DOTFILES}/.gpg-agent.conf ${HOME}/.gnupg/.gpg-agent.conf
+	[ -d ${RT_HOME}/.gnupg ] || mkdir -v -m 700 ${RT_HOME}/.gnupg
+	ln -sfvn ${DOTFILES}/.gpg-agent.conf ${RT_HOME}/.gnupg/.gpg-agent.conf
 
 gpg-agent-remove:
-	-@echo "Not blitzing ${HOME}/.gnupg directory in case there are keys in it."
-	-@rm -f ${HOME}/.gnupg/.gpg-agent.conf
+	-@echo "Not blitzing ${RT_HOME}/.gnupg directory in case there are keys in it."
+	-@rm -f ${RT_HOME}/.gnupg/.gpg-agent.conf
 
 misc-install:
-	ln -sfn ${DOTFILES}/.irssi ${HOME}/.irssi
-	ln -sfn ${DOTFILES}/.tarignore ${HOME}/.tarignore
-	ln -sfn ${DOTFILES}/.tmux.conf ${HOME}/.tmux.conf
-	ln -sfn ${DOTFILES}/.ttytterrc ${HOME}/.ttytterrc
+	ln -sfn ${DOTFILES}/.irssi ${RT_HOME}/.irssi
+	ln -sfn ${DOTFILES}/.tarignore ${RT_HOME}/.tarignore
+	ln -sfn ${DOTFILES}/.tmux.conf ${RT_HOME}/.tmux.conf
+	ln -sfn ${DOTFILES}/.ttytterrc ${RT_HOME}/.ttytterrc
 
 misc-remove:
-	-@rm -f ${HOME}/.irssi
-	-@rm -f ${HOME}/.tarignore
-	-@rm -f ${HOME}/.tmux.conf
-	-@rm -f ${HOME}/.ttytterrc
+	-@rm -f ${RT_HOME}/.irssi
+	-@rm -f ${RT_HOME}/.tarignore
+	-@rm -f ${RT_HOME}/.tmux.conf
+	-@rm -f ${RT_HOME}/.ttytterrc
 
 music-install:
-	ln -sfn ${DOTFILES}/.abcde.conf ${HOME}/.abcde.conf
-	ln -sfn ${DOTFILES}/.mpdconf ${HOME}/.mpdconf
-	ln -sfn ${DOTFILES}/.ncmpcpp ${HOME}/.ncmpcpp
+	ln -sfn ${DOTFILES}/.abcde.conf ${RT_HOME}/.abcde.conf
+	ln -sfn ${DOTFILES}/.mpdconf ${RT_HOME}/.mpdconf
+	ln -sfn ${DOTFILES}/.ncmpcpp ${RT_HOME}/.ncmpcpp
 
 music-remove:
-	-@rm -f ${HOME}/.abcde.conf
-	-@rm -f ${HOME}/.mpdconf
-	-@rm -f ${HOME}/.ncmpcpp
+	-@rm -f ${RT_HOME}/.abcde.conf
+	-@rm -f ${RT_HOME}/.mpdconf
+	-@rm -f ${RT_HOME}/.ncmpcpp
 
 scripts-install:
-	ln -sfn ${DOTFILES}/bin ${HOME}/bin
-	ln -sfn ${DOTFILES}/.urxvt-perls ${HOME}/.urxvt-perls
+	ln -sfn ${DOTFILES}/bin ${RT_HOME}/bin
+	ln -sfn ${DOTFILES}/.urxvt-perls ${RT_HOME}/.urxvt-perls
 
 scripts-remove:
-	-@rm -f ${HOME}/bin
-	-@rm -f ${HOME}/.urxvt-perls
+	-@rm -f ${RT_HOME}/bin
+	-@rm -f ${RT_HOME}/.urxvt-perls
 
 shells-install:
-	ln -sfn ${DOTFILES}/.inputrc ${HOME}/.inputrc
-	ln -sfn ${DOTFILES}/.zsh ${HOME}/.zsh
-	ln -sfn ${DOTFILES}/.zsh_nocorrect ${HOME}/.zsh_nocorrect
-	ln -sfn ${DOTFILES}/.zshenv ${HOME}/.zshenv
-	ln -sfn ${DOTFILES}/.zshrc ${HOME}/.zshrc
+	ln -sfn ${DOTFILES}/.inputrc ${RT_HOME}/.inputrc
+	ln -sfn ${DOTFILES}/.zsh ${RT_HOME}/.zsh
+	ln -sfn ${DOTFILES}/.zsh_nocorrect ${RT_HOME}/.zsh_nocorrect
+	ln -sfn ${DOTFILES}/.zshenv ${RT_HOME}/.zshenv
+	ln -sfn ${DOTFILES}/.zshrc ${RT_HOME}/.zshrc
 
 shells-remove:
-	-@rm -f ${HOME}/.inputrc
-	-@rm -f ${HOME}/.zsh
-	-@rm -f ${HOME}/.zsh_nocorrect
-	-@rm -f ${HOME}/.zshenv
-	-@rm -f ${HOME}/.zshrc
+	-@rm -f ${RT_HOME}/.inputrc
+	-@rm -f ${RT_HOME}/.zsh
+	-@rm -f ${RT_HOME}/.zsh_nocorrect
+	-@rm -f ${RT_HOME}/.zshenv
+	-@rm -f ${RT_HOME}/.zshrc
 
 vcs-install:
-	ln -sfn ${DOTFILES}/.bazaar ${HOME}/.bazaar
-	ln -sfn ${DOTFILES}/.gitconfig ${HOME}/.gitconfig
-	ln -sfn ${DOTFILES}/.gitignore ${HOME}/.gitignore
-	ln -sfn ${DOTFILES}/.hgignore ${HOME}/.hgignore
-	ln -sfn ${DOTFILES}/.hgrc ${HOME}/.hgrc
+	ln -sfn ${DOTFILES}/.bazaar ${RT_HOME}/.bazaar
+	ln -sfn ${DOTFILES}/.gitconfig ${RT_HOME}/.gitconfig
+	ln -sfn ${DOTFILES}/.gitignore ${RT_HOME}/.gitignore
+	ln -sfn ${DOTFILES}/.hgignore ${RT_HOME}/.hgignore
+	ln -sfn ${DOTFILES}/.hgrc ${RT_HOME}/.hgrc
 
 vcs-remove:
-	-@rm -f ${HOME}/.bazaar
-	-@rm -f ${HOME}/.gitconfig
-	-@rm -f ${HOME}/.gitignore
-	-@rm -f ${HOME}/.hgignore
-	-@rm -f ${HOME}/.hgrc
+	-@rm -f ${RT_HOME}/.bazaar
+	-@rm -f ${RT_HOME}/.gitconfig
+	-@rm -f ${RT_HOME}/.gitignore
+	-@rm -f ${RT_HOME}/.hgignore
+	-@rm -f ${RT_HOME}/.hgrc
 
 vim-install:
 	git submodule update --init
-	ln -sfn ${DOTFILES}/.vim ${HOME}/.vim
-	ln -sfn ${DOTFILES}/.vimrc ${HOME}/.vimrc
-	ln -sfn ${DOTFILES}/.gvimrc ${HOME}/.gvimrc
+	ln -sfn ${DOTFILES}/.vim ${RT_HOME}/.vim
+	ln -sfn ${DOTFILES}/.vimrc ${RT_HOME}/.vimrc
+	ln -sfn ${DOTFILES}/.gvimrc ${RT_HOME}/.gvimrc
 
 vim-remove:
-	-@rm -f ${HOME}/.vim
-	-@rm -f ${HOME}/.vimrc
-	-@rm -f ${HOME}/.gvimrc
+	-@rm -f ${RT_HOME}/.vim
+	-@rm -f ${RT_HOME}/.vimrc
+	-@rm -f ${RT_HOME}/.gvimrc
 
 xorg-install:
-	ln -sfn ${DOTFILES}/.Xcolors ${HOME}/.Xcolors
-	ln -sfn ${DOTFILES}/.Xresources ${HOME}/.Xresources
-	ln -sfn ${DOTFILES}/.fonts.conf ${HOME}/.fonts.conf
-	ln -sfn ${DOTFILES}/.spectrwm.conf ${HOME}/.spectrwm.conf
-	ln -sfn ${DOTFILES}/.xinitrc ${HOME}/.xinitrc
-	ln -sfn ${DOTFILES}/.xserverrc ${HOME}/.xserverrc
+	ln -sfn ${DOTFILES}/.Xcolors ${RT_HOME}/.Xcolors
+	ln -sfn ${DOTFILES}/.Xresources ${RT_HOME}/.Xresources
+	ln -sfn ${DOTFILES}/.fonts.conf ${RT_HOME}/.fonts.conf
+	ln -sfn ${DOTFILES}/.spectrwm.conf ${RT_HOME}/.spectrwm.conf
+	ln -sfn ${DOTFILES}/.xinitrc ${RT_HOME}/.xinitrc
+	ln -sfn ${DOTFILES}/.xserverrc ${RT_HOME}/.xserverrc
 
 xorg-remove:
-	-@rm -f ${HOME}/.Xcolors
-	-@rm -f ${HOME}/.Xresources
-	-@rm -f ${HOME}/.fonts.conf
-	-@rm -f ${HOME}/.spectrwm.conf
-	-@rm -f ${HOME}/.xinitrc
-	-@rm -f ${HOME}/.xserverrc
+	-@rm -f ${RT_HOME}/.Xcolors
+	-@rm -f ${RT_HOME}/.Xresources
+	-@rm -f ${RT_HOME}/.fonts.conf
+	-@rm -f ${RT_HOME}/.spectrwm.conf
+	-@rm -f ${RT_HOME}/.xinitrc
+	-@rm -f ${RT_HOME}/.xserverrc
 
 run-tests:
 	${DOTFILES}/bin/test_dotfiles
