@@ -31,4 +31,4 @@ set guioptions-=L
 set guioptions-=r
 set guioptions-=R
 set guioptions+=c                 " Use console dialogs
-colorscheme ir_black              " Set colour scheme
+colorscheme badwolf               " Set colour scheme

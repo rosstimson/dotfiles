@@ -1,10 +1,11 @@
-# Use Vundle to manager Vim plugins and keep out of the of Git.
-
+# Use NeoBundle to manage Vim plugins and keep them out of Git.
+#
 # First ignore everything in bundle directory.
 bundle/*
 
 # Now whitelist Vundle
-!bundle/vundle
+!bundle/neobundle.vim
 
-# Ignore the binary spelling file
+# Ignore the binary spelling file and netrw history file
 *.spl
+.netrwhist

@@ -29,85 +29,99 @@
 "     vim -u NONE
 "
 
-set nocompatible  " be iMproved (MUST be first)
-filetype off      " Required !
+if  has('vim_starting')
+  set nocompatible  " be iMproved (MUST be first)
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
-" Use Vundle to for installing / managing Vim scripts
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" Use NeoBundle for installing / managing Vim scripts
+call neobundle#rc(expand('~/.vim/bundle/'))
 
 " }}}
 
 
 " Bundles ----------------------------------------------------------------- {{{
 
-" Let Vundle manage Vundle (ooh how meta)
-Bundle 'gmarik/vundle'
+" Let NeoBundle manage Vundle (ooh how meta)
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'Shougo/vimproc', {
+  \ 'build' : {
+  \     'windows' : 'make -f make_mingw32.mak',
+  \     'cygwin' : 'make -f make_cygwin.mak',
+  \     'mac' : 'make -f make_mac.mak',
+  \     'unix' : 'make -f make_unix.mak',
+  \    },
+  \ }
 
 " Tools
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-eunuch'
-Bundle 'tpope/vim-dispatch'
-Bundle 'mileszs/ack.vim'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/unite.vim'
-Bundle 'bling/vim-airline'
-Bundle 'SirVer/ultisnips'
-Bundle 'mattn/gist-vim'
-Bundle 'vimwiki'
-Bundle 'majutsushi/tagbar'
-Bundle 'ZoomWin'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'gnupg'
-Bundle 'nelstrom/vim-markdown-folding'
-Bundle 'joonty/vim-phpqa'
-Bundle 'joonty/vdebug'
-Bundle 'sjl/gundo.vim'
-Bundle 'scratch'
-Bundle 'godlygeek/tabular'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'thoughtbot/vim-rspec'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-abolish'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-eunuch'
+NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'mileszs/ack.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'mattn/gist-vim'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'ZoomWin'
+NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+NeoBundle 'gnupg'
+NeoBundle 'nelstrom/vim-markdown-folding'
+NeoBundle 'joonty/vim-phpqa'
+NeoBundle 'joonty/vdebug'
+NeoBundle 'scratch'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle 'thoughtbot/vim-rspec'
+NeoBundle 'danchoi/ri.vim'
+NeoBundle 'akiomik/git-gutter-vim'
+NeoBundle 'vim-scripts/AutoTag'
+NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'mbbill/undotree'
+NeoBundle 'xolox/vim-notes'
+NeoBundle 'xolox/vim-shell'
+NeoBundle 'vim-scripts/VOoM'
 
 " Langs
-Bundle 'tpope/vim-git'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'tpope/vim-git'
-Bundle 'nono/vim-handlebars'
-Bundle 'pangloss/vim-javascript'
-Bundle 'tpope/vim-markdown'
-Bundle 'sunaku/vim-ruby-minitest'
-Bundle 'tpope/vim-rails'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle 'lotheac/pf.vim'
-Bundle 'nginx.vim'
-Bundle 'othree/html5.vim'
-Bundle 'rosstimson/bats.vim'
-Bundle 'rosstimson/modx.vim'
-Bundle 'php.vim'
-Bundle 'remind'
-Bundle 'xsbeats/vim-blade'
-Bundle 'fsouza/go.vim'
-Bundle 'tpope/vim-liquid'
-Bundle 'Keithbsmiley/rspec.vim'
-Bundle 'slim-template/vim-slim'
+NeoBundle 'tpope/vim-git'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'tpope/vim-git'
+NeoBundle 'nono/vim-handlebars'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'sunaku/vim-ruby-minitest'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'cakebaker/scss-syntax.vim'
+NeoBundle 'lotheac/pf.vim'
+NeoBundle 'nginx.vim'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'rosstimson/bats.vim'
+NeoBundle 'rosstimson/modx.vim'
+NeoBundle 'php.vim'
+NeoBundle 'remind'
+NeoBundle 'xsbeats/vim-blade'
+NeoBundle 'fsouza/go.vim'
+NeoBundle 'tpope/vim-liquid'
+NeoBundle 'Keithbsmiley/rspec.vim'
+NeoBundle 'slim-template/vim-slim'
 
 " Colour schemes
-Bundle 'vim-scripts/Colour-Sampler-Pack'
-Bundle 'larssmit/vim-getafe'
-Bundle 'vim-scripts/molokai'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'tpope/vim-vividchalk'
-Bundle 'twerth/ir_black'
-Bundle 'sjl/badwolf'
-Bundle 'chriskempson/vim-tomorrow-theme'
+NeoBundle 'vim-scripts/Colour-Sampler-Pack'
+NeoBundle 'larssmit/vim-getafe'
+NeoBundle 'vim-scripts/molokai'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'tpope/vim-vividchalk'
+NeoBundle 'twerth/ir_black'
+NeoBundle 'sjl/badwolf'
+NeoBundle 'chriskempson/vim-tomorrow-theme'
 
 " }}}
 
@@ -115,6 +129,7 @@ Bundle 'chriskempson/vim-tomorrow-theme'
 " Basic settings ---------------------------------------------------------- {{{
 
 filetype plugin indent on " Required! Enable detection, plugins and indenting
+NeoBundleCheck            " Installation check
 set number                " Show line number
 set ruler                 " Show line and column numbers
 syntax enable             " Turn on syntax highlighting
@@ -128,6 +143,10 @@ set nrformats=            " Treat all numerals as decimals
 set nobackup              " Don't keep backup files, it's 70's style cluttering
 set noswapfile            " Don't write annoying intermediate swap files,
                           "   who did ever restore from swap files anyway?
+set undofile              " Persistent undos
+set undodir=$HOME/.vim/undo " Where to save undo histories
+set undolevels=1000       " How many undos
+set undoreload=10000      " Number of lines to save for undo
 set viminfo='20,\"80      " Read / Write a .viminfo file, don't store more
                           "   than 80 lines of registers
 set title                 " Change the terminal's title
@@ -344,11 +363,11 @@ nnoremap <F9> :Dispatch<CR>
 " Tagbar: Mapping F8 to toggle Tagbar
 nnoremap <F8> :TagbarToggle<CR>
 
-" Ack: Mapping ,a to :Ack for searching (actually use the_silver_searcher)
+" Ack: Mapping ,a to :Ack for searching (actually uses the_silver_searcher)
 nnoremap <leader>a :Ack<space>
 
-" Gundo: Mapping F7 to toggle Gundo
-nnoremap <F7> :GundoToggle<CR>
+" Undotree: Mapping ,ut to Undotree
+nnoremap <leader>ut :UndotreeToggle<CR>
 
 " YankRing: Mapping F3 to toggle :YRShoww
 nnoremap <silent> <F3> :YRShow<cr>
@@ -371,7 +390,7 @@ if exists(":Tabularize")
 endif
 
 " Rainbow_Parentheses: Mapping ,r to toggle colour highlighting of parentheses
-nmap <leader>r :RainbowParenthesesToggle<CR>
+nmap <leader>rp :RainbowParenthesesToggle<CR>
 
 " Rspec.vim mappings
 map <Leader>s :call RunNearestSpec()<CR>
@@ -387,8 +406,19 @@ nnoremap <leader>fs :<C-u>Unite -no-split -buffer-name=files -start-insert -defa
 nnoremap <leader>fv :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=vsplit file_rec/async<cr>
 nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffers -quick-match buffer<cr>
 nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru -start-insert file_mru<cr>
+nnoremap <leader>ru :<C-u>Unite -no-split -buffer-name=mru -start-insert file_mru<cr>
 nnoremap <leader>yh :<C-u>Unite -no-split -buffer-name=yank_history history/yank<cr>
+
+" Notes
+nnoremap <leader>n :Note! collect<CR>
+
+" vim-shell
+:let g:shell_mappings_enabled = 0 " Disable default mappings
+:inoremap <Leader>fs <C-o>:Fullscreen<CR>
+:nnoremap <Leader>fs :Fullscreen<CR>
+:inoremap <Leader>op <C-o>:Open<CR>
+:nnoremap <Leader>op :Open<CR>
+
 
 " }}}
 
@@ -542,12 +572,17 @@ augroup END
 
 " }}}
 
+" Vim {{{
+au FileType vim let b:loaded_delimitMate = 0 " no autoclose brackets for Vim files
+
+" }}}
+
 " }}}
 
 " Plugin settings / options ----------------------------------------------- {{{
 
 " Vim-Airline
-" TODO Use fancy symbols without patched font, certain chars aren't working 
+" TODO Use fancy symbols without patched font, certain chars aren't working
 " when using the new Powerline recommended fontconfig way.
 " let g:airline_powerline_fonts = 1
 
@@ -555,15 +590,10 @@ augroup END
 " Use the_silver_searcher program instead of ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-" VimWiki
-" Change location of default Vimwiki to a sensible Git Annex directory
-let g:vimwiki_list = [{'path': '$HOME/annex/vimwiki'}]
-
 " Dispatch
 " Run current file through Ruby interpreter and check syntax
 autocmd FileType ruby let b:dispatch = 'ruby -wc %'
 autocmd FileType go let b:dispatch = 'go build %'
-
 
 " UltiSnips
 " Define custom snippets directory
@@ -583,6 +613,12 @@ function! s:unite_settings()
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
+
+" Notes
+let g:notes_directories = ['~/annex/notes'] " Default dir for notes
+let g:notes_suffix = '.md' " Default to markdown files
+let g:notes_title_sync = 'rename_file' " Rename file on disk to match title
+let g:notes_smart_quotes = 0 " Don't use special symbols
 
 
 " }}}
