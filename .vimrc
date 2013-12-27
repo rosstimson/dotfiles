@@ -178,7 +178,10 @@ set spellfile=~/.vim/spell/en.utf-8.add   " Custom dictionary
 
 set t_Co=256              " Pretty colours
 set background=dark       " Setting background to dark
-" TODO colorscheme ????      " Setting colourscheme
+
+" Setting default colourscheme for terminal vim.  For this to look good it
+" should match the Xorg colours specified in ~/.Xresources and ~/.Xcolors
+colorscheme Tomorrow-Night-Eighties
 
 " }}}
 
