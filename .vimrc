@@ -42,7 +42,7 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
 " Bundles ----------------------------------------------------------------- {{{
 
-" Let NeoBundle manage Vundle (ooh how meta)
+" Let NeoBundle manage NeoBundle (ooh how meta)
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'Shougo/vimproc', {
@@ -86,6 +86,7 @@ NeoBundle 'vim-scripts/AutoTag'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'mbbill/undotree'
 NeoBundle 'xolox/vim-notes'
+NeoBundle 'xolox/vim-misc'
 NeoBundle 'xolox/vim-shell'
 NeoBundle 'vim-scripts/VOoM'
 
