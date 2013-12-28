@@ -11,6 +11,16 @@ NeoBundle will check if plugins are installed and prompt you if they are not
 when starting up Vim.  However the easiest way to get started is to run the
 script in `~/.vim/bundle/neobundle.vim/bin/neoinstall`.
 
+## Useful key mappings
+
+* Spelling
+  - `]s` and `[s` move back and forth to next misspelled words
+  - `zg` add word under cursor as a good word
+  - `z=` suggests spelling for misspelled word under cursor
+  - `CTRL-x s` suggests spelling when in Insert mode
+* Working With Text
+  - `,W` strip all trailing whitespace
+
 ## Plugins
 
 These are some of the key plugins of interest and commands / key mappings that
@@ -20,7 +30,7 @@ I often need reminded about.
   - `:NeoBundleList` list configured bundles
   - `:NeoBundleInstall(!)` or `:Unite neobundle/install` install(update) bundles
   - `:NeoBundleClean(!)` confirm(or auto-approve) removal of unused bundles
-* [ri.vim]{https://github.com/danchoi/ri.vim}: Browse ri documentation offline in Vim.
+* [ri.vim](https://github.com/danchoi/ri.vim): Browse ri documentation offline in Vim.
   - `,r` open search/auto-complete window with horizontal split
   - `,R` open search/auto-complete window with vertical split
   - `,K` open search/auto-complete window and prefills with keyword under cursor
