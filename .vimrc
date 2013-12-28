@@ -69,6 +69,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'mattn/gist-vim'
+NeoBundle 'mattn/webapi-vim'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'ZoomWin'
 NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -624,6 +625,9 @@ let g:notes_suffix = '.md' " Default to markdown files
 let g:notes_title_sync = 'rename_file' " Rename file on disk to match title
 let g:notes_smart_quotes = 0 " Don't use special symbols
 
+" Gist
+let g:gist_open_browser_after_post = 1
+let g:gist_browser_command = 'firefox %URL% &'
 
 " }}}
 
