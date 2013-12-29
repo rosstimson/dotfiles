@@ -52,7 +52,7 @@ MODE_IMPORT = 80
 
 NUM_MAX_DOWNLOADS = 4
 
-DOWNLOAD_DIRECTORY = "../../Podcasts"
+DOWNLOAD_DIRECTORY = "${HOME}/Podcasts"
 
 # Added 2011-10-06 Werner Avenant - added current_dictory here so it can be global
 current_directory = ''
