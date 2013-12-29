@@ -620,7 +620,7 @@ function! s:unite_settings()
 endfunction
 
 " Notes
-let g:notes_directories = ['~/annex/notes'] " Default dir for notes
+let g:notes_directories = ['~/Annex/Notes'] " Default dir for notes
 let g:notes_suffix = '.md' " Default to markdown files
 let g:notes_title_sync = 'rename_file' " Rename file on disk to match title
 let g:notes_smart_quotes = 0 " Don't use special symbols

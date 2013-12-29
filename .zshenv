@@ -24,7 +24,7 @@ export GPGKEY=97865D41
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 
 # Go-lang variables
-export GOPATH="$HOME/code/go"
+export GOPATH="$HOME/Code/Go"
 # Append Go stuff to PATH
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 

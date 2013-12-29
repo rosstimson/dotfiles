@@ -1,9 +1,9 @@
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\)$" . org-mode))
 
-(setq org-directory "~/annex/org")
-(setq org-default-notes-file "~/annex/org/refile.org")
-(setq org-agenda-files (quote ("~/annex/org")))
+(setq org-directory "~/Annex/Org")
+(setq org-default-notes-file "~/Annex/Org/refile.org")
+(setq org-agenda-files (quote ("~/Annex/Org")))
 (setq org-startup-folded t)
 (setq org-agenda-ndays 7)
 (setq org-agenda-restore-windows-after-quit t)
@@ -67,21 +67,21 @@
 
 ;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings, and org-protocol
 (setq org-capture-templates
-      (quote (("t" "Todo" entry (file "~/annex/org/refile.org")
+      (quote (("t" "Todo" entry (file "~/Annex/Org/refile.org")
                "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
-              ("r" "Respond" entry (file "~/annex/org/refile.org")
+              ("r" "Respond" entry (file "~/Annex/Org/refile.org")
                "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
-              ("n" "Note" entry (file "~/annex/org/refile.org")
+              ("n" "Note" entry (file "~/Annex/Org/refile.org")
                "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
-              ("j" "Journal" entry (file+datetree "~/annex/org/journal.org")
+              ("j" "Journal" entry (file+datetree "~/Annex/Org/journal.org")
                "* %?\n%U\n" :clock-in t :clock-resume t)
-              ("w" "Org-protocol" entry (file "~/annex/org/refile.org")
+              ("w" "Org-protocol" entry (file "~/Annex/Org/refile.org")
                "* TODO Review %c\n%U\n" :immediate-finish t)
-              ("m" "Meeting" entry (file "~/annex/org/refile.org")
+              ("m" "Meeting" entry (file "~/Annex/Org/refile.org")
                "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
-              ("p" "Phone call" entry (file "~/annex/org/refile.org")
+              ("p" "Phone call" entry (file "~/Annex/Org/refile.org")
                "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
-              ("h" "Habit" entry (file "~/annex/org/refile.org")
+              ("h" "Habit" entry (file "~/Annex/Org/refile.org")
                "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
 ;; Remove empty LOGBOOK drawers on clock out
