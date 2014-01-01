@@ -45,6 +45,15 @@ The files expect passwords in the following structure.
         ├── offlineimap-gmail
         └── offlineimap-rosstimson
 
+#### Setting up GPG and Pass
+
+For Pass to work gpg needs to be setup:
+
+1. Import public key `gpg --import ~/path/to/mygpgkey_pub.gpg`
+2. Import secret key `gpg --allow-secret-key-import --import ~/path/to/mygpgkey_sec.gpg`
+3. Mark own key as trusted `gpg --edit-key [key id]` type `trust` select option 5 and `quit`
+4. Initialise Pass `pass init [gpg key id]`
+
 ### Email / Mutt
     graphics/feh
     print/gv
