@@ -30,3 +30,4 @@ log/
 config/database.yml
 db/*.sqlite3
 .sass-cache/
+.bundle/
