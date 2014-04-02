@@ -353,4 +353,12 @@ alias artisan='php artisan'
 
 # }}}
 
+# Docker {{{
+
+alias d='docker'
+alias dsa='docker stop $(docker ps -a -q)'  # Stop all containers
+alias dra='docker rm $(docker ps -a -q)'    # Remove all containers
+
+# }}}
+
 # ------------------------------------------------------------------------- }}}
