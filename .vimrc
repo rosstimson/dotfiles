@@ -45,6 +45,13 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 " Let NeoBundle manage NeoBundle (ooh how meta)
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+" GNU Make is often gmake on non-GNU systems.
+let g:make = 'gmake'
+if system('uname -o') =~ '^GNU/'
+        let g:make = 'make'
+endif
+NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
+
 NeoBundle 'Shougo/vimproc', {
   \ 'build' : {
   \     'windows' : 'make -f make_mingw32.mak',
