@@ -111,7 +111,7 @@ NeoBundle 'rosstimson/modx.vim'
 NeoBundle 'php.vim'
 NeoBundle 'remind'
 NeoBundle 'xsbeats/vim-blade'
-NeoBundle 'fsouza/go.vim'
+NeoBundle 'fatih/vim-go'
 NeoBundle 'tpope/vim-liquid'
 NeoBundle 'Keithbsmiley/rspec.vim'
 NeoBundle 'slim-template/vim-slim'
@@ -479,7 +479,6 @@ augroup ft_go
     au!
 
     au Filetype go setlocal shiftwidth=4 tabstop=4 noexpandtab foldmethod=syntax
-    autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
     " Load braces for RainbowParentheses
     au BufNewFile,BufRead *.go RainbowParenthesesLoadBraces
