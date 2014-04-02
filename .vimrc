@@ -123,6 +123,7 @@ NeoBundle 'tpope/vim-liquid'
 NeoBundle 'Keithbsmiley/rspec.vim'
 NeoBundle 'slim-template/vim-slim'
 NeoBundle 'elixir-lang/vim-elixir'
+NeoBundle 'ekalinin/Dockerfile.vim'
 
 " Colour schemes
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
