@@ -62,6 +62,7 @@ NeoBundle 'Shougo/vimproc', {
   \ }
 
 " Tools
+NeoBundle 'tpope/vim-git'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-surround'
@@ -100,9 +101,7 @@ NeoBundle 'xolox/vim-shell'
 NeoBundle 'vim-scripts/VOoM'
 
 " Langs
-NeoBundle 'tpope/vim-git'
 NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'tpope/vim-git'
 NeoBundle 'nono/vim-handlebars'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'tpope/vim-markdown'
