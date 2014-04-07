@@ -29,7 +29,7 @@ compinit
 setopt no_beep
 setopt autocd
 setopt multios
-setopt cdablevarS
+setopt cdablevars
 
 # Enables the negation ^ operator for displaying files
 setopt extendedglob
