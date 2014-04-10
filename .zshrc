@@ -186,8 +186,9 @@ alias ...='cd ../..'
 alias -- -='cd -'
 
 # Super user
-alias _='sudo'
-alias ffs='sudo'
+alias sudo='sudo '  # Note the trailing space, this allows sudo to use aliases.
+alias _='sudo '
+alias ffs='sudo '
 
 # Show history
 alias history='fc -l 1'
