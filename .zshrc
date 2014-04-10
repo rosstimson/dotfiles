@@ -365,7 +365,7 @@ alias dra='docker rm $(docker ps -a -q)'    # Remove all containers
 
 # Python {{{
 
-alias upeggs='yolk -U | awk {'print $1'} | xargs pip install -U'
+alias upeggs="yolk -U | awk {'print $1'} | xargs pip install -U"
 
 # }}}
 
