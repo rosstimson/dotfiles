@@ -356,6 +356,8 @@ alias artisan='php artisan'
 # Docker {{{
 
 alias d='docker'
+alias di='docker images'
+alias dri='docker run -t -i'
 alias dsa='docker stop $(docker ps -a -q)'  # Stop all containers
 alias dra='docker rm $(docker ps -a -q)'    # Remove all containers
 
