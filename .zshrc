@@ -216,6 +216,8 @@ alias bu="bundle update"
 
 alias g='git'
 compdef g=git
+alias=gi='git init'
+compdef gi=git-init
 alias gst='git status'
 compdef _git gst=git-status
 alias gd='git diff'
