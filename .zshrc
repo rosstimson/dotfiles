@@ -374,8 +374,8 @@ alias kl='kitchen login'
 alias kls='kitchen list'
 alias ks='kitchen setup'
 alias kt='kitchen test'
-alias kt='kitchen verify'
-alias kv='kitchen converge'
+alias kv='kitchen verify'
+alias kr='kitchen converge'
 
 # }}}
 
