@@ -365,6 +365,19 @@ alias dra='docker rm $(docker ps -a -q)'    # Remove all containers
 
 # }}}
 
+# Test-Kitchen {{{
+
+alias k='kitchen'
+alias kc='kitchen create'
+alias kd='kitchen destroy'
+alias kl='kitchen login'
+alias ks='kitchen setup'
+alias kt='kitchen test'
+alias kt='kitchen verify'
+alias kv='kitchen converge'
+
+# }}}
+
 # Python {{{
 
 alias upeggs="yolk -U | awk {'print $1'} | xargs pip install -U"
