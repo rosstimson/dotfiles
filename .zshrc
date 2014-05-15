@@ -194,10 +194,9 @@ alias ffs='sudo '
 alias history='fc -l 1'
 
 # List direcory contents
-alias lsa='ls -lah'
-alias l='ls -la'
+alias l='ls -lah'
 alias ll='ls -l'
-alias la='ls -lA'
+alias lr='ls -lr'
 
 # }}}
 
