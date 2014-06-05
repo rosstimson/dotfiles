@@ -76,7 +76,6 @@ NeoBundle 'tpope/vim-jdaddy'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'SirVer/ultisnips'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'majutsushi/tagbar'
@@ -607,10 +606,6 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " Run current file through Ruby interpreter and check syntax
 autocmd FileType ruby let b:dispatch = 'ruby -wc %'
 autocmd FileType go let b:dispatch = 'go build %'
-
-" UltiSnips
-" Define custom snippets directory
-let g:UltiSnipsSnippetsDir = "$HOME/.vim/snippets"
 
 " Rspec.vim
 " Support custom commands / test runners
