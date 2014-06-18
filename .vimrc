@@ -79,7 +79,7 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimshell.vim' " Powerful shell implemented by Vim.
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
