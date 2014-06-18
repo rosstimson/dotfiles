@@ -1,0 +1,45 @@
+# Install command-line tools using Homebrew
+# Usage: `brew bundle Brewfile`
+
+# Make sure we’re using the latest Homebrew
+update
+
+# Upgrade any already-installed formulae
+upgrade
+
+# Install stuff
+install bazaar
+install cscope
+install dos2unix
+install elixir
+install gh
+install gist
+install git
+install git-flow
+install go
+install goaccess
+install ipcalc
+install jq
+install luajit
+install luarocks
+install macvim --with-cscope --with-luajit --override-system-vim
+install mariadb
+install mercurial
+install mobile-shell
+install mtr
+install nmap
+install node
+install par
+install pass
+install pwgen
+install rename
+install s3cmd
+install sipcalc
+install the_silver_searcher
+install tig
+install tree
+install wget
+install xz
+
+# Remove outdated versions from the cellar
+cleanup

@@ -1,16 +1,38 @@
 # ~/dotfiles/Makefile
 # $HOME Sweet $HOME
 
+OS := $(shell uname)
+
 DOTFILES=`pwd`
 RT_HOME='/home/rosstimson'
 
-all: 	developer-install emacs-install email-install general-install \
-			gpg-agent-install misc-install music-install scripts-install \
-			shells-install vcs-install vim-install xorg-install run-tests
+all: 	developer-install \
+			emacs-install \
+			email-install \
+			general-install \
+			gpg-agent-install \
+			misc-install \
+			music-install \
+			scripts-install \
+			shells-install \
+			scm-install \
+			vim-install \
+			xorg-install \
+			run-tests
 
-clean: 	developer-remove emacs-remove email-remove general-remove \
-				gpg-agent-remove misc-remove music-remove scripts-remove shells-remove \
-				vcs-remove vim-remove xorg-remove
+clean: 	developer-remove \
+				emacs-remove \
+				email-remove \
+				general-remove \
+				gpg-agent-remove \
+				misc-remove \
+				music-remove \
+				osx-remove \
+				scripts-remove \
+				shells-remove \
+				scm-remove \
+				vim-remove \
+				xorg-remove
 
 developer-install:
 	ln -sfn ${DOTFILES}/.ackrc ${RT_HOME}/.ackrc
@@ -105,6 +127,16 @@ music-remove:
 	-@rm -f ${RT_HOME}/.mpdconf
 	-@rm -f ${RT_HOME}/.ncmpcpp
 
+osx-install:
+ifeq ($(OS), Darwin)
+	ln -sfn ${DOTFILES}/.osx ${RT_HOME}/.osx
+endif
+
+osx-remove:
+ifeq ($(OS), Darwin)
+	-@rm -f ${RT_HOME}/.osx
+endif
+
 scripts-install:
 	ln -sfn ${DOTFILES}/bin ${RT_HOME}/bin
 	ln -sfn ${DOTFILES}/.urxvt-perls ${RT_HOME}/.urxvt-perls
@@ -127,14 +159,14 @@ shells-remove:
 	-@rm -f ${RT_HOME}/.zshenv
 	-@rm -f ${RT_HOME}/.zshrc
 
-vcs-install:
+scm-install:
 	ln -sfn ${DOTFILES}/.bazaar ${RT_HOME}/.bazaar
 	ln -sfn ${DOTFILES}/.gitconfig ${RT_HOME}/.gitconfig
 	ln -sfn ${DOTFILES}/.gitignore ${RT_HOME}/.gitignore
 	ln -sfn ${DOTFILES}/.hgignore ${RT_HOME}/.hgignore
 	ln -sfn ${DOTFILES}/.hgrc ${RT_HOME}/.hgrc
 
-vcs-remove:
+scm-remove:
 	-@rm -f ${RT_HOME}/.bazaar
 	-@rm -f ${RT_HOME}/.gitconfig
 	-@rm -f ${RT_HOME}/.gitignore
