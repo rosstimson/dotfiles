@@ -440,10 +440,19 @@ function! s:my_cr_function()
   "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
-" Use commented out version if autcomplete is enabled at startup. It
-" is currently disabled (let g:neocomplete#disable_auto_complete=1) as
-" constant popup menu becomes annoying.
-inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+" Autocomplete at startup is is currently disabled (let
+" g:neocomplete#disable_auto_complete=1) as constant popup menu becomes
+" annoying. This will allow you to manually call the completion popup
+" with <TAB> and will still allow <TAB> to add whitespace if used on an
+" empty line.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ neocomplete#start_manual_complete()
+function! s:check_back_space()
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
 "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
