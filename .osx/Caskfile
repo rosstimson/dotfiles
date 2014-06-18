@@ -1,0 +1,16 @@
+# Install native apps
+# Usage: `brew bundle Caskfile`
+
+cask install adium 2> /dev/null
+cask install boot2docker 2> /dev/null
+cask install dropbox 2> /dev/null
+cask install firefox 2> /dev/null
+cask install google-chrome 2> /dev/null
+cask install google-chrome-canary 2> /dev/null
+cask install imagealpha 2> /dev/null
+cask install imageoptim 2> /dev/null
+cask install iterm2 2> /dev/null
+cask install sequel-pro 2> /dev/null
+cask install transmission 2> /dev/null
+cask install virtualbox 2> /dev/null
+cask install vlc 2> /dev/null
