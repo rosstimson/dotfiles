@@ -35,10 +35,9 @@ if  has('vim_starting')
 endif
 
 " Use NeoBundle for installing / managing Vim scripts
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " }}}
-
 
 " Bundles ----------------------------------------------------------------- {{{
 
@@ -48,18 +47,19 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " GNU Make is often gmake on non-GNU systems.
 let g:make = 'gmake'
 if system('uname -o') =~ '^GNU/'
-        let g:make = 'make'
+    let g:make = 'make'
 endif
-NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
 
-NeoBundle 'Shougo/vimproc', {
-  \ 'build' : {
-  \     'windows' : 'make -f make_mingw32.mak',
-  \     'cygwin' : 'make -f make_cygwin.mak',
-  \     'mac' : 'make -f make_mac.mak',
-  \     'unix' : 'make -f make_unix.mak',
-  \    },
-  \ }
+let vimproc_updcmd = has('win64') ?
+    \ 'tools\\update-dll-mingw 64' : 'tools\\update-dll-mingw 32'
+execute "NeoBundle 'Shougo/vimproc.vim'," . string({
+    \ 'build' : {
+    \     'windows' : vimproc_updcmd,
+    \     'cygwin' : 'make -f make_cygwin.mak',
+    \     'mac' : 'make -f make_mac.mak',
+    \     'unix' : 'make -f make_unix.mak',
+    \    },
+    \ })
 
 " Tools
 NeoBundle 'tpope/vim-git'
@@ -75,8 +75,12 @@ NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-jdaddy'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/vimshell.vim' " Powerful shell implemented by Vim.
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'SirVer/ultisnips'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'majutsushi/tagbar'
@@ -84,8 +88,6 @@ NeoBundle 'ZoomWin'
 NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 NeoBundle 'gnupg'
 NeoBundle 'nelstrom/vim-markdown-folding'
-NeoBundle 'joonty/vim-phpqa'
-NeoBundle 'joonty/vdebug'
 NeoBundle 'scratch'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'kien/rainbow_parentheses.vim'
@@ -97,7 +99,7 @@ NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'mbbill/undotree'
 NeoBundle 'xolox/vim-notes'
 NeoBundle 'xolox/vim-misc'
-NeoBundle 'xolox/vim-shell'
+NeoBundle 'xolox/vim-shell' " Improves integration between Vim and OS.
 NeoBundle 'vim-scripts/VOoM'
 
 " Langs
@@ -114,9 +116,7 @@ NeoBundle 'nginx.vim'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'rosstimson/bats.vim'
 NeoBundle 'rosstimson/modx.vim'
-NeoBundle 'php.vim'
 NeoBundle 'remind'
-NeoBundle 'xsbeats/vim-blade'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'tpope/vim-liquid'
 NeoBundle 'Keithbsmiley/rspec.vim'
@@ -134,13 +134,16 @@ NeoBundle 'twerth/ir_black'
 NeoBundle 'sjl/badwolf'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 
+" End neobundle shenanigans
+call neobundle#end()
+
 " }}}
 
 
 " Basic settings ---------------------------------------------------------- {{{
 
 filetype plugin indent on " Required! Enable detection, plugins and indenting
-NeoBundleCheck            " Installation check
+NeoBundleCheck            " Installation check via Neobundle
 set number                " Show line number
 set ruler                 " Show line and column numbers
 syntax enable             " Turn on syntax highlighting
@@ -407,13 +410,13 @@ endif
 " Rainbow_Parentheses: Mapping ,r to toggle colour highlighting of parentheses
 nmap <leader>rp :RainbowParenthesesToggle<CR>
 
-" Rspec.vim mappings
+" Rspec:
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>sf :call RunCurrentSpecFile()<CR>
 map <Leader>sl :call RunLastSpec()<CR>
 map <Leader>sa :call RunAllSpecs()<CR>
 
-" Unite.vim mappings
+" Unite:
 nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files -start-insert file<cr>
 nnoremap <leader>fr :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async<cr>
 nnoremap <leader>ft :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=tabopen file_rec/async<cr>
@@ -424,10 +427,41 @@ nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outl
 nnoremap <leader>ru :<C-u>Unite -no-split -buffer-name=mru -start-insert file_mru<cr>
 nnoremap <leader>yh :<C-u>Unite -no-split -buffer-name=yank_history history/yank<cr>
 
-" Notes
+" Neocomplete
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+" Use commented out version if autcomplete is enabled at startup. It
+" is currently disabled (let g:neocomplete#disable_auto_complete=1) as
+" constant popup menu becomes annoying.
+inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
+" Neosnippet:
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" Notes:
 nnoremap <leader>n :Note! collect<CR>
 
-" vim-shell
+" Vim-shell:
 :let g:shell_mappings_enabled = 0 " Disable default mappings
 :inoremap <Leader>fs <C-o>:Fullscreen<CR>
 :nnoremap <Leader>fs :Fullscreen<CR>
@@ -493,12 +527,22 @@ augroup END
 
 " }}}
 
+" HTML {{{
+augroup ft_html
+    au!
+
+    au FileType html setlocal omnifunc=htmlcomplete#CompleteTags
+augroup END
+
+" }}}
+
 " Javascript {{{
 augroup ft_javascript
     au!
 
     au FileType javascript setlocal foldmethod=marker
     au FileType javascript setlocal foldmarker={,}
+    au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
     " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
     " positioned inside of them AND the following code doesn't get unfolded.
@@ -526,6 +570,7 @@ augroup ft_markdown
     au BufNewFile,BufRead *.m*down setlocal filetype=markdown
     au FileType markdown setlocal foldlevel=1
     au FileType markdown setlocal spell
+    au FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags
 
     " Use <localleader>1/2/3 to add headings.
     au Filetype markdown nnoremap <buffer> <localleader>1 yypVr=:redraw<cr>
@@ -581,6 +626,17 @@ augroup END
 
 " }}}
 
+" Python {{{
+augroup ft_python
+    au!
+
+    au Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=4
+    au FileType python setlocal foldmethod=indent foldlevel=2 foldnestmax=4
+    au FileType python setlocal omnifunc=pythoncomplete#Complete
+augroup END
+
+" }}}
+
 " Ruby {{{
 augroup ft_ruby
     au!
@@ -612,10 +668,6 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 autocmd FileType ruby let b:dispatch = 'ruby -wc %'
 autocmd FileType go let b:dispatch = 'go build %'
 
-" UltiSnips
-" Define custom snippets directory
-let g:UltiSnipsSnippetsDir = "$HOME/.vim/snippets"
-
 " Rspec.vim
 " Support custom commands / test runners
 " let g:rspec_command = "Dispatch zeus rspec {spec}"
@@ -630,6 +682,45 @@ function! s:unite_settings()
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
+
+" Neocomplete
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Disable autocomplete / I want to manually call the completion popup.
+let g:neocomplete#disable_auto_complete=1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist'
+    \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+" Neosnippet
+" Set if you want snippets other than those provided by neosnippet-snippets.
+" let g:neosnippet#snippets_directory='~/.vim/snippets'
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
 
 " Notes
 let g:notes_directories = ['~/Annex/Notes'] " Default dir for notes
