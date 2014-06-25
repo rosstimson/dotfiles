@@ -358,10 +358,14 @@ alias artisan='php artisan'
 # Docker {{{
 
 alias d='docker'
+alias dc='docker commit'                    # Clobbers GNU dc calculator tool
 alias di='docker images'
+alias dl='docker pull'
+alias dp='docker push'
+alias dr='docker run'
+alias dra='docker rm $(docker ps -a -q)'    # Remove all containers
 alias dri='docker run -t -i'
 alias dsa='docker stop $(docker ps -a -q)'  # Stop all containers
-alias dra='docker rm $(docker ps -a -q)'    # Remove all containers
 
 # }}}
 
