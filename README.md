@@ -6,8 +6,9 @@ $HOME Sweet $HOME -- My dotfiles.
 ## Install
 
 There is a Makefile that will symlink the dotfiles along with any extra
-setup, read the Makefile for details and names of sub-tasks.  *Repo must
-be cloned to `~/dotfiles`*
+setup, read the Makefile for details and names of sub-tasks.
+
+__Repo must be cloned to `~/dotfiles`__
 
     git clone git://github.com/rosstimson/dotfiles.git ~/dotfiles
     cd ~/dotfiles
