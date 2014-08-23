@@ -24,7 +24,8 @@
 "
 
 set gfn=Source\ Code\ Pro\ Medium\ 11      " Font
-set vb                            " Visual bell, not audible
+set visualbell                    " Don't beep
+set t_vb=                         " Don't flash
 set guioptions-=T                 " Remove toolbar, left & right scrollbar
 set guioptions-=l
 set guioptions-=L

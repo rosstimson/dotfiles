@@ -165,6 +165,7 @@ set viminfo='20,\"80      " Read / Write a .viminfo file, don't store more
                           "   than 80 lines of registers
 set title                 " Change the terminal's title
 set visualbell            " Don't beep
+set t_vb=                 " Don't flash
 set noerrorbells          " Don't beep
 set showcmd               " Show (partial) command in the last line of the
                           "   screen this also shows visual selection info
