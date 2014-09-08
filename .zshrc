@@ -119,7 +119,7 @@ fi
 
 # Python Virtualenv
 if [ -f /usr/local/bin/virtualenvwrapper_lazy.sh ]; then
-  export WORKON_HOME=$HOME/Code/Python
+  export WORKON_HOME=$HOME/.virtualenvs
   source /usr/local/bin/virtualenvwrapper_lazy.sh
 fi
 
