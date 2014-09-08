@@ -118,7 +118,7 @@ if [ -d /usr/local/share/chruby ]; then
 fi
 
 # Python Virtualenv
-if [ -f /usr/local/bin/virtualwrapper_lazy.sh ]; then
+if [ -f /usr/local/bin/virtualenvwrapper_lazy.sh ]; then
   export WORKON_HOME=$HOME/Code/Python
   source /usr/local/bin/virtualenvwrapper_lazy.sh
 fi
