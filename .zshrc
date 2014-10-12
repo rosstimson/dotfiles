@@ -401,3 +401,8 @@ alias upeggs="yolk -U | awk {'print $1'} | xargs pip install -U"
 # }}}
 
 # ------------------------------------------------------------------------- }}}
+
+# AWS CLI Completion
+if [ -f /usr/bin/aws_zsh_completer.sh ]; then
+  source /usr/bin/aws_zsh_completer.sh
+fi
