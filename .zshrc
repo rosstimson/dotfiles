@@ -126,6 +126,7 @@ fi
 # pyenv shims and autocompletion
 if _command_exists pyenv; then
   eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 fi
 
 # Use gh (Github CLI client / helper)
