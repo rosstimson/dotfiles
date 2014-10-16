@@ -18,6 +18,9 @@ tmtags
 ## VIM
 *.swp
 
+## Git merge conflict crap
+*.orig
+
 ## SUBVERSION
 .svn
 
