@@ -118,9 +118,15 @@ if [ -d /usr/local/share/chruby ]; then
 fi
 
 # Python Virtualenv
-if [ -f /usr/local/bin/virtualenvwrapper_lazy.sh ]; then
+if [ -f /usr/bin/virtualenvwrapper_lazy.sh ]; then
   export WORKON_HOME=$HOME/.virtualenvs
-  source /usr/local/bin/virtualenvwrapper_lazy.sh
+  source /usr/bin/virtualenvwrapper_lazy.sh
+fi
+
+# pyenv shims and autocompletion
+if _command_exists pyenv; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 fi
 
 # Use gh (Github CLI client / helper)
@@ -396,3 +402,8 @@ alias upeggs="yolk -U | awk {'print $1'} | xargs pip install -U"
 # }}}
 
 # ------------------------------------------------------------------------- }}}
+
+# AWS CLI Completion
+if [ -f /usr/bin/aws_zsh_completer.sh ]; then
+  source /usr/bin/aws_zsh_completer.sh
+fi
