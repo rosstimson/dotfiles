@@ -366,6 +366,7 @@ alias artisan='php artisan'
 alias d='docker'
 alias da='docker attach'
 alias dc='docker commit'                    # Clobbers GNU dc calculator tool
+alias de='docker exec -t -i'
 alias di='docker images'
 alias dl='docker pull'
 alias dp='docker push'
