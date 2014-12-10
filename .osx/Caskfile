@@ -3,17 +3,17 @@
 
 cask install adium 2> /dev/null
 cask install boot2docker 2> /dev/null
-cask install chefdk 2> /dev/null
 cask install dropbox 2> /dev/null
 cask install firefox 2> /dev/null
 cask install google-chrome 2> /dev/null
-cask install google-chrome-canary 2> /dev/null
 cask install hydra 2> /dev/null
 cask install imagealpha 2> /dev/null
 cask install imageoptim 2> /dev/null
 cask install iterm2 2> /dev/null
 cask install musicbrainz-picard 2> /dev/null
+cask install packer 2> /dev/null
 cask install sequel-pro 2> /dev/null
+cask install terraform 2> /dev/null
 cask install transmission 2> /dev/null
 cask install vagrant 2> /dev/null
 cask install vagrant-manager 2> /dev/null

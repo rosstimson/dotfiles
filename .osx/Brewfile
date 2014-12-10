@@ -11,6 +11,7 @@ upgrade
 install abcde --with-flac --with-lame --with-vorbis-tools
 install bazaar
 install bitlbee --with-finch --with-libotr
+install brew-cask
 install casperjs
 install cscope
 install csshx
@@ -51,10 +52,6 @@ install tig
 install tree
 install wget
 install xz
-
-# Taps
-tap fnichol/dvm
-install dvm
 
 # Remove outdated versions from the cellar
 cleanup
