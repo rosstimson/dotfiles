@@ -47,6 +47,7 @@ install remind
 install rename
 install s3cmd
 install sipcalc
+install sysdig
 install the_silver_searcher
 install tig
 install tree
