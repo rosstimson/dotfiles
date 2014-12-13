@@ -11,13 +11,52 @@ RED='\e[0;31m'
 echo "Running tests..."
 echo ""
 
-symlinks=( .Xcolors .Xresources .abcde.conf .ackrc .cshrc .emacs.d .exrc \
-           .fonts .fonts.conf .gemrc .gitconfig .gitignore .hgignore .hgrc \
-           .inputrc .irbrc .irssi .jshintrc .login .login_conf .mailcap \
-           .mpdconf .msmtprc .mutt .muttrc .ncmpcpp .notmuch-config \
-           .offlineimaprc .porttools .profile .shrc .spectrwm.conf \
-           .tarignore .termcap .tmux.conf .ttytterrc .urlview .urxvt-perls \
-           .xinitrc .xserverrc .zsh .zsh_nocorrect .zshenv .zshrc bin )
+symlinks=( .Xcolors \
+           .Xresources \
+           .abcde.conf \
+           .ackrc \
+           .cookiecutterrc \
+           .cshrc \
+           .emacs.d \
+           .exrc \
+           .fonts \
+           .fonts.conf \
+           .gemrc \
+           .gitconfig \
+           .gitignore \
+           .hgignore \
+           .hgrc \
+           .inputrc \
+           .irbrc \
+           .irssi \
+           .jshintrc \
+           .login \
+           .login_conf \
+           .mailcap \
+           .mpdconf \
+           .msmtprc \
+           .mutt \
+           .muttrc \
+           .ncmpcpp \
+           .notmuch-config \
+           .offlineimaprc \
+           .porttools \
+           .profile \
+           .shrc \
+           .spectrwm.conf \
+           .tarignore \
+           .termcap \
+           .tmux.conf \
+           .ttytterrc \
+           .urlview \
+           .urxvt-perls \
+           .xinitrc \
+           .xserverrc \
+           .zsh \
+           .zsh_nocorrect \
+           .zshenv \
+           .zshrc \
+           bin )
 
 directories=()
 

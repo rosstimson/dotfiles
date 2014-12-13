@@ -1,0 +1,6 @@
+default_context:
+    full_name: 'Ross Timson'
+    email: 'ross@rosstimson.com'
+    github_username: 'rosstimson'
+
+cookiecutters_dir: '~/.cookiecutters/'

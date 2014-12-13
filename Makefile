@@ -106,12 +106,14 @@ gpg-agent-remove:
 	-@rm -f ${RT_HOME}/.gnupg/.gpg-agent.conf
 
 misc-install:
+	ln -sfn ${DOTFILES}/.cookiecutterrc ${RT_HOME}/.cookiecutterrc
 	ln -sfn ${DOTFILES}/.irssi ${RT_HOME}/.irssi
 	ln -sfn ${DOTFILES}/.tarignore ${RT_HOME}/.tarignore
 	ln -sfn ${DOTFILES}/.tmux.conf ${RT_HOME}/.tmux.conf
 	ln -sfn ${DOTFILES}/.ttytterrc ${RT_HOME}/.ttytterrc
 
 misc-remove:
+	-@rm -f ${RT_HOME}/.cookiecutterrc
 	-@rm -f ${RT_HOME}/.irssi
 	-@rm -f ${RT_HOME}/.tarignore
 	-@rm -f ${RT_HOME}/.tmux.conf
