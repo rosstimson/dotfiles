@@ -365,6 +365,7 @@ alias artisan='php artisan'
 
 alias d='docker'
 alias da='docker attach'
+alias db='docker build'
 alias dc='docker commit'                    # Clobbers GNU dc calculator tool
 alias de='docker exec -t -i'
 alias di='docker images'
@@ -379,6 +380,7 @@ alias drm='docker rm'
 alias drmi='docker rmi'
 alias drma='docker rm $(docker ps -a -q)'    # Remove all containers
 alias dsa='docker stop $(docker ps -a -q)'  # Stop all containers
+alias dclean='docker images -q --filter "dangling=true" | xargs docker rmi' Removes all untagged images
 
 # }}}
 
