@@ -222,9 +222,7 @@ set smarttab                      " Insert tabs on start of line according to
 
 " List chars
 set listchars=""            " Reset the listchars
-set listchars=tab:\ \       " a tab should display as "  ",
-                            "   trailing whitespace as "."
-set listchars+=trail:.      " show trailing spaces as dots
+set listchars=tab:›\ ,trail:.,nbsp:. " Highlight problematic whitespace
 set listchars+=extends:>    " The character to show in the last column when
                             "   wrap is off and the line continues beyond the
                             "   right of the screen
@@ -751,6 +749,35 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "1"
+
+" Tagbar (gotags)
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 " }}}
 
