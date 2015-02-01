@@ -126,6 +126,7 @@ NeoBundle 'elixir-lang/vim-elixir'
 NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'Glench/Vim-Jinja2-Syntax'
+NeoBundle 'chase/vim-ansible-yaml'
 
 " Colour schemes
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
