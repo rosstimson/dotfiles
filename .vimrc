@@ -391,10 +391,6 @@ nnoremap <leader>a :Ack<space>
 " Undotree: Mapping ,ut to Undotree
 nnoremap <leader>ut :UndotreeToggle<CR>
 
-" YankRing: Mapping F3 to toggle :YRShoww
-nnoremap <silent> <F3> :YRShow<cr>
-inoremap <silent> <F3> <ESC>:YRShow<cr>
-
 " Quote words under cursor
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
@@ -421,8 +417,8 @@ map <Leader>sl :call RunLastSpec()<CR>
 map <Leader>sa :call RunAllSpecs()<CR>
 
 " Unite:
+nnoremap <C-T> :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async<cr>
 nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files -start-insert file<cr>
-nnoremap <leader>fr :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async<cr>
 nnoremap <leader>ft :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=tabopen file_rec/async<cr>
 nnoremap <leader>fs :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=split file_rec/async<cr>
 nnoremap <leader>fv :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=vsplit file_rec/async<cr>
