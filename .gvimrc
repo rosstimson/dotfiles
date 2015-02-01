@@ -23,6 +23,7 @@
 "     vim -u NONE
 "
 
+set lines=999 columns=110         " Set initial size (max height)
 set gfn=Source\ Code\ Pro\ Medium\ 11      " Font
 set visualbell                    " Don't beep
 set t_vb=                         " Don't flash
