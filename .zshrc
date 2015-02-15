@@ -117,12 +117,6 @@ if [ -d /usr/local/share/chruby ]; then
   chruby 2.2
 fi
 
-# Python Virtualenv
-if [ -f /usr/bin/virtualenvwrapper_lazy.sh ]; then
-  export WORKON_HOME=$HOME/.virtualenvs
-  source /usr/bin/virtualenvwrapper_lazy.sh
-fi
-
 # pyenv shims and autocompletion
 if _command_exists pyenv; then
   eval "$(pyenv init -)"
