@@ -374,7 +374,7 @@ alias drm='docker rm'
 alias drmi='docker rmi'
 alias drma='docker rm $(docker ps -a -q)'    # Remove all containers
 alias dsa='docker stop $(docker ps -a -q)'  # Stop all containers
-alias dclean='docker images -q --filter "dangling=true" | xargs docker rmi' # Removes all untagged images
+alias dclean='docker rmi -f $(docker images -q -a -f dangling=true)' # Removes all untagged images
 
 # }}}
 
