@@ -50,17 +50,6 @@ if system('uname -o') =~ '^GNU/'
     let g:make = 'make'
 endif
 
-let vimproc_updcmd = has('win64') ?
-    \ 'tools\\update-dll-mingw 64' : 'tools\\update-dll-mingw 32'
-execute "NeoBundle 'Shougo/vimproc.vim'," . string({
-    \ 'build' : {
-    \     'windows' : vimproc_updcmd,
-    \     'cygwin' : 'make -f make_cygwin.mak',
-    \     'mac' : 'make -f make_mac.mak',
-    \     'unix' : 'make -f make_unix.mak',
-    \    },
-    \ })
-
 " Tools
 NeoBundle 'tpope/vim-git'
 NeoBundle 'tpope/vim-fugitive'
@@ -74,9 +63,7 @@ NeoBundle 'tpope/vim-eunuch'
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-jdaddy'
 NeoBundle 'mileszs/ack.vim'
-NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/vimshell.vim' " Powerful shell implemented by Vim.
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -102,6 +89,9 @@ NeoBundle 'xolox/vim-misc'
 NeoBundle 'xolox/vim-shell' " Improves integration between Vim and OS.
 NeoBundle 'vim-scripts/VOoM'
 NeoBundle 'davidhalter/jedi-vim' " Python auto-completion
+
+" TODO Revisit this when changing from Neobundle to Plug.vim
+set rtp+=~/.fzf
 
 " Langs
 NeoBundle 'kchmck/vim-coffee-script'
