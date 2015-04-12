@@ -106,6 +106,7 @@ gpg-agent-remove:
 	-@rm -f ${RT_HOME}/.gnupg/.gpg-agent.conf
 
 misc-install:
+	ln -sfn ${DOTFILES}/.base16-shell ${RT_HOME}/.base16-shell
 	ln -sfn ${DOTFILES}/.cookiecutterrc ${RT_HOME}/.cookiecutterrc
 	ln -sfn ${DOTFILES}/.irssi ${RT_HOME}/.irssi
 	ln -sfn ${DOTFILES}/.tarignore ${RT_HOME}/.tarignore
@@ -113,6 +114,7 @@ misc-install:
 	ln -sfn ${DOTFILES}/.ttytterrc ${RT_HOME}/.ttytterrc
 
 misc-remove:
+	-@rm -f ${RT_HOME}/.base16-shell
 	-@rm -f ${RT_HOME}/.cookiecutterrc
 	-@rm -f ${RT_HOME}/.irssi
 	-@rm -f ${RT_HOME}/.tarignore
