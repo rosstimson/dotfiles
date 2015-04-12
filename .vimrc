@@ -405,17 +405,6 @@ map <Leader>sf :call RunCurrentSpecFile()<CR>
 map <Leader>sl :call RunLastSpec()<CR>
 map <Leader>sa :call RunAllSpecs()<CR>
 
-" Unite:
-nnoremap <C-T> :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async<cr>
-nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files -start-insert file<cr>
-nnoremap <leader>ft :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=tabopen file_rec/async<cr>
-nnoremap <leader>fs :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=split file_rec/async<cr>
-nnoremap <leader>fv :<C-u>Unite -no-split -buffer-name=files -start-insert -default-action=vsplit file_rec/async<cr>
-nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffers -quick-match buffer<cr>
-nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-nnoremap <leader>ru :<C-u>Unite -no-split -buffer-name=mru -start-insert file_mru<cr>
-nnoremap <leader>yh :<C-u>Unite -no-split -buffer-name=yank_history history/yank<cr>
-
 " Neocomplete
 inoremap <expr><C-g>     neocomplete#undo_completion()
 inoremap <expr><C-l>     neocomplete#complete_common_string()
@@ -669,17 +658,6 @@ autocmd FileType go let b:dispatch = 'go build %'
 " Rspec.vim
 " Support custom commands / test runners
 " let g:rspec_command = "Dispatch zeus rspec {spec}"
-
-" Unite.vim
-let g:unite_source_history_yank_enable = 1
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-
-autocmd FileType unite call s:unite_settings()
-function! s:unite_settings()
-  " Enable navigation with control-j and control-k in insert mode
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-endfunction
 
 " Neocomplete
 " Disable AutoComplPop.
