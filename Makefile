@@ -18,6 +18,7 @@ all: 	developer-install \
 			scm-install \
 			vim-install \
 			xorg-install \
+			fzf-binary \
 			run-tests
 
 clean: 	developer-remove \
@@ -205,6 +206,9 @@ xorg-remove:
 	-@rm -f ${RT_HOME}/.spectrwm.conf
 	-@rm -f ${RT_HOME}/.xinitrc
 	-@rm -f ${RT_HOME}/.xserverrc
+
+fzf-binary:
+	${DOTFILES}/.fzf/install
 
 run-tests:
 	${DOTFILES}/bin/test_dotfiles
