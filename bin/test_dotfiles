@@ -22,6 +22,7 @@ symlinks=( .Xcolors \
            .exrc \
            .fonts \
            .fonts.conf \
+           .fzf \
            .gemrc \
            .gitconfig \
            .gitignore \

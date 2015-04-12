@@ -108,6 +108,7 @@ gpg-agent-remove:
 misc-install:
 	ln -sfn ${DOTFILES}/.base16-shell ${RT_HOME}/.base16-shell
 	ln -sfn ${DOTFILES}/.cookiecutterrc ${RT_HOME}/.cookiecutterrc
+	ln -sfn ${DOTFILES}/.fzf ${RT_HOME}/.fzf
 	ln -sfn ${DOTFILES}/.irssi ${RT_HOME}/.irssi
 	ln -sfn ${DOTFILES}/.tarignore ${RT_HOME}/.tarignore
 	ln -sfn ${DOTFILES}/.tmux.conf ${RT_HOME}/.tmux.conf
@@ -116,6 +117,7 @@ misc-install:
 misc-remove:
 	-@rm -f ${RT_HOME}/.base16-shell
 	-@rm -f ${RT_HOME}/.cookiecutterrc
+	-@rm -f ${RT_HOME}/.fzf
 	-@rm -f ${RT_HOME}/.irssi
 	-@rm -f ${RT_HOME}/.tarignore
 	-@rm -f ${RT_HOME}/.tmux.conf
