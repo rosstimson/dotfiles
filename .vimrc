@@ -360,6 +360,9 @@ vnoremap <Tab> %
 " Strip all trailing whitespace from a file, using ,W
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
+" FZF, fuzzy file finder mapping to CTRL-T
+nnoremap <C-t> :FZF<CR>
+
 " Fugitive:
 nmap <leader>gb :Gblame<CR>
 nmap <leader>gs :Gstatus<CR>
