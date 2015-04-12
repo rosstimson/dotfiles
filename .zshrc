@@ -56,6 +56,11 @@ REPORTTIME=10
 # Automatically decide when to page a list of completions
 LISTMAX=0
 
+# Set pretty colourscheme
+# Base16 Shell (https://github.com/chriskempson/base16-shell)
+BASE16_SHELL="$HOME/.base16-shell/base16-atelierlakeside.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
 # ls colors
 autoload colors; colors;  # Also need this present for colours in the prompt
 # LS colors, made with http://geoff.greer.fm/lscolors/
@@ -367,7 +372,7 @@ alias dl='docker pull'
 alias dp='docker push'
 alias dps='docker ps'
 alias dr='docker run'
-alias dri='docker run -t -i'
+alias dri='docker run -it'
 alias ddr='docker run -d'
 alias ds='docker stop'
 alias drm='docker rm'
@@ -375,6 +380,22 @@ alias drmi='docker rmi'
 alias drma='docker rm $(docker ps -a -q)'    # Remove all containers
 alias dsa='docker stop $(docker ps -a -q)'  # Stop all containers
 alias dclean='docker rmi -f $(docker images -q -a -f dangling=true)' # Removes all untagged images
+
+# For dev environment containers
+function ddev-go () {
+  docker run -it --name $1 \
+    -h go-dev \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v `pwd`:/home/rosstimson/go/src/github.com/rosstimson/$1 \
+    rosstimson/dev
+}
+
+function ddev-py () {
+  docker run -it --name $1 \
+  -h py-dev \
+  -v `pwd`:/home/rosstimson/python/$1 \
+  rosstimson/dev
+}
 
 # }}}
 

@@ -136,7 +136,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'tpope/vim-vividchalk'
 NeoBundle 'twerth/ir_black'
 NeoBundle 'sjl/badwolf'
-NeoBundle 'chriskempson/vim-tomorrow-theme'
+NeoBundle 'chriskempson/base16-vim'
 
 " End neobundle shenanigans
 call neobundle#end()
@@ -196,11 +196,11 @@ set spellfile=~/.vim/spell/en.utf-8.add   " Custom dictionary
 set omnifunc=syntaxcomplete#Complete
 
 set t_Co=256              " Pretty colours
+let base16colorspace=256  " Access colors present in 256 colorspace
 set background=dark       " Setting background to dark
 
-" Setting default colourscheme for terminal vim.  For this to look good it
-" should match the Xorg colours specified in ~/.Xresources and ~/.Xcolors
-colorscheme Tomorrow-Night-Eighties
+" Setting default colourscheme
+colorscheme base16-atelierlakeside
 
 " }}}
 
