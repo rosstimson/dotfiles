@@ -190,7 +190,7 @@ let base16colorspace=256  " Access colors present in 256 colorspace
 set background=dark       " Setting background to dark
 
 " Setting default colourscheme
-colorscheme base16-atelierlakeside
+silent! colorscheme base16-atelierlakeside
 
 " }}}
 
