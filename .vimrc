@@ -307,11 +307,11 @@ nnoremap k gk
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
-" Easy window navigation (instead of ctrl-w then j it's just ctrl-j)
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" Easy buffer and tab switching
+nnoremap <C-J> :bnext<CR>
+nnoremap <C-K> :bprev<CR>
+nnoremap <C-L> :tabn<CR>
+nnoremap <C-H> :tabp<CR>
 
 " }}}
 
