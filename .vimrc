@@ -184,6 +184,7 @@ au VimResized * :wincmd = " Resize splits when Vim is resized
 set spelllang=en_gb       " Let's use real English
 set spellfile=~/.vim/spell/en.utf-8.add   " Custom dictionary
 set omnifunc=syntaxcomplete#Complete
+set completeopt-=preview  " Disable scratch/preview split window for omnicompletions
 
 set t_Co=256              " Pretty colours
 let base16colorspace=256  " Access colors present in 256 colorspace
