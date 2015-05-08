@@ -393,6 +393,7 @@ function ddev-go () {
 function ddev-py () {
   docker run -it --name $1 \
   -h py-dev \
+  -v /var/run/docker.sock:/var/run/docker.sock \
   -v `pwd`:/home/rosstimson/python/$1 \
   rosstimson/dev
 }
