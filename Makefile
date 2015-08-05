@@ -6,6 +6,8 @@ OS := $(shell uname)
 DOTFILES=`pwd`
 RT_HOME='/home/rosstimson'
 
+FZF_VERSION='0.10.2'
+
 all: 	developer-install \
 			emacs-install \
 			email-install \
@@ -181,7 +183,6 @@ scm-remove:
 	-@rm -f ${RT_HOME}/.hgrc
 
 vim-install:
-	git submodule update --init
 	ln -sfn ${DOTFILES}/.vim ${RT_HOME}/.vim
 	ln -sfn ${DOTFILES}/.vimrc ${RT_HOME}/.vimrc
 	ln -sfn ${DOTFILES}/.gvimrc ${RT_HOME}/.gvimrc
@@ -208,7 +209,9 @@ xorg-remove:
 	-@rm -f ${RT_HOME}/.xserverrc
 
 fzf-binary:
-	${DOTFILES}/.fzf/install
+	curl -sfL https://github.com/junegunn/fzf-bin/releases/download/${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tgz | tar -C ${RT_HOME}/.fzf/bin -xz \
+	chmod +x ${RT_HOME}/.fzf/bin/fzf-${FZF_VERSION}-linux_amd64 \
+	ln -s ${RT_HOME}/.fzf/bin/fzf-${FZF_VERSION}-linux_amd64 ${RT_HOME}/.fzf/bin/fzf
 
 run-tests:
 	${DOTFILES}/bin/test_dotfiles
