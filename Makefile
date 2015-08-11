@@ -2,7 +2,7 @@
 # $HOME Sweet $HOME
 
 # List out all dotfiles except .git so that we can interatively copy them.
-DOTFILES=$(shell ls -d .[^.]* | grep -v .git)
+DOTFILES=$(shell find . -maxdepth 1 -name '.[^.]*' -not -name '.git')
 # Hardcoded home in case some config mngt too is installing.
 RT_HOME='/home/rosstimson'
 
