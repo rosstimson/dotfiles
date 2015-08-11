@@ -1,5 +1,0 @@
-bin
-src/fzf/fzf_*
-pkg
-Gemfile.lock
-.DS_Store
