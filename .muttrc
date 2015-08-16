@@ -163,7 +163,6 @@ set forward_quote                    # include message in forwards
 set editor = "vim -c \"set spell spelllang=en_gb\""
 
 # Colour Theme ---------------------------------------------------------------
-#source ~/.mutt/colors/mutt-colors-solarized-dark-256.muttrc
 # Basic
 color normal default default
 color indicator black yellow
@@ -197,7 +196,8 @@ set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys
 set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r" 
 set pgp_autosign=yes
 set pgp_sign_as=0x97865D41
-set pgp_replyencrypt=yes
+set pgp_replysignencrypted=yes
 set pgp_timeout=1800
 set pgp_auto_decode=yes
+set pgp_verify_sig=yes
 set pgp_good_sign="^gpg: Good signature from"
