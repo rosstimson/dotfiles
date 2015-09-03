@@ -34,6 +34,9 @@ setopt cdablevars
 # Enables the negation ^ operator for displaying files
 setopt extendedglob
 
+# When pattern matching fails, simply use the command as is
+setopt no_nomatch
+
 # Recognise custom termcap
 if [ -f ${HOME}/.termcap ]; then
   TERMCAP=$(< ${HOME}/.termcap)
