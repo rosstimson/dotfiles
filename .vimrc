@@ -478,6 +478,11 @@ au FileType vim let b:loaded_delimitMate = 0 " no autoclose brackets for Vim fil
 " Use the_silver_searcher program instead of ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
+" Airline
+" Fancy symbols never line up correctly so just disable them
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+
 " Neosnippet
 " Set if you want snippets other than those provided by neosnippet-snippets.
 " let g:neosnippet#snippets_directory='~/.vim/snippets'

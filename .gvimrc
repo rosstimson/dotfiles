@@ -23,14 +23,14 @@
 "     vim -u NONE
 "
 
-set lines=999 columns=110         " Set initial size (max height)
-set gfn=Source\ Code\ Pro\ Medium\ 11      " Font
-set visualbell                    " Don't beep
-set t_vb=                         " Don't flash
-set guioptions-=T                 " Remove toolbar, left & right scrollbar
+set lines=999 columns=110           " Set initial size (max height)
+set guifont=Hack\ 11                " Font
+set visualbell                      " Don't beep
+set t_vb=                           " Don't flash
+set guioptions-=T                   " Remove toolbar, left & right scrollbar
 set guioptions-=l
 set guioptions-=L
 set guioptions-=r
 set guioptions-=R
-set guioptions+=c                 " Use console dialogs
-colorscheme badwolf               " Set colour scheme
+set guioptions+=c                   " Use console dialogs
+colorscheme base16-atelierlakeside  " Set colour scheme
