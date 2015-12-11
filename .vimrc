@@ -33,7 +33,10 @@ Plug 'mbbill/undotree'
 Plug 'davidhalter/jedi-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'benekastah/neomake'
-" TODO: Plug 'Shougo/deoplete.nvim'
+
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim'
+endif
 
 " Langs
 Plug 'tpope/vim-markdown'
@@ -452,6 +455,16 @@ augroup ft_python
     au Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=4
     au FileType python setlocal foldmethod=indent foldlevel=2 foldnestmax=4
     au FileType python setlocal omnifunc=pythoncomplete#Complete
+
+    " Jedi
+    let g:jedi#popup_on_dot = 0 " Don't automatically start completion if you type a dot.
+    let g:jedi#goto_assignments_command = "<leader>g"
+    let g:jedi#goto_definitions_command = "<leader>d"
+    let g:jedi#documentation_command = "K"
+    let g:jedi#usages_command = "<leader>n"
+    let g:jedi#completions_command = "<C-Space>"
+    let g:jedi#rename_command = "<leader>r"
+    let g:jedi#show_call_signatures = "1"
 augroup END
 
 " }}}
@@ -479,9 +492,34 @@ au FileType vim let b:loaded_delimitMate = 0 " no autoclose brackets for Vim fil
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Airline
-" Fancy symbols never line up correctly so just disable them
+" Fancy symbols never line up correctly so just disable them.
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+
+" Deoplete
+" Only works with Neovim
+if has('nvim')
+    let g:deoplete#enable_at_startup = 1
+    let g:deoplete#disable_auto_complete = 1
+    " Tab completion & allow normal tab usage if nothing to complete.
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ deoplete#mappings#manual_complete()
+    function! s:check_back_space()
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction
+
+    " <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+
+    " <CR>: close popup and save indent.
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function()
+        return deoplete#mappings#close_popup() . "\<CR>"
+    endfunction
+endif
 
 " Neosnippet
 " Set if you want snippets other than those provided by neosnippet-snippets.
@@ -492,15 +530,6 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
-" Jedi
-let g:jedi#popup_on_dot = 0 " Don't automatically start completion if you type a dot.
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "1"
 
 " Tagbar (gotags)
 let g:tagbar_type_go = {
