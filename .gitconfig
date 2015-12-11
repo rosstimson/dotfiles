@@ -37,7 +37,6 @@
     tool = vim
 [difftool "vim"]
     cmd = /usr/local/bin/vim -d "$LOCAL" "$REMOTE"
-    keepBackup = false
     trustExitCode = false
 [difftool]
     prompt = false
@@ -45,3 +44,4 @@
     default = simple
 [github]
     user = rosstimson
+
