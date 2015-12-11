@@ -377,9 +377,6 @@ augroup ft_go
     au!
 
     au Filetype go setlocal shiftwidth=4 tabstop=4 noexpandtab foldmethod=syntax
-
-    " Load braces for RainbowParentheses
-    au BufNewFile,BufRead *.go RainbowParenthesesLoadBraces
 augroup END
 
 " }}}
@@ -404,9 +401,6 @@ augroup ft_javascript
     " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
     " positioned inside of them AND the following code doesn't get unfolded.
     au Filetype javascript inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
-
-    " Load braces for RainbowParentheses
-    au BufNewFile,BufRead *.js,*.json RainbowParenthesesLoadBraces
 augroup END
 
 " }}}
