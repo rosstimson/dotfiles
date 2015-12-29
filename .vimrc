@@ -47,7 +47,6 @@ Plug 'saltstack/salt-vim'
 " Colour schemes
 Plug 'vim-scripts/Colour-Sampler-Pack'
 Plug 'chriskempson/base16-vim'
-Plug 'vim-scripts/Colour-Sampler-Pack'
 Plug 'larssmit/vim-getafe'
 Plug 'vim-scripts/molokai'
 Plug 'altercation/vim-colors-solarized'
@@ -112,7 +111,6 @@ set spelllang=en_gb       " Let's use real English
 set spellfile=~/.vim/spell/en.utf-8.add   " Custom dictionary
 set omnifunc=syntaxcomplete#Complete
 set completeopt-=preview  " Disable scratch/preview split window for omnicompletions
-
 set t_Co=256              " Pretty colours
 let base16colorspace=256  " Access colors present in 256 colorspace
 set background=dark       " Setting background to dark
@@ -377,6 +375,8 @@ augroup ft_go
     au!
 
     au Filetype go setlocal shiftwidth=4 tabstop=4 noexpandtab foldmethod=syntax
+
+    let g:go_fmt_command = "goimports"
 augroup END
 
 " }}}
@@ -495,6 +495,7 @@ let g:airline_right_sep=''
 if has('nvim')
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#disable_auto_complete = 1
+
     " Tab completion & allow normal tab usage if nothing to complete.
     inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
