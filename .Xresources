@@ -38,10 +38,4 @@ urxvt.font:xft:Source Code Pro:Regular:size=11
 urxvt.boldFont:xft:Source Code Pro Semibold:size=11
 
 ! -- Colours -- !
-!#include ".Xcolors/Molokai"
-!#include ".Xcolors/Solarized"
-!#include ".Xcolors/Technicolor_I"
-!#include ".Xcolors/Technicolor_II"
-!#include ".Xcolors/Technobass"
-#include ".Xcolors/TomorrowNightEighties"
-!#include ".Xcolors/Xtrail"
+#include ".Xcolors/base16-atelierlakeside.dark.256.xresources"

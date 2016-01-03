@@ -1,3 +1,0 @@
-# Let Windows ALT key sequences (such as ALT+TAB) be picked up by spectrwm,
-# and let you use CTRL+ALT+Backspace to exit the X server.
-exec XWin :0 -nodecoration -unixkill -keyhook

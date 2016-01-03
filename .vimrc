@@ -4,132 +4,59 @@
 " My Vim preference
 " Maintained by Ross Timson <ross@rosstimson.com>
 "
-" I like to build the latest Vim from src with the following:
-"
-"     ./configure --with-features=huge \
-"                 --prefix=/usr/local \
-"                 --with-x \
-"                 --enable-gui=yes \
-"                 --enable-perlinterp \
-"                 --enable-pythoninterp \
-"                 --enable-rubyinterp \
-"                 --enable-xim \
-"                 --enable-multibyte \
-"                 --with-tlib=ncurses \
-"                 --enable-fontset \
-"                 --enable-cscope \
-"                 --disable-tclinterp \
-"                 --disable-netbeans \
-"                 --with-compiledby="Ross Timson <ross@rosstimson.com>"
-"
-" To start vim without using this .vimrc file, use:
-"     vim -u NORC
-"
-" To start vim without loading any .vimrc or plugins, use:
-"     vim -u NONE
-"
-
-if  has('vim_starting')
-  set nocompatible  " be iMproved (MUST be first)
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-" Use NeoBundle for installing / managing Vim scripts
-call neobundle#begin(expand('~/.vim/bundle/'))
-
 " }}}
 
 " Bundles ----------------------------------------------------------------- {{{
 
-" Let NeoBundle manage NeoBundle (ooh how meta)
-NeoBundleFetch 'Shougo/neobundle.vim'
+set nocompatible  " be iMproved (MUST be first)
 
-" GNU Make is often gmake on non-GNU systems.
-let g:make = 'gmake'
-if system('uname -o') =~ '^GNU/'
-    let g:make = 'make'
-endif
+" Use vim-plug (https://github.com/junegunn/vim-plug) to manage plugins.
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
 
 " Tools
-NeoBundle 'tpope/vim-git'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-abolish'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-eunuch'
-NeoBundle 'tpope/vim-dispatch'
-NeoBundle 'tpope/vim-jdaddy'
-NeoBundle 'mileszs/ack.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'mattn/gist-vim'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'ZoomWin'
-NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-NeoBundle 'gnupg'
-NeoBundle 'nelstrom/vim-markdown-folding'
-NeoBundle 'scratch'
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'kien/rainbow_parentheses.vim'
-NeoBundle 'thoughtbot/vim-rspec'
-NeoBundle 'danchoi/ri.vim'
-NeoBundle 'akiomik/git-gutter-vim'
-NeoBundle 'vim-scripts/AutoTag'
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'mbbill/undotree'
-NeoBundle 'xolox/vim-notes'
-NeoBundle 'xolox/vim-misc'
-NeoBundle 'xolox/vim-shell' " Improves integration between Vim and OS.
-NeoBundle 'vim-scripts/VOoM'
-NeoBundle 'davidhalter/jedi-vim' " Python auto-completion
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-eunuch'
+Plug 'mileszs/ack.vim'
+Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
+Plug 'bling/vim-airline'
+Plug 'majutsushi/tagbar'
+Plug 'godlygeek/tabular'
+Plug 'akiomik/git-gutter-vim'
+Plug 'mbbill/undotree'
+Plug 'davidhalter/jedi-vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
+Plug 'benekastah/neomake'
 
-" TODO Revisit this when changing from Neobundle to Plug.vim
-set rtp+=~/.fzf
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim'
+endif
 
 " Langs
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'nono/vim-handlebars'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'sunaku/vim-ruby-minitest'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'cakebaker/scss-syntax.vim'
-NeoBundle 'lotheac/pf.vim'
-NeoBundle 'nginx.vim'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'rosstimson/bats.vim'
-NeoBundle 'rosstimson/modx.vim'
-NeoBundle 'remind'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'tpope/vim-liquid'
-NeoBundle 'Keithbsmiley/rspec.vim'
-NeoBundle 'slim-template/vim-slim'
-NeoBundle 'elixir-lang/vim-elixir'
-NeoBundle 'ekalinin/Dockerfile.vim'
-NeoBundle 'elzr/vim-json'
-NeoBundle 'Glench/Vim-Jinja2-Syntax'
-NeoBundle 'chase/vim-ansible-yaml'
+Plug 'tpope/vim-markdown'
+Plug 'fatih/vim-go'
+Plug 'stephpy/vim-yaml'
+Plug 'saltstack/salt-vim'
 
 " Colour schemes
-NeoBundle 'vim-scripts/Colour-Sampler-Pack'
-NeoBundle 'larssmit/vim-getafe'
-NeoBundle 'vim-scripts/molokai'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'tpope/vim-vividchalk'
-NeoBundle 'twerth/ir_black'
-NeoBundle 'sjl/badwolf'
-NeoBundle 'chriskempson/base16-vim'
+Plug 'vim-scripts/Colour-Sampler-Pack'
+Plug 'chriskempson/base16-vim'
+Plug 'larssmit/vim-getafe'
+Plug 'vim-scripts/molokai'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-vividchalk'
+Plug 'twerth/ir_black'
+Plug 'sjl/badwolf'
+Plug 'chriskempson/base16-vim'
 
-" End neobundle shenanigans
-call neobundle#end()
+" End vim-plug shenanigans
+call plug#end()
 
 " }}}
 
@@ -137,7 +64,6 @@ call neobundle#end()
 " Basic settings ---------------------------------------------------------- {{{
 
 filetype plugin indent on " Required! Enable detection, plugins and indenting
-NeoBundleCheck            " Installation check via Neobundle
 set number                " Show line number
 set ruler                 " Show line and column numbers
 syntax enable             " Turn on syntax highlighting
@@ -185,7 +111,6 @@ set spelllang=en_gb       " Let's use real English
 set spellfile=~/.vim/spell/en.utf-8.add   " Custom dictionary
 set omnifunc=syntaxcomplete#Complete
 set completeopt-=preview  " Disable scratch/preview split window for omnicompletions
-
 set t_Co=256              " Pretty colours
 let base16colorspace=256  " Access colors present in 256 colorspace
 set background=dark       " Setting background to dark
@@ -280,10 +205,10 @@ set wildmenu            " make tab completion for files/buffers act like bash
 set wildmode=list:full  " show a list when pressing tab and complete
                         "   first full match
 
-" Disable output and VCS files
+" Ignore output and VCS files
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
 
-" Disable archive files
+" Ignore archive files
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 
 " Ignore bundler and sass cache
@@ -292,7 +217,7 @@ set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 " Ignore rails temporary asset caches
 set wildignore+=*/tmp/cache/assets/*/sprockets/*,*/tmp/cache/assets/*/sass/*
 
-" Disable temp and backup files
+" Ignore temp and backup files
 set wildignore+=*.swp,*~,._*
 
 " }}}
@@ -372,9 +297,6 @@ nmap <leader>gl :Glog<CR>
 nmap <leader>gc :Gcommit<CR>
 nmap <leader>gp :Git push<CR>
 
-" Dispatch: Mapping F9 to :Dispatch
-nnoremap <F9> :Dispatch<CR>
-
 " Tagbar: Mapping F8 to toggle Tagbar
 nnoremap <F8> :TagbarToggle<CR>
 
@@ -400,65 +322,10 @@ if exists(":Tabularize")
   vmap <Leader>t: :Tabularize /:\zs<CR>
 endif
 
-" Rainbow_Parentheses: Mapping ,r to toggle colour highlighting of parentheses
-nmap <leader>rp :RainbowParenthesesToggle<CR>
-
-" Rspec:
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>sf :call RunCurrentSpecFile()<CR>
-map <Leader>sl :call RunLastSpec()<CR>
-map <Leader>sa :call RunAllSpecs()<CR>
-
-" Neocomplete
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-" Autocomplete at startup is is currently disabled (let
-" g:neocomplete#disable_auto_complete=1) as constant popup menu becomes
-" annoying. This will allow you to manually call the completion popup
-" with <TAB> and will still allow <TAB> to add whitespace if used on an
-" empty line.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ neocomplete#start_manual_complete()
-function! s:check_back_space()
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
 " Neosnippet:
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" Notes:
-nnoremap <leader>n :Note! collect<CR>
-
-" Vim-shell:
-:let g:shell_mappings_enabled = 0 " Disable default mappings
-:inoremap <Leader>fs <C-o>:Fullscreen<CR>
-:nnoremap <Leader>fs :Fullscreen<CR>
-:inoremap <Leader>op <C-o>:Open<CR>
-:nnoremap <Leader>op :Open<CR>
-
 
 " }}}
 
@@ -499,9 +366,6 @@ augroup ft_css
     " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
     " positioned inside of them AND the following code doesn't get unfolded.
     au BufNewFile,BufRead *.scss,*.css inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
-
-    " Load braces for RainbowParentheses
-    au BufNewFile,BufRead *.scss,*.css RainbowParenthesesLoadBraces
 augroup END
 
 " }}}
@@ -512,8 +376,7 @@ augroup ft_go
 
     au Filetype go setlocal shiftwidth=4 tabstop=4 noexpandtab foldmethod=syntax
 
-    " Load braces for RainbowParentheses
-    au BufNewFile,BufRead *.go RainbowParenthesesLoadBraces
+    let g:go_fmt_command = "goimports"
 augroup END
 
 " }}}
@@ -538,9 +401,6 @@ augroup ft_javascript
     " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
     " positioned inside of them AND the following code doesn't get unfolded.
     au Filetype javascript inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
-
-    " Load braces for RainbowParentheses
-    au BufNewFile,BufRead *.js,*.json RainbowParenthesesLoadBraces
 augroup END
 
 " }}}
@@ -582,41 +442,6 @@ augroup END
 
 " }}}
 
-" Nginx {{{
-augroup ft_nginx
-    au!
-
-    au BufRead,BufNewFile /etc/nginx/conf/*                      set ft=nginx
-    au BufRead,BufNewFile /etc/nginx/sites-available/*           set ft=nginx
-    au BufRead,BufNewFile /usr/local/etc/nginx/sites-available/* set ft=nginx
-    au BufRead,BufNewFile vhost.nginx                            set ft=nginx
-
-    au FileType nginx setlocal tabstop=4 shiftwidth=4 foldmethod=marker foldmarker={,}
-augroup END
-
-" }}}
-
-" PF {{{
-augroup ft_pf
-    au!
-
-    au BufRead,BufNewFile /etc/pf.conf        set ft=pf
-augroup END
-
-" }}}
-
-" PHP {{{
-augroup ft_php
-    au!
-
-    au Filetype php setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldmethod=syntax
-
-    " Load braces for RainbowParentheses
-    au BufNewFile,BufRead *.scss,*.css RainbowParenthesesLoadBraces
-augroup END
-
-" }}}
-
 " Python {{{
 augroup ft_python
     au!
@@ -624,6 +449,16 @@ augroup ft_python
     au Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=4
     au FileType python setlocal foldmethod=indent foldlevel=2 foldnestmax=4
     au FileType python setlocal omnifunc=pythoncomplete#Complete
+
+    " Jedi
+    let g:jedi#popup_on_dot = 0 " Don't automatically start completion if you type a dot.
+    let g:jedi#goto_assignments_command = "<leader>g"
+    let g:jedi#goto_definitions_command = "<leader>d"
+    let g:jedi#documentation_command = "K"
+    let g:jedi#usages_command = "<leader>n"
+    let g:jedi#completions_command = "<C-Space>"
+    let g:jedi#rename_command = "<leader>r"
+    let g:jedi#show_call_signatures = "1"
 augroup END
 
 " }}}
@@ -645,52 +480,40 @@ au FileType vim let b:loaded_delimitMate = 0 " no autoclose brackets for Vim fil
 
 " Plugin settings / options ----------------------------------------------- {{{
 
-" Vim-Airline
-" TODO Use fancy symbols without patched font, certain chars aren't working
-" when using the new Powerline recommended fontconfig way.
-" let g:airline_powerline_fonts = 1
 
 " Ack
 " Use the_silver_searcher program instead of ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-" Dispatch
-" Run current file through Ruby interpreter and check syntax
-autocmd FileType ruby let b:dispatch = 'ruby -wc %'
-autocmd FileType go let b:dispatch = 'go build %'
+" Airline
+" Fancy symbols never line up correctly so just disable them.
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
-" Rspec.vim
-" Support custom commands / test runners
-" let g:rspec_command = "Dispatch zeus rspec {spec}"
+" Deoplete
+" Only works with Neovim
+if has('nvim')
+    let g:deoplete#enable_at_startup = 1
+    let g:deoplete#disable_auto_complete = 1
 
-" Neocomplete
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Disable autocomplete / I want to manually call the completion popup.
-let g:neocomplete#disable_auto_complete=1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+    " Tab completion & allow normal tab usage if nothing to complete.
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ deoplete#mappings#manual_complete()
+    function! s:check_back_space()
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction
 
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist'
-    \ }
+    " <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
 
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
+    " <CR>: close popup and save indent.
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function()
+        return deoplete#mappings#close_popup() . "\<CR>"
+    endfunction
 endif
 
 " Neosnippet
@@ -702,25 +525,6 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
-" Notes
-let g:notes_directories = ['~/Annex/Notes'] " Default dir for notes
-let g:notes_suffix = '.md' " Default to markdown files
-let g:notes_title_sync = 'rename_file' " Rename file on disk to match title
-let g:notes_smart_quotes = 0 " Don't use special symbols
-
-" Gist
-let g:gist_open_browser_after_post = 1
-let g:gist_browser_command = 'firefox %URL% &'
-
-" Jedi
-let g:jedi#popup_on_dot = 0 " Don't automatically start completion if you type a dot.
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "1"
 
 " Tagbar (gotags)
 let g:tagbar_type_go = {
@@ -792,24 +596,6 @@ function! PulseCursorLine()
     windo set cursorline
     execute current_window . 'wincmd w'
 endfunction
-
-" }}}
-
-
-" Scratch {{{
-command! ScratchToggle call ScratchToggle()
-
-function! ScratchToggle()
-    if exists("w:is_scratch_window")
-        unlet w:is_scratch_window
-        exec "q"
-    else
-        exec "normal! :ScratchOpen\<cr>\<C-W>K"
-        let w:is_scratch_window = 1
-    endif
-endfunction
-
-nnoremap <silent> <leader><tab> :ScratchToggle<cr>
 
 " }}}
 
