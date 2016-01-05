@@ -24,7 +24,7 @@ install:
 # Download and install FZF without using the installer which messes with
 # dotfiles buy injecting lines into them.
 	git clone https://github.com/junegunn/fzf.git ${RT_HOME}/.fzf
-	@curl -sfL https://github.com/junegunn/fzf-bin/releases/download/${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tgz | tar -C ${RT_HOME}/.fzf/bin -xz
+	@curl -sfL https://github.com/junegunn/fzf-bin/releases/download/${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tgz | tar xzvf - -C ${RT_HOME}/.fzf/bin
 	@chmod +x ${RT_HOME}/.fzf/bin/fzf-${FZF_VERSION}-linux_amd64
 	@ln -sf ${RT_HOME}/.fzf/bin/fzf-${FZF_VERSION}-linux_amd64 ${RT_HOME}/.fzf/bin/fzf
 
