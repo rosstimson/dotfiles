@@ -26,7 +26,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-vinegar'
 Plug 'rking/ag.vim'
 Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
-Plug 'bling/vim-airline'
+Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'godlygeek/tabular'
 Plug 'akiomik/git-gutter-vim'
@@ -56,6 +56,7 @@ Plug 'twerth/ir_black'
 Plug 'sjl/badwolf'
 Plug 'chriskempson/base16-vim'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'junegunn/seoul256.vim'
 
 " End vim-plug shenanigans
 call plug#end()
@@ -118,7 +119,8 @@ let base16colorspace=256  " Access colors present in 256 colorspace
 set background=dark       " Setting background to dark
 
 " Setting default colourscheme
-silent! colorscheme base16-atelierlakeside
+"silent! colorscheme base16-atelierlakeside
+silent! colorscheme PaperColor
 
 " }}}
 
@@ -486,10 +488,21 @@ au FileType vim let b:loaded_delimitMate = 0 " no autoclose brackets for Vim fil
 " Ag
 let g:ag_prg="/usr/local/bin/ag --vimgrep"
 
-" Airline
-" Fancy symbols never line up correctly so just disable them.
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+" Lightline
+let g:lightline = {
+      \ 'colorscheme': 'PaperColor',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'filename' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'LightLineFugitive',
+      \   'readonly': 'LightLineReadonly',
+      \   'modified': 'LightLineModified',
+      \   'filename': 'LightLineFilename'
+      \ }
+      \ }
+
 
 " Deoplete
 " Only works with Neovim
@@ -596,6 +609,41 @@ function! PulseCursorLine()
 
     windo set cursorline
     execute current_window . 'wincmd w'
+endfunction
+
+" }}}
+
+" Lightline {{{
+function! LightLineModified()
+  if &filetype == "help"
+    return ""
+  elseif &modified
+    return "+"
+  elseif &modifiable
+    return ""
+  else
+    return ""
+  endif
+endfunction
+
+function! LightLineReadonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return "RO"
+  else
+    return ""
+  endif
+endfunction
+
+function! LightLineFugitive()
+  return exists('*fugitive#head') ? fugitive#head() : ''
+endfunction
+
+function! LightLineFilename()
+  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+       \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+       \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
 " }}}
