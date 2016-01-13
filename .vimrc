@@ -55,6 +55,7 @@ Plug 'tpope/vim-vividchalk'
 Plug 'twerth/ir_black'
 Plug 'sjl/badwolf'
 Plug 'chriskempson/base16-vim'
+Plug 'NLKNguyen/papercolor-theme'
 
 " End vim-plug shenanigans
 call plug#end()
