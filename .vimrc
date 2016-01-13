@@ -40,7 +40,7 @@ if has('nvim')
 endif
 
 " Langs
-Plug 'tpope/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 Plug 'fatih/vim-go'
 Plug 'stephpy/vim-yaml'
 Plug 'saltstack/salt-vim'
