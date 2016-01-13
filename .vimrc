@@ -24,7 +24,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-vinegar'
-Plug 'mileszs/ack.vim'
+Plug 'rking/ag.vim'
 Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
 Plug 'bling/vim-airline'
 Plug 'majutsushi/tagbar'
@@ -301,8 +301,8 @@ nmap <leader>gp :Git push<CR>
 " Tagbar: Mapping F8 to toggle Tagbar
 nnoremap <F8> :TagbarToggle<CR>
 
-" Ack: Mapping ,a to :Ack for searching (actually uses the_silver_searcher)
-nnoremap <leader>a :Ack<space>
+" Ag: Mapping ,a to :Ag for searching (the_silver_searcher)
+nnoremap <leader>a :Ag<space>
 
 " Undotree: Mapping ,ut to Undotree
 nnoremap <leader>ut :UndotreeToggle<CR>
@@ -482,9 +482,8 @@ au FileType vim let b:loaded_delimitMate = 0 " no autoclose brackets for Vim fil
 " Plugin settings / options ----------------------------------------------- {{{
 
 
-" Ack
-" Use the_silver_searcher program instead of ack
-let g:ackprg = 'ag --nogroup --nocolor --column'
+" Ag
+let g:ag_prg="/usr/local/bin/ag --vimgrep"
 
 " Airline
 " Fancy symbols never line up correctly so just disable them.
