@@ -62,6 +62,9 @@ Plug 'sjl/badwolf'
 Plug 'chriskempson/base16-vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/seoul256.vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'morhetz/gruvbox'
+Plug 'whatyouhide/vim-gotham'
 
 " End vim-plug shenanigans
 call plug#end()
