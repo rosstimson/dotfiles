@@ -45,6 +45,11 @@ Plug 'fatih/vim-go'
 Plug 'stephpy/vim-yaml'
 Plug 'saltstack/salt-vim'
 
+" Note taking
+Plug 'fmoralesc/vim-pad'
+Plug 'vimoutliner/vimoutliner'
+Plug 'vim-scripts/utl.vim'
+
 " Colour schemes
 Plug 'vim-scripts/Colour-Sampler-Pack'
 Plug 'chriskempson/base16-vim'
@@ -116,11 +121,20 @@ set omnifunc=syntaxcomplete#Complete
 set completeopt-=preview  " Disable scratch/preview split window for omnicompletions
 set t_Co=256              " Pretty colours
 let base16colorspace=256  " Access colors present in 256 colorspace
+let g:seoul256_background = 234 " Darker background when using seoul256 theme
 set background=dark       " Setting background to dark
 
 " Setting default colourscheme
-"silent! colorscheme base16-atelierlakeside
-silent! colorscheme PaperColor
+silent! colorscheme jellybeans
+
+" vim-pad / note taking
+let g:pad#dir="~/notes"                   " default notes dir
+let g:pad#default_format="votl"           " default to vimoutliner files
+let g:pad#default_file_extension="votl"   " default file extension to vimoutliner
+let g:pad#window_height=16                " default note list split height (default=8)
+let g:pad#open_in_split=0                 " open notes in main window rather than split
+let g:pad#search_backend="ag"             " default search backed to the_silver_searcher
+let g:pad#modeline_position="top"         " add modeline to top of file
 
 " }}}
 
@@ -331,6 +345,10 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
+" UTL:
+" Use/Goto linked thing
+nmap <C-c> :Utl ol<cr>
+
 " }}}
 
 " Filetype specific ------------------------------------------------------- {{{
@@ -446,6 +464,16 @@ augroup END
 
 " }}}
 
+" Outliner {{{
+augroup ft_votl
+    au!
+
+    au BufNewFile,BufRead *.otl,*.votl setlocal filetype=votl
+    au Filetype votl setlocal shiftwidth=4 softtabstop=4 tabstop=4
+    au FileType votl setlocal spell
+
+" }}}
+
 " Python {{{
 augroup ft_python
     au!
@@ -490,7 +518,7 @@ let g:ag_prg="/usr/local/bin/ag --vimgrep"
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
+      \ 'colorscheme': 'jellybeans',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'filename' ] ]
