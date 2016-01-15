@@ -250,9 +250,6 @@ nnoremap <C-H> :tabp<CR>
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>    " Edit vimrc
 nnoremap <silent> <leader>sv :so $MYVIMRC<CR>   " Reload vimrc
 
-"Remap Ctrl-C to go back to normal mode
-inoremap <C-c> <Esc>
-
 " Toggle show/hide invisible chars
 nnoremap <leader>i :set list!<cr>
 
@@ -289,16 +286,18 @@ vnoremap <Tab> %
 " Strip all trailing whitespace from a file, using ,W
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
-" FZF, fuzzy file finder mapping to CTRL-T
+" FZF:
+" fuzzy file finder mapping to CTRL-T
 nnoremap <C-t> :FZF<CR>
 
 " Fugitive:
 nmap <leader>gb :Gblame<CR>
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gd :Gdiff<CR>
-nmap <leader>gl :Glog<CR>
+nmap <leader>gls :Glog<CR>
 nmap <leader>gc :Gcommit<CR>
 nmap <leader>gp :Git push<CR>
+nmap <leader>gl :Git pull<CR>
 
 " Tagbar: Mapping F8 to toggle Tagbar
 nnoremap <F8> :TagbarToggle<CR>
@@ -483,15 +482,12 @@ augroup END
 " Ruby {{{
 augroup ft_ruby
     au!
+
     au Filetype ruby setlocal foldmethod=syntax
 augroup END
 
 " }}}
 
-" Vim {{{
-au FileType vim let b:loaded_delimitMate = 0 " no autoclose brackets for Vim files
-
-" }}}
 
 " }}}
 
