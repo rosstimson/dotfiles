@@ -1,0 +1,37 @@
+! Jellybeans
+
+! Foreground / Background
+*background: #151515
+*foreground: #888888
+
+! Black
+*color0: #1C1C1C
+*color8: #404040
+
+! Red
+*color1: #B85335
+*color9: #CF6A4C
+
+! Green
+*color2: #799D6A
+*color10: #99AD6A
+
+! Yellow
+*color3: #FFB964
+*color11: #FAD07A
+
+! Blue
+*color4: #667899
+*color12: #8197BF
+
+! Magenta
+*color5: #8787AF
+*color13: #C6B6EE
+
+! Cyan
+*color6: #668799
+*color14: #8FBFDC
+
+! White
+*color7: #888888
+*color15: #E8E8D3
