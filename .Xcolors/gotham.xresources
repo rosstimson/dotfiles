@@ -1,0 +1,38 @@
+! Gotham (https://github.com/whatyouhide/vim-gotham)
+
+! Foreground / Background
+*.foreground:   #98d1ce
+*.background:   #0a0f14
+*.cursorColor:  #98d1ce
+
+! Black
+*.color0:       #0a0f14
+*.color8:       #10151b
+
+! Red
+*.color1:       #c33027
+*.color9:       #d26939
+
+! Green
+*.color2:       #26a98b
+*.color10:      #081f2d
+
+! Yellow
+*.color3:       #edb54b
+*.color11:      #245361
+
+! Blue
+*.color4:       #195465
+*.color12:      #093748
+
+! Magenta
+*.color5:       #4e5165
+*.color13:      #888ba5
+
+! Cyan
+*.color6:       #33859d
+*.color14:      #599caa
+
+! White
+*.color7:       #98d1ce
+*.color15:      #d3ebe9
