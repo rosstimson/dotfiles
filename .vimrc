@@ -100,7 +100,7 @@ set t_vb=                 " Don't flash
 set noerrorbells          " Don't beep
 set showcmd               " Show (partial) command in the last line of the
                           "   screen this also shows visual selection info
-set nomodeline            " Disable mode lines (security measure)
+set modeline              " Enable modeline
 set cursorline            " Underline the current line, for quick orientation
 set history=1000          " Remember more commands and search history
 set undolevels=1000       " Use many muchos levels of undo
@@ -137,7 +137,6 @@ let g:pad#default_file_extension="votl"   " default file extension to vimoutline
 let g:pad#window_height=16                " default note list split height (default=8)
 let g:pad#open_in_split=0                 " open notes in main window rather than split
 let g:pad#search_backend="ag"             " default search backed to the_silver_searcher
-let g:pad#modeline_position="top"         " add modeline to top of file
 
 " }}}
 
