@@ -285,6 +285,12 @@ vnoremap <Tab> %
 " Strip all trailing whitespace from a file, using ,W
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
+" NeoVim Terminal
+" Exit terminal with ,e
+if has('nvim')
+  tnoremap <Leader>e <C-\><C-n>
+endif
+
 " FZF:
 " fuzzy file finder mapping to CTRL-T
 nnoremap <C-t> :FZF<CR>
