@@ -23,7 +23,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-vinegar'
+Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'rking/ag.vim'
 Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
 Plug 'itchyny/lightline.vim'
@@ -425,7 +425,6 @@ augroup ft_markdown
     au!
 
     au BufNewFile,BufRead *.m*down setlocal filetype=markdown
-    au FileType markdown setlocal foldlevel=1
     au FileType markdown setlocal spell
     au FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags
 
@@ -453,8 +452,8 @@ augroup ft_votl
     au!
 
     au BufNewFile,BufRead *.otl,*.votl setlocal filetype=votl
-    au Filetype votl setlocal shiftwidth=4 softtabstop=4 tabstop=4
     au FileType votl setlocal spell
+    au FileType votl setlocal foldminlines=0 foldnestmax=20
 
 " }}}
 
