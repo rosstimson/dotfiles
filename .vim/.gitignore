@@ -1,10 +1,11 @@
-# Use NeoBundle to manage Vim plugins and keep them out of Git.
+# Use vim-plug
 #
-# First ignore everything in bundle directory.
-bundle/*
+# First ignore everything in vim-plug and undo dir.
+plugged/*
+undo/*
 
-# Now whitelist Vundle
-!bundle/neobundle.vim
+# Now whitelist vim-plug
+!autoload/plug.vim
 
 # Ignore the binary spelling file and netrw history file
 *.spl
