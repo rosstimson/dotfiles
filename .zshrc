@@ -173,7 +173,7 @@ PROMPT='${green}%m${reset_color}:%c$(git_super_status) %# '
 # Set an alias for 'ls' so colours can be used across OSs
 case `uname` in
   FreeBSD)
-    alias ls='gnuls --color=auto -GF'
+    alias ls='ls -GF'
   ;;
   NetBSD)
     alias ls='ls -F'
