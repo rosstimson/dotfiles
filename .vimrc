@@ -235,6 +235,10 @@ nnoremap k gk
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
+" Easier horizontal scrolling
+map zl zL
+map zh zH
+
 " Easy buffer and tab switching
 nnoremap <C-J> :bnext<CR>
 nnoremap <C-K> :bprev<CR>
@@ -284,6 +288,13 @@ vnoremap <Tab> %
 
 " Strip all trailing whitespace from a file, using ,W
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
+
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
+" Allow using the repeat operator with a visual selection (!)
+vnoremap . :normal .<CR>
 
 " NeoVim Terminal
 " Exit terminal with ,e
