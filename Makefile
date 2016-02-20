@@ -6,11 +6,11 @@ DOTFILES=$(shell find . -maxdepth 1 -name '.[^.]*' -not -name '.git')
 # Hardcoded home in case some config mngt tool is installing.
 RT_HOME='/home/rosstimson'
 
-FZF_VERSION='0.11.1'
+FZF_VERSION='0.11.3'
 
 install:
 	@for file in ${DOTFILES} ; do \
-		cp -r $$file ${RT_HOME} ; \
+		cp -a $$file ${RT_HOME} ; \
 	done
 
 # Some programs will complain or not work until certain directories or
