@@ -44,6 +44,8 @@ Plug 'plasticboy/vim-markdown'
 Plug 'fatih/vim-go'
 Plug 'stephpy/vim-yaml'
 Plug 'saltstack/salt-vim'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'digitaltoad/vim-pug'
 
 " Note taking
 Plug 'fmoralesc/vim-pad'
