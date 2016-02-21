@@ -1,14 +1,23 @@
 # ~/.zshenv
 
+# Setting PATH
+path=(
+  /sbin
+  /bin
+  /usr/sbin
+  /user/bin
+  /usr/games
+  /usr/local/sbin
+  /usr/local/bin
+  /root/bin
+  "$HOME"/bin
+)
+export PATH
+# Only unique entries please.
 typeset -U path
-for dir in /bin /usr/local/bin /opt/local/bin "$HOME/bin"; do
-  [ -d "$dir" ] && path=($dir $path)
-done
-for dir in /usr/bin /usr/bin/X11 /usr/games /usr/local/sbin /usr/sbin /sbin; do
-  [ -d "$dir" ] && path=($path $dir)
-done
-# Usual suspects.
-path=($HOME/bin $path /usr/bin/X11 /usr/games /usr/local/sbin /usr/sbin /sbin)
+# Remove entries that don't exist on this system.  Just for sanity's
+# sake more than anything.
+rationalize-path path
 
 # Timezone
 export TZ='Europe/London'
@@ -27,12 +36,10 @@ export PYTHONPATH=/usr/lib/python2.7/site-packages
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
-# Go-lang variables
-export GOPATH="$HOME/Code/Go"
-# Append Go stuff to PATH
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+# Go
+export GOPATH="$HOME/code/go"
+export PATH=$PATH:$GOPATH/bin
 
 # Cask, Emacs dependency management made easy
-if [[ `uname -s` == 'Darwin' ]]; then
-  export PATH=$PATH:$HOME/.cask/bin
-fi
+export PATH=$PATH:$HOME/.cask/bin
+
