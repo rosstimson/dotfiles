@@ -8,7 +8,7 @@ xrdb -merge ~/.Xresources
 eval $(gpg-agent --daemon --enable-ssh-support)
 
 # Set wallpaper
-feh --bg-scale ~/pictures/wallpapers/default.jpg
+feh --bg-scale ~/pictures/wallpapers/default
 
 # URxvt daemon
 urxvtd -q -o -f &
