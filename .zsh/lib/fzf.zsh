@@ -12,8 +12,8 @@ fi
 
 # Auto-completion
 # ---------------
-# [[ $- =~ i ]] && source "/home/rosstimson/.fzf/shell/completion.zsh"
+[[ $- =~ i ]] && source "$HOME/.fzf/shell/completion.zsh"
 
 # Key bindings
 # ------------
-source "/home/rosstimson/.fzf/shell/key-bindings.zsh"
+source "$HOME/.fzf/shell/key-bindings.zsh"
