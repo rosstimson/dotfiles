@@ -1,11 +1,5 @@
 # fixme - the load process here seems a bit bizarre
 
-unsetopt menu_complete   # do not autoselect the first completion entry
-unsetopt flowcontrol
-setopt auto_menu         # show completion menu on succesive tab press
-setopt complete_in_word
-setopt always_to_end
-
 WORDCHARS=''
 
 zmodload -i zsh/complist
@@ -63,6 +57,9 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 
 # ... unless we really want to.
 zstyle '*' single-ignored show
+
+# Git completion
+zstyle ':completion:*:*:git:*' script /usr/local/share/zsh/site-functions/git-completion.bash
 
 if [ "x$COMPLETION_WAITING_DOTS" = "xtrue" ]; then
   expand-or-complete-with-dots() {
