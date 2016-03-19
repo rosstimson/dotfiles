@@ -34,6 +34,7 @@ Plug 'mbbill/undotree'
 Plug 'davidhalter/jedi-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'benekastah/neomake'
+Plug 'tweekmonster/braceless.vim'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim'
@@ -484,6 +485,8 @@ augroup ft_python
     au FileType python setlocal foldmethod=indent foldlevel=2 foldnestmax=4
     au FileType python setlocal omnifunc=pythoncomplete#Complete
 
+    au FileType python BracelessEnable +indent +fold
+
     " Jedi
     let g:jedi#popup_on_dot = 0 " Don't automatically start completion if you type a dot.
     let g:jedi#goto_assignments_command = "<leader>g"
@@ -493,6 +496,7 @@ augroup ft_python
     let g:jedi#completions_command = "<C-Space>"
     let g:jedi#rename_command = "<leader>r"
     let g:jedi#show_call_signatures = "1"
+
 augroup END
 
 " }}}
