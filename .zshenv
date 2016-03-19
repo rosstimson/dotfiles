@@ -90,7 +90,7 @@ typeset -U fpath
 # PATH should already be exported, but in case not. . .
 path=(
   "$HOME"/bin
-  "$PYENV_ROOT/bin:$PATH"   # Pyenv
+  "$PYENV_ROOT/bin"         # Pyenv
   "$GOPATH/bin"             # Go binaries
   "$HOME/.cask/bin"         # Cask, Emacs dependency management
   /usr/local/bin
