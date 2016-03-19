@@ -37,6 +37,7 @@ Plug 'benekastah/neomake'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim'
+    Plug 'zchee/deoplete-go', { 'do': 'make'}
 endif
 
 " Langs
@@ -535,6 +536,9 @@ let g:lightline = {
 if has('nvim')
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#disable_auto_complete = 1
+
+    " Class aligning for deoplete-go
+    let g:deoplete#sources#go#align_class = 1
 
     " Tab completion & allow normal tab usage if nothing to complete.
     inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
