@@ -1,7 +1,7 @@
 # ~/dotfiles/Makefile
 # $HOME Sweet $HOME
 
-# List out all dotfiles except .git so that we can interatively copy them.
+# List out all dotfiles except .git so that we can iteratively copy them.
 DOTFILES=$(shell find . -maxdepth 1 -name '.[^.]*' -not -name '.git')
 # Hardcoded home in case some config mngt tool is installing.
 RT_HOME='/home/rosstimson'
