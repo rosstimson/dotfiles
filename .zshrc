@@ -41,9 +41,6 @@ done
 # Sourcing script for Git prompt
 . $HOME/.zsh/lib/git-prompt/zshrc.sh
 
-# Sourcing the script for z completion (https://github.com/rupa/z)
-. $HOME/.zsh/lib/z.sh
-
 fpath=($HOME/.zsh/completions $fpath)
 
 # Helper function to test if command exists
