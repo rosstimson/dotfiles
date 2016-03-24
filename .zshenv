@@ -89,17 +89,18 @@ typeset -U fpath
 # though a subshell may not know about functions.
 # PATH should already be exported, but in case not. . .
 path=(
+  /sbin
+  /usr/sbin
+  /bin
+  /usr/bin
+  /usr/X11R6/bin
+  /usr/local/sbin
+  /usr/local/bin
+  /usr/games
   "$HOME"/bin
   "$PYENV_ROOT/bin"         # Pyenv
   "$GOPATH/bin"             # Go binaries
   "$HOME/.cask/bin"         # Cask, Emacs dependency management
-  /usr/local/bin
-  /usr/local/sbin
-  /sbin
-  /bin
-  /user/bin
-  /usr/sbin
-  /usr/games
   "$path[@]"
   "$fpath[@]"
 )
