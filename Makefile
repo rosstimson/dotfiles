@@ -2,13 +2,13 @@
 # $HOME Sweet $HOME
 
 # List out all dotfiles except .git so that we can iteratively copy them.
-DOTFILES=$(shell find . -maxdepth 1 -name '.[^.]*' -not -name '.git')
+DOTFILES != find . -maxdepth 1 -name '.[^.]*' ! -name '.git'
 # Hardcoded home in case some config mngt tool is installing.
 RT_HOME='/home/rosstimson'
 
 install:
 	@for file in ${DOTFILES} ; do \
-		cp -a $$file ${RT_HOME} ; \
+		cp -pPR $$file ${RT_HOME} ; \
 	done
 
 # Some programs will complain or not work until certain directories or
