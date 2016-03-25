@@ -1,3 +1,36 @@
+########################################
+#
+# .zshrc: for interactive shells (zsh -i)
+#
+########################################
+
+# Since .zshrc is only run once per interactive shell, most of the 
+# configuring of the login session gets done here.  A few of .zshenv's
+# settings are overridden here in the knowledge that the user is now
+# able to give commands to the shell.
+
+
+####################
+# zsh-related things
+
+###
+# Shell Options
+# Only those options relating to interactive shells.  The others were
+# done in .zshenv already.
+# Ones in capitals are variations from the default ZSH behaviour.
+setopt \
+  always_to_end \
+  auto_menu \
+  autocd \
+  cdablevars \
+  complete_in_word \
+  no_beep
+
+unsetopt \
+  flowcontrol \
+  menu_complete
+
+
 # Setup ------------------------------------------------------------------- {{{
 
 # Sourcing lib files
@@ -8,15 +41,13 @@ done
 # Sourcing script for Git prompt
 . $HOME/.zsh/lib/git-prompt/zshrc.sh
 
-# Sourcing the script for z completion (https://github.com/rupa/z)
-. $HOME/.zsh/lib/z.sh
-
 fpath=($HOME/.zsh/completions $fpath)
 
 # Helper function to test if command exists
 _command_exists() {
   type "$1" &> /dev/null;
 }
+
 
 # ------------------------------------------------------------------------- }}}
 # Custom ZSH -------------------------------------------------------------- {{{
@@ -25,11 +56,6 @@ _command_exists() {
 autoload -U compinit
 compinit
 
-# Basic settings
-setopt no_beep
-setopt autocd
-setopt multios
-setopt cdablevars
 
 # Enables the negation ^ operator for displaying files
 setopt extendedglob
@@ -286,7 +312,7 @@ alias dl='docker pull'
 alias dp='docker push'
 alias dps='docker ps'
 alias dr='docker run'
-alias dri='docker run -it'
+alias dri='docker run -it --rm'
 alias ddr='docker run -d'
 alias ds='docker stop'
 alias drm='docker rm'
@@ -294,23 +320,7 @@ alias drmi='docker rmi'
 alias drma='docker rm $(docker ps -a -q)'    # Remove all containers
 alias dsa='docker stop $(docker ps -a -q)'  # Stop all containers
 alias dclean='docker rmi -f $(docker images -q -a -f dangling=true)' # Removes all untagged images
-
-# For dev environment containers
-function ddev-go () {
-  docker run -it --name $1 \
-    -h go-dev \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    -v `pwd`:/home/rosstimson/go/src/github.com/rosstimson/$1 \
-    rosstimson/dev
-}
-
-function ddev-py () {
-  docker run -it --name $1 \
-  -h py-dev \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v `pwd`:/home/rosstimson/python/$1 \
-  rosstimson/dev
-}
+alias dm='docker-machine'
 
 # }}}
 
