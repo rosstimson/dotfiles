@@ -248,6 +248,9 @@ nnoremap <C-K> :bprev<CR>
 nnoremap <C-L> :tabn<CR>
 nnoremap <C-H> :tabp<CR>
 
+" Use - for opening NetRW at dir of current file (like Filebeagle did).
+nnoremap - :Explore<CR>
+
 " }}}
 
 " Key Mappings ------------------------------------------------------------ {{{
