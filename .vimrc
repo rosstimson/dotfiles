@@ -47,6 +47,9 @@ Plug 'stephpy/vim-yaml'
 Plug 'saltstack/salt-vim'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'digitaltoad/vim-pug'
+Plug 'othree/html5.vim'
+Plug 'klen/python-mode'
+
 
 " Note taking
 Plug 'fmoralesc/vim-pad'
@@ -359,13 +362,46 @@ nmap <C-c> :Utl ol<cr>
 
 " Filetype specific ------------------------------------------------------- {{{
 
+" C {{{
+augroup ft_c
+    au!
+
+    " Ignore indents caused by parentheses in OpenBSD style.
+    function! IgnoreParenIndent()
+        let indent = cindent(v:lnum)
+
+        if indent > 4000
+            if cindent(v:lnum - 1) > 4000
+                return indent(v:lnum - 1)
+            else
+                return indent(v:lnum - 1) + 4
+            endif
+        else
+            return (indent)
+        endif
+    endfun
+
+
+    " Follow the OpenBSD style(9).
+    au filetype c setlocal cindent
+    au filetype c setlocal cinoptions=(4200,u4200,+0.5s,*500,:0,t0,U4200
+    au filetype c setlocal indentexpr=IgnoreParenIndent()
+    au filetype c setlocal indentkeys=0{,0},0),:,0#,!^F,o,O,e
+    au filetype c setlocal noexpandtab
+    au filetype c setlocal shiftwidth=8
+    au filetype c setlocal tabstop=8
+    au filetype c setlocal textwidth=80
+augroup END
+
+" }}}
+
 " CSS and Scss {{{
 augroup ft_css
     au!
 
     au BufNewFile,BufRead *.scss setlocal filetype=scss
 
-    au Filetype scss,css setlocal foldmethod=marker
+    au filetype scss,css setlocal foldmethod=marker
     au Filetype scss,css setlocal foldmarker={,}
     au Filetype scss,css setlocal omnifunc=csscomplete#CompleteCSS
     au Filetype scss,css setlocal iskeyword+=-
