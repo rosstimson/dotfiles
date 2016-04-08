@@ -1,7 +1,7 @@
 [user]
     name = Ross Timson
     email = ross@rosstimson.com
-    SigningKey = 97865D41
+    SigningKey = 0x080A22C7E75C885C
 [color]
     branch = auto
     diff = auto
@@ -44,4 +44,6 @@
     default = simple
 [github]
     user = rosstimson
+[commit]
+    gpgsign = true
 
