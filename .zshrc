@@ -296,7 +296,7 @@ compdef _git gmt=git-mergetool
 
 # Will cd into the top of the current repository
 # or submodule.
-alias grt='cd $(git rev-parse --show-toplevel || echo ".")'
+alias cg='cd $(git rev-parse --show-toplevel || echo ".")'
 
 # }}}
 
