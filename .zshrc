@@ -116,6 +116,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
+HISTTIMEFORMAT="%d/%m/%y %T "
 
 setopt append_history
 setopt extended_history
@@ -223,9 +224,6 @@ alias -- -='cd -'
 alias sudo='sudo '  # Note the trailing space, this allows sudo to use aliases.
 alias _='sudo '
 alias ffs='sudo '
-
-# Show history
-alias history='fc -l 1'
 
 # List direcory contents
 alias l='ls -lah'
