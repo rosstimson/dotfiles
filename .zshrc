@@ -230,6 +230,8 @@ alias l='ls -lah'
 alias ll='ls -l'
 alias lr='ls -lr'
 
+alias h='history -E 1'
+
 # }}}
 
 # Bundler {{{
