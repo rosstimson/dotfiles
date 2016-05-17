@@ -268,6 +268,16 @@ nnoremap <leader>i :set list!<cr>
 " Toggle line numbers
 nnoremap <leader>N :setlocal number!<cr>
 
+" Fast window resizing
+" Vertical resizing with + / -
+" Horizontal resizing with Ctrl-n / Ctrl-m
+if bufwinnr(1)
+  map + :resize +5<CR>
+  map - :resize -5<CR>
+  map <C-N> :vertical resize +5<CR>
+  map <C-M> :vertical resize -5<CR>
+endif
+
 " Shortcut to make
 nnoremap mk :make<CR>
 
