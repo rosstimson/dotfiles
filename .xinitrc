@@ -20,7 +20,7 @@ xsetroot -cursor_name left_ptr
 # setxkbmap -model apple -layout us -variant mac -option ctrl:swapcaps
 
 # Set a standard PC keyboard, British layout and swap ctrl / caps-lock.
-setxkbmap -model pc104 -layout gb -option ctrl:swapcaps
+setxkbmap -model pc104 -layout gb -option ctrl:nocaps
 
 # Reverse scrolling similar to Mac OSX 'natural scrolling'.
 xmodmap -e "pointer = 1 2 3 5 4"
