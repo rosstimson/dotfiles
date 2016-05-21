@@ -5,7 +5,7 @@ export LANG=en_GB.UTF-8 LC_ALL=en_GB.UTF-8
 # Read in .Xresources
 xrdb -merge ~/.Xresources
 
-eval $(gpg-agent --daemon --enable-ssh-support)
+eval $(gpg-agent --daemon)
 
 # Set wallpaper
 feh --bg-scale ~/pictures/wallpapers/default
