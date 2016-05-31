@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: expect(chef_run).to
-# key: ecr
-# --
-expect(chef_run).to $1
