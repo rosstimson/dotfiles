@@ -87,6 +87,11 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
+;; Smooth scrolling
+(setq scroll-margin 5
+scroll-conservatively 9999
+scroll-step 1)
+
 ;; Colour theme
 (use-package color-theme-sanityinc-tomorrow
   :ensure t
