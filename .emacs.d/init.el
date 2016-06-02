@@ -93,20 +93,40 @@
 
 ;;; Packages
 
+;; Be like Vim
 (use-package evil
   :ensure t
   :config (evil-mode 1))
 
+;; Branching undo
+(use-package undo-tree
+  :ensure t
+  :init (global-undo-tree-mode)
+  :diminish undo-tree-mode)
+
+;; Better M-x
 (use-package smex
   :ensure t
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands)))
 
+;; Enhanced package list
 (use-package paradox
   :ensure t
   :config
   (setq paradox-execute-asynchronously nil
         paradox-github-token t))
+
+;; Auto-completion
+(use-package company
+  :ensure t
+  :init (global-company-mode)
+  :config
+  (setq company-tooltip-align-annotations t
+        company-tooltip-flip-when-above t
+        ;; Easy navigation to candidates with M-<n>
+        company-show-numbers t)
+  :diminish company-mode)
 
 
 ;; Load custom file last
