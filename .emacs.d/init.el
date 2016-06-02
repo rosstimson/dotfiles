@@ -102,6 +102,16 @@
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands)))
 
+(use-package paradox
+  :ensure t
+  :config
+  (setq paradox-execute-asynchronously nil
+        paradox-github-token t))
+
+
+;; Load custom file last
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
 
 ;; Local Variables:
 ;; coding: utf-8
