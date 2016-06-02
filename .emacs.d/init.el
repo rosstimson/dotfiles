@@ -101,33 +101,35 @@ scroll-step 1)
 
 ;;; Packages
 
+;; Always ensure packages are installed automatically if not present
+(setq use-package-always-ensure t)
+
 ;; Be like Vim
 (use-package evil
-  :ensure t
+  :init (progn
+          (setq evil-want-C-u-scroll t
+                evil-overriding-maps nil
+                evil-intercept-maps nil))
   :config (evil-mode 1))
 
 ;; Branching undo
 (use-package undo-tree
-  :ensure t
   :init (global-undo-tree-mode)
   :diminish undo-tree-mode)
 
 ;; Better M-x
 (use-package smex
-  :ensure t
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands)))
 
 ;; Enhanced package list
 (use-package paradox
-  :ensure t
   :config
   (setq paradox-execute-asynchronously nil
         paradox-github-token t))
 
 ;; Auto-completion
 (use-package company
-  :ensure t
   :init (global-company-mode)
   :config
   (setq company-tooltip-align-annotations t
