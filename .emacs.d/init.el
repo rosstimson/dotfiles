@@ -79,6 +79,11 @@
 ;; Short Yes/No questions
 (fset 'yes-or-no-p #'y-or-n-p)
 
+;; Enable Ido everywhere
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+
 ;; Colour theme
 (use-package color-theme-sanityinc-tomorrow
   :ensure t
