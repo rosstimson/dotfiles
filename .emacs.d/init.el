@@ -132,6 +132,11 @@ scroll-step 1)
 
   :config (evil-mode 1))
 
+(use-package simpleclip
+  :bind (
+         "M-c" . simpleclip-copy
+         "M-v" . simpleclip-paste))
+
 ;; Branching undo
 (use-package undo-tree
   :init (global-undo-tree-mode)
