@@ -56,6 +56,9 @@
 ;;; Essential settings
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
+;;; i18n
+(prefer-coding-system 'utf-8)
+
 ;; Reduce the frequency of garbage collection by making it happen on
 ;; each 50MB of allocated data (the default is on every 0.76MB)
 (setq gc-cons-threshold 50000000)
