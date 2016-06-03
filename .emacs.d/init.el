@@ -86,6 +86,10 @@
 (column-number-mode t)
 (setq-default indicate-empty-lines t)
 
+;; Start maximised
+(custom-set-variables
+ '(initial-frame-alist (quote ((fullscreen . maximized)))))
+
 ;; Short Yes/No questions
 (fset 'yes-or-no-p #'y-or-n-p)
 
