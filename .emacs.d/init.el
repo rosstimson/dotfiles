@@ -53,8 +53,6 @@
 (eval-when-compile
   (require 'use-package))
 
-
-
 ;;; Essential settings
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
@@ -64,6 +62,12 @@
 
 ;; Warn when opening files bigger than 100MB
 (setq large-file-warning-threshold 100000000)
+
+;; Store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 ;; User interface
 (setq inhibit-splash-screen t
