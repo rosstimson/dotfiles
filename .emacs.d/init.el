@@ -56,7 +56,7 @@
 ;;; Essential settings
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-;;; i18n
+;; i18n
 (prefer-coding-system 'utf-8)
 
 ;; Reduce the frequency of garbage collection by making it happen on
@@ -96,8 +96,8 @@
 
 ;; Smooth scrolling
 (setq scroll-margin 5
-scroll-conservatively 9999
-scroll-step 1)
+      scroll-conservatively 9999
+      scroll-step 1)
 
 ;; Colour theme
 (use-package color-theme-sanityinc-tomorrow
@@ -127,6 +127,7 @@ scroll-step 1)
                       ;; Keyboard shortcuts
                       (evil-leader/set-key
                        "f" 'ido-find-file
+                       "g" 'magit-status
                        "x" 'smex
                        )))
 
@@ -164,6 +165,21 @@ scroll-step 1)
   :ensure t
   :after company
   :config (company-statistics-mode))
+
+;; The one and only Git frontend
+(use-package magit
+  :bind (("C-c g c" . magit-clone)
+         ("C-c g s" . magit-status)
+         ("C-c g b" . magit-blame)
+         ("C-c g l" . magit-log-buffer-file)
+         ("C-c g p" . magit-pull))
+  :config (use-package evil-magit))
+
+;; Highlight delimiters by depth
+(use-package rainbow-delimiters
+  :init
+  (dolist (hook '(text-mode-hook prog-mode-hook))
+    (add-hook hook #'rainbow-delimiters-mode)))
 
 ;; Simple copy paste with system clipboard
 (use-package simpleclip
