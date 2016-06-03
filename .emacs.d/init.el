@@ -79,9 +79,9 @@
 (show-paren-mode 1)
 (blink-cursor-mode -1)
 (global-hl-line-mode t)
-;; Show line and column numbers in mode-line
 (line-number-mode t)
 (column-number-mode t)
+(setq-default indicate-empty-lines t)
 
 ;; Short Yes/No questions
 (fset 'yes-or-no-p #'y-or-n-p)
