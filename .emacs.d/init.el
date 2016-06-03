@@ -132,10 +132,6 @@ scroll-step 1)
 
   :config (evil-mode 1))
 
-(use-package simpleclip
-  :bind (
-         "M-c" . simpleclip-copy
-         "M-v" . simpleclip-paste))
 
 ;; Branching undo
 (use-package undo-tree
@@ -163,6 +159,16 @@ scroll-step 1)
         company-show-numbers t)
   :diminish company-mode)
 
+;; Sort Company completion candidates by stats
+(use-package company-statistics
+  :ensure t
+  :after company
+  :config (company-statistics-mode))
+
+;; Simple copy paste with system clipboard
+(use-package simpleclip
+  :bind (("M-c" . simpleclip-copy)
+         ("M-v" . simpleclip-paste)))
 
 ;; Load custom file last
 (setq custom-file "~/.emacs.d/custom.el")
