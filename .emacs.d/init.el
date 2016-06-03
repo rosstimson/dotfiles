@@ -111,14 +111,12 @@
   :init (load-theme 'sanityinc-tomorrow-night 'no-confirm))
 
 
-
 ;;; Packages
 
 ;; Always ensure packages are installed automatically if not present
 (setq use-package-always-ensure t)
 
 ;; Be like Vim
-(require 'dired-x)
 (use-package evil
   :init (progn
           (setq evil-want-C-u-scroll t
@@ -139,6 +137,8 @@
 
   :config (evil-mode 1))
 
+;;; Requires
+(require 'init-dired)
 
 ;; Branching undo
 (use-package undo-tree
@@ -168,7 +168,6 @@
 
 ;; Sort Company completion candidates by stats
 (use-package company-statistics
-  :ensure t
   :after company
   :config (company-statistics-mode))
 
