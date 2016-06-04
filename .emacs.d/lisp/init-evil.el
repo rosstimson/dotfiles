@@ -75,6 +75,15 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
+;; Ibuffer
+(eval-after-load 'ibuffer
+  '(progn
+     (evil-set-initial-state 'ibuffer-mode 'normal)
+     (evil-define-key 'normal ibuffer-mode-map
+       (kbd "j") 'ibuffer-forward-line
+       (kbd "k") 'ibuffer-backward-line
+       (kbd "J") 'ibuffer-jump-to-buffer))) ; 'j'
+
 (provide 'init-evil) 
 
 ;; Local Variables:
