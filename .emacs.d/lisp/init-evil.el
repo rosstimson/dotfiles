@@ -41,11 +41,11 @@
                       (evil-leader/set-leader ",")
                       ;; Keyboard shortcuts
                       (evil-leader/set-key
-		       "b" 'ido-switch-buffer
-                       "B" 'ibuffer
-                       "f" 'ido-find-file
+                       ","  (lambda () (interactive) (ansi-term (getenv "SHELL")))
+		       "b" 'helm-mini
                        "g" 'magit-status
-                       "x" 'smex
+                       "w" 'whitespace-mode
+                       "x" 'helm-M-x
                        )))
 
           (use-package evil-surround
