@@ -77,7 +77,7 @@
 ;; User interface
 (setq inhibit-splash-screen t
       inhibit-startup-message t
-      inihibt-startup-echo-area-message t)
+      inihibt-startup-echo-area-message "rosstimson")
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -122,6 +122,7 @@
 ;;; Requires
 (require 'init-evil)
 (require 'init-dired)
+(require 'init-helm)
 
 ;; Branching undo
 (use-package undo-tree
