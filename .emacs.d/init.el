@@ -116,28 +116,8 @@
 ;; Always ensure packages are installed automatically if not present
 (setq use-package-always-ensure t)
 
-;; Be like Vim
-(use-package evil
-  :init (progn
-          (setq evil-want-C-u-scroll t
-                evil-overriding-maps nil
-                evil-intercept-maps nil))
-
-          (use-package evil-leader
-            :init (global-evil-leader-mode)
-            :config (progn
-                      (setq evil-leader/in-all-states t)
-                      (evil-leader/set-leader ",")
-                      ;; Keyboard shortcuts
-                      (evil-leader/set-key
-                       "f" 'ido-find-file
-                       "g" 'magit-status
-                       "x" 'smex
-                       )))
-
-  :config (evil-mode 1))
-
 ;;; Requires
+(require 'init-evil)
 (require 'init-dired)
 
 ;; Branching undo
