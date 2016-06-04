@@ -42,7 +42,8 @@
                       ;; Keyboard shortcuts
                       (evil-leader/set-key
                        ","  (lambda () (interactive) (ansi-term (getenv "SHELL")))
-		       "b" 'helm-mini
+                       "SPC" 'helm-projectile
+                       "b" 'helm-mini
                        "g" 'magit-status
                        "w" 'whitespace-mode
                        "x" 'helm-M-x
