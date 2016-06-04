@@ -186,6 +186,22 @@
   (dolist (hook '(text-mode-hook prog-mode-hook))
     (add-hook hook #'rainbow-delimiters-mode)))
 
+(use-package spaceline-config
+  :ensure spaceline
+  :init
+  (setq powerline-default-separator 'wave
+        powerline-height (truncate (* 1.2 (frame-char-height)))
+        spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+  :config
+  (spaceline-spacemacs-theme)
+  ;; Tomorrow Night Colours for Evil states.
+  (set-face-attribute 'spaceline-evil-emacs nil :background "#b294bb")    ; Purple
+  (set-face-attribute 'spaceline-evil-insert nil :background "#81a2be")   ; Blue
+  (set-face-attribute 'spaceline-evil-motion nil :background "#b294bb")   ; Purple
+  (set-face-attribute 'spaceline-evil-normal nil :background "#b5bd68")   ; Green
+  (set-face-attribute 'spaceline-evil-replace nil :background "#cc6666")  ; Red
+  (set-face-attribute 'spaceline-evil-visual nil :background "#f0c674"))  ; Yellow
+
 ;; Simple copy paste with system clipboard
 (use-package simpleclip
   :bind (("M-c" . simpleclip-copy)
