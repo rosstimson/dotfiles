@@ -119,6 +119,10 @@
 ;; Always ensure packages are installed automatically if not present
 (setq use-package-always-ensure t)
 
+(use-package whitespace
+  :defer t
+  :diminish (whitespace-mode . " Ⓦ"))
+
 ;;; Requires
 (require 'init-evil)
 (require 'init-dired)
@@ -187,7 +191,8 @@
   :init
   (setq powerline-default-separator 'wave
         powerline-height (truncate (* 1.2 (frame-char-height)))
-        spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+        spaceline-highlight-face-func 'spaceline-highlight-face-evil-state
+        spaceline-minor-modes-separator nil)
   :config
   (spaceline-spacemacs-theme)
   ;; Tomorrow Night Colours for Evil states.
@@ -206,6 +211,16 @@
 
 (use-package helm-projectile
   :config (helm-projectile-on))
+
+(use-package yasnippet
+  :defer t
+  :config
+  (yas-reload-all)
+  (setq yas-snippet-dirs "~/.emacs.d/snippets")
+  (setq tab-always-indent 'complete)
+  (setq yas-prompt-functions '(yas-dropdown-prompt))
+  (define-key yas-minor-mode-map (kbd "<escape>") 'yas-exit-snippet)
+  :diminish (yas-minor-mode . " Ⓨ"))
 
 ;; Simple copy paste with system clipboard
 (use-package simpleclip
