@@ -35,7 +35,7 @@
                 evil-intercept-maps nil))
 
           (use-package evil-leader
-            :init (global-evil-leader-mode)
+            :init (global-evil-leader-mode t)
             :config (progn
                       (setq evil-leader/in-all-states t)
                       (evil-leader/set-leader ",")
@@ -46,6 +46,13 @@
                        "g" 'magit-status
                        "x" 'smex
                        )))
+
+          (use-package evil-surround
+            :init (global-evil-surround-mode t))
+
+          (use-package evil-commentary
+            :init (evil-commentary-mode t)
+            :diminish evil-commentary-mode)
 
   :config (evil-mode 1))
 
