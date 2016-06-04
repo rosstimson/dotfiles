@@ -170,7 +170,8 @@
 (use-package evil-anzu
   :init
   (setq anzu-cons-mode-line-p nil)
-  (global-anzu-mode t))
+  (global-anzu-mode t)
+  :diminish anzu-mode isearch-mode)
 
 ;; Flycheck, modern on the fly syntax checking.
 (use-package flycheck
