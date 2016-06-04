@@ -198,6 +198,15 @@
   (set-face-attribute 'spaceline-evil-replace nil :background "#cc6666")  ; Red
   (set-face-attribute 'spaceline-evil-visual nil :background "#f0c674"))  ; Yellow
 
+(use-package projectile
+  :config
+  (projectile-global-mode)
+  (setq projectile-enable-caching t)
+  :diminish projectile-mode)
+
+(use-package helm-projectile
+  :config (helm-projectile-on))
+
 ;; Simple copy paste with system clipboard
 (use-package simpleclip
   :bind (("M-c" . simpleclip-copy)
