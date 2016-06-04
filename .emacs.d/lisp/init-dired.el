@@ -39,6 +39,7 @@
      (evil-make-overriding-map dired-mode-map 'normal t)
      (evil-define-key 'normal dired-mode-map
        "-" 'dired-up-directory
+       "%" 'find-file
        "h" 'evil-backward-char
        "j" 'evil-next-line
        "k" 'evil-previous-line
