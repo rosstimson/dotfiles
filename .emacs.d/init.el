@@ -166,6 +166,18 @@
   (dolist (hook '(text-mode-hook prog-mode-hook))
     (add-hook hook #'rainbow-delimiters-mode)))
 
+;; Displays current match and total matches of searches
+(use-package evil-anzu
+  :init
+  (setq anzu-cons-mode-line-p nil)
+  (global-anzu-mode t))
+
+;; Flycheck, modern on the fly syntax checking.
+(use-package flycheck
+  :init (global-flycheck-mode)
+  :bind ("C-c t f" . flycheck-mode)
+  :diminish (flycheck-mode . " Ⓢ"))
+
 (use-package spaceline-config
   :ensure spaceline
   :init
