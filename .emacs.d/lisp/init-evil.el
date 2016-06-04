@@ -42,6 +42,7 @@
                       ;; Keyboard shortcuts
                       (evil-leader/set-key
 		       "b" 'ido-switch-buffer
+                       "B" 'ibuffer
                        "f" 'ido-find-file
                        "g" 'magit-status
                        "x" 'smex

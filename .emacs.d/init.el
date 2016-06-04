@@ -100,6 +100,10 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
+;; Use Ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(autoload 'ibuffer "ibuffer" "List buffers." t)
+
 ;; Smooth scrolling
 (setq scroll-margin 5
       scroll-conservatively 9999
@@ -107,7 +111,6 @@
 
 ;; Colour theme
 (use-package color-theme-sanityinc-tomorrow
-  :ensure t
   :init (load-theme 'sanityinc-tomorrow-night 'no-confirm))
 
 
@@ -132,9 +135,8 @@
 
 ;; Enhanced package list
 (use-package paradox
-  :config
-  (setq paradox-execute-asynchronously nil
-        paradox-github-token t))
+  :commands (paradox-upgrade-packages paradox-list-packages)
+  :config (setq paradox-execute-asynchronously t))
 
 ;; Auto-completion
 (use-package company
