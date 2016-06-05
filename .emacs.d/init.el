@@ -230,6 +230,8 @@
 
 ;;; Major modes
 
+(require 'init-org)
+
 (use-package go-mode
   :mode "\\.go\\'"
   :commands (godoc gofmt gofmt-before-save)
