@@ -240,7 +240,10 @@
     (defun rosstimson/maybe-gofmt-before-save ()
       (when (eq major-mode 'go-mode)
 	(gofmt-before-save)))
-    (add-hook 'before-save-hook 'rosstimson/maybe-gofmt-before-save)))
+    (add-hook 'before-save-hook 'rosstimson/maybe-gofmt-before-save))
+  :config
+  (add-hook 'go-mode-hook 'yas-minor-mode)
+  (add-hook 'go-mode-hook (lambda () (setq flycheck-disabled-checkers '(go-errcheck)))))
 
 ;; Load custom file last
 (setq custom-file "~/.emacs.d/custom.el")
