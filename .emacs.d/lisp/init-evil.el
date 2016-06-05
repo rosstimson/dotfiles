@@ -44,6 +44,7 @@
                        ","  (lambda () (interactive) (ansi-term (getenv "SHELL")))
                        "SPC" 'helm-projectile
                        "b" 'helm-mini
+                       "f" 'helm-find-files
                        "g" 'magit-status
                        "w" 'whitespace-mode
                        "x" 'helm-M-x
