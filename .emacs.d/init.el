@@ -227,6 +227,19 @@
   :bind (("M-c" . simpleclip-copy)
          ("M-v" . simpleclip-paste)))
 
+
+;;; Major modes
+
+(use-package go-mode
+  :mode "\\.go\\'"
+  :commands (godoc gofmt gofmt-before-save)
+  :init
+  (progn
+    (defun rosstimson/maybe-gofmt-before-save ()
+      (when (eq major-mode 'go-mode)
+	(gofmt-before-save)))
+    (add-hook 'before-save-hook 'rosstimson/maybe-gofmt-before-save)))
+
 ;; Load custom file last
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
