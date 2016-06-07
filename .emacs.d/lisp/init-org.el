@@ -28,9 +28,26 @@
 
 ;;; Code:
 
+;; Define global key binding outside of use-package otherwise it doesn't
+;; seem to work when you first start Emacs.
+(define-key global-map "\C-cc" 'org-capture)
+
 (use-package org
-  :mode ("\\.org\\'" . org-mode)
-  :pin org)
+  :mode ("\\.org$'" . org-mode)
+  :commands (org-mode org-capture)
+  :pin org
+  :config
+  (setq org-directory "~/org")
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
+
+  ;; Capture templates
+  (setq org-capture-templates
+   `(("t" "Todo" entry (file+headline ,(concat org-directory "/gtd.org")
+                                     "Inbox")
+      "* TODO %?\n  %i\n  %a")
+     ("j" "Journal" entry (file+datetree ,(concat org-directory "/journal.org"))
+      "* %?\nEntered on %U\n  %i\n  %a")
+    )))
 
 (use-package org-bullets
   :config
@@ -43,4 +60,4 @@
 ;; indent-tabs-mode: nil
 ;; End:
 
-;;; init.el ends here
+;;; init-org.el ends here
