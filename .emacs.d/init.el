@@ -231,6 +231,7 @@
 ;;; Major modes
 
 (require 'init-org)
+(require 'init-lisp)
 
 (use-package go-mode
   :mode "\\.go\\'"
@@ -244,6 +245,10 @@
   :config
   (add-hook 'go-mode-hook 'yas-minor-mode)
   (add-hook 'go-mode-hook (lambda () (setq flycheck-disabled-checkers '(go-errcheck)))))
+
+(use-package yaml-mode
+  :mode (("\\.yml$" . yaml-mode)
+         ("\\.sls$" . yaml-mode)))
 
 ;; Load custom file last
 (setq custom-file "~/.emacs.d/custom.el")
