@@ -46,7 +46,9 @@
        "l" 'evil-forward-char
        "J" 'dired-goto-file
        "K" 'dired-do-kill-lines
-       "r" 'dired-do-redisplay)))
+       "r" 'dired-do-redisplay
+       "g" 'revert-buffer
+       "s" 'dired-sort-toggle-or-edit)))
 
 (provide 'init-dired)
 
