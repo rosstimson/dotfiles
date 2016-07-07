@@ -184,7 +184,7 @@
 (use-package flycheck
   :init (global-flycheck-mode)
   :bind ("C-c t f" . flycheck-mode)
-  :diminish (flycheck-mode . " Ⓢ"))
+  :diminish (flycheck-mode . " Ⓕ"))
 
 (use-package spaceline-config
   :ensure spaceline
