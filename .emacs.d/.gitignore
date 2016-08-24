@@ -1,5 +1,6 @@
-company-statistics-cache.el
+rosstimson-init.el
 custom.el
+company-statistics-cache.el
 elpa/
 ido.last
 network-security.data
@@ -7,3 +8,7 @@ smex-items
 recentf
 projectile-bookmarks.eld
 projectile.cache
+anaconda-mode/
+eshell/
+image-dired/
+

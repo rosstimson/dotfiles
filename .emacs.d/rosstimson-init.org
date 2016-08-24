@@ -1,0 +1,430 @@
+#+STARTUP: content
+
+* General
+** System settings
+
+#+BEGIN_SRC emacs-lisp
+  ;; i18n
+  (prefer-coding-system 'utf-8)
+
+  ;; Reduce the frequency of garbage collection by making it happen on
+  ;; each 50MB of allocated data (the default is on every 0.76MB)
+  (setq gc-cons-threshold 50000000)
+
+  ;; Warn when opening files bigger than 100MB
+  (setq large-file-warning-threshold 100000000)
+#+END_SRC
+
+** Personal information
+
+#+BEGIN_SRC emacs-lisp
+  (setq user-full-name "Ross Timson"
+        user-mail-address "ross@rosstimson.com")
+#+END_SRC
+
+** Backups
+
+Put backups in a sensible location rather than scattered all over the place.
+
+#+BEGIN_SRC emacs-lisp
+  (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+#+END_SRC
+
+Disk is cheap. Save lots.
+
+#+BEGIN_SRC emacs-lisp
+  (setq backup-by-copying t)    ; Don't delink hardlings
+  (setq version-control t)      ; Use version numbers on backups
+  (setq delete-old-versions t)  ; Automatically delete excess backups
+  (setq kept-new-versions 20)   ; How many of the newest versions to keep
+  (setq kept-old-versions 5)    ; How many of the oldest version to keep
+#+END_SRC
+
+** Interface
+
+Remove a bunch of cruft from the interface.
+
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-splash-screen t
+        inhibit-startup-message t
+        inihibt-startup-echo-area-message "rosstimson")
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+#+END_SRC
+
+Set some further UI options.
+
+#+BEGIN_SRC emacs-lisp
+  (show-paren-mode 1)
+  (blink-cursor-mode -1)
+  (global-hl-line-mode t)
+  (line-number-mode t)
+  (column-number-mode t)
+  (setq-default indicate-empty-lines t)
+#+END_SRC
+
+Stop resizing the frame all the time and just start emacs maximised.
+
+#+BEGIN_SRC emacs-lisp
+  (custom-set-variables
+   '(initial-frame-alist (quote ((fullscreen . maximized)))))
+#+END_SRC
+
+Short form yes/no questions.
+
+#+BEGIN_SRC emacs-lisp
+  (fset 'yes-or-no-p #'y-or-n-p)
+#+END_SRC
+
+Smooth scrolling.
+
+#+BEGIN_SRC emacs-lisp
+  (setq scroll-margin 5
+        scroll-conservatively 9999
+        scroll-step 1)
+#+END_SRC
+
+Set my preferred colour theme.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package color-theme-sanityinc-tomorrow
+    :init (load-theme 'sanityinc-tomorrow-night 'no-confirm))
+#+END_SRC
+
+** Recent files
+
+#+BEGIN_SRC emacs-lisp
+  (use-package recentf
+    :config
+    (setq recentf-max-saved-items 50
+          recentf-auto-cleanup 100
+          recentf-exclude (list "/\\.git/.*\\'" ; Git contents
+                                "/elpa/.*\\'"   ; Package files
+                                ".*\\.gz\\'"
+                                "TAGS"
+                                ".*-autoloads\\.el\\'"
+                                "/tmp"
+                                "/ssh:"
+                                "company-statistics-cache\.el"))
+    (recentf-mode t))
+#+END_SRC
+
+** iBuffer
+
+Use [[https://www.emacswiki.org/emacs/IbufferMode][ibuffer]] which is a better menu/switcher for buffers.
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
+  (autoload 'ibuffer "ibuffer" "List buffers." t)
+#+END_SRC
+
+* Minor Modes
+** Ivy / Counsel / Swiper
+
+Use [[https://github.com/abo-abo/swiper][Swiper]] and friends for searching and ido-like completion.
+
+Ivy, a generic completion mechanism for Emacs.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy
+    :bind (("C-x b" . ivy-switch-buffer)
+           ("C-c C-r" . ivy-resume))
+    :config
+    (ivy-mode)
+    (setq ivy-fixed-height-minibuffer t)
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-format-function 'ivy-format-function-line) ; Highlight entire line in Ivy completion buffer.
+    :diminish ivy-mode)
+#+END_SRC
+
+Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package counsel
+    :bind (("M-x" . counsel-M-x)
+           ("C-x C-f" . counsel-find-file)
+           ("C-c k" . counsel-pt)
+           ("C-x C-r" . counsel-recentf)))
+#+END_SRC
+
+Swiper, an Ivy-enhanced alternative to isearch.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package swiper
+    :bind (("C-s" . swiper)
+           ("C-r" . swiper)))
+#+END_SRC
+
+** Projectile
+
+Use [[https://github.com/bbatsov/projectile][Projectile]] which makes working within a project a lot nicer.  For example
+you can use search (with Ivy) for files just within the project.  A project
+is defined by a .git (others supported) in the top level dir.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package projectile
+    :config
+    (projectile-global-mode)
+    (setq projectile-enable-caching t)
+    (setq projectile-completion-system 'ivy)
+    :diminish (projectile-mode . "Ⓟ"))
+#+END_SRC
+
+** Paradox
+
+
+[[https://github.com/Malabarba/paradox][Paradox]] is an enhanced package list/utility.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package paradox
+    :commands (paradox-upgrade-packages paradox-list-packages)
+    :config (setq paradox-execute-asynchronously t))
+#+END_SRC
+
+** Magit
+
+[[https://magit.vc/][Magit]] the one and only Git frontend.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :bind ("C-c g" . magit-status)
+    :config
+    (setq magit-completing-read-function 'ivy-completing-read))
+#+END_SRC
+
+** Spaceline
+
+[[https://github.com/TheBB/spaceline][Spaceline]] is a fancy Powerline-like modeline extracted from Spacemacs.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package spaceline-config
+    :ensure spaceline
+    :init
+    (setq powerline-default-separator 'wave
+          powerline-height (truncate (* 1.2 (frame-char-height)))
+          spaceline-highlight-face-func 'spaceline-highlight-face-evil-state
+          spaceline-minor-modes-separator " ")
+    :config
+    (spaceline-spacemacs-theme))
+#+END_SRC
+
+** Dired
+
+
+
+Dired is the directory listing, use [[https://www.emacswiki.org/emacs/DiredPlus][Dired Plus]] and [[https://www.emacswiki.org/emacs/DiredSort][DiredSort]] to further
+enhance the listing.
+
+#+BEGIN_SRC emacs-lisp
+  ;; Prefer g-prefixed coreutils version of standard utilities when available
+  (let ((gls (executable-find "gls")))
+    (when gls (setq insert-directory-program gls)))
+
+  (use-package dired+
+    :init
+    (setq-default diredp-hide-details-initially-flag nil
+                  dired-dwim-target t))
+  (use-package dired-sort)
+#+END_SRC
+ 
+** Whitespace
+
+[[https://www.emacswiki.org/emacs/WhiteSpace][WhiteSpace]], a mode to toggle visibility of whitespace.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package whitespace
+    :defer t
+    :bind ("C-c w" . whitespace-mode)
+    :diminish (whitespace-mode . "Ⓦ"))
+#+END_SRC
+
+Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/whitespace-cleanup-mode][whitespace-cleanup-mode]]. 
+
+#+BEGIN_SRC emacs-lisp
+  (use-package whitespace-cleanup-mode
+    :init
+    (global-whitespace-cleanup-mode t)) ; Enabled globally
+#+END_SRC
+
+** Undo-tree
+
+[[https://www.emacswiki.org/emacs/UndoTree][UndoTree]] lets you visualise undo.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package undo-tree
+    :init (global-undo-tree-mode)
+    :diminish undo-tree-mode)
+#+END_SRC
+
+** Company
+
+Auto-completion [[https://company-mode.github.io/][Company]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+    :init (global-company-mode)
+    :config
+    (setq company-tooltip-align-annotations t
+          company-tooltip-flip-when-above t
+          ;; Easy navigation to candidates with M-<n>
+          company-show-numbers t)
+    :diminish (company-mode . "Ⓒ"))
+#+END_SRC
+
+[[https://github.com/company-mode/company-statistics][Company-statistics]] sorts completion candidates by previous completion choices.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package company-statistics
+    :after company
+    :config (company-statistics-mode))
+#+END_SRC
+
+** Rainbow delimiters
+
+
+
+Highlight parens etc. by depth with [[https://www.emacswiki.org/emacs/RainbowDelimiters][Rainbow Delimiters]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters
+    :init
+    (dolist (hook '(text-mode-hook prog-mode-hook))
+      (add-hook hook #'rainbow-delimiters-mode)))
+#+END_SRC
+
+** Flycheck
+
+[[http://www.flycheck.org/en/latest/][Flycheck]] is a modern on-the-fly syntax checking tool that supports many
+backend/languages.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck
+    :init (global-flycheck-mode)
+    :bind ("C-c f" . flycheck-mode)
+    :diminish (flycheck-mode . " Ⓕ"))
+#+END_SRC
+
+* Major Modes
+** Org
+
+[[http://orgmode.org/][Org mode]] - Your life in plain text.
+
+#+BEGIN_SRC emacs-lisp
+  ;; Define global key binding outside of use-package otherwise it doesn't
+  ;; seem to work when you first start Emacs.
+  (define-key global-map "\C-cc" 'org-capture)
+  (define-key global-map "\C-cl" 'org-store-link)
+  (define-key global-map "\C-ca" 'org-agenda)
+  (define-key global-map "\C-cb" 'org-iswitchb)
+
+  (use-package org
+    :mode ("\\.org$'" . org-mode)
+    :commands (org-mode org-capture)
+    :pin org
+    :config
+    (setq org-src-fontify-natively t) ; Syntax highlight code blocks.
+    (setq org-directory "~/org")
+    (setq org-default-notes-file (concat org-directory "/notes.org"))
+    (setq org-agenda-files (list "~/org/gtd.org"))
+    (setq org-log-done 'time)
+    (setq org-log-done-with-time t)
+    (setq org-completion-use-ido t)
+
+    ;; Follow links with RET.
+    (setq org-return-follows-link t)
+
+    ;; Common tags
+    (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h)))
+
+    ;; Capture templates
+    (setq org-capture-templates
+     `(("t" "Todo" entry (file+headline ,(concat org-directory "/gtd.org")
+                                       "Inbox")
+        "* TODO %?\n  %i\n  %a")
+       ("j" "Journal" entry (file+datetree ,(concat org-directory "/journal.org"))
+        "* %?\nEntered on %U\n  %i\n  %a")
+      ))
+
+    (add-hook 'org-mode-hook
+              '(lambda ()
+                 (org-indent-mode 0)
+                 (diminish 'org-indent-mode "Ⓘ"))))
+
+  (use-package org-bullets
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+  (defun org-archive-done-tasks ()
+    (interactive)
+    (org-map-entries
+     (lambda ()
+       (org-archive-subtree)
+       (setq org-map-continue-from (outline-previous-heading)))
+     "/DONE" 'tree))
+#+END_SRC
+
+** YAML
+
+[[https://www.emacswiki.org/emacs/YamlMode][Yaml mode]]
+
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode
+    :mode (("\\.yml$" . yaml-mode)
+           ("\\.yaml$" . yaml-mode)
+           ("\\.sls$" . yaml-mode))) ; SaltStack
+#+END_SRC
+
+** Python
+
+[[https://github.com/proofit404/anaconda-mode][Anaconde mode]] offers code navigation, documentation lookup, and completion
+for Python.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package anaconda-mode
+    :init
+    (progn
+      (add-hook 'python-mode-hook 'anaconda-mode)
+      (add-hook 'python-mode-hook 'anaconda-eldoc-mode))
+    :diminish (anaconda-mode . "Ⓐ"))
+#+END_SRC
+
+[[https://github.com/proofit404/company-anaconda][company-anaconda]] - Anaconda backend for Company.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package company-anaconda
+    :init (add-to-list 'company-backends 'company-anaconda))
+#+END_SRC
+
+** Go
+
+[[https://github.com/dominikh/go-mode.el][Go mode]]
+
+#+BEGIN_SRC emacs-lisp
+  (use-package go-mode
+    :init
+    (setq gofmt-command "goimports")
+    (add-hook 'before-save-hook 'gofmt-before-save)
+    (add-hook 'go-mode-hook (lambda () (setq flycheck-disabled-checkers '(go-errcheck)))))
+#+END_SRC
+
+[[https://github.com/nsf/gocode/tree/master/emacs-company][gocode]] backend for Go auto-completion via Company.  This sets gocode to be the only
+Company backend when editing Go code.
+
+`gocode` itself can be installed with: `go get -u github.com/nsf/gocode`
+
+#+BEGIN_SRC emacs-lisp
+  (use-package company-go
+    :init
+    (add-hook 'go-mode-hook (lambda ()
+                            (set (make-local-variable 'company-backends) '(company-go))
+                            (company-mode))))
+#+END_SRC
+
+Show ElDoc style documention for Go via [[https://github.com/syohex/emacs-go-eldoc][go-eldoc]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package go-eldoc
+    :init
+    (add-hook 'go-mode-hook 'go-eldoc-setup))
+#+END_SRC
