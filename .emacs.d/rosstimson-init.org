@@ -244,7 +244,8 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 #+BEGIN_SRC emacs-lisp
   (use-package whitespace-cleanup-mode
     :init
-    (global-whitespace-cleanup-mode t)) ; Enabled globally
+    (global-whitespace-cleanup-mode t) ; Enabled globally
+    :diminish (whitespace-cleanup-mode . "ⓦ"))
 #+END_SRC
 
 ** Undo-tree
@@ -302,7 +303,22 @@ backend/languages.
   (use-package flycheck
     :init (global-flycheck-mode)
     :bind ("C-c f" . flycheck-mode)
-    :diminish (flycheck-mode . " Ⓕ"))
+    :diminish (flycheck-mode . "Ⓕ"))
+#+END_SRC
+
+** Flyspell
+
+Check my spelling on the fly with [[https://www.emacswiki.org/emacs/FlySpell][FlySpell]]. Requires `aspell` to be installed.
+This also spellchecks spelling in programming mode but only within comments.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package flyspell
+    :config
+    (setq ispell-program-name "aspell" ; use aspell instead of ispell
+          ispell-extra-args '("--sug-mode=ultra" "--lang=en_GB"))
+    (add-hook 'text-mode-hook #'flyspell-mode)
+    (add-hook 'prog-mode-hook #'flyspell-prog-mode)
+    :diminish (flyspell-mode . "Ⓢ"))
 #+END_SRC
 
 * Major Modes
