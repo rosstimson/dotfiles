@@ -171,6 +171,17 @@ Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy
     (avy-setup-default))
 #+END_SRC
 
+** Ace-link
+
+Quickly follow links with [[https://github.com/abo-abo/ace-link][Ace-link]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ace-link
+    :config
+    (ace-link-setup-default)
+    (define-key org-mode-map (kbd "M-o") 'ace-link-org))
+#+END_SRC
+
 ** Projectile
 
 Use [[https://github.com/bbatsov/projectile][Projectile]] which makes working within a project a lot nicer.  For example
