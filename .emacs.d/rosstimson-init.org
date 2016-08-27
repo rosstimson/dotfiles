@@ -347,6 +347,31 @@ This also spellchecks spelling in programming mode but only within comments.
     :diminish (flyspell-mode . "Ⓢ"))
 #+END_SRC
 
+** Smartparens
+
+Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartparens]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package smartparens
+    :commands (smartparens-mode
+               smartparens-strict-mode)
+    :init
+    (add-hook 'slime-repl-mode-hook #'smartparens-mode)
+    (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
+    (add-hook 'lisp-mode-hook #'smartparens-mode)
+    (add-hook 'clojure-mode-hook #'smartparens-mode)
+    :config
+    (require 'smartparens-config)
+    :diminish (smartparens-mode . "②"))
+#+END_SRC
+
+** ElDoc
+
+#+BEGIN_SRC emacs-lisp
+  (use-package eldoc
+    :diminish (eldoc-mode . "Ⓔ"))
+#+END_SRC
+
 * Major Modes
 ** Org
 
@@ -431,7 +456,7 @@ for Python.
     :diminish (anaconda-mode . "Ⓐ"))
 #+END_SRC
 
-[[https://github.com/proofit404/company-anaconda][company-anaconda]] - Anaconda backend for Company.
+[[https://github.com/proofit404/company-anaconda][company-anaconda]] is an Anaconda backend for Company.
 
 #+BEGIN_SRC emacs-lisp
   (use-package company-anaconda
@@ -469,4 +494,53 @@ Show ElDoc style documention for Go via [[https://github.com/syohex/emacs-go-eld
   (use-package go-eldoc
     :init
     (add-hook 'go-mode-hook 'go-eldoc-setup))
+#+END_SRC
+** Lisp / Clojure
+
+[[https://common-lisp.net/project/slime/][SLIME]]: The Superior Lisp Interaction Mode for Emacs.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package slime
+    :config
+    (setq inferior-lisp-program "clisp")
+    (slime-setup '(slime-fancy))
+
+    (add-hook 'emacs-lisp-mode-hook #'eldoc-mode)
+    (add-hook 'ielm-mode-hook #'eldoc-mode)
+    (add-hook 'lisp-interaction-mode-hook #'eldoc-mode)
+
+    (add-hook 'lisp-mode-hook #'slime-lisp-mode-hook))
+#+END_SRC
+
+[[https://github.com/clojure-emacs/clojure-mode][Clojure Mode]] is a major mode for Clojure.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package clojure-mode
+    :config
+    (add-hook 'clojure-mode-hook #'subword-mode))
+#+END_SRC
+
+[[https://cider.readthedocs.io/en/latest/][CIDER]] is the Clojure(Script) Interactive Development Environment that Rocks!
+
+#+BEGIN_SRC emacs-lisp
+  (use-package cider
+    :config
+    (add-hook 'cider-mode-hook #'eldoc-mode)
+    (add-hook 'cider-repl-mode-hook #'eldoc-mode))
+#+END_SRC
+
+[[https://github.com/Malabarba/speed-of-thought-lisp][Speed of Thought Lisp]] and [[https://github.com/Malabarba/speed-of-thought-clojure][Speed of Thought Clojure]] increase the speed at
+which you can write Lisp/Clojure by including many abbreviations that
+activated when typing them directly after parentheses.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package sotlisp
+    :commands sotlisp-mode
+    :config
+    (sotlisp-define-all-abbrevs))
+
+  (use-package sotclojure
+    :commands sotclojure-mode
+    :config
+    (sotclojure-define-all-abbrevs))
 #+END_SRC

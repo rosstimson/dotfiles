@@ -38,7 +38,7 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 
-;;; Standard package repositories
+;; Standard package repositories
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
@@ -69,3 +69,4 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
+;;; init.el ends here
