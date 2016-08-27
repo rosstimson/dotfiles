@@ -157,6 +157,19 @@ Swiper, an Ivy-enhanced alternative to isearch.
            ("C-r" . swiper)))
 #+END_SRC
 
+** Avy
+
+Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package avy
+    :bind (("M-g c" . avy-goto-char)
+           ("M-g w" . avy-goto-word-1)
+           ("M-g l" . avy-goto-line))
+    :config
+    (avy-setup-default))
+#+END_SRC
+
 ** Projectile
 
 Use [[https://github.com/bbatsov/projectile][Projectile]] which makes working within a project a lot nicer.  For example
