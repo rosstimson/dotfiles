@@ -95,20 +95,20 @@ Set my preferred colour theme.
 ** Recent files
 
 #+BEGIN_SRC emacs-lisp
-    (use-package recentf
-      :config
-      (setq recentf-max-saved-items 50
-            recentf-auto-cleanup 100
-            recentf-exclude (list "/\\.git/.*\\'" ; Git contents
-                                  "/elpa/.*\\'"   ; Package files
-                                  ".*\\.gz\\'"
-                                  "TAGS"
-                                  ".*-autoloads\\.el\\'"
-                                  "/tmp"
-                                  "/ssh:"
-                                  "company-statistics-cache\.el"
-                                  "custom\.el"))
-      (recentf-mode t))
+  (use-package recentf
+    :config
+    (setq recentf-max-saved-items 50
+          recentf-auto-cleanup 100
+          recentf-exclude (list "/\\.git/.*\\'" ; Git contents
+                                "/elpa/.*\\'"   ; Package files
+                                ".*\\.gz\\'"
+                                "TAGS"
+                                ".*-autoloads\\.el\\'"
+                                "/tmp"
+                                "/ssh:"
+                                "company-statistics-cache\.el"
+                                "custom\.el"))
+    (recentf-mode t))
 #+END_SRC
 
 ** iBuffer
