@@ -372,7 +372,7 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
     :diminish (eldoc-mode . "Ⓔ"))
 #+END_SRC
 
-* Major Modes
+* Major Modes / Language Specific Stuff
 ** Org
 
 [[http://orgmode.org/][Org mode]] - Your life in plain text.
@@ -431,6 +431,22 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
      "/DONE" 'tree))
 #+END_SRC
 
+** Markdown
+
+[[http://jblevins.org/projects/markdown-mode/][Markdown Mode]] is a major mode for Markdown offering syntax highlighting
+and preview as well as other niceties.
+
+Markdown command is set to [[http://fletcherpenney.net/multimarkdown/][multimarkdown]] so that needs installed on the system.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode
+    :commands (markdown-mode gfm-mode)
+    :mode (("README\\.md\\'" . gfm-mode)
+           ("\\.md\\'" . markdown-mode)
+           ("\\.markdown\\'" . markdown-mode))
+    :init (setq markdown-command "multimarkdown"))
+#+END_SRC
+
 ** YAML
 
 [[https://www.emacswiki.org/emacs/YamlMode][Yaml mode]]
@@ -472,7 +488,11 @@ for Python.
     :init
     (setq gofmt-command "goimports")
     (add-hook 'before-save-hook 'gofmt-before-save)
-    (add-hook 'go-mode-hook (lambda () (setq flycheck-disabled-checkers '(go-errcheck)))))
+    (add-hook 'go-mode-hook (lambda () (setq flycheck-disabled-checkers '(go-errcheck))))
+    (add-hook 'go-mode-hook (lambda ()
+                              (if (not (string-match "go" compile-command))
+                                  (set (make-local-variable 'compile-command)
+                                       "go build -v")))))
 #+END_SRC
 
 [[https://github.com/nsf/gocode/tree/master/emacs-company][gocode]] backend for Go auto-completion via Company.  This sets gocode to be the only
