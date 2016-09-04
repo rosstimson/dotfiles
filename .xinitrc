@@ -5,6 +5,13 @@ export LANG=en_GB.UTF-8 LC_ALL=en_GB.UTF-8
 # Read in .Xresources
 xrdb -merge ~/.Xresources
 
+# Disable beep
+xset b off
+
+# Enable Toucpad tap and palm detection
+synclient TapButton1=1
+synclient PalmDetect=1
+
 eval $(gpg-agent --daemon)
 
 # Set wallpaper
