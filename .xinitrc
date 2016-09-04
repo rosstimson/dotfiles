@@ -26,7 +26,7 @@ setxkbmap -model pc104 -layout gb -option ctrl:nocaps
 xmodmap -e "pointer = 1 2 3 5 4"
 
 # Set screensaver
-xautolock -time 5 -locker "xlock -mode random +showdate -lockdelay 600 -timeout 20" &
+xautolock -time 5 -locker slock &
 
 # Window managers / environments
 exec dwm
