@@ -94,9 +94,9 @@ BASE16_SHELL="$HOME/.base16-shell/base16-atelierlakeside.dark.sh"
 autoload colors; colors;  # Also need this present for colours in the prompt
 # LS colors, made with http://geoff.greer.fm/lscolors/
 # BSD
-export LSCOLORS="exfxcxdxbxegehabagacaf"
+export LSCOLORS="exfxcxdxbxxeadabagacaf"
 # Linux
-export LS_COLORS='di=34;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;47:su=0;41:sg=0;46:tw=0;42:ow=0;45:'
+export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=0;44:cd=30;43:su=30;41:sg=30;46:tw=30;42:ow=30;45"
 
 # ------------------------------------------------------------------------- }}}
 # Less colours for man pages ---------------------------------------------- {{{
