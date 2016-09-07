@@ -99,8 +99,8 @@ path=(
   /usr/games
   "$HOME"/bin
   "$PYENV_ROOT/bin"         # Pyenv
+  /usr/local/go/bin         # System installed Go binaries e.g. godoc
   "$GOPATH/bin"             # Go binaries
-  "$HOME/.cask/bin"         # Cask, Emacs dependency management
   "$path[@]"
   "$fpath[@]"
 )
