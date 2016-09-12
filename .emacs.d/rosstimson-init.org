@@ -145,7 +145,7 @@ Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
   (use-package counsel
     :bind (("M-x" . counsel-M-x)
            ("C-x C-f" . counsel-find-file)
-           ("C-x C-r" . counsel-recentf)
+           ("C-x f" . counsel-recentf)
            ("C-c k" . counsel-pt)
            ("C-c i" . counsel-imenu)))
 #+END_SRC
