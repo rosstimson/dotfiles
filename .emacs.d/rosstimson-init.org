@@ -92,6 +92,12 @@ Set my preferred colour theme.
     :init (load-theme 'sanityinc-tomorrow-night 'no-confirm))
 #+END_SRC
 
+Allow easy movement between windows/splits.
+
+#+BEGIN_SRC emacs-lisp
+  (windmove-default-keybindings)
+#+END_SRC
+
 ** Recent files
 
 #+BEGIN_SRC emacs-lisp
