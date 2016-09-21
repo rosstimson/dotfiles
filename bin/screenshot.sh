@@ -4,11 +4,11 @@
 screenshot() {
   case $1 in
   full)
-    scrot -m -e 'mv $f ~/Pictures/Screenshots/'
+    scrot -m -e 'mv $f ~/pictures/screenshots/'
     ;;
   window)
     sleep 1
-    scrot -s -e 'mv $f ~/Pictures/Screenshots/'
+    scrot -s -e 'mv $f ~/pictures/screenshots/'
     ;;
   *)
     ;;
