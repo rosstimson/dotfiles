@@ -399,20 +399,19 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
     (setq org-src-fontify-natively t) ; Syntax highlight code blocks.
     (setq org-directory "~/org")
     (setq org-default-notes-file (concat org-directory "/notes.org"))
-    (setq org-agenda-files (list "~/org/gtd.org"))
+    (setq org-agenda-files (list "~/org/personal.org"
+                                 "~/org/work.org"))
     (setq org-log-done 'time)
     (setq org-log-done-with-time t)
+    (setq org-log-into-drawer t)
     (setq org-completion-use-ido t)
 
     ;; Follow links with RET.
     (setq org-return-follows-link t)
 
-    ;; Common tags
-    (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h)))
-
     ;; Capture templates
     (setq org-capture-templates
-     `(("t" "Todo" entry (file+headline ,(concat org-directory "/gtd.org")
+     `(("t" "Todo" entry (file+headline ,(concat org-directory "/personal.org")
                                        "Inbox")
         "* TODO %?\n  %i\n  %a")
        ("j" "Journal" entry (file+datetree ,(concat org-directory "/journal.org"))
