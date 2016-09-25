@@ -92,6 +92,12 @@ Set my preferred colour theme.
     :init (load-theme 'sanityinc-tomorrow-night 'no-confirm))
 #+END_SRC
 
+Allow easy movement between windows/splits.
+
+#+BEGIN_SRC emacs-lisp
+  (windmove-default-keybindings)
+#+END_SRC
+
 ** Recent files
 
 #+BEGIN_SRC emacs-lisp
@@ -145,7 +151,7 @@ Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
   (use-package counsel
     :bind (("M-x" . counsel-M-x)
            ("C-x C-f" . counsel-find-file)
-           ("C-x C-r" . counsel-recentf)
+           ("C-x f" . counsel-recentf)
            ("C-c k" . counsel-pt)
            ("C-c i" . counsel-imenu)))
 #+END_SRC
