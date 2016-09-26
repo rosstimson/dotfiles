@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openbox_menu xmlns="http://openbox.org/3.4/menu">
-	<menu id="None-654844" label="New Menu">
-		<item label="New Item">
-			<action name="Execute">
-				<execute>command</execute>
-			</action>
-		</item>
-	</menu>
 	<menu id="apps-editors-menu" label="EDITORS">
 		<item label="VIM">
 			<action name="Execute">
