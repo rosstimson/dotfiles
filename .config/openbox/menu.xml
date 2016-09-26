@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openbox_menu xmlns="http://openbox.org/3.4/menu">
 	<menu id="apps-editors-menu" label="EDITORS">
-		<item label="VIM">
-			<action name="Execute">
-				<command>gvim</command>
-				<startupnotify>
-					<enabled>yes</enabled>
-					<wmclass>GVim</wmclass>
-				</startupnotify>
-			</action>
-		</item>
 		<item label="EMACS">
 			<action name="Execute">
 				<command>emacs</command>
 				<startupnotify>
 					<enabled>yes</enabled>
 					<wmclass>Emacs</wmclass>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="VIM">
+			<action name="Execute">
+				<command>gvim</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+					<wmclass>GVim</wmclass>
 				</startupnotify>
 			</action>
 		</item>
@@ -46,14 +46,19 @@
 		</item>
 	</menu>
 	<menu id="apps-net-menu" label="INTERNET">
+		<item label="FIREFOX">
+			<action name="Execute">
+				<execute>firefox</execute>
+			</action>
+		</item>
 		<item label="CHROME">
 			<action name="Execute">
 				<execute>chrome</execute>
 			</action>
 		</item>
-		<item label="FIREFOX">
+		<item label="COREBIRD">
 			<action name="Execute">
-				<execute>firefox</execute>
+				<execute>corebird</execute>
 			</action>
 		</item>
 	</menu>
