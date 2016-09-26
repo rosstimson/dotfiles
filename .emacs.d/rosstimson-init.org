@@ -64,6 +64,12 @@ Set some further UI options.
   (setq-default indicate-empty-lines t)
 #+END_SRC
 
+Set default font.
+
+#+BEGIN_SRC emacs-lisp
+  (set-default-font "Hack-10")
+#+END_SRC
+
 Stop resizing the frame all the time and just start emacs maximised.
 
 #+BEGIN_SRC emacs-lisp
