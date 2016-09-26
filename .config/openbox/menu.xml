@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+	<menu id="None-654844" label="New Menu">
+		<item label="New Item">
+			<action name="Execute">
+				<execute>command</execute>
+			</action>
+		</item>
+	</menu>
+	<menu id="apps-editors-menu" label="EDITORS">
+		<item label="VIM">
+			<action name="Execute">
+				<command>gvim</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+					<wmclass>GVim</wmclass>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="EMACS">
+			<action name="Execute">
+				<command>emacs</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+					<wmclass>Emacs</wmclass>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="GEDIT">
+			<action name="Execute">
+				<command>gedit</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+	</menu>
+	<menu id="apps-ob-menu" label="OPENBOX">
+		<item label="RECONFIGURE">
+			<action name="Execute">
+				<execute>openbox --reconfigure</execute>
+			</action>
+		</item>
+		<item label="OBCONF">
+			<action name="Execute">
+				<execute>obconf</execute>
+			</action>
+		</item>
+		<item label="OBMENU">
+			<action name="Execute">
+				<execute>obmenu</execute>
+			</action>
+		</item>
+	</menu>
+	<menu id="apps-net-menu" label="INTERNET">
+		<item label="CHROME">
+			<action name="Execute">
+				<execute>chrome</execute>
+			</action>
+		</item>
+		<item label="FIREFOX">
+			<action name="Execute">
+				<execute>firefox</execute>
+			</action>
+		</item>
+	</menu>
+	<menu id="root-menu" label="Openbox 3">
+		<item label="TERMINAL">
+			<action name="Execute">
+				<execute>urxvtc</execute>
+			</action>
+		</item>
+		<item label="FIREFOX">
+			<action name="Execute">
+				<execute>firefox</execute>
+			</action>
+		</item>
+		<item label="THUNAR">
+			<action name="Execute">
+				<execute>thunar</execute>
+			</action>
+		</item>
+		<separator/>
+		<menu id="apps-editors-menu"/>
+		<menu id="apps-net-menu"/>
+		<separator/>
+		<menu id="apps-ob-menu"/>
+	</menu>
+</openbox_menu>
