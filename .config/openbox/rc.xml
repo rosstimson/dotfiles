@@ -325,6 +325,12 @@
         <command>kfmclient openProfile filemanagement</command>
       </action>
     </keybind>
+    <keybind key="W-p">
+      <action name="Execute">
+        <name>dmenu</name>
+        <command>dmenu_run</command>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>1</dragThreshold>
