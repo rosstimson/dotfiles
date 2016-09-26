@@ -23,6 +23,14 @@ urxvtd -q -o -f &
 # Removing the ugly x cursor
 xsetroot -cursor_name left_ptr
 
+# dwm status bar (where iwm0 is the wifi network interface in OpenBSD)
+dstat iwm0 &
+
+while true; do
+  xsetroot -name "$(dwmstatus)";
+  sleep 1;
+done &
+
 # Set keyboard to Apple Mac KB and swap ctrl / caps-lock.
 # setxkbmap -model apple -layout us -variant mac -option ctrl:swapcaps
 
