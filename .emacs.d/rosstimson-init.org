@@ -205,8 +205,7 @@ is defined by a .git (others supported) in the top level dir.
     :config
     (projectile-global-mode)
     (setq projectile-enable-caching t)
-    (setq projectile-completion-system 'ivy)
-    :diminish (projectile-mode . "Ⓟ"))
+    (setq projectile-completion-system 'ivy))
 #+END_SRC
 
 ** Paradox
@@ -273,8 +272,7 @@ enhance the listing.
 #+BEGIN_SRC emacs-lisp
   (use-package whitespace
     :defer t
-    :bind ("C-c w" . whitespace-mode)
-    :diminish (whitespace-mode . "Ⓦ"))
+    :bind ("C-c w" . whitespace-mode))
 #+END_SRC
 
 Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/whitespace-cleanup-mode][whitespace-cleanup-mode]]. 
@@ -282,8 +280,7 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 #+BEGIN_SRC emacs-lisp
   (use-package whitespace-cleanup-mode
     :init
-    (global-whitespace-cleanup-mode t) ; Enabled globally
-    :diminish (whitespace-cleanup-mode . "ⓦ"))
+    (global-whitespace-cleanup-mode t)) ; Enabled globally
 #+END_SRC
 
 ** Undo-tree
@@ -308,7 +305,7 @@ Auto-completion [[https://company-mode.github.io/][Company]].
           company-tooltip-flip-when-above t
           ;; Easy navigation to candidates with M-<n>
           company-show-numbers t)
-    :diminish (company-mode . "Ⓒ"))
+    :diminish company-mode)
 #+END_SRC
 
 [[https://github.com/company-mode/company-statistics][Company-statistics]] sorts completion candidates by previous completion choices.
@@ -340,8 +337,7 @@ backend/languages.
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck
     :init (global-flycheck-mode)
-    :bind ("C-c f" . flycheck-mode)
-    :diminish (flycheck-mode . "Ⓕ"))
+    :bind ("C-c f" . flycheck-mode))
 #+END_SRC
 
 ** Flyspell
@@ -356,7 +352,7 @@ This also spellchecks spelling in programming mode but only within comments.
           ispell-extra-args '("--sug-mode=ultra" "--lang=en_GB"))
     (add-hook 'text-mode-hook #'flyspell-mode)
     (add-hook 'prog-mode-hook #'flyspell-prog-mode)
-    :diminish (flyspell-mode . "Ⓢ"))
+    :diminish (flyspell-mode . "Spell"))
 #+END_SRC
 
 ** Smartparens
@@ -373,15 +369,13 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
     (add-hook 'lisp-mode-hook #'smartparens-mode)
     (add-hook 'clojure-mode-hook #'smartparens-mode)
     :config
-    (require 'smartparens-config)
-    :diminish (smartparens-mode . "②"))
+    (require 'smartparens-config))
 #+END_SRC
 
 ** ElDoc
 
 #+BEGIN_SRC emacs-lisp
-  (use-package eldoc
-    :diminish (eldoc-mode . "Ⓔ"))
+  (use-package eldoc)
 #+END_SRC
 
 * Major Modes / Language Specific Stuff
@@ -425,12 +419,7 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
         "* TODO %?\n  %i\n  %a")
        ("j" "Journal" entry (file+datetree ,(concat org-directory "/journal.org"))
         "* %?\nEntered on %U\n  %i\n  %a")
-      ))
-
-    (add-hook 'org-mode-hook
-              '(lambda ()
-                 (org-indent-mode 0)
-                 (diminish 'org-indent-mode "Ⓘ"))))
+      )))
 
   (use-package org-bullets
     :config
@@ -482,8 +471,7 @@ for Python.
     :init
     (progn
       (add-hook 'python-mode-hook 'anaconda-mode)
-      (add-hook 'python-mode-hook 'anaconda-eldoc-mode))
-    :diminish (anaconda-mode . "Ⓐ"))
+      (add-hook 'python-mode-hook 'anaconda-eldoc-mode)))
 #+END_SRC
 
 [[https://github.com/proofit404/company-anaconda][company-anaconda]] is an Anaconda backend for Company.
