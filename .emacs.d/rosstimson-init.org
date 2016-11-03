@@ -394,7 +394,7 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
   (use-package org
     :mode ("\\.org$'" . org-mode)
     :commands (org-mode org-capture)
-    :pin manual
+    :pin org
     :config
     (setq org-src-fontify-natively t) ; Syntax highlight code blocks.
     (setq org-directory "~/org")
