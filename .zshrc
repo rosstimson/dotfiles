@@ -306,21 +306,22 @@ alias d='docker'
 alias da='docker attach'
 alias db='docker build'
 alias dc='docker commit'                    # Clobbers GNU dc calculator tool
+alias dclean='docker rmi -f $(docker images -q -a -f dangling=true)' # Removes all untagged images
+alias ddr='docker run -d'
 alias de='docker exec -t -i'
 alias di='docker images'
 alias dl='docker pull'
+alias dm='docker-machine'
 alias dp='docker push'
 alias dps='docker ps'
 alias dr='docker run'
 alias dri='docker run -it --rm'
-alias ddr='docker run -d'
-alias ds='docker stop'
 alias drm='docker rm'
-alias drmi='docker rmi'
 alias drma='docker rm $(docker ps -a -q)'    # Remove all containers
+alias drmi='docker rmi'
+alias ds='docker stop'
 alias dsa='docker stop $(docker ps -a -q)'  # Stop all containers
-alias dclean='docker rmi -f $(docker images -q -a -f dangling=true)' # Removes all untagged images
-alias dm='docker-machine'
+alias dt='docker tag'
 
 # }}}
 
