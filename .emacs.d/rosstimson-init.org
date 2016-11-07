@@ -13,6 +13,9 @@
 
   ;; Warn when opening files bigger than 100MB
   (setq large-file-warning-threshold 100000000)
+
+  ;; Add to exec-path (Emacs equivalent to $PATH)
+  (add-to-list 'exec-path "/usr/local/bin/")
 #+END_SRC
 
 ** Personal information
@@ -410,15 +413,33 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
     (setq org-return-follows-link t)
 
     (setq org-todo-keywords
-         '((sequence "NEXT(n)" "TODO(t)" "WAIT(w@/!)" "SOMEDAY(s)" "PROJ(p)" "|" "DONE(d!)" "CANCELLED(c@)" "DELEGATED(l@)")))
+         '((sequence "NEXT(n)" "TODO(t)" "WAIT(w@/!)" "APPT(a)" "|" "DONE(d!)" "CANCELLED(c@)" "DELEGATED(l@)")))
 
     ;; Capture templates
     (setq org-capture-templates
           `(("p" "Personal Todo" entry (file+headline ,(concat org-directory "/personal.org") "Inbox") "* TODO %?\n  %i\n")
             ("w" "Work Todo" entry (file+headline ,(concat org-directory "/work.org") "Inbox") "* TODO %?\n  %i\n")
+            ("s" "Someday Todo" entry (file+headline ,(concat org-directory "/someday.org") "Inbox") "* TODO %?\n  %i\n")
             ("n" "Notes" entry (file+headline (concat org-directory "/notes.org") "Notes") "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n")
             ("j" "Journal" entry (file+datetree ,(concat org-directory "/journal.org")) "* %?\nEntered on %U\n  %i\n")
-      )))
+            )))
+
+  (setq org-agenda-custom-commands
+  '(("A" "Work and Personal Lists"
+       ((agenda)
+            (tags-todo "URGENT")
+            (tags-todo "EMAIL")
+            (tags-todo "PHONE")
+            (tags-todo "HOME")
+            (tags-todo "COMPUTER")))
+
+    ("D" "Daily Action List"
+       ((agenda "" ((org-agenda-ndays 1)
+                        (org-agenda-sorting-strategy
+                         (quote ((agenda time-up priority-down tag-up) )))
+                        (org-deadline-warning-days 0)
+                        ))))
+  ))
 
   (use-package org-bullets
     :config
