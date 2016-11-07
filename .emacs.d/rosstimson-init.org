@@ -403,7 +403,7 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
     (setq org-directory "~/org")
     (setq org-default-notes-file (concat org-directory "/notes.org"))
     (setq org-agenda-files (list "~/org/personal.org"
-                                 "~/org/work.org"))
+				 "~/org/work.org"))
     (setq org-log-done 'time)
     (setq org-log-done-with-time t)
     (setq org-log-into-drawer t)
@@ -413,7 +413,7 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
     (setq org-return-follows-link t)
 
     (setq org-todo-keywords
-         '((sequence "NEXT(n)" "TODO(t)" "WAIT(w@/!)" "APPT(a)" "|" "DONE(d!)" "CANCELLED(c@)" "DELEGATED(l@)")))
+	 '((sequence "NEXT(n)" "TODO(t)" "WAIT(w@/!)" "APPT(a)" "|" "DONE(d!)" "CANCELLED(c@)" "DELEGATED(l@)")))
 
     ;; Capture templates
     (setq org-capture-templates
@@ -431,14 +431,15 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
             (tags-todo "EMAIL")
             (tags-todo "PHONE")
             (tags-todo "HOME")
-            (tags-todo "COMPUTER")))
+            (tags-todo "COMPUTER")
+	    (tags-todo "-{.*}")))
 
     ("D" "Daily Action List"
-       ((agenda "" ((org-agenda-ndays 1)
-                        (org-agenda-sorting-strategy
-                         (quote ((agenda time-up priority-down tag-up) )))
-                        (org-deadline-warning-days 0)
-                        ))))
+       ((agenda "" ((org-agenda-span 1)
+			(org-agenda-sorting-strategy
+			 (quote ((agenda time-up priority-down tag-up) )))
+			(org-deadline-warning-days 0)
+			))))
   ))
 
   (use-package org-bullets
