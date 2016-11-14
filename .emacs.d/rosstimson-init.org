@@ -587,3 +587,12 @@ activated when typing them directly after parentheses.
     :config
     (sotclojure-define-all-abbrevs))
 #+END_SRC
+** Terraform
+
+[[https://github.com/syohex/emacs-terraform-mode][Terraform Mode]] is a major mode for editing Terraform files.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package terraform-mode
+    :config
+    (setq terraform-indent-level 2))
+#+END_SRC
