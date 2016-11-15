@@ -7,7 +7,7 @@
  '(magit-commit-arguments (quote ("--verbose" "--gpg-sign=667A3481E4BB34F3")))
  '(package-selected-packages
    (quote
-    (org ace-link yaml-mode whitespace-cleanup-mode use-package spaceline rainbow-delimiters paradox org-bullets go-eldoc flycheck dired-sort dired+ counsel company-statistics company-go company-anaconda color-theme-sanityinc-tomorrow avy)))
+    (dracula-theme org ace-link yaml-mode whitespace-cleanup-mode use-package spaceline rainbow-delimiters paradox org-bullets go-eldoc flycheck dired-sort dired+ counsel company-statistics company-go company-anaconda color-theme-sanityinc-tomorrow avy)))
  '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
