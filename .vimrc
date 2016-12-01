@@ -36,7 +36,7 @@ Plug 'benekastah/neomake'
 Plug 'tweekmonster/braceless.vim'
 
 if has('nvim')
-    Plug 'Shougo/deoplete.nvim'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'zchee/deoplete-go', { 'do': 'make'}
 endif
 
