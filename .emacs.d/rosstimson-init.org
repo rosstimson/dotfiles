@@ -427,7 +427,7 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
     (setq org-return-follows-link t)
 
     (setq org-todo-keywords
-	 '((sequence "NEXT(n)" "TODO(t)" "WAIT(w@/!)" "APPT(a)" "|" "DONE(d!)" "CANCELLED(c@)" "DELEGATED(l@)")))
+	 '((sequence "TODO(t)" "WAIT(w@/!)" "APPT(a)" "|" "DONE(d!)" "CANCELLED(c@)" "DELEGATED(l@)")))
 
     ;; Capture templates
     (setq org-capture-templates
