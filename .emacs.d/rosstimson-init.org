@@ -516,6 +516,15 @@ for Python.
     :init (add-to-list 'company-backends 'company-anaconda))
 #+END_SRC
 
+** Jinja2
+
+[[https://melpa.org/#/jinja2-mode][Jinja2 Mode]] is a majore mode for the jinja2 templating language.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package jinja2-mode
+    :mode ("\\.j2\\'" . jinja2-mode))
+#+END_SRC
+
 ** Go
 
 [[https://github.com/dominikh/go-mode.el][Go mode]]
