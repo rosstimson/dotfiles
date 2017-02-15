@@ -369,6 +369,7 @@ This also spellchecks spelling in programming mode but only within comments.
           ispell-extra-args '("--sug-mode=ultra" "--lang=en_GB"))
     (add-hook 'text-mode-hook #'flyspell-mode)
     (add-hook 'prog-mode-hook #'flyspell-prog-mode)
+    :bind ("<f8>" . ispell-word)
     :diminish (flyspell-mode . "Spell"))
 #+END_SRC
 
