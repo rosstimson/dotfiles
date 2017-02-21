@@ -33,4 +33,4 @@ set guioptions-=L
 set guioptions-=r
 set guioptions-=R
 set guioptions+=c                   " Use console dialogs
-colorscheme base16-atelierlakeside  " Set colour scheme
+colorscheme base16-atelier-lakeside " Set colour scheme
