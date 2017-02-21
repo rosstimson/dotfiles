@@ -173,6 +173,12 @@ Swiper, an Ivy-enhanced alternative to isearch.
            ("C-r" . swiper)))
 #+END_SRC
 
+** Silver Searcher (ag)
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ag)
+#+END_SRC
+
 ** Avy
 
 Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy]].
