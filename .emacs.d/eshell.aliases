@@ -1,0 +1,4 @@
+alias d dired $1
+alias ff find-file $1
+alias c recenter 0
+alias l ls -lha $*
