@@ -135,6 +135,22 @@ Use [[https://www.emacswiki.org/emacs/IbufferMode][ibuffer]] which is a better m
   (autoload 'ibuffer "ibuffer" "List buffers." t)
 #+END_SRC
 
+** Eshell
+
+#+BEGIN_SRC emacs-lisp
+  (use-package eshell
+    :commands eshell
+    :bind ("C-x e" . eshell)
+    :init
+    (setq eshell-aliases-file (concat user-emacs-directory "eshell.aliases")
+	  eshell-cmpl-ignore-case t
+	  eshell-history-size 1024)
+
+    ;; Visual commands
+    (setq eshell-visual-commands '("vi" "vim" "top" "htop" "less" "more" "tmux"))
+    (setq eshell-visual-subcommands '(("git" "log" "diff" "show"))))
+#+END_SRC
+
 * Minor Modes
 ** Ivy / Counsel / Swiper
 
