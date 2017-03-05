@@ -3,6 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(magit-commit-arguments (quote ("--verbose" "--gpg-sign=667A3481E4BB34F3")))
  '(package-selected-packages
