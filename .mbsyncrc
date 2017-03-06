@@ -1,0 +1,113 @@
+# Global config options
+Expunge Both
+Create Slave
+SyncState *
+
+# -------------------------------------------------------------
+# rosstimson@gmail.com
+
+IMAPAccount gmail
+Host imap.gmail.com
+User rosstimson@gmail.com
+PassCmd "pass Email/gmail"
+UseIMAPS yes
+RequireSSL yes
+UseTLSv1.2 yes
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+# The trailing "/" is important
+Path ~/.mail/gmail/
+Inbox ~/.mail/gmail/INBOX
+
+
+Channel gmail-inbox
+Master :gmail-remote:INBOX
+Slave :gmail-local:INBOX
+
+Channel gmail-archive
+Master :gmail-remote:"[Google Mail]/All Mail"
+Slave :gmail-local:archive
+
+Channel gmail-drafts
+Master :gmail-remote:"[Google Mail]/Drafts"
+Slave :gmail-local:drafts
+
+Channel gmail-sent
+Master :gmail-remote:"[Google Mail]/Sent Mail"
+Slave :gmail-local:sent
+
+Channel gmail-flagged
+Master :gmail-remote:"[Google Mail]/Starred"
+Slave :gmail-local:flagged
+
+Channel gmail-trash
+Master :gmail-remote:"[Google Mail]/Bin"
+Slave :gmail-local:trash
+
+
+Group gmail
+Channel gmail-inbox
+Channel gmail-archive
+Channel gmail-drafts
+Channel gmail-sent
+Channel gmail-flagged
+Channel gmail-trash
+
+
+# -------------------------------------------------------------
+# ross@rosstimson.com
+
+IMAPAccount rosstimson
+Host imap.gmail.com
+User ross@rosstimson.com
+PassCmd "pass Email/rosstimson"
+UseIMAPS yes
+RequireSSL yes
+UseTLSv1.2 yes
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore rosstimson-remote
+Account rosstimson
+
+MaildirStore rosstimson-local
+# The trailing "/" is important
+Path ~/.mail/rosstimson/
+Inbox ~/.mail/rosstimson/INBOX
+
+
+Channel rosstimson-inbox
+Master :rosstimson-remote:INBOX
+Slave :rosstimson-local:INBOX
+
+Channel rosstimson-archive
+Master :rosstimson-remote:"[Gmail]/All Mail"
+Slave :rosstimson-local:archive
+
+Channel rosstimson-drafts
+Master :rosstimson-remote:"[Gmail]/Drafts"
+Slave :rosstimson-local:drafts
+
+Channel rosstimson-sent
+Master :rosstimson-remote:"[Gmail]/Sent Mail"
+Slave :rosstimson-local:sent
+
+Channel rosstimson-flagged
+Master :rosstimson-remote:"[Gmail]/Starred"
+Slave :rosstimson-local:flagged
+
+Channel rosstimson-trash
+Master :rosstimson-remote:"[Gmail]/Trash"
+Slave :rosstimson-local:trash
+
+
+Group rosstimson
+Channel rosstimson-inbox
+Channel rosstimson-archive
+Channel rosstimson-drafts
+Channel rosstimson-sent
+Channel rosstimson-flagged
+Channel rosstimson-trash
