@@ -338,9 +338,9 @@ alias kr='kitchen converge'
 
 # }}}
 
-# Python {{{
+# Emacs {{{
 
-alias upeggs="yolk -U | awk {'print $1'} | xargs pip install -U"
+e() {emacsclient -a "" -c "$@" &}
 
 # }}}
 
