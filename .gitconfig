@@ -1,50 +1,106 @@
+# -*- mode: conf-unix-mode; tab-width: 4 -*-
+
 [user]
-    name = Ross Timson
-    email = ross@rosstimson.com
-    SigningKey = 0x080A22C7E75C885C
-[color]
-    branch = auto
-    diff = auto
-    status = auto
-    ui = auto
-[color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
-[color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
-[color "status"]
-    added = green
-    changed = yellow
-    untracked = red
-[core]
-    excludesfile = ~/.gitignore
-    autocrlf = input
-    pager = less -FSRX
-    editor = vim
-    # Nice on a Mac for using MacVim and iTerm
-    # editor = "mvim -f -c 'au VimLeave * !open -a iTerm'"
-[merge]
-    tool = vim
-[mergetool "vim"]
-    cmd = /usr/local/bin/vim -d "$LOCAL" "$MERGED" "$REMOTE"
-    keepBackup = false
-    trustExitCode = false
-[diff]
-    tool = vim
-[difftool "vim"]
-    cmd = /usr/local/bin/vim -d "$LOCAL" "$REMOTE"
-    trustExitCode = false
-[difftool]
-    prompt = false
-[push]
-    default = simple
+	name = Ross Timson
+	email = ross@rosstimson.com
+	SigningKey = 0x080A22C7E75C885C
+
 [github]
-    user = rosstimson
+	user = rosstimson
+
+[core]
+	excludesfile = ~/.gitignore
+	autocrlf = input
+	pager = less -FSRX
+	editor = vim
+	# Nice on a Mac for using MacVim and iTerm
+	# editor = "mvim -f -c 'au VimLeave * !open -a iTerm'"
+
+[push]
+	default = simple
+
 [commit]
-    gpgsign = true
+	gpgsign = true
+
 [gpg]
-    program = gpg2
+	program = gpg2
+
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	ui = auto
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[color "status"]
+	added = green
+	changed = yellow
+	untracked = red
+
+[diff]
+	tool = vim
+	guitool = meld
+
+[difftool]
+	prompt = false
+
+[difftool "vim"]
+	cmd = /usr/local/bin/vim -d "$LOCAL" "$REMOTE"
+	trustExitCode = false
+
+[difftool "meld"]
+	trustExitCode = true
+	cmd = open -W -a Meld --args \"$LOCAL\" \"$PWD/$REMOTE\"
+
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[merge]
+	tool = vim
+	guitool = meld
+
+[mergetool]
+	prompt = false
+
+[mergetool "vim"]
+	cmd = /usr/local/bin/vim -d "$LOCAL" "$MERGED" "$REMOTE"
+	keepBackup = false
+	trustExitCode = false
+
+[mergetool "meld"]
+	trustExitCode = true
+	cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	keepBackup = false
+	trustexitcode = true
+
+[alias]
+	a = add
+	b = branch
+	c = commit
+	co = checkout
+	d = diff
+	last = log -1 HEAD
+	lg = !"git lg1"
+	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+	p = push
+	l = pull
+	s = status
+	unstage = reset HEAD --
+	r = remote
+	i = init
+	m = merge
+	gmt = git mergetool --no-prompt

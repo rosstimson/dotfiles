@@ -244,61 +244,6 @@ alias bu='bundle update'
 
 # }}}
 
-# Git {{{
-
-alias g='git'
-compdef g=git
-alias gi='git init'
-compdef _git gi=git-init
-alias gst='git status'
-compdef _git gst=git-status
-alias gd='git diff'
-compdef _git gd=git-diff
-alias gl='git pull'
-compdef _git gl=git-pull
-alias gup='git pull --rebase'
-compdef _git gup=git-fetch
-alias gp='git push'
-compdef _git gp=git-push
-alias gc='git commit -v'
-compdef _git gc=git-commit
-alias gco='git checkout'
-compdef _git gco=git-checkout
-alias gr='git remote'
-compdef _git gr=git-remote
-alias grbi='git rebase -i'
-compdef _git grbi=git-rebase
-alias grbc='git rebase --continue'
-compdef _git grbc=git-rebase
-alias grba='git rebase --abort'
-compdef _git grba=git-rebase
-alias gb='git branch'
-compdef _git gb=git-branch
-alias gcount='git shortlog -sn'
-compdef gcount=git
-alias gcp='git cherry-pick'
-compdef _git gcp=git-cherry-pick
-alias glg='git log --stat --max-count=5'
-compdef _git glg=git-log
-alias glgg='git log --graph --max-count=5'
-compdef _git glgg=git-log
-alias gll='git log --graph --all --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %s%C(reset) %C(bold)- %an(%G?)%C(reset)%C(bold yellow)%d%C(reset)" --abbrev-commit --date=relative'
-compdef _git gll=git-log
-alias glo='git log --oneline'
-compdef _git glo=git-log
-alias ga='git add'
-compdef _git ga=git-add
-alias gm='git merge'
-compdef _git gm=git-merge
-alias gmt='git mergetool --no-prompt'
-compdef _git gmt=git-mergetool
-
-# Will cd into the top of the current repository
-# or submodule.
-alias cg='cd $(git rev-parse --show-toplevel || echo ".")'
-
-# }}}
-
 # Docker {{{
 
 alias d='docker'
