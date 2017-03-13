@@ -226,6 +226,9 @@ alias lr='ls -lr'
 
 alias h='history -E 1'
 
+# Git
+alias g='git'
+
 # }}}
 
 # Bundler {{{
