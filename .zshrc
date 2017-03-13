@@ -85,11 +85,6 @@ REPORTTIME=10
 # Automatically decide when to page a list of completions
 LISTMAX=0
 
-# Set pretty colourscheme
-# Base16 Shell (https://github.com/chriskempson/base16-shell)
-BASE16_SHELL="$HOME/.base16-shell/base16-atelierlakeside.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-
 # ls colors
 autoload colors; colors;  # Also need this present for colours in the prompt
 # LS colors, made with http://geoff.greer.fm/lscolors/
