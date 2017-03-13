@@ -31,7 +31,6 @@ Plug 'godlygeek/tabular'
 Plug 'akiomik/git-gutter-vim'
 Plug 'mbbill/undotree'
 Plug 'davidhalter/jedi-vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'benekastah/neomake'
 Plug 'tweekmonster/braceless.vim'
 
@@ -320,10 +319,6 @@ vnoremap . :normal .<CR>
 if has('nvim')
   tnoremap <Leader>e <C-\><C-n>
 endif
-
-" FZF:
-" fuzzy file finder mapping to CTRL-T
-nnoremap <C-t> :FZF<CR>
 
 " Fugitive:
 nmap <leader>gb :Gblame<CR>
