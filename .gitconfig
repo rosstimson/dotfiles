@@ -89,7 +89,7 @@
 [alias]
 	a = add
 	b = branch
-	c = commit
+	c = commit -v
 	co = checkout
 	d = diff
 	last = log -1 HEAD
