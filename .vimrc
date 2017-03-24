@@ -30,15 +30,11 @@ Plug 'majutsushi/tagbar'
 Plug 'godlygeek/tabular'
 Plug 'akiomik/git-gutter-vim'
 Plug 'mbbill/undotree'
-Plug 'davidhalter/jedi-vim'
 Plug 'benekastah/neomake'
 Plug 'tweekmonster/braceless.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'zchee/deoplete-go', { 'do': 'make'}
-endif
+Plug 'maralla/completor.vim'
+Plug 'maralla/completor-neosnippet'
 
 " Langs
 Plug 'plasticboy/vim-markdown'
@@ -49,11 +45,6 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'digitaltoad/vim-pug'
 Plug 'othree/html5.vim'
 Plug 'klen/python-mode'
-
-" Note taking
-Plug 'fmoralesc/vim-pad'
-Plug 'vimoutliner/vimoutliner'
-Plug 'vim-scripts/utl.vim'
 
 " Colour schemes
 Plug 'vim-scripts/Colour-Sampler-Pack'
