@@ -332,6 +332,10 @@ nnoremap <leader>a :Ag<space>
 " Undotree: Mapping ,ut to Undotree
 nnoremap <leader>ut :UndotreeToggle<CR>
 
+" Completor: Use tab to trigger completion (disables auto trigger)
+let g:completor_auto_trigger = 0
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
+
 " Quote words under cursor
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
