@@ -99,6 +99,7 @@
 	p = push
 	l = pull
 	s = status
+	t = tag
 	unstage = reset HEAD --
 	r = remote
 	i = init
