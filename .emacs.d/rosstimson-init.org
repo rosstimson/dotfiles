@@ -156,6 +156,21 @@ Use [[https://www.emacswiki.org/emacs/IbufferMode][ibuffer]] which is a better m
     (setq eshell-visual-subcommands '(("git" "log" "diff" "show"))))
 #+END_SRC
 
+Make C-l clear eshell screen just as it would a normal shell.
+
+#+BEGIN_SRC emacs-lisp
+  (defun eshell-clear-buffer ()
+    "Clear terminal"
+    (interactive)
+    (let ((inhibit-read-only t))
+      (erase-buffer)
+      (eshell-send-input)))
+
+  (add-hook 'eshell-mode-hook
+	'(lambda()
+            (local-set-key (kbd "C-l") 'eshell-clear-buffer)))
+#+END_SRC
+
 ** EasyPG / Encryption
 
 Disable external GPG PIN entry, let Emacs handle it.
