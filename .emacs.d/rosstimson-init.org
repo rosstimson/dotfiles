@@ -263,7 +263,7 @@ Quickly switch between windows with [[https://github.com/abo-abo/ace-window][Ace
 
 #+BEGIN_SRC emacs-lisp
   (use-package ace-window
-    :bind ("M-p" . ace-window)
+    :bind ("C-x o" . ace-window)
     :init
     (custom-set-faces
      '(aw-leading-char-face ((t (:foreground "red" :height 3.0)))))
