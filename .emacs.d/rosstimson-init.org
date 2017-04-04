@@ -456,6 +456,16 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
   (use-package eldoc)
 #+END_SRC
 
+** Iedit
+
+Edit multiple regions in the same way simultaneously with [[https://github.com/victorhge/iedit][Iedit]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package iedit
+    :commands (iedit-mode iedit-rectangle-mode)
+    :bind ("C-;" . iedit-mode))
+#+END_SRC
+
 * Major Modes / Language Specific Stuff
 ** Org
 
