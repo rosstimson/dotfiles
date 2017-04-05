@@ -229,16 +229,12 @@ alias h='history -E 1'
 # Git
 alias g='git'
 
-# }}}
+# Kubernetes
+alias k='kubectl'
 
-# Bundler {{{
-
-alias be='bundle exec '
-alias bi='bundle install'
-alias bl='bundle list'
-alias bp='bundle package'
-alias bo='bundle open'
-alias bu='bundle update'
+# Emacs
+# Function needed instead of alias so params can be passed.
+e() {emacsclient -a "" -c "$@" &}
 
 # }}}
 
@@ -264,26 +260,6 @@ alias drmi='docker rmi'
 alias ds='docker stop'
 alias dsa='docker stop $(docker ps -a -q)'  # Stop all containers
 alias dt='docker tag'
-
-# }}}
-
-# Test-Kitchen {{{
-
-alias k='kitchen'
-alias kc='kitchen create'
-alias kd='kitchen destroy'
-alias kl='kitchen login'
-alias kls='kitchen list'
-alias ks='kitchen setup'
-alias kt='kitchen test'
-alias kv='kitchen verify'
-alias kr='kitchen converge'
-
-# }}}
-
-# Emacs {{{
-
-e() {emacsclient -a "" -c "$@" &}
 
 # }}}
 
