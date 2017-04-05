@@ -122,6 +122,14 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history # share command history data
 
+# Search through history with cursor keys (up/down) matching everything up
+# to current cursor postition.  Corresponding key bindings are in
+# ~/.zsh/completions/key-bindings.zsh
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
 # ------------------------------------------------------------------------- }}}
 # Env vars ---------------------------------------------------------------- {{{
 
