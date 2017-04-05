@@ -706,3 +706,26 @@ Use [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]] to read email with E
 	  mu4e-get-mail-command "true"
 	  mu4e-change-filenames-when-moving t))
 #+END_SRC
+** Buffer switching
+
+ Easily switch to previous buffer.
+
+ #+BEGIN_SRC emacs-lisp
+   (defun my/switch-to-previous-buffer ()
+     "Switch to previously open buffer.
+   Repeated invocations toggle between the two most recently open buffers."
+     (interactive)
+     (switch-to-buffer (other-buffer (current-buffer) 1)))
+ #+END_SRC
+
+** Key Chords
+
+Use [[https://www.emacswiki.org/emacs/key-chord.el][key-chord]] Map pairs of keys to call commands to create easy shortcuts.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package key-chord
+    :init
+    (progn
+      (key-chord-mode 1)
+      (key-chord-define-global "jk"     'my/switch-to-previous-buffer)))
+#+END_SRC
