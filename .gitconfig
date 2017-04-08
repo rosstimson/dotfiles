@@ -60,7 +60,7 @@
 
 [difftool "meld"]
 	trustExitCode = true
-	cmd = open -W -a Meld --args \"$LOCAL\" \"$PWD/$REMOTE\"
+	cmd = meld "$LOCAL" "$REMOTE"
 
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
@@ -79,7 +79,7 @@
 
 [mergetool "meld"]
 	trustExitCode = true
-	cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
+	cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
@@ -92,6 +92,7 @@
 	c = commit -v
 	co = checkout
 	d = diff
+	dt = difftool
 	last = log -1 HEAD
 	lg = !"git lg1"
 	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(magenta)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
