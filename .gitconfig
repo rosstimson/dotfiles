@@ -18,6 +18,7 @@
 
 [push]
 	default = simple
+	followTags = true
 
 [commit]
 	gpgsign = true
@@ -66,6 +67,8 @@
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 
 [merge]
+	ff = only
+	conflictstyle = diff3
 	tool = vim
 	guitool = meld
 
