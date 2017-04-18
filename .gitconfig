@@ -62,7 +62,7 @@
 	trustExitCode = true
 	cmd = meld "$LOCAL" "$REMOTE"
 
-[difftool "Kaleidoscope"]
+[difftool "ksdiff"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 
 [merge]
@@ -81,7 +81,7 @@
 	trustExitCode = true
 	cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 
-[mergetool "Kaleidoscope"]
+[mergetool "ksdiff"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	keepBackup = false
 	trustexitcode = true
