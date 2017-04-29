@@ -187,6 +187,16 @@ Disable external GPG PIN entry, let Emacs handle it.
 #+END_SRC
 
 * Minor Modes
+** which-key
+
+[[https://github.com/justbur/emacs-which-key][which-key]] is a package that displays available keybindings in popup.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package which-key
+    :config
+    (which-key-mode t))
+#+END_SRC
+
 ** Ivy / Counsel / Swiper
 
 Use [[https://github.com/abo-abo/swiper][Swiper]] and friends for searching and ido-like completion.
