@@ -243,6 +243,23 @@ Swiper, an Ivy-enhanced alternative to isearch.
   (use-package ag)
 #+END_SRC
 
+** Dumb Jump
+
+[[https://github.com/jacktasia/dumb-jump][Dump Jump]] allows you to jump to definition similar to Etags but without the
+extra config and need for tag files.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package dumb-jump
+    :bind (("M-g o" . dumb-jump-go-other-window)
+           ("M-g j" . dumb-jump-go)
+	   ("M-g p" . dump-jump-back)
+           ("M-g x" . dumb-jump-go-prefer-external)
+           ("M-g z" . dumb-jump-go-prefer-external-other-window))
+    :config
+    (setq dumb-jump-default-project "~/code")
+    (setq dumb-jump-selector 'ivy))
+#+END_SRC
+
 ** Avy
 
 Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy]].
