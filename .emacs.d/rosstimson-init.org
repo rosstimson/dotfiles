@@ -72,6 +72,12 @@ Set some further UI options.
   (setq-default indicate-empty-lines t)
 #+END_SRC
 
+Stop the annoying bloody beeping.
+
+#+BEGIN_SRC emacs-lisp
+  (setq visible-bell t)
+#+END_SRC
+
 Set default font.
 
 #+BEGIN_SRC emacs-lisp
