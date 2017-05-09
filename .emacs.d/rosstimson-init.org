@@ -575,6 +575,13 @@ Exporting to web pages that can use tufte.css
     :init (require 'ox-tufte))
 #+END_SRC
 
+[[http://orgmode.org/w/?p=org-mode.git;a=blob_plain;f=contrib/lisp/ox-rss.el;hb=HEAD][ox-rss.el]] for RSS 2.0 exports.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ox-rss
+    :load-path "~/.emacs.d/lisp/")
+#+END_SRC
+
 ** Markdown
 
 [[http://jblevins.org/projects/markdown-mode/][Markdown Mode]] is a major mode for Markdown offering syntax highlighting
