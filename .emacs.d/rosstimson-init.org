@@ -574,6 +574,17 @@ Edit multiple regions in the same way simultaneously with [[https://github.com/v
      "/DONE" 'tree))
 #+END_SRC
 
+We'll need the htmlize package for syntax highlighting of code blocks.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package htmlize
+    :commands (htmlize-buffer
+               htmlize-file
+               htmlize-many-files
+               htmlize-many-files-dired
+               htmlize-region))
+#+END_SRC
+
 Exporting to web pages that can use tufte.css
 
 #+BEGIN_SRC emacs-lisp
