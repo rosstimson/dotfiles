@@ -617,6 +617,26 @@ Markdown command is set to [[http://fletcherpenney.net/multimarkdown/][multimark
 
 ** Python
 
+Setup Python mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package python
+    :config
+    (setq fill-column 79)
+    (setq-default flycheck-flake8rc "~/.config/flake8rc")
+    (setq python-check-command "flake8")
+    (setq tab-width 4)
+
+    (pyvenv-mode 1))
+#+END_SRC
+
+Work with virtual envs using [[https://github.com/proofit404/pyenv-mode][Pyenv mode]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package pyvenv
+    :commands (pyvenv-activate))
+#+END_SRC
+
 [[https://github.com/proofit404/anaconda-mode][Anaconde mode]] offers code navigation, documentation lookup, and completion
 for Python.
 
