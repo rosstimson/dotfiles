@@ -632,6 +632,8 @@ Setup Python mode
 
 #+BEGIN_SRC emacs-lisp
   (use-package python
+    :init
+    (add-hook 'python-mode-hook #'flycheck-mode)
     :config
     (setq fill-column 79)
     (setq-default flycheck-flake8rc "~/.config/flake8rc")
@@ -684,6 +686,7 @@ for Python.
     :init
     (setq gofmt-command "goimports")
     (add-hook 'before-save-hook 'gofmt-before-save)
+    (add-hook 'go-mode-hook #'flycheck-mode)
     (add-hook 'go-mode-hook (lambda () (setq flycheck-disabled-checkers '(go-errcheck))))
     (add-hook 'go-mode-hook (lambda ()
                               (if (not (string-match "go" compile-command))
