@@ -446,7 +446,6 @@ backend/languages.
 
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck
-    :init (global-flycheck-mode)
     :bind ("C-c f" . flycheck-mode))
 #+END_SRC
 
