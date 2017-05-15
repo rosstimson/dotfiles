@@ -595,6 +595,7 @@ Exporting to web pages that can use tufte.css
 
 #+BEGIN_SRC emacs-lisp
   (use-package ox-rss
+    :ensure nil
     :load-path "~/.emacs.d/lisp/")
 #+END_SRC
 
