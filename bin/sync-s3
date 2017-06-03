@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-set -eux
+set -eu
+
+# Create local dirs if they don't exist
+mkdir -p ~/org
 
 # Org files
 aws --profile rosstimson s3 sync s3://sync-rosstimson/org ~/org
-aws --profile rosstimson s3 sync --sse AES256 ~/org s3://sync-rosstimson/org
+aws --profile rosstimson s3 sync --sse AES256 --exclude '*.DS_Store' --exclude '#*' ~/org s3://sync-rosstimson/org
+
