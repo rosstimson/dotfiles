@@ -200,7 +200,8 @@ Disable external GPG PIN entry, let Emacs handle it.
 #+BEGIN_SRC emacs-lisp
   (use-package which-key
     :config
-    (which-key-mode t))
+    (which-key-mode t)
+    :diminish which-key-mode)
 #+END_SRC
 
 ** Ivy / Counsel / Swiper
