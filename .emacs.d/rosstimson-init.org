@@ -542,6 +542,9 @@ Edit multiple regions in the same way simultaneously with [[https://github.com/v
     ;; Follow links with RET.
     (setq org-return-follows-link t)
 
+    ;; Turn on spell checking by default for Org mode.
+    (add-hook 'org-mode-hook 'turn-on-flyspell)
+
     (setq org-todo-keywords
 	 '((sequence "TODO(t)" "WAIT(w@/!)" "APPT(a)" "|" "DONE(d!)" "CANCELLED(c@)" "DELEGATED(l@)")))
 
