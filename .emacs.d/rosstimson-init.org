@@ -204,6 +204,18 @@ Disable external GPG PIN entry, let Emacs handle it.
     :diminish which-key-mode)
 #+END_SRC
 
+
+** Smex
+
+Use Smex so that ~Counsel-M-x~ which is bound to ~M-x~ will show
+commands in order of last used.  Without this Counsel just lists
+alphabetically.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package smex
+    :init (smex-initialize))
+#+END_SRC
+
 ** Ivy / Counsel / Swiper
 
 Use [[https://github.com/abo-abo/swiper][Swiper]] and friends for searching and ido-like completion.
