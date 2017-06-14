@@ -596,6 +596,18 @@ Edit multiple regions in the same way simultaneously with [[https://github.com/v
      "/DONE" 'file))
 #+END_SRC
 
+Custom colours for [[http://orgmode.org/manual/Faces-for-TODO-keywords.html][TODO keywords]].
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-todo-keyword-faces
+	'(("TODO" . "IndianRed1")
+	  ("WAIT" . "orange2")
+	  ("APPT" . "gold2")
+	  ("DONE" . "SeaGreen3")
+	  ("CANCELLED" . "MediumPurple2")
+	  ("DELEGATED" . "DarkSlateGray2")))
+#+END_SRC
+
 We'll need the htmlize package for syntax highlighting of code blocks.
 
 #+BEGIN_SRC emacs-lisp
