@@ -192,6 +192,14 @@ Disable external GPG PIN entry, let Emacs handle it.
     (setq epa-armor t))
 #+END_SRC
 
+** Hippie-expand
+
+[[https://www.emacswiki.org/emacs/HippieExpand][HippieExpand]] looks at the word before point and tries to expand it in various ways.
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key "\M- " 'hippie-expand)
+#+END_SRC
+
 * Minor Modes
 ** which-key
 
