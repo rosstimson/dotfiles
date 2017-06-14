@@ -212,7 +212,6 @@ Disable external GPG PIN entry, let Emacs handle it.
     :diminish which-key-mode)
 #+END_SRC
 
-
 ** Smex
 
 Use Smex so that ~Counsel-M-x~ which is bound to ~M-x~ will show
@@ -588,13 +587,13 @@ Edit multiple regions in the same way simultaneously with [[https://github.com/v
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-  (defun org-archive-done-tasks ()
+  (defun rt/org-archive-done-tasks ()
     (interactive)
     (org-map-entries
      (lambda ()
        (org-archive-subtree)
        (setq org-map-continue-from (outline-previous-heading)))
-     "/DONE" 'tree))
+     "/DONE" 'file))
 #+END_SRC
 
 We'll need the htmlize package for syntax highlighting of code blocks.
