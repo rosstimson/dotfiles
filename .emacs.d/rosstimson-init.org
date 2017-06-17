@@ -518,6 +518,20 @@ Edit multiple regions in the same way simultaneously with [[https://github.com/v
     :bind ("C-;" . iedit-mode))
 #+END_SRC
 
+** Cut/Copy/Comment current line if no region selected
+
+In many editors cut and copy act on the current line if no text is
+visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master/whole-line-or-region.el][whole-line-or-region]] does just that for Emacs.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package whole-line-or-region
+    :config
+    (add-to-list 'whole-line-or-region-extensions-alist
+		 '(comment-dwim whole-line-or-region-comment-dwim-2 nil))
+    (whole-line-or-region-mode 1)
+    :diminish whole-line-or-region-mode)
+#+END_SRC
+
 * Major Modes / Language Specific Stuff
 ** Org
 
