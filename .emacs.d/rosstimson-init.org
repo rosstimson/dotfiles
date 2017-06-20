@@ -592,6 +592,13 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
             ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "Links") "* %? %^L %^g \n%T" :prepend t)
             )))
 
+  (setq org-agenda-prefix-format
+	'((agenda . " %i %-12:c%?-12t% s")
+	  (timeline . "  % s")
+	  (todo . " %i %-12:c %b  ")
+	  (tags . " %i %-12:c %b  ")
+	  (search . " %i %-12:c")))
+
   (setq org-agenda-custom-commands
   '(("A" "Daily Planning List"
        ((agenda)
