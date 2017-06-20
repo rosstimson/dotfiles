@@ -593,7 +593,7 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
             )))
 
   (setq org-agenda-custom-commands
-  '(("A" "Work and Personal Lists"
+  '(("A" "Daily Planning List"
        ((agenda)
             (tags-todo "URGENT")
             (tags-todo "EMAIL")
