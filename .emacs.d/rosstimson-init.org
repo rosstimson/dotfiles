@@ -296,7 +296,7 @@ Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
              ("C-x C-f" . counsel-find-file)
              ("C-x f" . counsel-recentf)
              ("C-c k" . counsel-pt)
-             ("C-c i" . counsel-imenu)
+             ("C-c m" . counsel-imenu)
 	     ("M-y" . counsel-yank-pop)
 	     :map ivy-minibuffer-map
 	     ("M-y" . ivy-next-line-and-call)))
