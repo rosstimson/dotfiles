@@ -653,6 +653,9 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
 			))))
   ))
 
+  ;; Refile targets - all agenda files, nodes up to 3 levels deep.
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+
   (use-package org-bullets
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
