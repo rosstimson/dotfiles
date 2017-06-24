@@ -96,6 +96,7 @@
 	co = checkout
 	d = diff
 	dt = difftool
+	f = fetch
 	last = log -1 HEAD
 	lg = !"git lg1"
 	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(magenta)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
