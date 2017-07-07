@@ -155,11 +155,6 @@ if [ -d /usr/local/share/chruby ]; then
   chruby 2.3
 fi
 
-# pyenv shims and autocompletion
-if _command_exists pyenv; then
-  eval "$(pyenv init -)"
-fi
-
 # Use gh (Github CLI client / helper)
 if _command_exists gh; then
   eval  "$(gh alias -s)"
