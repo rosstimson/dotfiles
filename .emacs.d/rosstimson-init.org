@@ -546,7 +546,8 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
     (add-hook 'lisp-mode-hook #'smartparens-mode)
     (add-hook 'clojure-mode-hook #'smartparens-mode)
     :config
-    (require 'smartparens-config))
+    (require 'smartparens-config)
+    (sp-use-smartparens-bindings))
 #+END_SRC
 
 ** ElDoc
@@ -851,6 +852,7 @@ Show ElDoc style documention for Go via [[https://github.com/syohex/emacs-go-eld
 
 #+BEGIN_SRC emacs-lisp
   (use-package cider
+    :commands (cider cider-connect cider-jack-in)
     :config
     (add-hook 'cider-mode-hook #'eldoc-mode)
     (add-hook 'cider-repl-mode-hook #'eldoc-mode))
