@@ -97,6 +97,8 @@ path=(
   "$HOME"/bin
   /usr/local/go/bin         # System installed Go binaries e.g. godoc
   "$GOPATH/bin"             # Go binaries
+  /usr/local/nim/bin        # Where I install Nim, inc. nimsuggest etc.
+  "$HOME/.nimble/bin"       # Nimble installed binaries.
   "$path[@]"
   "$fpath[@]"
 )
