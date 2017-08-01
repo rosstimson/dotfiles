@@ -69,9 +69,6 @@ export GPGKEY=0x667A3481E4BB34F3
 # Set Python path
 export PYTHONPATH=/usr/lib/python2.7/site-packages
 
-# pyenv settings
-export PYENV_ROOT="$HOME/.pyenv"
-
 # Go
 export GOPATH="$HOME/code/go"
 
@@ -98,7 +95,6 @@ path=(
   /usr/local/bin
   /usr/games
   "$HOME"/bin
-  "$PYENV_ROOT/bin"         # Pyenv
   /usr/local/go/bin         # System installed Go binaries e.g. godoc
   "$GOPATH/bin"             # Go binaries
   "$path[@]"
