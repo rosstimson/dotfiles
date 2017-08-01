@@ -882,6 +882,18 @@ activated when typing them directly after parentheses.
     :config
     (setq terraform-indent-level 2))
 #+END_SRC
+** Nim
+
+Setup [[https://github.com/nim-lang/nim-mode][nim-mode]] for coding [[https://nim-lang.org/][Nim]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package nim-mode
+    :init
+    (add-hook 'nim-mode-hook 'nimsuggest-mode)
+    :config
+    (setq nim-nimsuggest-path "/usr/local/nim/bin/nimsuggest"))
+#+END_SRC
+
 * Extras
 ** mu4e
 
