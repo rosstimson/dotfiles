@@ -247,6 +247,17 @@ Disable external GPG PIN entry, let Emacs handle it.
   (global-set-key [remap dabbrev-expand] 'hippie-expand)
 #+END_SRC
 
+** Global Key Bindings
+
+I often split the window and nearly always want to switch to the new
+window in order to open a new file.  This will switch automatically so
+I don't have the extra step.
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
+  (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
+#+END_SRC
+
 * Minor Modes
 ** which-key
 
