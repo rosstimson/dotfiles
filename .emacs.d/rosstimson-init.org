@@ -949,7 +949,7 @@ Use [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]] to read email with E
  Easily switch to previous buffer.
 
  #+BEGIN_SRC emacs-lisp
-   (defun my/switch-to-previous-buffer ()
+   (defun rt/switch-to-previous-buffer ()
      "Switch to previously open buffer.
    Repeated invocations toggle between the two most recently open buffers."
      (interactive)
