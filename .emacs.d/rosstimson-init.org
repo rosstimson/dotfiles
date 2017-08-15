@@ -913,6 +913,7 @@ appropriately for embedded CSS or Javascript.
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode
     :mode (("\\.html\\'" . web-mode)
+	   ("\\.css\\'" . web-mode)
 	   ("\\.j2\\'" . web-mode))
     :config
     (setq web-mode-markup-indent-offset 2)
