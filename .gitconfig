@@ -93,6 +93,7 @@
 	a = add
 	b = branch
 	c = commit -v
+  cl = clone
 	co = checkout
 	d = diff
 	dt = difftool
