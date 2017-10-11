@@ -620,6 +620,7 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
     (setq org-log-done-with-time t)
     (setq org-log-into-drawer t)
     (setq org-completion-use-ido t)
+    (setq org-hide-leading-stars t)
 
     ;; Follow links with RET.
     (setq org-return-follows-link t)
@@ -672,7 +673,8 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
 
   (use-package org-bullets
     :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+    (setq org-bullets-bullet-list '("⚫" "●" "◯" "○" "◌")))
 
   (defun rt/org-archive-done-tasks ()
     (interactive)
