@@ -112,4 +112,4 @@
 	r = remote
 	i = init
 	m = merge
-	gmt = git mergetool --no-prompt
+	mt = git mergetool --no-prompt
