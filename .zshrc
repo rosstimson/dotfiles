@@ -239,6 +239,9 @@ alias k='kubectl'
 # Function needed instead of alias so params can be passed.
 e() {emacsclient -a "" -c "$@" &}
 
+# Pretty print $PATH
+alias showpath="echo $PATH | tr -s ':' '\n'"
+
 # }}}
 
 # Docker {{{
