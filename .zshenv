@@ -66,9 +66,6 @@ export LC_COLLATE='C'
 # Secure emails etc. with GPG
 export GPGKEY=0x667A3481E4BB34F3
 
-# Set Python path
-export PYTHONPATH=/usr/lib/python3/dist-packages
-
 # Go
 export GOPATH="$HOME/code/go"
 
