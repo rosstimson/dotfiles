@@ -305,15 +305,16 @@ Ivy, a generic completion mechanism for Emacs.
 Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
 
 #+BEGIN_SRC emacs-lisp
-    (use-package counsel
-      :bind (("M-x" . counsel-M-x)
-             ("C-x C-f" . counsel-find-file)
-             ("C-x f" . counsel-recentf)
-             ("C-c k" . counsel-pt)
-             ("C-c m" . counsel-imenu)
-	     ("M-y" . counsel-yank-pop)
-	     :map ivy-minibuffer-map
-	     ("M-y" . ivy-next-line-and-call)))
+  (use-package counsel
+    :bind (("M-x" . counsel-M-x)
+	   ("C-x C-f" . counsel-find-file)
+	   ("C-x f" . counsel-recentf)
+	   ("C-c j" . counsel-git-grep)
+	   ("C-c k" . counsel-rg)
+	   ("C-c m" . counsel-imenu)
+	   ("M-y" . counsel-yank-pop)
+	   :map ivy-minibuffer-map
+	   ("M-y" . ivy-next-line-and-call)))
 #+END_SRC
 
 Swiper, an Ivy-enhanced alternative to isearch.
@@ -322,12 +323,6 @@ Swiper, an Ivy-enhanced alternative to isearch.
   (use-package swiper
     :bind (("C-s" . swiper)
            ("C-r" . swiper)))
-#+END_SRC
-
-** Silver Searcher (ag)
-
-#+BEGIN_SRC emacs-lisp
-  (use-package ag)
 #+END_SRC
 
 ** Dumb Jump
