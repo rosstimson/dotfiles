@@ -576,35 +576,6 @@ let g:lightline = {
       \ }
 
 
-" Deoplete
-" Only works with Neovim
-if has('nvim')
-    let g:deoplete#enable_at_startup = 1
-    let g:deoplete#disable_auto_complete = 1
-
-    " Class aligning for deoplete-go
-    let g:deoplete#sources#go#align_class = 1
-
-    " Tab completion & allow normal tab usage if nothing to complete.
-    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ deoplete#mappings#manual_complete()
-    function! s:check_back_space()
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~ '\s'
-    endfunction
-
-    " <C-h>, <BS>: close popup and delete backword char.
-    inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
-
-    " <CR>: close popup and save indent.
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    function! s:my_cr_function()
-        return deoplete#mappings#close_popup() . "\<CR>"
-    endfunction
-endif
-
 " Neosnippet
 " Set if you want snippets other than those provided by neosnippet-snippets.
 " let g:neosnippet#snippets_directory='~/.vim/snippets'
