@@ -81,7 +81,7 @@ Stop the annoying bloody beeping.
 Set default font.
 
 #+BEGIN_SRC emacs-lisp
-  (set-default-font "Fira Mono 11")
+  (set-frame-font "Fira Mono-11")
 #+END_SRC
 
 Stop resizing the frame all the time and just start emacs maximised.
@@ -108,8 +108,10 @@ Smooth scrolling.
 Set my preferred colour theme.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package color-theme-sanityinc-tomorrow
-    :init (load-theme 'sanityinc-tomorrow-night 'no-confirm))
+  (use-package base16-theme
+    :ensure t
+    :config
+    (load-theme 'base16-atelier-cave t))
 #+END_SRC
 
 Allow easy movement between windows/splits.
