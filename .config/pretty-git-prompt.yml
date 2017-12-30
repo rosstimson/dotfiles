@@ -82,7 +82,7 @@ values:
       post_format: ''
       # the number of untracked files
     - type: new
-      pre_format: '%{%F{014}%}✚'
+      pre_format: '%{%F{cyan}%}✚'
       post_format: '%{%f%}'
       # the number of tracked files which were changed in working tree
     - type: changed
@@ -102,5 +102,5 @@ values:
       post_format: ''
       # show number of items in stash
     - type: stash
-      pre_format: '%{%F{141}%}☐'
+      pre_format: '%{%F{magenta}%}☐'
       post_format: '%{%f%}'
