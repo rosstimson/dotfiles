@@ -187,7 +187,7 @@ export white=$'%{\e[1;37m%}'
 export reset_color=$'%{\e[0m%}'
 
 
-PROMPT='${green}%m${reset_color}:%c$(git_super_status) %# '
+PROMPT='${green}%m${reset_color}:%c$(pretty-git-prompt) %# '
 
 # ------------------------------------------------------------------------- }}}
 # Aliases ----------------------------------------------------------------- {{{
