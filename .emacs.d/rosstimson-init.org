@@ -835,6 +835,29 @@ Show ElDoc style documention for Go via [[https://github.com/syohex/emacs-go-eld
     :init
     (add-hook 'go-mode-hook 'go-eldoc-setup))
 #+END_SRC
+
+** Rust
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rust-mode
+    :mode ("\\.rs$" . rust-mode)
+    :init
+    (add-hook 'rust-mode-hook #'flycheck-mode)
+    :config
+    (setq rust-format-on-save t))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (use-package racer
+    :config
+    (setq racer-cmd "~/.cargo/bin/racer") ;; Rustup binaries PATH
+    (setq racer-rust-src-path "~/src/rust/src") ;; Rust source code PATH
+
+    (add-hook 'rust-mode-hook #'racer-mode)
+    (add-hook 'racer-mode-hook #'eldoc-mode)
+    (add-hook 'racer-mode-hook #'company-mode))
+#+END_SRC
+
 ** Lisp / Clojure
 
 [[https://common-lisp.net/project/slime/][SLIME]]: The Superior Lisp Interaction Mode for Emacs.
