@@ -266,6 +266,15 @@ alias dt='docker tag'
 
 # }}}
 
+# Rust {{{
+
+# Function needed instead of alias so params can be passed.
+rrun() {rustc $1.rs && ./$1}
+
+alias ru='rustup'
+
+# }}}
+
 # ------------------------------------------------------------------------- }}}
 
 # AWS CLI Completion
