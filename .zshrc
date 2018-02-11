@@ -38,9 +38,6 @@ for lib_file ($HOME/.zsh/lib/*.zsh); do
   source $lib_file
 done
 
-# Sourcing script for Git prompt
-. $HOME/.zsh/lib/git-prompt/zshrc.sh
-
 fpath=($HOME/.zsh/completions $fpath)
 
 # Helper function to test if command exists
