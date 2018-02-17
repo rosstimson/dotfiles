@@ -82,7 +82,7 @@ values:
       post_format: ''
       # the number of untracked files
     - type: new
-      pre_format: '%{%F{cyan}%}✚'
+      pre_format: '%{%F{cyan}%}*'
       post_format: '%{%f%}'
       # the number of tracked files which were changed in working tree
     - type: changed
@@ -90,11 +90,11 @@ values:
       post_format: '%{%b%f%}'
       # the number of files added to index
     - type: staged
-      pre_format: '%{%F{green}%}▶'
+      pre_format: '%{%F{green}%}+'
       post_format: '%{%f%}'
       # during merge, rebase, or others, the numbers files which conflict
     - type: conflicts
-      pre_format: '%{%F{yellow}%}✖'
+      pre_format: '%{%F{yellow}%}x'
       post_format: '%{%f%}'
     - type: separator
       display: always
@@ -102,5 +102,5 @@ values:
       post_format: ''
       # show number of items in stash
     - type: stash
-      pre_format: '%{%F{magenta}%}☐'
+      pre_format: '%{%F{magenta}%}⊡'
       post_format: '%{%f%}'
