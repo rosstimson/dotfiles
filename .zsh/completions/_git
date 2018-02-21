@@ -35,6 +35,7 @@ if [ -z "$script" ]; then
 		'/usr/share/bash-completion/completions/git' # arch, ubuntu, new debian
 		'/usr/share/bash-completion/git' # gentoo
 		'/usr/local/share/zsh/site-functions/git-completion.bash' # Mac OS X / Homebrew
+		~/.zsh/lib/git-completion.bash # When all else fails.
 		)
 	for e in $locations; do
 		test -f $e && script="$e" && break
