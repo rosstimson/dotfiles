@@ -20,6 +20,9 @@ feh --bg-scale ~/Pictures/wallpapers/default
 # URxvt daemon
 urxvtd -q -o -f &
 
+# Emacs server/daemon
+emacs --daemon &
+
 # Removing the ugly x cursor
 xsetroot -cursor_name left_ptr
 
