@@ -9,30 +9,19 @@ xrdb -merge ~/.Xresources
 xset b off
 
 # Enable Toucpad tap and palm detection
-synclient TapButton1=1
+#synclient TapButton1=1
 synclient PalmDetect=1
 
 eval $(gpg-agent --daemon --allow-emacs-pinentry)
 
 # Set wallpaper
-feh --bg-scale ~/pictures/wallpapers/default
+feh --bg-scale ~/Pictures/wallpapers/default
 
 # URxvt daemon
 urxvtd -q -o -f &
 
 # Removing the ugly x cursor
 xsetroot -cursor_name left_ptr
-
-# dwm status bar (where iwm0 is the wifi network interface in OpenBSD)
-dstat iwm0 &
-
-while true; do
-  xsetroot -name "$(dwmstatus)";
-  sleep 1;
-done &
-
-# Set keyboard to Apple Mac KB and swap ctrl / caps-lock.
-# setxkbmap -model apple -layout us -variant mac -option ctrl:swapcaps
 
 # Set a standard PC keyboard, British layout and swap ctrl / caps-lock.
 setxkbmap -model pc104 -layout gb -option ctrl:nocaps
@@ -41,8 +30,8 @@ setxkbmap -model pc104 -layout gb -option ctrl:nocaps
 xmodmap -e "pointer = 1 2 3 5 4"
 
 # Set screensaver
-xautolock -time 5 -locker slock &
+#xautolock -time 5 -locker slock &
 
 # Window managers / environments
-exec dwm
+#exec dwm
 
