@@ -445,12 +445,6 @@ enhance the listing.
   ;; Prefer g-prefixed coreutils version of standard utilities when available
   (let ((gls (executable-find "gls")))
     (when gls (setq insert-directory-program gls)))
-
-  (use-package dired+
-    :init
-    (setq-default diredp-hide-details-initially-flag nil
-                  dired-dwim-target t))
-  (use-package dired-sort)
 #+END_SRC
  
 ** Whitespace
