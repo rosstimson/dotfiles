@@ -1,29 +1,32 @@
-! -- Urxvt -- !
+! Urxvt
+! -----------------------------------------------------------------------
 urxvt.termName: rxvt-unicode-256color
 urxvt.scrollBar: false
 urxvt.borderLess: false
 urxvt.jumpScroll: true
 urxvt.scrollTtyOutput: false
 urxvt.scrollTtyKeypress: true
-urxvt.saveLines: 1000
-! - Extensions
-urxvt.perl-lib: /home/rosstimson/.urxvt-perls/
-urxvt.perl-ext-common: keyboard-select,url-select,clipboard
+urxvt.saveLines: 10000
+
+! Fonts
+urxvt.font:xft:GohuFont:pixelsize=14:style:Regular:antialias=false
+urxvt.boldFont:xft:GohuFont:pixelsize=14:style:Bold:antialias=false
+
+! Extensions
+urxvt.perl-ext-common: matcher,selection-to-clipboard,keyboard-select
+
+! Clickable URLs
+urxvt.url-launcher: firefox
+urxvt.matcher.button: 1
+urxvt.matcher.rend.0: Uline fg8
+
 ! keyboard-select
 urxvt.keysym.M-Escape: perl:keyboard-select:activate
 urxvt.keysym.M-s: perl:keyboard-select:search
-! url-select
-urxvt.keysym.M-u: perl:url-select:select_next
-urxvt.url-select.launcher: chrome
-urxvt.url-select.underline: true
-! clipboard
-urxvt.clipboard.copycmd:  xclip -i -selection clipboard
-urxvt.clipboard.pastecmd: xclip -o -selection clipboard
-urxvt.keysym.M-c: perl:clipboard:copy
-urxvt.keysym.M-v: perl:clipboard:paste
-urxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 
-! -- Font settings -- !
+
+! Font settings
+! -----------------------------------------------------------------------
 xft.autohint: 0
 xft.lcdfilter: lcddefault
 xft.hintstyle: hintslight
@@ -32,10 +35,7 @@ xft.antialias: 1
 xft.dpi: 96
 xft.rgba: rgb
 
-! -- Fonts -- !
-!urxvt.font:xft:Inconsolata:medium:size=11
-urxvt.font:xft:Source Code Pro:Regular:size=11
-urxvt.boldFont:xft:Source Code Pro Semibold:size=11
 
-! -- Colours -- !
-#include ".Xcolors/base16-atelierlakeside.dark.256.xresources"
+! Colours
+! -----------------------------------------------------------------------
+#include "/home/rosstimson/.Xcolors/base16-embers.dark.xresources"
