@@ -90,6 +90,9 @@ export LSCOLORS="exfxcxdxbxxeadabagacaf"
 # Linux
 export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=0;44:cd=30;43:su=30;41:sg=30;46:tw=30;42:ow=30;45"
 
+# Use the ls colors when autocompleting.
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
 # ------------------------------------------------------------------------- }}}
 # Less colours for man pages ---------------------------------------------- {{{
 
