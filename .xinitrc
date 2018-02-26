@@ -12,7 +12,7 @@ xset b off
 #synclient TapButton1=1
 synclient PalmDetect=1
 
-eval $(gpg-agent --daemon --allow-emacs-pinentry)
+eval $(gpg-agent --daemon --enable-ssh-support --allow-emacs-pinentry)
 
 # Set wallpaper
 feh --bg-scale ~/Pictures/wallpapers/default
