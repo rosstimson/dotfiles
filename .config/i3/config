@@ -36,9 +36,6 @@ focus_follows_mouse no
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec /usr/X11R6/bin/xterm
-
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -99,9 +96,9 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $workspace1 ""
-set $workspace2 ""
-set $workspace3 ""
+set $workspace1 "1 "
+set $workspace2 "2 "
+set $workspace3 "3 "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -132,7 +129,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -166,3 +163,37 @@ bar {
         status_command i3status -c ~/.config/i3/i3status.conf
         position top
 }
+
+
+# Custom Key Bindings
+# Termina and the default xterm binding as a safe fallback.
+bindsym $mod+Return exec urxvtc
+bindsym $mod+Shift+t exec /usr/X11R6/bin/xterm
+bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+e exec emacsclient -c
+
+# Default Workspaces
+assign [class="Firefox"] $workspace1
+assign [class="URxvt"] $workspace2
+assign [class="XTerm"] $workspace2
+assign [class="Emacs"] $workspace3
+
+# Startup
+#
+# Set wallpaper
+exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/default
+
+# Set a standard PC keyboard, British layout and swap ctrl / caps-lock.
+exec_always setxkbmap -model pc104 -layout gb -option ctrl:nocaps
+
+# Reverse scrolling similar to Mac OSX 'natural scrolling'.
+exec_always xmodmap -e "pointer = 1 2 3 5 4"
+
+# URxvt daemon
+exec urxvtd -q -o -f
+
+# Emacs server/daemon
+exec emacs --daemon
+
+# Start GPG agent.
+exec gpg-agent --daemon --enable-ssh-support --allow-emacs-pinentry
