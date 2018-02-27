@@ -186,8 +186,10 @@ exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/default
 # Set a standard PC keyboard, British layout and swap ctrl / caps-lock.
 exec_always setxkbmap -model pc104 -layout gb -option ctrl:nocaps
 
-# Reverse scrolling similar to Mac OSX 'natural scrolling'.
-exec_always xmodmap -e "pointer = 1 2 3 5 4"
+# Natural scrolling
+exec_always synclient VertScrollDelta=-111
+exec_always synclient HorizScrollDelta=-111
+
 
 # URxvt daemon
 exec urxvtd -q -o -f
