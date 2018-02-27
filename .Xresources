@@ -1,6 +1,5 @@
 ! Urxvt
 ! -----------------------------------------------------------------------
-urxvt.termName: rxvt-unicode-256color
 urxvt.scrollBar: false
 urxvt.borderLess: false
 urxvt.jumpScroll: true
@@ -9,8 +8,8 @@ urxvt.scrollTtyKeypress: true
 urxvt.saveLines: 10000
 
 ! Fonts
-urxvt.font:xft:GohuFont:pixelsize=14:style:Regular:antialias=false
-urxvt.boldFont:xft:GohuFont:pixelsize=14:style:Bold:antialias=false
+urxvt.font: xft:GohuFont:pixelsize=14:style:Regular:antialias=false
+urxvt.boldFont: xft:GohuFont:pixelsize=14:style:Bold:antialias=false
 
 ! Extensions
 urxvt.perl-ext-common: matcher,selection-to-clipboard,keyboard-select
@@ -36,6 +35,12 @@ xft.dpi: 96
 xft.rgba: rgb
 
 
+! Emacs
+! -----------------------------------------------------------------------
+emacs.font: GohuFont-14
+
+
 ! Colours
 ! -----------------------------------------------------------------------
 #include "/home/rosstimson/.Xcolors/base16-embers.dark.xresources"
+
