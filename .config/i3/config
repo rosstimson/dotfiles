@@ -180,22 +180,25 @@ assign [class="Emacs"] $workspace3
 
 # Startup
 #
+# Uncomment these only if .xinitrc or .xsession is not been
+# read/honoured, for example this might be the case if using gdm.
+#
 # Set wallpaper
-exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/default
+#exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/default
 
 # Set a standard PC keyboard, British layout and swap ctrl / caps-lock.
-exec_always setxkbmap -model pc104 -layout gb -option ctrl:nocaps
+#exec_always setxkbmap -model pc104 -layout gb -option ctrl:nocaps
 
 # Natural scrolling
-exec_always synclient VertScrollDelta=-111
-exec_always synclient HorizScrollDelta=-111
+#exec_always synclient VertScrollDelta=-111
+#exec_always synclient HorizScrollDelta=-111
 
 
 # URxvt daemon
-exec urxvtd -q -o -f
+#exec urxvtd -q -o -f
 
 # Emacs server/daemon
-exec emacs --daemon
+#exec emacs --daemon
 
 # Start GPG agent.
-exec gpg-agent --daemon --enable-ssh-support --allow-emacs-pinentry
+#exec gpg-agent --daemon --enable-ssh-support --allow-emacs-pinentry
