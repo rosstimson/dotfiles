@@ -29,7 +29,7 @@ emacs --daemon &
 xsetroot -cursor_name left_ptr &
 
 # Set a standard PC keyboard, British layout and swap ctrl / caps-lock.
-setxkbmap -model pc104 -layout gb -option ctrl:nocaps &
+setxkbmap -model pc104 -layout gb -option -option ctrl:nocaps &
 
 # Set screensaver
 #xautolock -time 5 -locker slock &
