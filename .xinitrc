@@ -14,7 +14,7 @@ synclient PalmDetect=1 &
 synclient VertScrollDelta=-111 &
 synclient HorizScrollDelta=-111 &
 
-gpg-agent --daemon --enable-ssh-support --allow-emacs-pinentry &
+gpg-agent --daemon --allow-emacs-pinentry &
 
 # Set wallpaper
 feh --bg-scale ~/Pictures/wallpapers/default &

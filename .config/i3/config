@@ -201,4 +201,4 @@ assign [class="Emacs"] $workspace3
 #exec emacs --daemon
 
 # Start GPG agent.
-#exec gpg-agent --daemon --enable-ssh-support --allow-emacs-pinentry
+#exec gpg-agent --daemon --allow-emacs-pinentry
