@@ -53,7 +53,6 @@ _command_exists() {
 autoload -U compinit
 compinit
 
-
 # Enables the negation ^ operator for displaying files
 setopt extendedglob
 
@@ -90,7 +89,6 @@ export LSCOLORS="exfxcxdxbxxeadabagacaf"
 # Linux
 export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=0;44:cd=30;43:su=30;41:sg=30;46:tw=30;42:ow=30;45"
 
-# Use the ls colors when autocompleting.
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # ------------------------------------------------------------------------- }}}
@@ -277,6 +275,16 @@ rrun() {rustc $1.rs && ./$1}
 alias ru='rustup'
 
 # }}}
+
+# Python {{{
+
+# Globally install pip packages, this is needed to overrid the
+# `require-virtualenv = true` which is set in `pip.conf`. This lets you
+# 'bypass' this restriction when necessary to install things like pipenv
+# or jedi; just use `gpip` instead of the usual `pip`.
+gpip() {
+  PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
 
 # ------------------------------------------------------------------------- }}}
 
