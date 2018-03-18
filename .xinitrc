@@ -16,9 +16,6 @@ synclient HorizScrollDelta=-111 &
 
 gpg-agent --daemon --allow-emacs-pinentry &
 
-# Set wallpaper
-feh --bg-scale ~/Pictures/wallpapers/default &
-
 # URxvt daemon
 urxvtd -q -o -f &
 
@@ -34,6 +31,15 @@ setxkbmap -model pc104 -layout gb -option -option ctrl:nocaps &
 # Set screensaver
 #xautolock -time 5 -locker slock &
 
-# Window managers / environments
-i3
+# Remove the mouse pointer when idle.
+unclutter &
 
+# dstat is a dwm status bar utility for OpenBSD.
+dstat iwm0 &
+
+# Set wallpaper
+feh --bg-scale ~/Pictures/wallpapers/default &
+
+# Window managers / environments
+# i3
+dwm
