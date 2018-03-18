@@ -66,6 +66,9 @@ export LC_COLLATE='C'
 # Secure emails etc. with GPG
 export GPGKEY=0x667A3481E4BB34F3
 
+# pyenv - Simple Python version management
+export PYENV_ROOT="$HOME/.pyenv"
+
 # Go
 export GOPATH="$HOME/code/go"
 
@@ -92,6 +95,7 @@ path=(
   /usr/local/bin
   /usr/games
   $HOME/bin
+  $PYENV_ROOT/bin         # pyenv - simple Python version management
   $HOME/.local/bin        # pip installed binaries
   /usr/local/go/bin       # System installed Go binaries e.g. godoc
   $GOPATH/bin             # Go binaries
