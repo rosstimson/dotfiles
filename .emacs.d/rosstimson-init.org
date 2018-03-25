@@ -529,8 +529,8 @@ This also spellchecks spelling in programming mode but only within comments.
 #+BEGIN_SRC emacs-lisp
   (use-package flyspell
     :config
-    (setq ispell-program-name "aspell" ; use aspell instead of ispell
-          ispell-extra-args '("--sug-mode=ultra" "--lang=en_GB"))
+    (setq ispell-program-name "hunspell"
+          ispell-dictionary "en_GB")
     (add-hook 'text-mode-hook #'flyspell-mode)
     (add-hook 'prog-mode-hook #'flyspell-prog-mode)
     :bind ("<f8>" . ispell-word)
