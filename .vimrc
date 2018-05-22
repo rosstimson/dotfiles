@@ -336,6 +336,9 @@ nnoremap <leader>ut :UndotreeToggle<CR>
 let g:completor_auto_trigger = 0
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
 
+" Completor: Set completion tools.
+let g:completor_python_binary = '/usr/local/bin/python3'
+
 " Quote words under cursor
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
