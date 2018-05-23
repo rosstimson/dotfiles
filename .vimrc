@@ -32,7 +32,6 @@ Plug 'akiomik/git-gutter-vim'
 Plug 'mbbill/undotree'
 Plug 'benekastah/neomake'
 Plug 'tweekmonster/braceless.vim'
-Plug 'ctrlpvim/ctrlp.vim'
 
 " Langs
 Plug 'plasticboy/vim-markdown'
@@ -307,9 +306,6 @@ nmap <leader>gls :Glog<CR>
 nmap <leader>gc :Gcommit<CR>
 nmap <leader>gp :Git push<CR>
 nmap <leader>gl :Git pull<CR>
-
-" CtrlP:
-let g:ctrlp_map = '<c-p>'
 
 " Tagbar: Mapping F8 to toggle Tagbar
 nnoremap <F8> :TagbarToggle<CR>
@@ -601,17 +597,6 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
 \ }
 
-
-"CtrlP
-" Default command to invoke CtrlP
-let g:ctrlp_cmd = 'CtrlP'
-" Starting directory
-"
-" 'r' - nearest ancestor containing .git .hg etc.
-" 'a' - dir of current file if not a ancestor of dir with a .git
-let g:ctrlp_working_path_mode = 'ra'
-
-
 " }}}
 
 
@@ -689,6 +674,22 @@ function! LightLineFilename()
        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
+" }}}
+
+" fzy {{{
+function! FzyCommand(choice_command, vim_command)
+  try
+    let output = system(a:choice_command . " | fzy ")
+  catch /Vim:Interrupt/
+    " Swallow errors from ^C, allow redraw! below
+  endtry
+  redraw!
+  if v:shell_error == 0 && !empty(output)
+    exec a:vim_command . ' ' . output
+  endif
+endfunction
+
+nnoremap <c-p> :call FzyCommand("rg --files .", ":e")<cr>
 " }}}
 
 " }}}
