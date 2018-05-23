@@ -23,7 +23,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-eunuch'
-Plug 'rking/ag.vim'
+Plug 'mileszs/ack.vim'
 Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
@@ -33,16 +33,12 @@ Plug 'mbbill/undotree'
 Plug 'benekastah/neomake'
 Plug 'tweekmonster/braceless.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'maralla/completor.vim'
-Plug 'maralla/completor-neosnippet'
 
 " Langs
 Plug 'plasticboy/vim-markdown'
 Plug 'fatih/vim-go'
 Plug 'stephpy/vim-yaml'
 Plug 'saltstack/salt-vim'
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'digitaltoad/vim-pug'
 Plug 'othree/html5.vim'
 Plug 'klen/python-mode'
 
@@ -125,14 +121,6 @@ set background=dark       " Setting background to dark
 
 " Setting default colourscheme
 silent! colorscheme jellybeans
-
-" vim-pad / note taking
-let g:pad#dir="~/notes"                   " default notes dir
-let g:pad#default_format="votl"           " default to vimoutliner files
-let g:pad#default_file_extension="votl"   " default file extension to vimoutliner
-let g:pad#window_height=16                " default note list split height (default=8)
-let g:pad#open_in_split=0                 " open notes in main window rather than split
-let g:pad#search_backend="ag"             " default search backed to the_silver_searcher
 
 " }}}
 
@@ -326,18 +314,11 @@ let g:ctrlp_map = '<c-p>'
 " Tagbar: Mapping F8 to toggle Tagbar
 nnoremap <F8> :TagbarToggle<CR>
 
-" Ag: Mapping ,a to :Ag for searching (the_silver_searcher)
-nnoremap <leader>a :Ag<space>
+" Ack: Mapping ,a to :Ack for searching
+nnoremap <leader>a :Ack<space>
 
 " Undotree: Mapping ,ut to Undotree
 nnoremap <leader>ut :UndotreeToggle<CR>
-
-" Completor: Use tab to trigger completion (disables auto trigger)
-let g:completor_auto_trigger = 0
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
-
-" Completor: Set completion tools.
-let g:completor_python_binary = '/usr/local/bin/python3'
 
 " Quote words under cursor
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
@@ -560,8 +541,10 @@ augroup END
 " Plugin settings / options ----------------------------------------------- {{{
 
 
-" Ag
-let g:ag_prg="/usr/local/bin/ag --vimgrep"
+" rg -- Make :Ack use ripgrep when available.
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep'
+endif
 
 " Lightline
 let g:lightline = {
