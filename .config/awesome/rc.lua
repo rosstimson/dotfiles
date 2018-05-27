@@ -83,6 +83,7 @@ local gui_editor   = "gvim"
 local browser      = "firefox"
 local guieditor    = "atom"
 local scrlocker    = "xlock"
+local rofi_settings = "rofi -show run"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { "1", "2", "3", "4", "5" }
@@ -493,6 +494,7 @@ globalkeys = my_table.join(
         {description = "show dmenu", group = "launcher"})
     --]]
     -- Prompt
+    awful.key({ modkey }, "p", function() awful.util.spawn(rofi_settings) end),
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
 
