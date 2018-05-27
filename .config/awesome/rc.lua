@@ -86,7 +86,7 @@ local scrlocker    = "xlock"
 local rofi_settings = "rofi -show run"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "1", "2", "3", "4", "5" }
+awful.util.tagnames = { "term", "editor", "web", "email", "chat", "other" }
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
