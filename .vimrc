@@ -597,6 +597,10 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
 \ }
 
+" Markdown
+" Stop concealing things like links, it starts to get annoying/confusing.
+let g:vim_markdown_conceal = 0
+
 " }}}
 
 
