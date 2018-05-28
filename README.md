@@ -8,11 +8,17 @@ $HOME Sweet $HOME -- My dotfiles.
 There is a Makefile that will symlink the dotfiles along with any extra
 setup, read the Makefile for details and names of sub-tasks.
 
-__Repo must be cloned to `~/dotfiles`__
-
-    git clone git://github.com/rosstimson/dotfiles.git ~/dotfiles
-    cd ~/dotfiles
+    git clone git://github.com/rosstimson/dotfiles.git ~/code/dotfiles
+    cd ~/code/dotfiles
     make
+
+## Expected Software
+
+The dotfiles will expect certain utility tools to be installed.
+
+* [fzy](https://github.com/jhawthorn/fzy)
+* [pass](https://www.passwordstore.org)
+* [ripgrep](https://github.com/BurntSushi/ripgrep)
 
 ## Test
 
@@ -21,71 +27,5 @@ this script to test it has succeeded.  It is also useful for showing
 which symlinks are missing if only some of the dotfiles have been linked
 manually or via a Make sub-task.
 
-## Prerequisites
 
-I primarily use FreeBSD and cli tools/software these days, however a lot
-of these will still work on Mac and Linux as I originally started out on
-those operating systems.
 
-The dotfiles will expect certain software to be present which is listed
-below.  *Note these are the name and locations in the FreeBSD ports
-tree, other distros will differ.*
-
-### Passwords
-
-    sysutils/password-store
-
-There are no passwords in these files, instead there are scripts which
-pull in passwords via [Pass](http://zx2c4.com/projects/password-store/).
-The files expect passwords in the following structure.
-
-    Password Store
-    └── AppSpecific
-        ├── msmtp-gmail
-        ├── msmtp-rosstimson
-        ├── offlineimap-gmail
-        └── offlineimap-rosstimson
-
-#### Setting up GPG and Pass
-
-For Pass to work gpg needs to be setup:
-
-1. Import public key `gpg --import ~/path/to/mygpgkey_pub.gpg`
-2. Import secret key `gpg --allow-secret-key-import --import ~/path/to/mygpgkey_sec.gpg`
-3. Mark own key as trusted `gpg --edit-key [key id]` type `trust` select option 5 and `quit`
-4. Initialise Pass `pass init [gpg key id]`
-
-### Email / Mutt
-    graphics/feh
-    print/gv
-    mail/offlineimap
-    mail/msmtp
-    mail/notmuch
-
-### Music
-    audio/abcde
-    audio/mpc
-    audio/musicpd
-    audio/ncmpcpp
-    audio/py-musicbrainz2
-
-### Vim
-    devel/ctags
-    devel/git
-    lang/ruby20
-    textproc/par
-    textproc/the_silver_searcher
-
-### Xorg
-    graphics/scrot
-    x11/xautolock
-    x11/rxvt-unicode
-    x11/numlockx
-    x11-wm/openbox
-    x11-wm/spectrwm
-
-## Contact
-
-Email: [ross@rosstimson.com](mailto:ross@rosstimson.com)
-
-Twitter: [@rosstimson](http://twitter.com/rosstimson)
