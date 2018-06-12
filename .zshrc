@@ -73,7 +73,7 @@ fi
 
 # Set default editor and pager
 export EDITOR='vim -f'
-export PAGER='less -FSRX'
+export PAGER='less -Fi'
 
 # Print elapsed time when more than 10 seconds
 REPORTTIME=10
