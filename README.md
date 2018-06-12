@@ -19,6 +19,7 @@ The dotfiles will expect certain utility tools to be installed.
 * [fzy](https://github.com/jhawthorn/fzy)
 * [pass](https://www.passwordstore.org)
 * [ripgrep](https://github.com/BurntSushi/ripgrep)
+* [xclip](https://github.com/astrand/xclip)
 
 ## Test
 
