@@ -3,3 +3,11 @@ syntax: glob
 .DS_Store
 *.pyc
 tags
+
+# EMACS
+*~
+\#*
+.\#*
+
+# VIM
+*.swp
