@@ -238,6 +238,9 @@ alias g='git'
 # Kubernetes
 alias k='kubectl'
 
+# Terraform
+alias tf='terraform'
+
 # Emacs
 # Function needed instead of alias so params can be passed.
 e() {emacsclient -a "" -c "$@" &}
