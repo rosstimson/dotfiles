@@ -230,7 +230,12 @@ alias l='ls -lah'
 alias ll='ls -l'
 alias lr='ls -lr'
 
+# History
 alias h='history -E 1'
+
+# IP commands
+alias ip='ip --color'
+alias ipb='ip --color --brief'
 
 # Git
 alias g='git'
