@@ -86,7 +86,7 @@ values:
       post_format: '%{%f%}'
       # the number of tracked files which were changed in working tree
     - type: changed
-      pre_format: '%{%B%F{red}%}Δ'
+      pre_format: '%{%B%F{red}%}~'
       post_format: '%{%b%f%}'
       # the number of files added to index
     - type: staged
