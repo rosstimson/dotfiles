@@ -418,25 +418,8 @@ is defined by a .git (others supported) in the top level dir.
     (setq magit-completing-read-function 'ivy-completing-read))
 #+END_SRC
 
-** Spaceline
-
-[[https://github.com/TheBB/spaceline][Spaceline]] is a fancy Powerline-like modeline extracted from Spacemacs.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package spaceline-config
-    :ensure spaceline
-    :init
-    (setq powerline-default-separator 'wave
-          powerline-height (truncate (* 1.2 (frame-char-height)))
-          spaceline-highlight-face-func 'spaceline-highlight-face-evil-state
-          spaceline-minor-modes-separator " ")
-    :config
-    (spaceline-spacemacs-theme))
-#+END_SRC
 
 ** Dired
-
-
 
 Dired is the directory listing, use [[https://www.emacswiki.org/emacs/DiredPlus][Dired Plus]] and [[https://www.emacswiki.org/emacs/DiredSort][DiredSort]] to further
 enhance the listing.
@@ -611,7 +594,6 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
     (setq org-log-done-with-time t)
     (setq org-log-into-drawer t)
     (setq org-completion-use-ido t)
-    (setq org-hide-leading-stars t)
 
     ;; Follow links with RET.
     (setq org-return-follows-link t)
@@ -661,11 +643,6 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
 
   ;; Refile targets - all agenda files, nodes up to 3 levels deep.
   (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
-
-  (use-package org-bullets
-    :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-    (setq org-bullets-bullet-list '("⚫" "●" "◯" "○" "◌")))
 
   (defun rt/org-archive-done-tasks ()
     (interactive)
