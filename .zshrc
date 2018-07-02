@@ -131,9 +131,8 @@ zle -N down-line-or-beginning-search
 # ------------------------------------------------------------------------- }}}
 # Env vars ---------------------------------------------------------------- {{{
 
-# gpg-agent
-GPG_TTY=$(tty)
-export GPG_TTY
+# gpg-agent - Git gpg signing won't work without this.
+export GPG_TTY=$(tty)
 
 # Default mail sending to msmtp - needed for send-pr to use msmtp too.
 export GNATS_ADDR=FreeBSD-gnats-submit@freebsd.org

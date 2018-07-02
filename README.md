@@ -20,6 +20,7 @@ The dotfiles will expect certain utility tools to be installed.
 * [pass](https://www.passwordstore.org)
 * [ripgrep](https://github.com/BurntSushi/ripgrep)
 * [xclip](https://github.com/astrand/xclip)
+* [pretty-git-prompt](https://github.com/TomasTomecek/pretty-git-prompt)
 
 ## Test
 
@@ -27,6 +28,4 @@ There is a shell script in `bin/test_dotfiles`, the Makefile should use
 this script to test it has succeeded.  It is also useful for showing
 which symlinks are missing if only some of the dotfiles have been linked
 manually or via a Make sub-task.
-
-
 
