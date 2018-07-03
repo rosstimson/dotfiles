@@ -12,3 +12,8 @@ l = pull
 m = merge
 p = push
 s = status
+
+[color]
+status.modified = yellow
+status.added = green
+status.unknown = red
