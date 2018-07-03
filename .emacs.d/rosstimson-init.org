@@ -373,13 +373,13 @@ Quickly follow links with [[https://github.com/abo-abo/ace-link][Ace-link]].
 Quickly switch between windows with [[https://github.com/abo-abo/ace-window][Ace-window]].
 
 #+BEGIN_SRC emacs-lisp
-  (use-package ace-window
-    :bind ("C-x o" . ace-window)
-    :init
-    (custom-set-faces
-     '(aw-leading-char-face ((t (:foreground "red" :height 3.0)))))
+  (use-package switch-window
+    :bind ("C-x o" . switch-window)
     :config
-    (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+    (setq switch-window-shortcut-style 'qwerty)
+    (setq switch-window-qwerty-shortcuts
+      '("a" "s" "d" "f" "j" "k" "l" ";" "w" "e" "i" "o"))
+    (setq switch-window-threshold 2))
 #+END_SRC
 
 ** Projectile
