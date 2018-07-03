@@ -114,12 +114,10 @@ set spellfile=~/.vim/spell/en.utf-8.add   " Custom dictionary
 set omnifunc=syntaxcomplete#Complete
 set completeopt-=preview  " Disable scratch/preview split window for omnicompletions
 set t_Co=256              " Pretty colours
-let base16colorspace=256  " Access colors present in 256 colorspace
-let g:seoul256_background = 234 " Darker background when using seoul256 theme
 set background=dark       " Setting background to dark
 
 " Setting default colourscheme
-silent! colorscheme jellybeans
+silent! colorscheme base16-ashes
 
 " }}}
 
