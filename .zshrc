@@ -229,6 +229,9 @@ alias l='ls -lah'
 alias ll='ls -l'
 alias lr='ls -lr'
 
+# Terminal based file manager: https://github.com/jarun/nnn
+alias n='nnn'
+
 # History
 alias h='history -E 1'
 
