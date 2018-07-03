@@ -22,6 +22,12 @@ The dotfiles will expect certain utility tools to be installed.
 * [xclip](https://github.com/astrand/xclip)
 * [pretty-git-prompt](https://github.com/TomasTomecek/pretty-git-prompt)
 
+### Emacs
+
+Various Emacs modes expect certain tools to be installed.
+
+* MultiMarkdown
+
 ## Test
 
 There is a shell script in `bin/test_dotfiles`, the Makefile should use
