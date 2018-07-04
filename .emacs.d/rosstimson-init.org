@@ -275,6 +275,17 @@ I don't have the extra step.
     :diminish which-key-mode)
 #+END_SRC
 
+** Smart Mode Line
+
+Prettify the mode line with [[https://github.com/Malabarba/smart-mode-line][Smart Mode Line]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package smart-mode-line
+    :config
+    (setq sml/no-confirm-load-theme t)
+    (sml/setup))
+#+END_SRC
+
 ** Smex
 
 Use Smex so that ~Counsel-M-x~ which is bound to ~M-x~ will show
