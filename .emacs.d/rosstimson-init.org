@@ -379,9 +379,9 @@ Quickly follow links with [[https://github.com/abo-abo/ace-link][Ace-link]].
     (define-key org-mode-map (kbd "M-o") 'ace-link-org))
 #+END_SRC
 
-** Ace-window
+** Switch-window
 
-Quickly switch between windows with [[https://github.com/abo-abo/ace-window][Ace-window]].
+Quickly switch between windows with [[https://github.com/dimitri/switch-window][switch-window]].
 
 #+BEGIN_SRC emacs-lisp
   (use-package switch-window
