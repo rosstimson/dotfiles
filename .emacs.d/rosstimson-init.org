@@ -429,7 +429,6 @@ is defined by a .git (others supported) in the top level dir.
     (setq magit-completing-read-function 'ivy-completing-read))
 #+END_SRC
 
-
 ** Dired
 
 Dired is the directory listing, use [[https://www.emacswiki.org/emacs/DiredPlus][Dired Plus]] and [[https://www.emacswiki.org/emacs/DiredSort][DiredSort]] to further
@@ -478,9 +477,9 @@ Auto-completion [[https://company-mode.github.io/][Company]].
     :init (global-company-mode)
     :config
     (setq company-tooltip-align-annotations t
-          company-tooltip-flip-when-above t
-          ;; Easy navigation to candidates with M-<n>
-          company-show-numbers t)
+	  company-tooltip-flip-when-above t
+	  ;; Easy navigation to candidates with M-<n>
+	  company-show-numbers t)
     :diminish company-mode)
 #+END_SRC
 
