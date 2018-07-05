@@ -434,8 +434,10 @@ is defined by a .git (others supported) in the top level dir.
 
 ** Dired
 
-Dired is the directory listing, use [[https://www.emacswiki.org/emacs/DiredPlus][Dired Plus]] and [[https://www.emacswiki.org/emacs/DiredSort][DiredSort]] to further
-enhance the listing.
+Dired is the directory listing, it behaves oddly when using BSD ~ls~
+so this setting to use ~gls~ which is the GNU version of ~ls~ on BSD
+systems addresses it.  On GNU/Linux the value of
+insert-directory-program just stays as standard ~ls~.
 
 #+BEGIN_SRC emacs-lisp
   ;; Prefer g-prefixed coreutils version of standard utilities when available
