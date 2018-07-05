@@ -283,7 +283,10 @@ Prettify the mode line with [[https://github.com/Malabarba/smart-mode-line][Smar
   (use-package smart-mode-line
     :config
     (setq sml/no-confirm-load-theme t)
-    (sml/setup))
+    (sml/setup)
+
+    ;; Shorten certain paths with 'directory prefixes'.
+    (add-to-list 'sml/replacer-regexp-list '("^~/code/dotfiles/" ":DOT:") t))
 #+END_SRC
 
 ** Smex
