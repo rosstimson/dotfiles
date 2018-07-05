@@ -44,18 +44,7 @@ end
 -- }}}
 
 -- {{{ Autostart windowless processes
-local function run_once(cmd_arr)
-    for _, cmd in ipairs(cmd_arr) do
-        findme = cmd
-        firstspace = cmd:find(" ")
-        if firstspace then
-            findme = cmd:sub(0, firstspace-1)
-        end
-        awful.spawn.with_shell(string.format("pgrep -u $USER -x %s > /dev/null || (%s)", findme, cmd))
-    end
-end
-
-run_once({ "unclutter -root" }) -- entries must be comma-separated
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 -- }}}
 
 -- {{{ Variable definitions
@@ -78,11 +67,10 @@ local chosen_theme = themes[11]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "urxvtc"
-local editor       = os.getenv("EDITOR") or "nano"
-local gui_editor   = "gvim"
+local editor       = os.getenv("EDITOR") or "vi"
+local guieditor    = "emacsclient"
 local browser      = "firefox"
-local guieditor    = "atom"
-local scrlocker    = "xlock"
+local scrlocker    = "slock"
 local rofi_settings = "rofi -show run"
 
 awful.util.terminal = terminal
