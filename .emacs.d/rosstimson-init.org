@@ -622,13 +622,14 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
 
     ;; Capture templates
     (setq org-capture-templates
-          `(("p" "Personal Todo" entry (file+headline ,(concat org-directory "/personal.org") "Inbox") "* TODO %?\n  %i\n")
-            ("w" "Work Todo" entry (file+headline ,(concat org-directory "/work.org") "Inbox") "* TODO %?\n  %i\n")
-            ("s" "Someday Todo" entry (file+headline ,(concat org-directory "/someday.org") "Inbox") "* TODO %?\n  %i\n")
-            ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "Notes") "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n")
-            ("j" "Journal" entry (file+datetree ,(concat org-directory "/journal.org")) "* %?\nEntered on %U\n  %i\n")
-            ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "Links") "* %? %^L %^g \n%T" :prepend t)
-            )))
+	  `(("p" "Personal Todo" entry (file+headline ,(concat org-directory "/personal.org") "Inbox") "* TODO %?\n  %i\n")
+	    ("w" "Work Todo" entry (file+headline ,(concat org-directory "/work.org") "Inbox") "* TODO %?\n  %i\n")
+	    ("s" "Someday Todo" entry (file+headline ,(concat org-directory "/someday.org") "Inbox") "* TODO %?\n  %i\n")
+	    ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "Notes") "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n")
+	    ("j" "Journal" entry (file+datetree ,(concat org-directory "/journal.org")) "* %?\nEntered on %U\n  %i\n")
+	    ("k" "Work Journal" entry (file+datetree ,(concat org-directory "/work-journal.org")) "* %?\nEntered on %U\n  %i\n")
+	    ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "Links") "* %? %^L %^g \n%T" :prepend t)
+	    )))
 
   (setq org-agenda-prefix-format
 	'((agenda . " %i %-12:c%?-12t% s")
