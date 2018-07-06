@@ -255,6 +255,9 @@ e() {emacsclient -a "" -c "$@" &}
 # Pretty print $PATH
 alias showpath="echo $PATH | tr -s ':' '\n'"
 
+# Diff colours
+alias diff='diff --color=always'
+
 # }}}
 
 # Docker {{{
