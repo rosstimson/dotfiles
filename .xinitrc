@@ -25,8 +25,9 @@ emacs --daemon &
 # Removing the ugly x cursor
 xsetroot -cursor_name left_ptr &
 
-# Set a standard PC keyboard, British layout and swap ctrl / caps-lock.
-setxkbmap -model pc104 -layout gb -option -option ctrl:nocaps &
+# Set a standard PC keyboard, US and British layouts which can be
+# toggled with Shift-ALT, and swap ctrl / caps-lock.
+setxkbmap -model pc104 -layout "us,gb" -option ctrl:nocaps -option "grp:alt_shift_toggle" &
 
 # Set screensaver
 #xautolock -time 5 -locker slock &
