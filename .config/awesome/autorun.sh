@@ -22,3 +22,5 @@ run urxvtd -q -o -f
 run ssh-agent
 run gpg-agent --daemon --allow-emacs-pinentry
 run emacs --daemon
+run mpd
+
