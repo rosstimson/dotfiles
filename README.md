@@ -12,6 +12,25 @@ setup, read the Makefile for details and names of sub-tasks.
     cd ~/code/dotfiles
     make
 
+## Directory Structure
+
+Some of the configs expect a certain directory structure.
+
+### Music
+
+`mpd` and `ncmpcpp` are configured for `~/Music/mpd`, this was chosen
+because I rip CDs to various formats and didn't want duplicates to
+appear so the way I've gotten around this is by symlinking into the mpd
+directory.
+
+Example:
+
+    /home/rosstimson/Music
+    ├── flac
+    ├── mpd
+    │   └── flac -> ../flac
+    └── opus
+
 ## Expected Software
 
 The dotfiles will expect certain utility tools to be installed.
