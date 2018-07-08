@@ -629,25 +629,18 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
 	    ("j" "Journal" entry (file+datetree ,(concat org-directory "/journal.org")) "* %?\nEntered on %U\n  %i\n")
 	    ("k" "Work Journal" entry (file+datetree ,(concat org-directory "/work-journal.org")) "* %?\nEntered on %U\n  %i\n")
 	    ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "Links") "* %? %^L %^g \n%T" :prepend t)
-	    )))
-
-    (setq org-agenda-prefix-format
-	'((agenda . " %i %-12:c%?-12t% s")
-	  (timeline . "  % s")
-	  (todo . " %i %-12:c %b  ")
-	  (tags . " %i %-12:c %b  ")
-	  (search . " %i %-12:c")))
+	    ))
 
     ;; Refile targets - all agenda files, nodes up to 3 levels deep.
     (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
 
-  (defun rt/org-archive-done-tasks ()
-    (interactive)
-    (org-map-entries
-     (lambda ()
-       (org-archive-subtree)
-       (setq org-map-continue-from (outline-previous-heading)))
-     "/DONE" 'file))
+    (defun rt/org-archive-done-tasks ()
+      (interactive)
+      (org-map-entries
+       (lambda ()
+	 (org-archive-subtree)
+	 (setq org-map-continue-from (outline-previous-heading)))
+       "/DONE" 'file)))
 #+END_SRC
 
 Custom colours for [[http://orgmode.org/manual/Faces-for-TODO-keywords.html][TODO keywords]].
