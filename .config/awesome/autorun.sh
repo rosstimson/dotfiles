@@ -12,9 +12,9 @@ function run {
 # These don't have long running processes so don't need to be run via
 # the 'run' helper function.
 #
-# Set a standard PC keyboard, US and British layouts which can be
-# toggled with Shift-ALT, and swap ctrl / caps-lock.
-setxkbmap -model pc104 -layout "us,gb" -option ctrl:nocaps -option "grp:alt_shift_toggle"
+# Set a standard PC keyboard with US layout, and caps-locks is another
+# control key.
+setxkbmap -model pc104 -layout "us" -option ctrl:nocaps
 
 # Start long running processes using the helper function to ensure we
 # don't get duplicates.
