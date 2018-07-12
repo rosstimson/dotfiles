@@ -577,16 +577,12 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
 [[http://orgmode.org/][Org mode]] - Your life in plain text.
 
 #+BEGIN_SRC emacs-lisp
-  ;; Define global key binding outside of use-package otherwise it doesn't
-  ;; seem to work when you first start Emacs.
-  (define-key global-map "\C-cc" 'org-capture)
-  (define-key global-map "\C-cl" 'org-store-link)
-  (define-key global-map "\C-ca" 'org-agenda)
-
   (use-package org
     :mode ("\\.org$'" . org-mode)
-    :commands (org-mode org-capture)
     :pin org
+    :bind (("C-c a" . org-agenda)
+	   ("C-c c" . org-capture)
+	   ("C-c l" . org-store-link))
     :config
     (setq org-src-fontify-natively t) ; Syntax highlight code blocks.
     (setq org-directory "~/org")
