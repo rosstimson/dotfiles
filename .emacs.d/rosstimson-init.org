@@ -406,7 +406,7 @@ is defined by a .git (others supported) in the top level dir.
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
     :config
-    (projectile-global-mode)
+    (projectile-mode)
     (setq projectile-enable-caching t)
     (setq projectile-completion-system 'ivy))
 #+END_SRC
