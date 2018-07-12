@@ -578,11 +578,12 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
 
 #+BEGIN_SRC emacs-lisp
   (use-package org
+    :init (add-to-list 'org-modules 'org-eww)
     :mode ("\\.org$'" . org-mode)
-    :pin org
     :bind (("C-c a" . org-agenda)
 	   ("C-c c" . org-capture)
 	   ("C-c l" . org-store-link))
+    :pin org
     :config
     (setq org-src-fontify-natively t) ; Syntax highlight code blocks.
     (setq org-directory "~/org")
