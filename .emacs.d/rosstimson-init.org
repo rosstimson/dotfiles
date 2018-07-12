@@ -120,19 +120,6 @@ Allow easy movement between windows/splits.
   (windmove-default-keybindings)
 #+END_SRC
 
-** Display org-mode agenda on startup
-
-From [[http://stackoverflow.com/questions/23528287/how-to-display-custom-agenda-view-on-emacs-startup][How to display custom agenda-view on Emacs startup?]] on
-StackOverflow. The second string argument to org-agenda executes the
-view that would be triggered by that key in the agenda dispatcher.
-
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'after-init-hook
-	    (lambda ()
-	      (org-agenda nil "A")
-	      (delete-other-windows)))
-#+END_SRC
-
 ** Recent files
 
 #+BEGIN_SRC emacs-lisp
