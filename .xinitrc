@@ -6,7 +6,7 @@ export LANG=en_GB.UTF-8 LC_ALL=en_GB.UTF-8
 xrdb -merge ~/.Xresources &
 
 # Disable beep
-xset b off &
+xset -b &
 
 # Touchpad settings inc. natural scrolling
 #synclient TapButton1=1 &
