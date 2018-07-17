@@ -65,12 +65,6 @@ if [ -f ${HOME}/.termcap ]; then
   export TERMCAP
 fi
 
-# Stop autocorrecting everything, list exempt commands in ~/.zsh_nocorrect
-if [ -f ~/.zsh_nocorrect ]; then while read -r COMMAND; do
-    alias $COMMAND="nocorrect $COMMAND"
-  done < ~/.zsh_nocorrect
-fi
-
 # Set default editor and pager
 export EDITOR='vim -f'
 export PAGER='less -Fi'
@@ -205,7 +199,7 @@ case `uname` in
     alias ls='ls -F'
   ;;
   OpenBSD)
-    alias ls='colorls -GF'
+    alias ls='gls --color=always -F'
   ;;
   Linux)
     alias ls='ls --color=always -F'
