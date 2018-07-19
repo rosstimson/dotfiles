@@ -27,7 +27,7 @@ xsetroot -cursor_name left_ptr &
 
 # Set a standard PC keyboard with US layout, and caps-locks is another
 # control key.
-setxkbmap -model pc104 -layout "us" -option ctrl:nocaps &
+setxkbmap us -option ctrl:nocaps &
 
 # Set screensaver
 #xautolock -time 5 -locker slock &
@@ -37,6 +37,9 @@ unclutter &
 
 # dstat is a dwm status bar utility for OpenBSD.
 dstat iwm0 &
+
+# Adjust screen colours/temperature at night time.
+redshift -l 55.61674:-2.81172 -g 0.9 &
 
 # Set wallpaper
 feh --bg-scale ~/Pictures/wallpapers/default &
