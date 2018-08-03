@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Helper script for removing lines from known_hosts file.
+#
+# Usage:
+#
+#    nukehost <NUM>
+#
+
+sed -i "$1d" ~/.ssh/known_hosts
