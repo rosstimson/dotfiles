@@ -250,6 +250,16 @@ I don't have the extra step.
   (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
 #+END_SRC
 
+** Tabs
+
+Default to tabs 4 spaces wide.  Langs that NEED spaces for indentation
+such as Python will override this setting in their major mode anyway.
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default indent-tabs-mode t)
+  (setq-default tab-width 4)
+#+END_SRC
+
 * Minor Modes
 ** which-key
 
