@@ -910,6 +910,18 @@ appropriately for embedded CSS or Javascript.
 	  '(("jinja2"    . "\\.j2\\'"))))
 #+END_SRC
 
+** Elm
+
+[[http://elm-lang.org/][Elm]] is a delightful language for reliable webapps. It compiles to JS.
+First install elm with ~npm install -g elm elm-oracle elm-format~.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package elm-mode
+	  :config
+	  (setq elm-format-on-save t)
+	  (add-to-list 'company-backends 'company-elm))
+#+END_SRC
+
 * Extras
 ** mu4e
 
