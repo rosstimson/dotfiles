@@ -66,12 +66,13 @@ local themes = {
 local chosen_theme = themes[11]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
-local terminal     = "urxvtc"
+-- local terminal     = "urxvtc"
+local terminal     = "st -e tmux"
 local editor       = os.getenv("EDITOR") or "vi"
 local guieditor    = "emacsclient -a '' -c"
 local browser      = "firefox"
 local scrlocker    = "slock"
-local rofi_settings = "rofi -show run"
+local rofi_settings = "rofi -theme base16-embers -show run"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { "term", "editor", "web", "email", "chat", "other" }
@@ -612,6 +613,10 @@ awful.rules.rules = {
     -- Titlebars
     { rule_any = { type = { "dialog", "normal" } },
       properties = { titlebars_enabled = true } },
+
+    -- Set Firefox to always map on the first tag on screen 1.
+    { rule = { class = "Firefox" },
+      properties = { screen = 1, tag = awful.util.tagnames[3] } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },
