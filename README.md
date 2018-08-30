@@ -54,3 +54,6 @@ this script to test it has succeeded.  It is also useful for showing
 which symlinks are missing if only some of the dotfiles have been linked
 manually or via a Make sub-task.
 
+## Useful Links
+
+* Rofi themes: https://github.com/0xdec/base16-rofi
