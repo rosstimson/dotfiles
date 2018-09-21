@@ -46,6 +46,7 @@ The dotfiles will expect certain utility tools to be installed.
 Various Emacs modes expect certain tools to be installed.
 
 * MultiMarkdown
+* [mu](https://github.com/djcb/mu)
 
 ## Test
 

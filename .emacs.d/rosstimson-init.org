@@ -27,7 +27,7 @@
 
 #+BEGIN_SRC emacs-lisp
   (setq user-full-name "Ross Timson"
-        user-mail-address "ross@rosstimson.com")
+        user-mail-address "me@rosstimson.com")
 #+END_SRC
 
 ** Backups
@@ -923,19 +923,30 @@ First install elm with ~npm install -g elm elm-oracle elm-format~.
 #+END_SRC
 
 * Extras
-** mu4e
+** Email / mu4e
+
+#+BEGIN_SRC emacs-lisp
+  (require 'smtpmail)
+
+  (setq send-mail-function 'smtpmail-send-it
+		smtpmail-smtp-server "smtp.fastmail.com"
+		smtpmail-smtp-service 465
+		smtpmail-stream-type 'ssl)
+#+END_SRC
 
 Use [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]] to read email with Emacs.
 
 #+BEGIN_SRC emacs-lisp
   (use-package mu4e
-    :ensure nil
-    :load-path "/usr/share/emacs/site-lisp/mu4e"
-    :commands (mu4e mu4e-compose-new)
-    :config
-    (setq mu4e-maildir (expand-file-name "~/.mail")
-	  mu4e-get-mail-command "true"
-	  mu4e-change-filenames-when-moving t))
+	:ensure nil
+	:load-path "/usr/local/share/emacs/site-lisp/mu4e"
+	:commands (mu4e mu4e-compose-new)
+	:config
+	(setq mu4e-maildir (expand-file-name "~/.mail/rosstimson")
+		  mu4e-get-mail-command "mbsync -a"
+		  mu4e-sent-folder "/Sent"
+		  mu4e-drafts-folder "/Drafts"
+		  mu4e-trash-folder "/Trash"))
 #+END_SRC
 ** Buffer switching
 
