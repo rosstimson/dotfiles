@@ -589,7 +589,7 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
     (add-to-list 'whole-line-or-region-extensions-alist
 		 '(comment-dwim whole-line-or-region-comment-dwim-2 nil))
     (whole-line-or-region-mode 1)
-    :diminish whole-line-or-region-mode)
+    :diminish whole-line-or-region-local-mode)
 #+END_SRC
 
 * Major Modes / Language Specific Stuff
