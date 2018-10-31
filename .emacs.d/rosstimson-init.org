@@ -592,6 +592,17 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
     :diminish whole-line-or-region-local-mode)
 #+END_SRC
 
+** Emmet
+
+#+BEGIN_SRC emacs-lisp
+  (use-package emmet-mode
+	:bind ("C-<return>" . emmet-expand-line)
+	:config
+	(add-hook 'web-mode-hook 'emmet-mode)
+	(add-hook 'sgml-mode-hook 'emmet-mode)
+	(add-hook 'html-mode-hook 'emmet-mode))
+#+END_SRC
+
 * Major Modes / Language Specific Stuff
 ** Org
 
@@ -606,7 +617,9 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
 	   ("C-c l" . org-store-link))
     :pin org
     :config
-    (setq org-src-fontify-natively t) ; Syntax highlight code blocks.
+	;; Syntax highlight code blocks and make tabs work as expected.
+    (setq org-src-fontify-natively t
+	      org-src-tab-acts-natively t)
     (setq org-directory "~/org")
     (setq org-default-notes-file (concat org-directory "/notes.org"))
     (setq org-agenda-files (list "~/org/personal.org"
@@ -946,15 +959,16 @@ Use [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]] to read email with E
 		  mu4e-drafts-folder "/Drafts"
 		  mu4e-trash-folder "/Trash"))
 #+END_SRC
-** Buffer switching
+** Elfeed
 
- Easily switch to previous buffer.
+#+BEGIN_SRC emacs-lisp
+  (use-package elfeed
+	:bind ("C-x w" . elfeed)
+	:config
+	(setq-default elfeed-search-filter "@2-weeks-ago +unread "))
 
- #+BEGIN_SRC emacs-lisp
-   (defun rt/switch-to-previous-buffer ()
-     "Switch to previously open buffer.
-   Repeated invocations toggle between the two most recently open buffers."
-     (interactive)
-     (switch-to-buffer (other-buffer (current-buffer) 1)))
- #+END_SRC
-
+  (use-package elfeed-org
+	:config
+	(elfeed-org)
+	(setq rmh-elfeed-org-files (list "~/org/feeds.org")))
+#+END_SRC
