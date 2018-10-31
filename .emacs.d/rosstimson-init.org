@@ -4,30 +4,30 @@
 ** System settings
 
 #+BEGIN_SRC emacs-lisp
-  ;; i18n
-  (prefer-coding-system 'utf-8)
+;; i18n
+(prefer-coding-system 'utf-8)
 
-  ;; Reduce the frequency of garbage collection by making it happen on
-  ;; each 50MB of allocated data (the default is on every 0.76MB)
-  (setq gc-cons-threshold 50000000)
+;; Reduce the frequency of garbage collection by making it happen on
+;; each 50MB of allocated data (the default is on every 0.76MB)
+(setq gc-cons-threshold 50000000)
 
-  ;; Warn when opening files bigger than 100MB
-  (setq large-file-warning-threshold 100000000)
+;; Warn when opening files bigger than 100MB
+(setq large-file-warning-threshold 100000000)
 
-  ;; Add to exec-path (Emacs equivalent to $PATH)
-  ;; (add-to-list 'exec-path "/usr/local/bin/")
-  ;; (add-to-list 'exec-path "/usr/local/go/bin")
-  ;; (add-to-list 'exec-path "~/code/go/bin")
-  (use-package exec-path-from-shell
-  :init
-  (exec-path-from-shell-initialize))
+;; Add to exec-path (Emacs equivalent to $PATH)
+;; (add-to-list 'exec-path "/usr/local/bin/")
+;; (add-to-list 'exec-path "/usr/local/go/bin")
+;; (add-to-list 'exec-path "~/code/go/bin")
+(use-package exec-path-from-shell
+:init
+(exec-path-from-shell-initialize))
 #+END_SRC
 
 ** Personal information
 
 #+BEGIN_SRC emacs-lisp
-  (setq user-full-name "Ross Timson"
-        user-mail-address "me@rosstimson.com")
+(setq user-full-name "Ross Timson"
+      user-mail-address "me@rosstimson.com")
 #+END_SRC
 
 ** Backups
@@ -35,17 +35,17 @@
 Put backups in a sensible location rather than scattered all over the place.
 
 #+BEGIN_SRC emacs-lisp
-  (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 #+END_SRC
 
 Disk is cheap. Save lots.
 
 #+BEGIN_SRC emacs-lisp
-  (setq backup-by-copying t)    ; Don't delink hardlings
-  (setq version-control t)      ; Use version numbers on backups
-  (setq delete-old-versions t)  ; Automatically delete excess backups
-  (setq kept-new-versions 20)   ; How many of the newest versions to keep
-  (setq kept-old-versions 5)    ; How many of the oldest version to keep
+(setq backup-by-copying t)    ; Don't delink hardlings
+(setq version-control t)      ; Use version numbers on backups
+(setq delete-old-versions t)  ; Automatically delete excess backups
+(setq kept-new-versions 20)   ; How many of the newest versions to keep
+(setq kept-old-versions 5)    ; How many of the oldest version to keep
 #+END_SRC
 
 ** Interface
@@ -53,90 +53,89 @@ Disk is cheap. Save lots.
 Remove a bunch of cruft from the interface.
 
 #+BEGIN_SRC emacs-lisp
-  (setq inhibit-splash-screen t
-        inhibit-startup-message t
-        inihibt-startup-echo-area-message "rosstimson")
-  (menu-bar-mode -1)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
+(setq inhibit-splash-screen t
+      inhibit-startup-message t
+      inihibt-startup-echo-area-message "rosstimson")
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 #+END_SRC
 
 Set some further UI options.
 
 #+BEGIN_SRC emacs-lisp
-  (show-paren-mode 1)
-  (blink-cursor-mode -1)
-  (global-hl-line-mode t)
-  (line-number-mode t)
-  (column-number-mode t)
-  (setq-default indicate-empty-lines t)
+(show-paren-mode 1)
+(blink-cursor-mode -1)
+(global-hl-line-mode t)
+(line-number-mode t)
+(column-number-mode t)
+(setq-default indicate-empty-lines t)
 #+END_SRC
 
 Stop the annoying bloody beeping.
 
 #+BEGIN_SRC emacs-lisp
-  (setq visible-bell t)
+(setq visible-bell t)
 #+END_SRC
 
 Set default font.
 
 #+BEGIN_SRC emacs-lisp
-  (set-frame-font "GohuFont-14" t t)
+(set-frame-font "GohuFont-14" t t)
 #+END_SRC
 
 Stop resizing the frame all the time and just start emacs maximised.
 
 #+BEGIN_SRC emacs-lisp
-  (custom-set-variables
-   '(initial-frame-alist (quote ((fullscreen . maximized)))))
+(custom-set-variables
+ '(initial-frame-alist (quote ((fullscreen . maximized)))))
 #+END_SRC
 
 Short form yes/no questions.
 
 #+BEGIN_SRC emacs-lisp
-  (fset 'yes-or-no-p #'y-or-n-p)
+(fset 'yes-or-no-p #'y-or-n-p)
 #+END_SRC
 
 Smooth scrolling.
 
 #+BEGIN_SRC emacs-lisp
-  (setq scroll-margin 5
-        scroll-conservatively 9999
-        scroll-step 1)
+(setq scroll-margin 5
+      scroll-conservatively 9999
+      scroll-step 1)
 #+END_SRC
 
 Set my preferred colour theme.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package base16-theme
-    :ensure t
-    :config
-    (load-theme 'base16-atelier-cave t))
+(use-package base16-theme
+  :config
+  (load-theme 'base16-atelier-cave t))
 #+END_SRC
 
 Allow easy movement between windows/splits.
 
 #+BEGIN_SRC emacs-lisp
-  (windmove-default-keybindings)
+(windmove-default-keybindings)
 #+END_SRC
 
 ** Recent files
 
 #+BEGIN_SRC emacs-lisp
-  (use-package recentf
-    :config
-    (setq recentf-max-saved-items 50
-          recentf-auto-cleanup 100
-          recentf-exclude (list "/\\.git/.*\\'" ; Git contents
-                                "/elpa/.*\\'"   ; Package files
-                                ".*\\.gz\\'"
-                                "TAGS"
-                                ".*-autoloads\\.el\\'"
-                                "/tmp"
-                                "/ssh:"
-                                "company-statistics-cache\.el"
-                                "custom\.el"))
-    (recentf-mode t))
+(use-package recentf
+  :config
+  (setq recentf-max-saved-items 50
+        recentf-auto-cleanup 100
+        recentf-exclude (list "/\\.git/.*\\'" ; Git contents
+                              "/elpa/.*\\'"   ; Package files
+                              ".*\\.gz\\'"
+                              "TAGS"
+                              ".*-autoloads\\.el\\'"
+                              "/tmp"
+                              "/ssh:"
+                              "company-statistics-cache\.el"
+                              "custom\.el"))
+  (recentf-mode t))
 #+END_SRC
 
 ** iBuffer
@@ -145,75 +144,75 @@ Use [[https://www.emacswiki.org/emacs/IbufferMode][ibuffer]] which is a better m
 config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emacs-ibuffer.html][Tips for using Emacs Ibuffer]].
 
 #+BEGIN_SRC emacs-lisp
-  (use-package ibuffer
-    :bind ("C-x C-b" . ibuffer)
-    :config
-    ;; Don't prompt to delete unmodified buffers.
-    (setq ibuffer-expert t)
+(use-package ibuffer
+  :bind ("C-x C-b" . ibuffer)
+  :config
+  ;; Don't prompt to delete unmodified buffers.
+  (setq ibuffer-expert t)
 
-    ;; Organise ibuffer into groups of related stuff.
-    (setq ibuffer-saved-filter-groups
-	  '(("default"
-	     ("Dired" (mode . dired-mode))
-	     ("Org" (or (mode . org-mode)
-			(mode . org-agenda-mode)))
-	     ("Programming" (or (mode . python-mode)
-				(mode . go-mode)))
-	     ("Web" (mode . web-mode))
-	     ("Shell" (or (mode . eshell-mode)
-			  (mode . shell-mode)
-			  (mode . term-mode)))
-	     ("Magit" (name . "\*magit"))
-	     ("Mu4e" (name . "\*mu4e\*"))
-	     ("Emacs" (or (name . "^\\*scratch\\*$")
-			  (name . "^\\*Messages\\*$")
-			  (name . "\*Help\*")
-			  (name . "\*Apropos\*")
-			  (name . "\*info\*")
-			  (name . "^\\*anaconda-mode\\*$")
-			  (mode . ag-mode)))
-	     )))
+  ;; Organise ibuffer into groups of related stuff.
+  (setq ibuffer-saved-filter-groups
+    '(("default"
+      ("Dired" (mode . dired-mode))
+      ("Org" (or (mode . org-mode)
+        (mode . org-agenda-mode)))
+      ("Programming" (or (mode . python-mode)
+        (mode . go-mode)))
+      ("Web" (mode . web-mode))
+      ("Shell" (or (mode . eshell-mode)
+        (mode . shell-mode)
+        (mode . term-mode)))
+      ("Magit" (name . "\*magit"))
+      ("Mu4e" (name . "\*mu4e\*"))
+      ("Emacs" (or (name . "^\\*scratch\\*$")
+        (name . "^\\*Messages\\*$")
+        (name . "\*Help\*")
+        (name . "\*Apropos\*")
+        (name . "\*info\*")
+        (name . "^\\*anaconda-mode\\*$")
+        (mode . ag-mode)))
+  )))
 
-    ;; ibuffer-auto-mode is a minor mode that automatically keeps the
-    ;; buffer list up to date.
-    (add-hook 'ibuffer-mode-hook
-	    '(lambda ()
-	       (ibuffer-auto-mode 1)
-	       (ibuffer-switch-to-saved-filter-groups "default")))
+  ;; ibuffer-auto-mode is a minor mode that automatically keeps the
+  ;; buffer list up to date.
+  (add-hook 'ibuffer-mode-hook
+            '(lambda ()
+              (ibuffer-auto-mode 1)
+              (ibuffer-switch-to-saved-filter-groups "default")))
 
-    ;; Don't show empty filter groups.
-    (setq ibuffer-show-empty-filter-groups nil))
+  ;; Don't show empty filter groups.
+  (setq ibuffer-show-empty-filter-groups nil))
 #+END_SRC
 
 ** Eshell
 
 #+BEGIN_SRC emacs-lisp
-  (use-package eshell
-    :commands eshell
-    :bind ("C-x e" . eshell)
-    :init
-    (setq eshell-aliases-file (concat user-emacs-directory "eshell.aliases")
-	  eshell-cmpl-ignore-case t
-	  eshell-history-size 1024)
+(use-package eshell
+  :commands eshell
+  :bind ("C-x e" . eshell)
+  :init
+  (setq eshell-aliases-file (concat user-emacs-directory "eshell.aliases")
+        eshell-cmpl-ignore-case t
+        eshell-history-size 1024)
 
-    ;; Visual commands
-    (setq eshell-visual-commands '("vi" "vim" "top" "htop" "less" "more" "tmux"))
-    (setq eshell-visual-subcommands '(("git" "log" "diff" "show"))))
+  ;; Visual commands
+  (setq eshell-visual-commands '("vi" "vim" "top" "htop" "less" "more" "tmux"))
+  (setq eshell-visual-subcommands '(("git" "log" "diff" "show"))))
 #+END_SRC
 
 Make C-l clear eshell screen just as it would a normal shell.
 
 #+BEGIN_SRC emacs-lisp
-  (defun eshell-clear-buffer ()
-    "Clear terminal"
-    (interactive)
-    (let ((inhibit-read-only t))
-      (erase-buffer)
-      (eshell-send-input)))
+(defun eshell-clear-buffer ()
+  "Clear terminal"
+  (interactive)
+  (let ((inhibit-read-only t))
+        (erase-buffer)
+        (eshell-send-input)))
 
-  (add-hook 'eshell-mode-hook
-	'(lambda()
-            (local-set-key (kbd "C-l") 'eshell-clear-buffer)))
+(add-hook 'eshell-mode-hook
+'(lambda()
+  (local-set-key (kbd "C-l") 'eshell-clear-buffer)))
 #+END_SRC
 
 ** EasyPG / Encryption
@@ -221,14 +220,14 @@ Make C-l clear eshell screen just as it would a normal shell.
 Disable external GPG PIN entry, let Emacs handle it.
 
 #+BEGIN_SRC emacs-lisp
-  (setenv "GPG_AGENT_INFO" nil)
+(setenv "GPG_AGENT_INFO" nil)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-  (use-package epa-file
-    :ensure nil
-    :config
-    (setq epa-armor t))
+(use-package epa-file
+  :ensure nil
+  :config
+  (setq epa-armor t))
 #+END_SRC
 
 ** Hippie-expand
@@ -236,7 +235,7 @@ Disable external GPG PIN entry, let Emacs handle it.
 [[https://www.emacswiki.org/emacs/HippieExpand][HippieExpand]] looks at the word before point and tries to expand it in various ways.
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key [remap dabbrev-expand] 'hippie-expand)
+(global-set-key [remap dabbrev-expand] 'hippie-expand)
 #+END_SRC
 
 ** Global Key Bindings
@@ -246,8 +245,8 @@ window in order to open a new file.  This will switch automatically so
 I don't have the extra step.
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
-  (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
+(global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
+(global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
 #+END_SRC
 
 ** Tabs
@@ -256,8 +255,8 @@ Default to tabs 4 spaces wide.  Langs that NEED spaces for indentation
 such as Python will override this setting in their major mode anyway.
 
 #+BEGIN_SRC emacs-lisp
-  (setq-default indent-tabs-mode t)
-  (setq-default tab-width 4)
+(setq-default indent-tabs-mode t)
+(setq-default tab-width 4)
 #+END_SRC
 
 * Minor Modes
@@ -266,10 +265,10 @@ such as Python will override this setting in their major mode anyway.
 [[https://github.com/justbur/emacs-which-key][which-key]] is a package that displays available keybindings in popup.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package which-key
-    :config
-    (which-key-mode t)
-    :diminish which-key-mode)
+(use-package which-key
+  :config
+  (which-key-mode t)
+  :diminish which-key-mode)
 #+END_SRC
 
 ** Smart Mode Line
@@ -277,14 +276,14 @@ such as Python will override this setting in their major mode anyway.
 Prettify the mode line with [[https://github.com/Malabarba/smart-mode-line][Smart Mode Line]].
 
 #+BEGIN_SRC emacs-lisp
-  (use-package smart-mode-line
-    :config
-    (setq sml/no-confirm-load-theme t)
-    (setq sml/theme 'dark)
-    (sml/setup)
+(use-package smart-mode-line
+  :config
+  (setq sml/no-confirm-load-theme t)
+  (setq sml/theme 'dark)
+  (sml/setup)
 
-    ;; Shorten certain paths with 'directory prefixes'.
-    (add-to-list 'sml/replacer-regexp-list '("^~/code/dotfiles/" ":DOT:") t))
+  ;; Shorten certain paths with 'directory prefixes'.
+  (add-to-list 'sml/replacer-regexp-list '("^~/code/dotfiles/" ":DOT:") t))
 #+END_SRC
 
 ** Smex
@@ -294,8 +293,8 @@ commands in order of last used.  Without this Counsel just lists
 alphabetically.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package smex
-    :init (smex-initialize))
+(use-package smex
+  :init (smex-initialize))
 #+END_SRC
 
 ** Ivy / Counsel / Swiper
@@ -305,38 +304,38 @@ Use [[https://github.com/abo-abo/swiper][Swiper]] and friends for searching and 
 Ivy, a generic completion mechanism for Emacs.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package ivy
-    :bind (("C-x b" . ivy-switch-buffer)
-           ("C-c C-r" . ivy-resume))
-    :config
-    (ivy-mode)
-    (setq ivy-fixed-height-minibuffer t)
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-format-function 'ivy-format-function-line) ; Highlight entire line in Ivy completion buffer.
-    :diminish ivy-mode)
+(use-package ivy
+  :bind (("C-x b" . ivy-switch-buffer)
+         ("C-c C-r" . ivy-resume))
+  :config
+  (ivy-mode)
+  (setq ivy-fixed-height-minibuffer t)
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-format-function 'ivy-format-function-line) ; Highlight entire line in Ivy completion buffer.
+  :diminish ivy-mode)
 #+END_SRC
 
 Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package counsel
-    :bind (("M-x" . counsel-M-x)
-	   ("C-x C-f" . counsel-find-file)
-	   ("C-x f" . counsel-recentf)
-	   ("C-c j" . counsel-git-grep)
-	   ("C-c k" . counsel-rg)
-	   ("C-c m" . counsel-imenu)
-	   ("M-y" . counsel-yank-pop)
-	   :map ivy-minibuffer-map
-	   ("M-y" . ivy-next-line-and-call)))
+(use-package counsel
+  :bind (("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)
+         ("C-x f" . counsel-recentf)
+         ("C-c j" . counsel-git-grep)
+         ("C-c k" . counsel-rg)
+         ("C-c m" . counsel-imenu)
+         ("M-y" . counsel-yank-pop)
+         :map ivy-minibuffer-map
+         ("M-y" . ivy-next-line-and-call)))
 #+END_SRC
 
 Swiper, an Ivy-enhanced alternative to isearch.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package swiper
-    :bind (("C-s" . swiper)
-           ("C-r" . swiper)))
+(use-package swiper
+  :bind (("C-s" . swiper)
+         ("C-r" . swiper)))
 #+END_SRC
 
 ** Dumb Jump
@@ -345,15 +344,15 @@ Swiper, an Ivy-enhanced alternative to isearch.
 extra config and need for tag files.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package dumb-jump
-    :bind (("M-g o" . dumb-jump-go-other-window)
-           ("M-g j" . dumb-jump-go)
-	   ("M-g p" . dump-jump-back)
-           ("M-g x" . dumb-jump-go-prefer-external)
-           ("M-g z" . dumb-jump-go-prefer-external-other-window))
-    :config
-    (setq dumb-jump-default-project "~/code")
-    (setq dumb-jump-selector 'ivy))
+(use-package dumb-jump
+  :bind (("M-g o" . dumb-jump-go-other-window)
+         ("M-g j" . dumb-jump-go)
+         ("M-g p" . dump-jump-back)
+         ("M-g x" . dumb-jump-go-prefer-external)
+         ("M-g z" . dumb-jump-go-prefer-external-other-window))
+  :config
+  (setq dumb-jump-default-project "~/code")
+  (setq dumb-jump-selector 'ivy))
 #+END_SRC
 
 ** Avy
@@ -361,12 +360,12 @@ extra config and need for tag files.
 Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy]].
 
 #+BEGIN_SRC emacs-lisp
-  (use-package avy
-    :bind (("M-g c" . avy-goto-char)
-           ("M-g w" . avy-goto-word-1)
-           ("M-g l" . avy-goto-line))
-    :config
-    (avy-setup-default))
+(use-package avy
+  :bind (("M-g c" . avy-goto-char)
+         ("M-g w" . avy-goto-word-1)
+         ("M-g l" . avy-goto-line))
+  :config
+  (avy-setup-default))
 #+END_SRC
 
 ** Ace-link
@@ -374,10 +373,10 @@ Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy
 Quickly follow links with [[https://github.com/abo-abo/ace-link][Ace-link]].
 
 #+BEGIN_SRC emacs-lisp
-  (use-package ace-link
-    :config
-    (ace-link-setup-default)
-    (define-key org-mode-map (kbd "M-o") 'ace-link-org))
+(use-package ace-link
+  :config
+  (ace-link-setup-default)
+  (define-key org-mode-map (kbd "M-o") 'ace-link-org))
 #+END_SRC
 
 ** Switch-window
@@ -385,13 +384,13 @@ Quickly follow links with [[https://github.com/abo-abo/ace-link][Ace-link]].
 Quickly switch between windows with [[https://github.com/dimitri/switch-window][switch-window]].
 
 #+BEGIN_SRC emacs-lisp
-  (use-package switch-window
-    :bind ("C-x o" . switch-window)
-    :config
-    (setq switch-window-shortcut-style 'qwerty)
-    (setq switch-window-qwerty-shortcuts
-      '("a" "s" "d" "f" "j" "k" "l" ";" "w" "e" "i" "o"))
-    (setq switch-window-threshold 2))
+(use-package switch-window
+  :bind ("C-x o" . switch-window)
+  :config
+  (setq switch-window-shortcut-style 'qwerty)
+  (setq switch-window-qwerty-shortcuts
+    '("a" "s" "d" "f" "j" "k" "l" ";" "w" "e" "i" "o"))
+  (setq switch-window-threshold 2))
 #+END_SRC
 
 ** Projectile
@@ -401,23 +400,23 @@ you can use search (with Ivy) for files just within the project.  A project
 is defined by a .git (others supported) in the top level dir.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package projectile
-	:config
-	(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-	(projectile-mode +1)
-	(setq projectile-enable-caching t
-		  projectile-completion-system 'ivy))
+(use-package projectile
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1)
+  (setq projectile-enable-caching t
+  projectile-completion-system 'ivy))
 #+END_SRC
 
 ** Paradox
 
-
 [[https://github.com/Malabarba/paradox][Paradox]] is an enhanced package list/utility.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package paradox
-    :commands (paradox-upgrade-packages paradox-list-packages)
-    :config (setq paradox-execute-asynchronously t))
+(use-package paradox
+  :commands (paradox-upgrade-packages paradox-list-packages)
+  :config
+  (setq paradox-execute-asynchronously t))
 #+END_SRC
 
 ** Magit
@@ -425,10 +424,10 @@ is defined by a .git (others supported) in the top level dir.
 [[https://magit.vc/][Magit]] the one and only Git frontend.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package magit
-    :bind ("C-c g" . magit-status)
-    :config
-    (setq magit-completing-read-function 'ivy-completing-read))
+(use-package magit
+  :bind ("C-c g" . magit-status)
+  :config
+  (setq magit-completing-read-function 'ivy-completing-read))
 #+END_SRC
 
 ** Dired
@@ -439,27 +438,27 @@ systems addresses it.  On GNU/Linux the value of
 insert-directory-program just stays as standard ~ls~.
 
 #+BEGIN_SRC emacs-lisp
-  ;; Prefer g-prefixed coreutils version of standard utilities when available
-  (let ((gls (executable-find "gls")))
-    (when gls (setq insert-directory-program gls)))
+;; Prefer g-prefixed coreutils version of standard utilities when available
+(let ((gls (executable-find "gls")))
+     (when gls
+       (setq insert-directory-program gls)))
 #+END_SRC
- 
+
 ** Whitespace
 
 [[https://www.emacswiki.org/emacs/WhiteSpace][WhiteSpace]], a mode to toggle visibility of whitespace.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package whitespace
-    :defer t
-    :bind ("C-c w" . whitespace-mode))
+(use-package whitespace
+  :bind ("C-c w" . whitespace-mode))
 #+END_SRC
 
 Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/whitespace-cleanup-mode][whitespace-cleanup-mode]]. 
 
 #+BEGIN_SRC emacs-lisp
-  (use-package whitespace-cleanup-mode
-    :init
-    (global-whitespace-cleanup-mode t)) ; Enabled globally
+(use-package whitespace-cleanup-mode
+  :init
+  (global-whitespace-cleanup-mode t)) ; Enabled globally
 #+END_SRC
 
 ** Undo-tree
@@ -467,9 +466,9 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 [[https://www.emacswiki.org/emacs/UndoTree][UndoTree]] lets you visualise undo.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package undo-tree
-    :init (global-undo-tree-mode)
-    :diminish undo-tree-mode)
+(use-package undo-tree
+  :init (global-undo-tree-mode)
+  :diminish undo-tree-mode)
 #+END_SRC
 
 ** Company
@@ -477,45 +476,43 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 Auto-completion [[https://company-mode.github.io/][Company]].
 
 #+BEGIN_SRC emacs-lisp
-  (use-package company
-    :init (global-company-mode)
-    :config
-    (setq company-tooltip-align-annotations t
-	  company-tooltip-flip-when-above t
-	  ;; Easy navigation to candidates with M-<n>
-	  company-show-numbers t)
-    :diminish company-mode)
+(use-package company
+  :init (global-company-mode)
+  :diminish company-mode
+  :config
+  (setq company-tooltip-align-annotations t
+        company-tooltip-flip-when-above t
+        ;; Easy navigation to candidates with M-<n>
+          company-show-numbers t))
 #+END_SRC
 
 [[https://github.com/company-mode/company-statistics][Company-statistics]] sorts completion candidates by previous completion choices.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package company-statistics
-    :after company
-    :config (company-statistics-mode))
+(use-package company-statistics
+  :after company
+  :config (company-statistics-mode))
 #+END_SRC
 
 ** Eglot
 
 #+BEGIN_SRC emacs-lisp
-  (use-package eglot
-	:bind (:map eglot-mode-map
-				("M-." . xref-find-definitions)
-				("C-c h" . eglot-help-at-point))
-	:hook ((rust-mode . eglot-ensure)))
+(use-package eglot
+  :bind (:map eglot-mode-map
+        ("M-." . xref-find-definitions)
+        ("C-c h" . eglot-help-at-point))
+  :hook ((rust-mode . eglot-ensure)))
 #+END_SRC
 
 ** Rainbow delimiters
 
-
-
 Highlight parens etc. by depth with [[https://www.emacswiki.org/emacs/RainbowDelimiters][Rainbow Delimiters]].
 
 #+BEGIN_SRC emacs-lisp
-  (use-package rainbow-delimiters
-    :init
-    (dolist (hook '(text-mode-hook prog-mode-hook))
-      (add-hook hook #'rainbow-delimiters-mode)))
+(use-package rainbow-delimiters
+  :init
+  (dolist (hook '(text-mode-hook prog-mode-hook))
+    (add-hook hook #'rainbow-delimiters-mode)))
 #+END_SRC
 
 ** Flycheck
@@ -524,8 +521,8 @@ Highlight parens etc. by depth with [[https://www.emacswiki.org/emacs/RainbowDel
 backend/languages.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package flycheck
-    :bind ("C-c f" . flycheck-mode))
+(use-package flycheck
+  :bind ("C-c f" . flycheck-mode))
 #+END_SRC
 
 ** Flyspell
@@ -534,14 +531,14 @@ Check my spelling on the fly with [[https://www.emacswiki.org/emacs/FlySpell][Fl
 This also spellchecks spelling in programming mode but only within comments.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package flyspell
-    :config
-    (setq ispell-program-name "hunspell"
-          ispell-dictionary "en_GB")
-    (add-hook 'text-mode-hook #'flyspell-mode)
-    (add-hook 'prog-mode-hook #'flyspell-prog-mode)
-    :bind ("<f8>" . ispell-word)
-    :diminish (flyspell-mode . "Spell"))
+(use-package flyspell
+  :config
+  (setq ispell-program-name "hunspell"
+        ispell-dictionary "en_GB")
+  (add-hook 'text-mode-hook #'flyspell-mode)
+  (add-hook 'prog-mode-hook #'flyspell-prog-mode)
+  :bind ("<f8>" . ispell-word)
+  :diminish (flyspell-mode . "Spell"))
 #+END_SRC
 
 ** Smartparens
@@ -549,23 +546,22 @@ This also spellchecks spelling in programming mode but only within comments.
 Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartparens]].
 
 #+BEGIN_SRC emacs-lisp
-  (use-package smartparens
-    :commands (smartparens-mode
-               smartparens-strict-mode)
-    :init
-    (add-hook 'slime-repl-mode-hook #'smartparens-mode)
-    (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-    (add-hook 'lisp-mode-hook #'smartparens-mode)
-    (add-hook 'clojure-mode-hook #'smartparens-mode)
-    :config
-    (require 'smartparens-config)
-    (sp-use-smartparens-bindings))
+(use-package smartparens
+  :commands (smartparens-mode smartparens-strict-mode)
+  :init
+  (add-hook 'slime-repl-mode-hook #'smartparens-mode)
+  (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
+  (add-hook 'lisp-mode-hook #'smartparens-mode)
+  (add-hook 'clojure-mode-hook #'smartparens-mode)
+  :config
+  (require 'smartparens-config)
+  (sp-use-smartparens-bindings))
 #+END_SRC
 
 ** ElDoc
 
 #+BEGIN_SRC emacs-lisp
-  (use-package eldoc)
+(use-package eldoc)
 #+END_SRC
 
 ** Iedit
@@ -573,9 +569,9 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
 Edit multiple regions in the same way simultaneously with [[https://github.com/victorhge/iedit][Iedit]].
 
 #+BEGIN_SRC emacs-lisp
-  (use-package iedit
-    :commands (iedit-mode iedit-rectangle-mode)
-    :bind ("C-;" . iedit-mode))
+(use-package iedit
+  :commands (iedit-mode iedit-rectangle-mode)
+  :bind ("C-;" . iedit-mode))
 #+END_SRC
 
 ** Cut/Copy/Comment current line if no region selected
@@ -584,23 +580,23 @@ In many editors cut and copy act on the current line if no text is
 visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master/whole-line-or-region.el][whole-line-or-region]] does just that for Emacs.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package whole-line-or-region
-    :config
-    (add-to-list 'whole-line-or-region-extensions-alist
-		 '(comment-dwim whole-line-or-region-comment-dwim-2 nil))
-    (whole-line-or-region-mode 1)
-    :diminish whole-line-or-region-local-mode)
+(use-package whole-line-or-region
+  :config
+  (add-to-list 'whole-line-or-region-extensions-alist
+    '(comment-dwim whole-line-or-region-comment-dwim-2 nil))
+  (whole-line-or-region-mode 1)
+  :diminish whole-line-or-region-local-mode)
 #+END_SRC
 
 ** Emmet
 
 #+BEGIN_SRC emacs-lisp
-  (use-package emmet-mode
-	:bind ("C-<return>" . emmet-expand-line)
-	:config
-	(add-hook 'web-mode-hook 'emmet-mode)
-	(add-hook 'sgml-mode-hook 'emmet-mode)
-	(add-hook 'html-mode-hook 'emmet-mode))
+(use-package emmet-mode
+  :bind ("C-<return>" . emmet-expand-line)
+  :config
+  (add-hook 'web-mode-hook 'emmet-mode)
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  (add-hook 'html-mode-hook 'emmet-mode))
 #+END_SRC
 
 * Major Modes / Language Specific Stuff
@@ -609,95 +605,96 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
 [[http://orgmode.org/][Org mode]] - Your life in plain text.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package org
-    :init (add-to-list 'org-modules 'org-eww)
-    :mode ("\\.org$'" . org-mode)
-    :bind (("C-c a" . org-agenda)
-	   ("C-c c" . org-capture)
-	   ("C-c l" . org-store-link))
-    :pin org
-    :config
-	;; Syntax highlight code blocks and make tabs work as expected.
-    (setq org-src-fontify-natively t
-	      org-src-tab-acts-natively t)
-    (setq org-directory "~/org")
-    (setq org-default-notes-file (concat org-directory "/notes.org"))
-    (setq org-agenda-files (list "~/org/personal.org"
-				 "~/org/work.org"))
-    (setq org-log-done 'time)
-    (setq org-log-done-with-time t)
-    (setq org-log-into-drawer t)
-    (setq org-completion-use-ido t)
+(use-package org
+  :pin org
+  :init (add-to-list 'org-modules 'org-eww)
+  :mode ("\\.org$'" . org-mode)
+  :bind (("C-c a" . org-agenda)
+         ("C-c c" . org-capture)
+         ("C-c l" . org-store-link))
+  :config
+  ;; Syntax highlight code blocks and make tabs work as expected.
+  (setq org-src-fontify-natively t
+        org-src-tab-acts-natively t)
 
-    ;; Follow links with RET.
-    (setq org-return-follows-link t)
+  (setq org-directory "~/org")
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
+  (setq org-agenda-files (list "~/org/personal.org"
+                               "~/org/work.org"))
+  (setq org-log-done 'time)
+  (setq org-log-done-with-time t)
+  (setq org-log-into-drawer t)
+  (setq org-completion-use-ido t)
 
-    ;; Turn on spell checking by default for Org mode.
-    (add-hook 'org-mode-hook 'turn-on-flyspell)
+  ;; Follow links with RET.
+  (setq org-return-follows-link t)
 
-    (setq org-todo-keywords
-	 '((sequence "TODO(t)" "WAIT(w@/!)" "APPT(a)" "|" "DONE(d!)" "CANCELLED(c@)" "DELEGATED(l@)")))
+  ;; Turn on spell checking by default for Org mode.
+  (add-hook 'org-mode-hook 'turn-on-flyspell)
 
-    ;; Capture templates
-    (setq org-capture-templates
-	  `(("p" "Personal Todo" entry (file+headline ,(concat org-directory "/personal.org") "INBOX") "* TODO %?\n  %i\n")
-	    ("w" "Work Todo" entry (file+headline ,(concat org-directory "/work.org") "INBOX") "* TODO %?\n  %i\n")
-	    ("s" "Someday Todo" entry (file+headline ,(concat org-directory "/someday.org") "INBOX") "* TODO %?\n  %i\n")
-	    ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "INBOX") "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n")
-	    ("j" "Journal" entry (file+olp+datetree ,(concat org-directory "/journal.org")) "* %?\nEntered on %U\n  %i\n")
-	    ("k" "Work Journal" entry (file+olp+datetree ,(concat org-directory "/work-journal.org")) "* %?\nEntered on %U\n  %i\n")
-	    ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "INBOX") "* %? %^L %^g \n%T" :prepend t)
-	    ))
+  (setq org-todo-keywords
+    '((sequence "TODO(t)" "WAIT(w@/!)" "APPT(a)" "|" "DONE(d!)" "CANCELLED(c@)" "DELEGATED(l@)")))
 
-    ;; Refile targets - all agenda files, nodes up to 3 levels deep.
-    (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+  ;; Capture templates
+  (setq org-capture-templates
+    `(("p" "Personal Todo" entry (file+headline ,(concat org-directory "/personal.org") "INBOX") "* TODO %?\n  %i\n")
+      ("w" "Work Todo" entry (file+headline ,(concat org-directory "/work.org") "INBOX") "* TODO %?\n  %i\n")
+      ("s" "Someday Todo" entry (file+headline ,(concat org-directory "/someday.org") "INBOX") "* TODO %?\n  %i\n")
+      ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "INBOX") "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n")
+      ("j" "Journal" entry (file+olp+datetree ,(concat org-directory "/journal.org")) "* %?\nEntered on %U\n  %i\n")
+      ("k" "Work Journal" entry (file+olp+datetree ,(concat org-directory "/work-journal.org")) "* %?\nEntered on %U\n  %i\n")
+      ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "INBOX") "* %? %^L %^g \n%T" :prepend t)
+      ))
 
-    ;; Custom function to quickly archive all done tasks.
-    (defun rt/org-archive-done-tasks ()
-      (interactive)
-      (org-map-entries
-       (lambda ()
-	 (org-archive-subtree)
-	 (setq org-map-continue-from (outline-previous-heading)))
-       "/DONE" 'file)))
+  ;; Refile targets - all agenda files, nodes up to 3 levels deep.
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+
+  ;; Custom function to quickly archive all done tasks.
+  (defun rt/org-archive-done-tasks ()
+    (interactive)
+    (org-map-entries
+      (lambda ()
+        (org-archive-subtree)
+        (setq org-map-continue-from (outline-previous-heading)))
+          "/DONE" 'file)))
 #+END_SRC
 
 Custom colours for [[http://orgmode.org/manual/Faces-for-TODO-keywords.html][TODO keywords]].
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-todo-keyword-faces
-	'(("TODO" . "IndianRed1")
-	  ("WAIT" . "orange2")
-	  ("APPT" . "gold2")
-	  ("DONE" . "SeaGreen3")
-	  ("CANCELLED" . "MediumPurple2")
-	  ("DELEGATED" . "DarkSlateGray2")))
+(setq org-todo-keyword-faces
+  '(("TODO" . "IndianRed1")
+    ("WAIT" . "orange2")
+    ("APPT" . "gold2")
+    ("DONE" . "SeaGreen3")
+    ("CANCELLED" . "MediumPurple2")
+    ("DELEGATED" . "DarkSlateGray2")))
 #+END_SRC
 
 We'll need the htmlize package for syntax highlighting of code blocks.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package htmlize
-    :commands (htmlize-buffer
-               htmlize-file
-               htmlize-many-files
-               htmlize-many-files-dired
-               htmlize-region))
+(use-package htmlize
+  :commands (htmlize-buffer
+             htmlize-file
+             htmlize-many-files
+             htmlize-many-files-dired
+             htmlize-region))
 #+END_SRC
 
 Exporting to web pages that can use tufte.css
 
 #+BEGIN_SRC emacs-lisp
-  (use-package ox-tufte
-    :init (require 'ox-tufte))
+(use-package ox-tufte
+  :init (require 'ox-tufte))
 #+END_SRC
 
 [[http://orgmode.org/w/?p=org-mode.git;a=blob_plain;f=contrib/lisp/ox-rss.el;hb=HEAD][ox-rss.el]] for RSS 2.0 exports.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package ox-rss
-    :ensure nil
-    :load-path "~/.emacs.d/lisp/")
+(use-package ox-rss
+  :ensure nil
+  :load-path "~/.emacs.d/lisp/")
 #+END_SRC
 
 ** Markdown
@@ -708,12 +705,12 @@ and preview as well as other niceties.
 Markdown command is set to [[http://fletcherpenney.net/multimarkdown/][multimarkdown]] so that needs installed on the system.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package markdown-mode
-    :commands (markdown-mode gfm-mode)
-    :mode (("README\\.md\\'" . gfm-mode)
-           ("\\.md\\'" . markdown-mode)
-           ("\\.markdown\\'" . markdown-mode))
-    :init (setq markdown-command "multimarkdown"))
+(use-package markdown-mode
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
 #+END_SRC
 
 ** YAML
@@ -721,10 +718,10 @@ Markdown command is set to [[http://fletcherpenney.net/multimarkdown/][multimark
 [[https://www.emacswiki.org/emacs/YamlMode][Yaml mode]]
 
 #+BEGIN_SRC emacs-lisp
-  (use-package yaml-mode
-    :mode (("\\.yml$" . yaml-mode)
-           ("\\.yaml$" . yaml-mode)
-           ("\\.sls$" . yaml-mode))) ; SaltStack
+(use-package yaml-mode
+  :mode (("\\.yml$" . yaml-mode)
+         ("\\.yaml$" . yaml-mode)
+         ("\\.sls$" . yaml-mode))) ; SaltStack
 #+END_SRC
 
 ** Python
@@ -732,41 +729,41 @@ Markdown command is set to [[http://fletcherpenney.net/multimarkdown/][multimark
 Setup Python mode
 
 #+BEGIN_SRC emacs-lisp
-  (use-package python
-    :init
-    (add-hook 'python-mode-hook #'flycheck-mode)
-    :config
-    (setq fill-column 79)
-    (setq-default flycheck-flake8rc "~/.config/flake8rc")
-    (setq python-check-command "flake8")
-    (setq tab-width 4)
+(use-package python
+  :init
+  (add-hook 'python-mode-hook #'flycheck-mode)
+  :config
+  (setq fill-column 79)
+  (setq-default flycheck-flake8rc "~/.config/flake8rc")
+  (setq python-check-command "flake8")
+  (setq tab-width 4)
 
-    (pyvenv-mode 1))
+  (pyvenv-mode 1))
 #+END_SRC
 
 Work with virtual envs using [[https://github.com/proofit404/pyenv-mode][Pyenv mode]].
 
 #+BEGIN_SRC emacs-lisp
-  (use-package pyvenv
-    :commands (pyvenv-activate))
+(use-package pyvenv
+  :commands (pyvenv-activate))
 #+END_SRC
 
 [[https://github.com/proofit404/anaconda-mode][Anaconde mode]] offers code navigation, documentation lookup, and completion
 for Python.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package anaconda-mode
-    :init
-    (progn
-      (add-hook 'python-mode-hook 'anaconda-mode)
-      (add-hook 'python-mode-hook 'anaconda-eldoc-mode)))
+(use-package anaconda-mode
+  :init
+  (progn
+    (add-hook 'python-mode-hook 'anaconda-mode)
+    (add-hook 'python-mode-hook 'anaconda-eldoc-mode)))
 #+END_SRC
 
 [[https://github.com/proofit404/company-anaconda][company-anaconda]] is an Anaconda backend for Company.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package company-anaconda
-    :init (add-to-list 'company-backends 'company-anaconda))
+(use-package company-anaconda
+  :init (add-to-list 'company-backends 'company-anaconda))
 #+END_SRC
 
 ** Jinja2
@@ -774,8 +771,8 @@ for Python.
 [[https://melpa.org/#/jinja2-mode][Jinja2 Mode]] is a majore mode for the jinja2 templating language.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package jinja2-mode
-    :mode ("\\.j2\\'" . jinja2-mode))
+(use-package jinja2-mode
+  :mode ("\\.j2\\'" . jinja2-mode))
 #+END_SRC
 
 ** Go
@@ -783,16 +780,16 @@ for Python.
 [[https://github.com/dominikh/go-mode.el][Go mode]]
 
 #+BEGIN_SRC emacs-lisp
-  (use-package go-mode
-    :init
-    (setq gofmt-command "goimports")
-    (add-hook 'before-save-hook 'gofmt-before-save)
-    (add-hook 'go-mode-hook #'flycheck-mode)
-    (add-hook 'go-mode-hook (lambda () (setq flycheck-disabled-checkers '(go-errcheck))))
-    (add-hook 'go-mode-hook (lambda ()
-                              (if (not (string-match "go" compile-command))
-                                  (set (make-local-variable 'compile-command)
-                                       "go build -v")))))
+(use-package go-mode
+  :init
+  (setq gofmt-command "goimports")
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (add-hook 'go-mode-hook #'flycheck-mode)
+  (add-hook 'go-mode-hook (lambda () (setq flycheck-disabled-checkers '(go-errcheck))))
+  (add-hook 'go-mode-hook (lambda ()
+                            (if (not (string-match "go" compile-command))
+                                (set (make-local-variable 'compile-command)
+                                      "go build -v")))))
 #+END_SRC
 
 [[https://github.com/nsf/gocode/tree/master/emacs-company][gocode]] backend for Go auto-completion via Company.  This sets gocode to be the only
@@ -801,28 +798,28 @@ Company backend when editing Go code.
 `gocode` itself can be installed with: `go get -u github.com/nsf/gocode`
 
 #+BEGIN_SRC emacs-lisp
-  (use-package company-go
-    :init
-    (add-hook 'go-mode-hook (lambda ()
-                            (set (make-local-variable 'company-backends) '(company-go))
-                            (company-mode))))
+(use-package company-go
+  :init
+  (add-hook 'go-mode-hook (lambda ()
+                          (set (make-local-variable 'company-backends) '(company-go))
+                          (company-mode))))
 #+END_SRC
 
 Show ElDoc style documention for Go via [[https://github.com/syohex/emacs-go-eldoc][go-eldoc]].
 
 #+BEGIN_SRC emacs-lisp
-  (use-package go-eldoc
-    :init
-    (add-hook 'go-mode-hook 'go-eldoc-setup))
+(use-package go-eldoc
+  :init
+  (add-hook 'go-mode-hook 'go-eldoc-setup))
 #+END_SRC
 
 ** Rust
 
 #+BEGIN_SRC emacs-lisp
-  (use-package rust-mode
-    :mode ("\\.rs$" . rust-mode)
-    :config
-    (setq rust-format-on-save t))
+(use-package rust-mode
+  :mode ("\\.rs$" . rust-mode)
+  :config
+  (setq rust-format-on-save t))
 #+END_SRC
 
 ** Lisp / Clojure
@@ -830,34 +827,34 @@ Show ElDoc style documention for Go via [[https://github.com/syohex/emacs-go-eld
 [[https://common-lisp.net/project/slime/][SLIME]]: The Superior Lisp Interaction Mode for Emacs.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package slime
-    :config
-    (setq inferior-lisp-program "clisp")
-    (slime-setup '(slime-fancy))
+(use-package slime
+  :config
+  (setq inferior-lisp-program "clisp")
+  (slime-setup '(slime-fancy))
 
-    (add-hook 'emacs-lisp-mode-hook #'eldoc-mode)
-    (add-hook 'ielm-mode-hook #'eldoc-mode)
-    (add-hook 'lisp-interaction-mode-hook #'eldoc-mode)
+  (add-hook 'emacs-lisp-mode-hook #'eldoc-mode)
+  (add-hook 'ielm-mode-hook #'eldoc-mode)
+  (add-hook 'lisp-interaction-mode-hook #'eldoc-mode)
 
-    (add-hook 'lisp-mode-hook #'slime-lisp-mode-hook))
+  (add-hook 'lisp-mode-hook #'slime-lisp-mode-hook))
 #+END_SRC
 
 [[https://github.com/clojure-emacs/clojure-mode][Clojure Mode]] is a major mode for Clojure.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package clojure-mode
-    :config
-    (add-hook 'clojure-mode-hook #'subword-mode))
+(use-package clojure-mode
+  :config
+  (add-hook 'clojure-mode-hook #'subword-mode))
 #+END_SRC
 
 [[https://cider.readthedocs.io/en/latest/][CIDER]] is the Clojure(Script) Interactive Development Environment that Rocks!
 
 #+BEGIN_SRC emacs-lisp
-  (use-package cider
-    :commands (cider cider-connect cider-jack-in)
-    :config
-    (add-hook 'cider-mode-hook #'eldoc-mode)
-    (add-hook 'cider-repl-mode-hook #'eldoc-mode))
+(use-package cider
+  :commands (cider cider-connect cider-jack-in)
+  :config
+  (add-hook 'cider-mode-hook #'eldoc-mode)
+  (add-hook 'cider-repl-mode-hook #'eldoc-mode))
 #+END_SRC
 
 [[https://github.com/Malabarba/speed-of-thought-lisp][Speed of Thought Lisp]] and [[https://github.com/Malabarba/speed-of-thought-clojure][Speed of Thought Clojure]] increase the speed at
@@ -865,35 +862,35 @@ which you can write Lisp/Clojure by including many abbreviations that
 activated when typing them directly after parentheses.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package sotlisp
-    :commands sotlisp-mode
-    :config
-    (sotlisp-define-all-abbrevs))
+(use-package sotlisp
+  :config
+  (sotlisp-define-all-abbrevs))
 
-  (use-package sotclojure
-    :commands sotclojure-mode
-    :config
-    (sotclojure-define-all-abbrevs))
+(use-package sotclojure
+  :config
+  (sotclojure-define-all-abbrevs))
 #+END_SRC
+
 ** Terraform
 
 [[https://github.com/syohex/emacs-terraform-mode][Terraform Mode]] is a major mode for editing Terraform files.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package terraform-mode
-    :config
-    (setq terraform-indent-level 2))
+(use-package terraform-mode
+  :config
+  (setq terraform-indent-level 2))
 #+END_SRC
+
 ** Nim
 
 Setup [[https://github.com/nim-lang/nim-mode][nim-mode]] for coding [[https://nim-lang.org/][Nim]].
 
 #+BEGIN_SRC emacs-lisp
-  (use-package nim-mode
-    :init
-    (add-hook 'nim-mode-hook 'nimsuggest-mode)
-    :config
-    (setq nim-nimsuggest-path "/usr/local/nim/bin/nimsuggest"))
+(use-package nim-mode
+  :init
+  (add-hook 'nim-mode-hook 'nimsuggest-mode)
+  :config
+  (setq nim-nimsuggest-path "/usr/local/nim/bin/nimsuggest"))
 #+END_SRC
 
 ** Web Mode
@@ -902,23 +899,23 @@ Setup [[https://github.com/nim-lang/nim-mode][nim-mode]] for coding [[https://ni
 appropriately for embedded CSS or Javascript.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package web-mode
-    :mode (("\\.html\\'" . web-mode)
-	   ("\\.css\\'" . web-mode)
-	   ("\\.j2\\'" . web-mode))
-    :config
-    (setq web-mode-markup-indent-offset 2)
-    (setq web-mode-code-indent-offset 2)
-    (setq web-mode-css-indent-offset 2)
+(use-package web-mode
+  :mode (("\\.html\\'" . web-mode)
+         ("\\.css\\'" . web-mode)
+         ("\\.j2\\'" . web-mode))
+  :config
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
 
-    (setq web-mode-enable-auto-pairing t)
-    (setq web-mode-enable-auto-expanding t)
-    (setq web-mode-enable-css-colorization t)
-    (setq web-mode-enable-current-element-highlight t)
-    (setq web-mode-enable-current-column-highlight t)
+  (setq web-mode-enable-auto-pairing t)
+  (setq web-mode-enable-auto-expanding t)
+  (setq web-mode-enable-css-colorization t)
+  (setq web-mode-enable-current-element-highlight t)
+  (setq web-mode-enable-current-column-highlight t)
 
-    (setq web-mode-engines-alist
-	  '(("jinja2"    . "\\.j2\\'"))))
+  (setq web-mode-engines-alist
+    '(("jinja2"    . "\\.j2\\'"))))
 #+END_SRC
 
 ** Elm
@@ -927,48 +924,49 @@ appropriately for embedded CSS or Javascript.
 First install elm with ~npm install -g elm elm-oracle elm-format~.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package elm-mode
-	  :config
-	  (setq elm-format-on-save t)
-	  (add-to-list 'company-backends 'company-elm))
+(use-package elm-mode
+  :config
+  (setq elm-format-on-save t)
+  (add-to-list 'company-backends 'company-elm))
 #+END_SRC
 
 * Extras
 ** Email / mu4e
 
 #+BEGIN_SRC emacs-lisp
-  (require 'smtpmail)
+(require 'smtpmail)
 
-  (setq send-mail-function 'smtpmail-send-it
-		smtpmail-smtp-server "smtp.fastmail.com"
-		smtpmail-smtp-service 465
-		smtpmail-stream-type 'ssl)
+(setq send-mail-function 'smtpmail-send-it
+      smtpmail-smtp-server "smtp.fastmail.com"
+      smtpmail-smtp-service 465
+      smtpmail-stream-type 'ssl)
 #+END_SRC
 
 Use [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]] to read email with Emacs.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package mu4e
-	:ensure nil
-	:load-path "/usr/local/share/emacs/site-lisp/mu4e"
-	:commands (mu4e mu4e-compose-new)
-	:config
-	(setq mu4e-maildir (expand-file-name "~/.mail/rosstimson")
-		  mu4e-get-mail-command "mbsync -a"
-		  mu4e-sent-folder "/Sent"
-		  mu4e-drafts-folder "/Drafts"
-		  mu4e-trash-folder "/Trash"))
+(use-package mu4e
+  :ensure nil
+  :load-path "/usr/local/share/emacs/site-lisp/mu4e"
+  :commands (mu4e mu4e-compose-new)
+  :config
+  (setq mu4e-maildir (expand-file-name "~/.mail/rosstimson")
+        mu4e-get-mail-command "mbsync -a"
+        mu4e-sent-folder "/Sent"
+        mu4e-drafts-folder "/Drafts"
+        mu4e-trash-folder "/Trash"))
 #+END_SRC
+
 ** Elfeed
 
 #+BEGIN_SRC emacs-lisp
-  (use-package elfeed
-	:bind ("C-x w" . elfeed)
-	:config
-	(setq-default elfeed-search-filter "@2-weeks-ago +unread "))
+(use-package elfeed
+  :bind ("C-x w" . elfeed)
+  :config
+  (setq-default elfeed-search-filter "@2-weeks-ago +unread "))
 
-  (use-package elfeed-org
-	:config
-	(elfeed-org)
-	(setq rmh-elfeed-org-files (list "~/org/feeds.org")))
+(use-package elfeed-org
+  :config
+  (elfeed-org)
+  (setq rmh-elfeed-org-files (list "~/org/feeds.org")))
 #+END_SRC
