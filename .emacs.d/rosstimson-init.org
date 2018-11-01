@@ -389,7 +389,7 @@ Quickly switch between windows with [[https://github.com/dimitri/switch-window][
   :config
   (setq switch-window-shortcut-style 'qwerty)
   (setq switch-window-qwerty-shortcuts
-    '("a" "s" "d" "f" "j" "k" "l" ";" "w" "e" "i" "o"))
+    '("a" "r" "s" "t" "n" "e" "i" "o"))
   (setq switch-window-threshold 2))
 #+END_SRC
 
