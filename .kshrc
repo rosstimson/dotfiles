@@ -46,7 +46,9 @@ git_prompt() {
 		fi
 	done
 	branch=$(__git_ps1 "%s")
-	echo "(${branch})"
+	if [ "${branch}" != "" ]; then
+		echo "(${branch})"
+	fi
 }
 
 PS1='\h:\W$(git_prompt) $ '
