@@ -2,6 +2,9 @@
 
 set -o emacs
 
+HISTFILE="~/,ksh_history"
+HISTSIZE=2000
+
 # Colours
 # -----------------------------------------------------------------------------
 
@@ -15,7 +18,12 @@ green="\033[0;32m"
 # CTRL-l to clear.
 bind -m '^L'=clear'^J'
 
+alias ..="cd .."
+alias ...="cd ../.."
+alias -- --="cd -"
+
 alias g="git"
+alias h="fc -l 0"
 alias l="ls -lah"
 alias less="less -Fi"
 alias tf="terraform"
