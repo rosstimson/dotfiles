@@ -12,6 +12,15 @@ alias g="git"
 alias tf="terraform"
 
 
+# Completions
+#------------------------------------------------------------------------------
+
+if [ -e /usr/local/bin/terraform ]; then
+	set -A complete_terraform_1 -- apply console destroy env fmt get graph import init output plan providers push refresh show taint untaint validate version workspace
+	set -A complete_tf_1 -- apply console destroy env fmt get graph import init output plan providers push refresh show taint untaint validate version workspace
+fi
+
+
 # Prompt
 #------------------------------------------------------------------------------
 
