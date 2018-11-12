@@ -2,6 +2,13 @@
 
 set -o emacs
 
+# Colours
+# -----------------------------------------------------------------------------
+
+default="\033[0m"
+green="\033[0;32m"
+
+
 # Aliases
 #------------------------------------------------------------------------------
 
@@ -9,6 +16,8 @@ set -o emacs
 bind -m '^L'=clear'^J'
 
 alias g="git"
+alias l="ls -lah"
+alias less="less -Fi"
 alias tf="terraform"
 
 
@@ -51,4 +60,4 @@ git_prompt() {
 	fi
 }
 
-PS1='\h:\W$(git_prompt) $ '
+PS1='${green}\h${default}:\W$(git_prompt) $ '
