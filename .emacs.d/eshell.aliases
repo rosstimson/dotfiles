@@ -3,3 +3,5 @@ alias ff find-file $1
 alias c recenter 0
 alias l ls -lha $*
 alias g git $1
+alias tf terraform $1
+alias k kubectl $1
