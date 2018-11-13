@@ -34,14 +34,13 @@ if [ -z "$script" ]; then
 		'/etc/bash_completion.d/git' # fedora, old debian
 		'/usr/share/bash-completion/completions/git' # arch, ubuntu, new debian
 		'/usr/share/bash-completion/git' # gentoo
-		'/usr/local/share/zsh/site-functions/git-completion.bash' # Mac OS X / Homebrew
-		~/.zsh/lib/git-completion.bash # When all else fails.
+		"${HOME}/.zsh/lib/git-completion.bash" # When all else fails.
 		)
 	for e in $locations; do
 		test -f $e && script="$e" && break
 	done
 fi
-ZSH_VERSION='' . "$script"
+GIT_SOURCING_ZSH_COMPLETION=y . "$script"
 
 __gitcomp ()
 {
@@ -69,6 +68,15 @@ __gitcomp ()
 	esac
 }
 
+__gitcomp_direct ()
+{
+	emulate -L zsh
+
+	local IFS=$'\n'
+	compset -P '*[=:]'
+	compadd -Q -- ${=1} && _ret=0
+}
+
 __gitcomp_nl ()
 {
 	emulate -L zsh
@@ -84,6 +92,15 @@ __gitcomp_nl_append ()
 
 	local IFS=$'\n'
 	compadd -Q -S "${4- }" -p "${2-}" -- ${=1} && _ret=0
+}
+
+__gitcomp_file_direct ()
+{
+	emulate -L zsh
+
+	local IFS=$'\n'
+	compset -P '*[=:]'
+	compadd -Q -f -- ${=1} && _ret=0
 }
 
 __gitcomp_file ()
