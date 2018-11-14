@@ -1,8 +1,9 @@
 #!/bin/ksh
 
 set -o emacs
+set -o csh-history
 
-HISTFILE="~/,ksh_history"
+HISTFILE="~/.ksh_history"
 HISTSIZE=2000
 
 # Colours
