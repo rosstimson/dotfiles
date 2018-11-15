@@ -6,6 +6,12 @@ set -o csh-history
 HISTFILE="~/.ksh_history"
 HISTSIZE=2000
 
+export LANG=en_GB.UTF-8
+
+export KEYID=0x667A3481E4BB34F3
+export GPG_TTY=$(tty)
+
+
 # Colours
 # -----------------------------------------------------------------------------
 
@@ -19,6 +25,7 @@ green="\033[0;32m"
 # CTRL-l to clear.
 bind -m '^L'=clear'^J'
 
+alias _="doas"
 alias ..="cd .."
 alias ...="cd ../.."
 alias -- --="cd -"
