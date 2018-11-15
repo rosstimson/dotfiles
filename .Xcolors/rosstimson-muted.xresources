@@ -1,0 +1,40 @@
+! Ross Timson - Muted
+! A light colour theme with a muted palette.
+
+#define BG #e5e3d9
+#define FG #444444
+
+*.background: BG
+*.foreground: FG
+
+! black
+*.color0:  FG
+*.color8:  #333333
+
+! red
+*.color1:  #825b69
+*.color9:  #bda0aa
+
+! green
+*.color2:  #69825b
+*.color10: #aabda0
+
+! yellow
+*.color3:  #82755b
+*.color11: #bdb3a0
+
+! blue
+*.color4:  #5b6982
+*.color12: #a0aabd
+
+! magenta
+*.color5:  #755b82
+*.color13: #b3a0bd
+
+! cyan
+*.color6:  #5b8275
+*.color14: #a0bdb3
+
+! white
+*.color7:  #cacaca
+*.color15: #ffffff
