@@ -252,13 +252,12 @@ I don't have the extra step.
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
 #+END_SRC
 
-** Tabs
+** Tabs vs Spaces
 
-Default to tabs 4 spaces wide.  Langs that NEED spaces for indentation
-such as Python will override this setting in their major mode anyway.
+Default to spaces for indentation.
 
 #+BEGIN_SRC emacs-lisp
-(setq-default indent-tabs-mode t)
+(setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 #+END_SRC
 
@@ -272,6 +271,19 @@ such as Python will override this setting in their major mode anyway.
   :config
   (which-key-mode t)
   :diminish which-key-mode)
+#+END_SRC
+
+** Smart Tabs
+
+Use [[https://www.emacswiki.org/emacs/SmartTabs][Smart Tabs]] for certain langs/modes.  Smart Tabs offers semantic
+way of using tab characters in source code: tabs for indentation,
+spaces for alignment.
+
+#+BEGIN_SRC emacs-lisp
+(use-package smart-tabs-mode
+  :config
+  (smart-tabs-insinuate 'c 'c++ 'java 'javascript)
+)
 #+END_SRC
 
 ** Smart Mode Line
@@ -450,8 +462,11 @@ limitations.
 [[https://www.emacswiki.org/emacs/WhiteSpace][WhiteSpace]], a mode to toggle visibility of whitespace.
 
 #+BEGIN_SRC emacs-lisp
-(use-package whitespace
-  :bind ("C-c w" . whitespace-mode))
+  (use-package whitespace
+    :bind ("C-c w" . whitespace-mode)
+    :config
+    (setq whitespace-line-column 80)
+    (setq whitespace-style '(face tabs spaces indentation lines-tail empty trailing)))
 #+END_SRC
 
 Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/whitespace-cleanup-mode][whitespace-cleanup-mode]]. 
