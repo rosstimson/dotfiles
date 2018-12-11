@@ -1,9 +1,9 @@
-# -*- mode: conf-unix-mode; tab-width: 4 -*-
+# -*- mode: conf-unix-mode; indent-tabs-mode: t; tab-width: 4; -*-
 
 [user]
 	name = Ross Timson
-	email = ross@rosstimson.com
-	SigningKey = 0x080A22C7E75C885C
+	email = me@rosstimson.com
+	SigningKey = 0x667A3481E4BB34F3
 
 [github]
 	user = rosstimson
@@ -11,10 +11,7 @@
 [core]
 	excludesfile = ~/.gitignore
 	autocrlf = input
-	pager = less -FSRX
-	editor = vim
-	# Nice on a Mac for using MacVim and iTerm
-	# editor = "mvim -f -c 'au VimLeave * !open -a iTerm'"
+	editor = emacsclient -c
 
 [push]
 	default = simple
@@ -23,71 +20,14 @@
 [commit]
 	gpgsign = true
 
+[merge]
+	conflictstyle = diff3
+
 [gpg]
 	program = gpg2
 
 [color]
-	branch = auto
-	diff = auto
-	status = auto
-	ui = auto
-
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-
-[color "diff"]
-	meta = yellow
-	frag = magenta
-	old = red
-	new = green
-
-[color "status"]
-	added = green
-	changed = yellow
-	untracked = red
-
-[diff]
-	tool = vim
-	guitool = meld
-
-[difftool]
-	prompt = false
-
-[difftool "vim"]
-	cmd = /usr/local/bin/vim -d "$LOCAL" "$REMOTE"
-	trustExitCode = false
-
-[difftool "meld"]
-	trustExitCode = true
-	cmd = meld "$LOCAL" "$REMOTE"
-
-[difftool "ksdiff"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-
-[merge]
-	ff = only
-	conflictstyle = diff3
-	tool = vim
-	guitool = meld
-
-[mergetool]
-	prompt = false
-
-[mergetool "vim"]
-	cmd = /usr/local/bin/vim -d "$LOCAL" "$MERGED" "$REMOTE"
-	keepBackup = false
-	trustExitCode = false
-
-[mergetool "meld"]
-	trustExitCode = true
-	cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
-
-[mergetool "ksdiff"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	keepBackup = false
-	trustexitcode = true
+	ui = false
 
 [alias]
 	a = add
@@ -105,6 +45,7 @@
 	p = push
 	prune = fetch --prune
 	l = pull
+	lr = pull --rebase
 	s = status
 	stash-all = stash save --include-untracked
 	t = tag
