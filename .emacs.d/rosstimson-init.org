@@ -457,6 +457,20 @@ limitations.
     (setq dired-use-ls-dired nil))
 #+END_SRC
 
+Use human readable file sizes.
+
+#+BEGIN_SRC emacs-lisp
+  (setq dired-listing-switches "-lah")
+#+END_SRC
+
+Allow visiting of files via 'a' key which won't create multiple Dired
+buffers for each dir visited, this is disabled by default and a
+warning message will appear.
+
+#+BEGIN_SRC emacs-lisp
+  (put 'dired-find-alternate-file 'disabled nil)
+#+END_SRC
+
 ** Whitespace
 
 [[https://www.emacswiki.org/emacs/WhiteSpace][WhiteSpace]], a mode to toggle visibility of whitespace.
