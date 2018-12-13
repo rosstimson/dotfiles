@@ -960,6 +960,35 @@ First install elm with ~npm install -g elm elm-oracle elm-format~.
   (add-to-list 'company-backends 'company-elm))
 #+END_SRC
 
+** Javascript / JS2
+
+[[https://github.com/mooz/js2-mode][JS2 Mode]] is an improved Javascript mode.
+
+Set indent-tabs-mode to true for JS files as Smart Tabs is enabled for
+JS.  Without this Smart Tabs would do its thing but then upon saving
+the globally enabled Whitespace Cleanup mode would set tabbed
+indentation back to spaces.
+
+#+BEGIN_SRC emacs-lisp
+(use-package js2-mode
+  :mode ("\\.js\\'")
+  :init
+  (add-hook 'js2-mode-hook
+            (lambda ()
+              (setq indent-tabs-mode t))))
+#+END_SRC
+
+** C
+
+Similar to with JS mode use Smart Tabs for C code and ensure
+Whitespace Cleanup doesn't clobber tabs upon save.
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (setq indent-tabs-mode t)))
+#+END_SRC
+
 * Extras
 ** Email / mu4e
 
