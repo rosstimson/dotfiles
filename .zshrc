@@ -66,7 +66,7 @@ if [ -f ${HOME}/.termcap ]; then
 fi
 
 # Set default editor and pager
-export EDITOR='vim -f'
+export EDITOR='mg'
 export PAGER='less -Fi'
 
 # Print elapsed time when more than 10 seconds
