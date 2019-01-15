@@ -67,7 +67,7 @@ fi
 
 # Set default editor and pager
 export EDITOR='mg'
-export PAGER='less -Fi'
+export PAGER='less -FRi'
 
 # Print elapsed time when more than 10 seconds
 REPORTTIME=10
