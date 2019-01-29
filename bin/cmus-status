@@ -1,0 +1,158 @@
+#!/usr/bin/env bash
+# Display one-line CMus status while CMus is running
+# UM-Li last modified on 13 Jan, 2019
+
+WIDTH=60
+PAUSE=8
+# ↑ Customization:
+# Scroll back and forth if status text is longer than $WIDTH characters
+# Wait for $PAUSE second(s) after text reaches an end
+
+function scroll() {
+	str="$1"   # The text to scroll
+	icon="$2"  # Either ">" or "|" is passed in
+
+	function switch_icon() {
+		if [ "$icon" == '>' ]; then	icon='|'; else icon='>'; fi
+	}
+
+	trap 'return' SIGINT
+	trap 'switch_icon' SIGUSR1
+
+	range=$((${#str} - WIDTH))
+	while true; do
+		for i in $(seq 1 1 $PAUSE); do
+			echo "$icon ${str:0:$((WIDTH - 1))}}"; sleep 1
+		done
+		for i in $(seq 2 1 $range); do
+			echo "$icon {${str:$i:$((WIDTH - 2))}}"; sleep 1
+		done
+		for i in $(seq 1 1 $PAUSE); do
+			echo "$icon {${str:$((range + 1)):$((WIDTH - 1))}"; sleep 1
+		done
+		for i in $(seq $range -1 2); do
+			echo "$icon {${str:$i:$((WIDTH - 2))}}"; sleep 1
+		done
+	done
+}
+
+function gen_icon() {
+	stat_player="$1"
+	if [ "$stat_player" == 'status playing' ]; then echo '>'
+	elif [ "$stat_player" == 'status paused' ]; then echo '|'
+	elif [ "$stat_player" == 'status stopped' ]; then echo '.'
+	else echo ''
+	fi
+}
+
+function gen_text() {
+	text_raw="$1"
+
+	# Artist, substituted by abum artist if empty;
+	# 	substituted by "Unknown Artist" if both are empty
+	track_artist=$(echo "$text_raw" | grep -P -o '(?<=^tag artist\b ).*')
+	album_artist=$(echo "$text_raw" | grep -P -o '(?<=^tag album_artist\b ).*')
+	if [ "$track_artist" ]; then
+		if [ "$album_artist" ] &&\
+		   [ "$track_artist" != "$album_artist" ]; then
+			artist="$album_artist ($track_artist)"
+		else
+			artist=$track_artist
+		fi
+	else
+		if [ "$album_artist" ]; then
+			artist=$album_artist
+		else
+			artist='Unknown Artist'
+		fi
+	fi
+
+	# Song title, substituted by file name if empty;
+	# 	substituted by "Untitled" if both are empty
+	title=$(echo "$text_raw" | grep -P -o '(?<=^tag title\b ).*')
+	if [ "$title" ]; then
+		track=$title
+	else
+		filename=$(echo "$text_raw" | grep '^file\b' |\
+			awk -F '/' '{print $NF}')
+		if [ "$filename" ]; then
+			track=$filename
+		else
+			track='Untitled'
+		fi
+	fi
+		
+	echo "$track - $artist"
+}
+
+function generate() {
+	stat_new=$(cmus-remote -Q 2> /dev/null |\
+		grep -P '^status\b|^file\b|^tag ((album|)artist|title)\b')
+	[ "$stat_new" ] || { echo ''; return; }
+	[ "$stat_new" == "$stat_old" ] && return
+	
+	text_info_new="$(echo "$stat_new" |\
+		grep -P '^file\b|^tag ((album|)artist|title)\b')"
+	text_info_old="$(echo "$stat_old" |\
+		grep -P '^file\b|^tag ((album|)artist|title)\b')"
+	stat_player_new="$(echo "$stat_new" | grep '^status\b')"
+
+	function output() {
+		icon="$(gen_icon "$1")"
+		text="$(gen_text "$2")"
+		if [ "$(echo "$text" | wc -L)" -gt "$WIDTH" ]; then
+			scroll "$text" "$icon" &
+			scrolling=1
+		else
+			echo "$icon $text"
+		fi
+	}
+
+	# Determine and display the status line
+	if [ "$text_info_new" == "$text_info_old" ]; then
+		if [ "$scrolling" == 0 ]; then
+			if [ "$stat_player_new" == 'status stopped' ]; then
+				echo '. CMus stand-by'
+			else
+				output "$stat_player_new" "$text_info_new"
+			fi
+		else  # A scroll() is running
+			if [ "$stat_player_new" == 'status stopped' ]; then
+				kill -INT "$!" && scrolling=0
+				echo '. CMus stand-by'
+			else
+				kill -USR1 "$!"  # Ask scroll() to change the icon
+			fi
+		fi
+	else  # Text info is altered
+		if [ "$stat_player_new" == 'status stopped' ]; then
+			[ "$scrolling" != 0 ] && { kill -INT "$!" && scrolling=0; }
+			echo '. CMus stand-by'
+		else
+			[ "$scrolling" != 0 ] && { kill -INT "$!" && scrolling=0; }
+			output "$stat_player_new" "$text_info_new"
+		fi
+	fi
+
+	stat_old="$stat_new"
+}
+
+#############################  MAIN SCRIPT STARTS  #############################
+
+scrolling=0
+while true; do
+	running=$(pgrep -x 'cmus' -l -c)
+	if [ "$running" != "$running_old" ]; then
+		if [ "$running" == 0 ]; then  # CMus closed
+			[ "$scrolling" != 0 ] && { kill -INT "$!" && scrolling=0; }
+			echo; running_old=$running
+			stat_old=''
+		else  # CMus started
+			generate
+			running_old=$running
+		fi
+	elif [ "$running" != 0 ]; then  # CMus running
+		generate
+	fi
+	sleep 0.5
+done
