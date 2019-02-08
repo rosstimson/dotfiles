@@ -11,6 +11,8 @@ export LANG=en_GB.UTF-8
 export KEYID=0x667A3481E4BB34F3
 export GPG_TTY=$(tty)
 
+export PAGER="less -i"
+
 
 # Colours
 # -----------------------------------------------------------------------------
@@ -33,7 +35,7 @@ alias -- --="cd -"
 alias g="git"
 alias h="fc -l 0"
 alias l="ls -lah"
-alias less="less -Fi"
+alias less="less -i"
 alias tf="terraform"
 
 
