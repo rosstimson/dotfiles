@@ -26,9 +26,6 @@
 [gpg]
 	program = gpg2
 
-[color]
-	ui = false
-
 [alias]
 	a = add
 	b = branch
