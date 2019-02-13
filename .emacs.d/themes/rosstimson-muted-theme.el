@@ -64,6 +64,18 @@
    `(web-mode-current-column-highlight-face ((,class (:background ,white))))
    `(web-mode-current-element-highlight-face ((,class (:background ,white))))
 
+   ;; ivy-mode
+   `(ivy-current-match ((,class (:foreground ,fg :background ,white))))
+   `(ivy-minibuffer-match-face-1 ((,class (:weight bold :foreground ,cyan))))
+   `(ivy-minibuffer-match-face-2 ((,class (:weight bold :foreground ,green))))
+   `(ivy-minibuffer-match-face-3 ((,class (:weight bold :foreground ,magenta))))
+   `(ivy-minibuffer-match-face-4 ((,class (:weight bold :foreground ,blue))))
+   `(ivy-minibuffer-match-highlight ((,class (:foreground ,green))))
+   `(ivy-confirm-face ((,class (:foreground ,green))))
+   `(ivy-match-required-face ((,class (:foreground ,red))))
+   `(ivy-virtual ((,class (:foreground ,cyan))))
+   `(ivy-action ((,class (:foreground ,blue))))
+
    ))
 
 
