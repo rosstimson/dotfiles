@@ -23,8 +23,8 @@
    
    ;; Highlighting faces
    `(fringe ((,class (:background ,bg-light))))
-   `(highlight ((,class (:background "#fff"))))
-   `(region ((,class (:background ,bg-lighter))))
+   `(highlight ((,class (:background ,white-light))))
+   `(region ((,class (:background ,blue-light :foreground ,fg-dark))))
    `(secondary-selection ((,class (:background ,yellow-light))))
    `(isearch ((,class (:foreground ,fg-dark :background ,green-light))))
    `(isearch-fail ((,class (:foreground ,fg-dark :background ,red-light))))
