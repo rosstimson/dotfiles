@@ -105,12 +105,17 @@ Smooth scrolling.
       scroll-step 1)
 #+END_SRC
 
-Set my preferred colour theme.
+Set my custom colour theme.
 
 #+BEGIN_SRC emacs-lisp
-(use-package base16-theme
-  :config
-  (load-theme 'base16-atelier-cave t))
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'rosstimson-muted t)
+#+END_SRC
+
+Get a bunch of other themes.
+
+#+BEGIN_SRC emacs-lisp
+(use-package base16-theme)
 #+END_SRC
 
 Allow easy movement between windows/splits.
@@ -294,7 +299,7 @@ Prettify the mode line with [[https://github.com/Malabarba/smart-mode-line][Smar
 (use-package smart-mode-line
   :config
   (setq sml/no-confirm-load-theme t)
-  (setq sml/theme 'dark)
+  (setq sml/theme 'respectful)
   (sml/setup)
 
   ;; Shorten certain paths with 'directory prefixes'.
