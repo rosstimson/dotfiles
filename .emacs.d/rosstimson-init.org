@@ -557,7 +557,7 @@ backend/languages.
 
 ** Flyspell
 
-Check my spelling on the fly with [[https://www.emacswiki.org/emacs/FlySpell][FlySpell]]. Requires `aspell` to be installed.
+Check my spelling on the fly with [[https://www.emacswiki.org/emacs/FlySpell][FlySpell]]. Requires `hunspell` to be installed.
 This also spellchecks spelling in programming mode but only within comments.
 
 #+BEGIN_SRC emacs-lisp
@@ -566,10 +566,17 @@ This also spellchecks spelling in programming mode but only within comments.
   (setq ispell-program-name "hunspell"
         ispell-dictionary "en_GB")
   (add-hook 'text-mode-hook #'flyspell-mode)
-  (add-hook 'prog-mode-hook #'flyspell-prog-mode)
-  :bind ("<f8>" . ispell-word)
   :diminish (flyspell-mode . "Spell"))
 #+END_SRC
+
+Use Ivy to select spelling corrections.
+
+#+begin_src emacs-lisp
+(use-package flyspell-correct-ivy
+  :bind ("C-M-;" . flyspell-correct-wrapper)
+  :init
+  (setq flyspell-correct-interface #'flyspell-correct-ivy))
+#+end_src
 
 ** Smartparens
 
