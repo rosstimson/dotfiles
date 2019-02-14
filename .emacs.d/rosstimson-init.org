@@ -1041,3 +1041,20 @@ Use [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]] to read email with E
   (elfeed-org)
   (setq rmh-elfeed-org-files (list "~/org/feeds.org")))
 #+END_SRC
+
+** Ediff
+
+#+begin_src emacs-lisp
+(use-package ediff
+  :config
+  ;; Use the selected frame for ediff rather that a new one.
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+  ;; Split window into vertical panes, better for wider screens.
+  (setq ediff-split-window-function 'split-window-horizontally)
+
+  ;; expand everything that can be expanded before ediffing
+  ;; this is useful for org-mode and code folding
+  :hook (ediff-prepare-buffer . outline-show-all))
+#+end_src
+
