@@ -77,6 +77,13 @@
    `(ivy-virtual ((,class (:foreground ,cyan))))
    `(ivy-action ((,class (:foreground ,blue))))
 
+;;; eshell
+   `(eshell-prompt ((,class (:foreground ,cyan))))
+   `(eshell-ls-directory ((,class (:foreground ,blue))))
+   `(eshell-ls-executable ((,class (:foreground ,red))))
+   `(eshell-ls-symlink ((,class (:foreground ,magenta))))
+   `(eshell-ls-special ((,class (:background ,red-light))))
+   
    ))
 
 
