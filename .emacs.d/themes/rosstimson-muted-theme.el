@@ -35,7 +35,7 @@
    `(show-paren-mismatch ((,class (:background ,red-light :foreground ,white-light))))
 
    ;; Mode line faces
-   `(mode-line ((,class (:box nil :background ,bg-light))))
+   `(mode-line ((,class (:box nil :background ,bg-lighter))))
    `(mode-line-inactive ((,class (:box nil :background ,bg-dark))))
    `(mode-line-highlight ((,class (:box nil :foreground ,blue))))
 
