@@ -545,9 +545,7 @@ Highlight parens etc. by depth with [[https://www.emacswiki.org/emacs/RainbowDel
 
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters
-  :init
-  (dolist (hook '(text-mode-hook prog-mode-hook))
-    (add-hook hook #'rainbow-delimiters-mode)))
+  :hook (prog-mode . rainbow-delimiters-mode))
 #+END_SRC
 
 ** Flycheck
