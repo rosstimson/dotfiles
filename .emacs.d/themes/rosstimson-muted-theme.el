@@ -32,8 +32,9 @@
    `(trailing-whitespace ((,class (:background ,red-light))))
    `(hl-line ((,class (:background ,bg-light))))
    `(show-paren-match ((,class (:background ,white))))
+   `(show-paren-mismatch ((,class (:background ,red-light :foreground ,white-light))))
 
-   ;; ;; Mode line faces
+   ;; Mode line faces
    `(mode-line ((,class (:box nil :background ,bg-light))))
    `(mode-line-inactive ((,class (:box nil :background ,bg-dark))))
    `(mode-line-highlight ((,class (:box nil :foreground ,blue))))
