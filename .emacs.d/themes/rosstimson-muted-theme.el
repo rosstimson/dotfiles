@@ -40,7 +40,7 @@
    `(mode-line-highlight ((,class (:box nil :foreground ,blue))))
 
    ;; Escape and prompt faces
-   ;; `(minibuffer-prompt ((,class (:weight bold :foreground ,blue-3))))
+   `(minibuffer-prompt ((,class (:weight bold :foreground ,blue))))
    ;; `(escape-glyph ((,class (:foreground ,red-3))))
    ;; `(homoglyph ((,class (:foreground ,red-3))))
    `(error ((,class (:foreground ,red))))
@@ -83,6 +83,13 @@
    `(eshell-ls-executable ((,class (:foreground ,red))))
    `(eshell-ls-symlink ((,class (:foreground ,magenta))))
    `(eshell-ls-special ((,class (:background ,red-light))))
+
+;;; Company
+   `(company-tooltip ((,class (:foreground ,fg :background ,bg-lighter))))
+   `(company-tooltip-selection ((,class (:background ,white))))
+   `(company-scrollbar-bg ((,class (:background ,white-light))))
+   `(company-scrollbar-fg ((,class (:background ,magenta-light))))
+
    
    ))
 
