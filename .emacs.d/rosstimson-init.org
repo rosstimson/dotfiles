@@ -702,31 +702,9 @@ Custom colours for [[http://orgmode.org/manual/Faces-for-TODO-keywords.html][TOD
     ("DELEGATED" . "DarkSlateGray2")))
 #+END_SRC
 
-We'll need the htmlize package for syntax highlighting of code blocks.
-
-#+BEGIN_SRC emacs-lisp
-(use-package htmlize
-  :commands (htmlize-buffer
-             htmlize-file
-             htmlize-many-files
-             htmlize-many-files-dired
-             htmlize-region))
-#+END_SRC
-
-Exporting to web pages that can use tufte.css
-
-#+BEGIN_SRC emacs-lisp
-(use-package ox-tufte
-  :init (require 'ox-tufte))
-#+END_SRC
-
-[[http://orgmode.org/w/?p=org-mode.git;a=blob_plain;f=contrib/lisp/ox-rss.el;hb=HEAD][ox-rss.el]] for RSS 2.0 exports.
-
-#+BEGIN_SRC emacs-lisp
-(use-package ox-rss
-  :ensure nil
-  :load-path "~/.emacs.d/lisp/")
-#+END_SRC
+#+begin_src emacs-lisp
+(require 'ox-beamer)
+#+end_src
 
 ** Markdown
 
