@@ -941,6 +941,15 @@ Whitespace Cleanup doesn't clobber tabs upon save.
             (setq indent-tabs-mode t)))
 #+END_SRC
 
+** RestClient
+
+Mode for working with REST APIs.
+
+#+begin_src emacs-lisp
+(use-package restclient
+  :mode ("\\.http\\'" . restclient-mode))
+#+end_src
+
 * Extras
 ** Email / mu4e
 
