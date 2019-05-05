@@ -943,7 +943,7 @@ Whitespace Cleanup doesn't clobber tabs upon save.
 
 ** RestClient
 
-Mode for working with REST APIs.
+[[https://github.com/pashky/restclient.el][restclient.el]] is a mode for working with REST APIs.
 
 #+begin_src emacs-lisp
 (use-package restclient
