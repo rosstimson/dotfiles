@@ -756,6 +756,17 @@ Work with virtual envs using [[https://github.com/proofit404/pyenv-mode][Pyenv m
   :commands (pyvenv-activate))
 #+END_SRC
 
+Make working with Pipenv in Emacs easier with [[https://github.com/pwalsh/pipenv.el][pipenv.el]].
+
+#+BEGIN_SRC emacs-lisp
+(use-package pipenv
+  :hook (python-mode . pipenv-mode)
+  :init
+  (setq
+   pipenv-projectile-after-switch-function
+   #'pipenv-projectile-after-switch-extended))
+#+END_SRC
+
 [[https://github.com/proofit404/anaconda-mode][Anaconde mode]] offers code navigation, documentation lookup, and completion
 for Python.
 
@@ -943,7 +954,7 @@ Whitespace Cleanup doesn't clobber tabs upon save.
 
 ** RestClient
 
-[[https://github.com/pashky/restclient.el][restclient.el]] is a mode for working with REST APIs.
+Mode for working with REST APIs.
 
 #+begin_src emacs-lisp
 (use-package restclient
