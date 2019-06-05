@@ -6,6 +6,7 @@ xterm*loginShell:        true
 xterm*scrollBar:         false
 xterm*selectToClipboard: true
 xterm*BorderWidth:       0
+xterm*metaSendsEscape:   true
 
 
 ! Urxvt
