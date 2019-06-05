@@ -1,9 +1,12 @@
 ! Xterm
 ! -----------------------------------------------------------------------
-XTerm*font:              -misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1
-XTerm*loginShell:        true
-XTerm*scrollBar:         false
-XTerm*selectToClipboard: true
+xterm*font:              -misc-fixed-medium-r-normal--15-140-*-*-*-*-iso8859-*
+!xterm*faceName:          spleen:pixelsize=16:antialias=false
+xterm*loginShell:        true
+xterm*scrollBar:         false
+xterm*selectToClipboard: true
+xterm*BorderWidth:       0
+
 
 ! Urxvt
 ! -----------------------------------------------------------------------
@@ -49,5 +52,4 @@ emacs.font: GohuFont-14
 
 ! Colours
 ! -----------------------------------------------------------------------
-#include "/home/rosstimson/.Xcolors/base16-embers.dark.xresources"
-
+#include "/home/rosstimson/.Xcolors/rosstimson-muted.xresources"

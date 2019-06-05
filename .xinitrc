@@ -47,4 +47,4 @@ feh --bg-scale ~/Pictures/wallpapers/default &
 # Window managers / environments
 #i3
 #dwm
-awesome
+exec awesome
