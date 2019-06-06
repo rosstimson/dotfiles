@@ -230,7 +230,7 @@ alias ll='ls -l'
 alias lr='ls -lr'
 
 # Tmux - Attach to previous session or start a new one named rt.
-alias tm='tmux new-session -A -s rt'
+alias t='tmux new-session -A -s rt'
 
 # Terminal based file manager: https://github.com/jarun/nnn
 alias n='nnn'
