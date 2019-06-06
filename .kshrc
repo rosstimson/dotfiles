@@ -36,6 +36,7 @@ alias g="git"
 alias h="fc -l 0"
 alias l="ls -lah"
 alias less="less -i"
+alias t="tmux new-session -A -s rt"
 alias tf="terraform"
 
 
