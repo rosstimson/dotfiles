@@ -3,7 +3,7 @@
 set -o emacs
 set -o csh-history
 
-HISTFILE="~/.ksh_history"
+HISTFILE="~/.sh_history"
 HISTSIZE=2000
 
 export LANG=en_GB.UTF-8

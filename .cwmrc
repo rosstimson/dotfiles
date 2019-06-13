@@ -15,6 +15,10 @@ fontname                fixed-13
 color                   inactiveborder Black
 color                   activeborder HotPink
 
+# Ignore windows with these names
+ignore dmenu
+ignore lemonbar
+
 
 # Key Bindings
 # -----------------------------------------------
@@ -29,6 +33,7 @@ bind-key 4S-r           restart
 # Windows
 bind-key 4-Tab          window-cycle
 bind-key 4-f            window-fullscreen
+bind-key 4-m            window-maximize
 bind-key 4-v            window-vtile
 bind-key 4S-c           window-delete
 bind-key 4-Left         window-snap-left
@@ -37,9 +42,10 @@ bind-key 4-Up           window-snap-up
 bind-key 4-Right        window-snap-right
 
 # Menus
-bind-key 4-p            menu-exec
+bind-key 4-e            menu-exec
 bind-key 4-a            menu-cmd
 bind-key 4-w            menu-window
+bind-key 4-p            "dmenu_run"
 
 # Show groups
 bind-key 4-1            group-only-1
@@ -55,6 +61,16 @@ bind-key 4S-2           window-movetogroup-2
 bind-key 4S-3           window-movetogroup-3
 bind-key 4S-4           window-movetogroup-4
 bind-key 4S-5           window-movetogroup-5
+
+
+# Commands
+# -----------------------------------------------
+
+# Reset all mouse bindings
+unbind-mouse all
+
+bind-mouse 4-1 window-move
+bind-mouse 4S-1 window-resize
 
 
 # Commands
