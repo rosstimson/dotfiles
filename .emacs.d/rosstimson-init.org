@@ -428,6 +428,15 @@ is defined by a .git (others supported) in the top level dir.
   projectile-completion-system 'ivy))
 #+END_SRC
 
+** Ripgrep
+
+Projectile has a handy ~projectile-ripgrep~ function but it does not
+work until the Ripgrep frontend package is installed.
+
+#+begin_src emacs-lisp
+  (use-package ripgrep)
+#+end_src
+
 ** Paradox
 
 [[https://github.com/Malabarba/paradox][Paradox]] is an enhanced package list/utility.
