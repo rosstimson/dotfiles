@@ -1,0 +1,2 @@
+bind -f common ^N win-down
+bind -f common ^P win-up
