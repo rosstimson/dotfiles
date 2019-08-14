@@ -576,7 +576,7 @@ Use Ivy to select spelling corrections.
 
 #+begin_src emacs-lisp
 (use-package flyspell-correct-ivy
-  :bind ("C-M-;" . flyspell-correct-wrapper)
+  :bind ("C-M-;" . flyspell-correct-at-point)
   :init
   (setq flyspell-correct-interface #'flyspell-correct-ivy))
 #+end_src
