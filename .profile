@@ -1,17 +1,21 @@
-#!/bin/ksh
+#!/bin/sh
 
 set -o emacs
 set -o csh-history
 
 HISTFILE="~/.sh_history"
-HISTSIZE=2000
+HISTSIZE="2000"
 
-export LANG=en_GB.UTF-8
+JAVA_HOME="/usr/local/jdk-11"
 
-export KEYID=0x667A3481E4BB34F3
-export GPG_TTY=$(tty)
+LANG="en_GB.UTF-8"
+LC_ALL="en_GB.UTF-8"
+KEYID="0x667A3481E4BB34F3"
+GPG_TTY="$(tty)"
+PAGER="less -i"
+PATH="$JAVA_HOME/bin:/$PATH
 
-export PAGER="less -i"
+export LANG LC_ALL PATH KEYID GPG_TTY PAGER JAVA_HOME
 
 
 # Colours
