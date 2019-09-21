@@ -42,6 +42,7 @@ alias l="ls -lah"
 alias less="less -i"
 alias t="tmux new-session -A -s rt"
 alias tf="terraform"
+alias pwup="cd ~/.password-store && git push -u origin master && cd -"
 
 
 # Completions
