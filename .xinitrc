@@ -13,7 +13,7 @@ xbanish &
 gpg-agent --homedir /home/rosstimson/.gnupg --use-standard-socket --allow-emacs-pinentry --daemon &
 
 # Set wallpaper
-feh --bg-scale ~/Pictures/wallpapers/wallpaper
+feh --bg-scale ~/pictures/wallpapers/wallpaper
 
 # WM
 cwm
