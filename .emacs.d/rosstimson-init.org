@@ -990,7 +990,7 @@ Use [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]] to read email with E
   :load-path "/usr/local/share/emacs/site-lisp/mu4e"
   :commands (mu4e mu4e-compose-new)
   :config
-  (setq mu4e-maildir (expand-file-name "~/.mail/rosstimson")
+  (setq mu4e-maildir (expand-file-name "~/.mail/rosstimson.com")
         mu4e-get-mail-command "mbsync -a"
         mu4e-sent-folder "/Sent"
         mu4e-drafts-folder "/Drafts"
