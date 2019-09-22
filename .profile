@@ -13,7 +13,7 @@ LC_ALL="en_GB.UTF-8"
 KEYID="0x667A3481E4BB34F3"
 GPG_TTY="$(tty)"
 PAGER="less -i"
-PATH="$JAVA_HOME/bin:/$PATH"
+PATH="$JAVA_HOME/bin:$HOME/.local/bin:$HOME/bin:/$PATH"
 
 export LANG LC_ALL PATH KEYID GPG_TTY PAGER JAVA_HOME
 
@@ -43,6 +43,7 @@ alias less="less -i"
 alias t="tmux new-session -A -s rt"
 alias tf="terraform"
 alias pwup="cd ~/.password-store && git push -u origin master && cd -"
+alias showpath="echo $PATH | tr -s ':' '\n'"
 
 
 # Completions
