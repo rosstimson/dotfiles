@@ -11,6 +11,9 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 " Add other plugins here.
 call minpac#add('tpope/vim-git')
 call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('mileszs/ack.vim')
 
 " Load some sensible defaults.
 source $VIMRUNTIME/defaults.vim
@@ -40,4 +43,9 @@ set scrolloff=5
 " Set spelling options
 set spelllang=en_gb
 set spellfile=~/.vim/spell/en.utf-8.add
+
+" rg -- Make :Ack use ripgrep when available.
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep'
+endif
 
