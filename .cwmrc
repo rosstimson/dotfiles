@@ -45,7 +45,7 @@ bind-key 4-Right        window-snap-right
 bind-key 4-e            menu-exec
 bind-key 4-a            menu-cmd
 bind-key 4-w            menu-window
-bind-key 4-p            "dmenu_run"
+bind-key 4-p            "dmenu_run -fn -misc-spleen-medium-r-normal--16-160-72-72-c-80-iso10646-1"
 
 # Show groups
 bind-key 4-1            group-only-1
