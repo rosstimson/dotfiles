@@ -1,7 +1,8 @@
 ! Xterm
 ! -----------------------------------------------------------------------
-xterm*font:              -misc-fixed-medium-r-normal--15-140-*-*-*-*-iso8859-*
-!xterm*faceName:          spleen:pixelsize=16:antialias=false
+!xterm*font:              -misc-fixed-medium-r-normal--15-140-*-*-*-*-iso8859-*
+!xterm*faceName:          Spleen:pixelsize=16:antialias=false
+xterm*faceName:          GohuFont:pixelsize=14:antialias=false
 xterm*loginShell:        true
 xterm*scrollBar:         false
 xterm*selectToClipboard: true
