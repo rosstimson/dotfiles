@@ -7,13 +7,14 @@ HISTFILE="~/.sh_history"
 HISTSIZE="2000"
 
 JAVA_HOME="/usr/local/jdk-11"
+GOPATH="$HOME/code/go"
 
 LANG="en_GB.UTF-8"
 LC_ALL="en_GB.UTF-8"
 KEYID="0x667A3481E4BB34F3"
 GPG_TTY="$(tty)"
 PAGER="less -i"
-PATH="$JAVA_HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/bin:/$PATH"
+PATH="$JAVA_HOME/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/bin:/$PATH"
 
 export LANG LC_ALL PATH KEYID GPG_TTY PAGER JAVA_HOME
 
