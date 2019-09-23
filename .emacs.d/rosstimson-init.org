@@ -538,15 +538,18 @@ Auto-completion via [[https://company-mode.github.io/][Company]].
   :config (company-statistics-mode))
 #+END_SRC
 
-** Eglot
+** LSP
 
 #+BEGIN_SRC emacs-lisp
-(use-package eglot
-  :bind (:map eglot-mode-map
-        ("M-." . xref-find-definitions)
-        ("C-c h" . eglot-help-at-point))
-  :hook ((rust-mode . eglot-ensure)
-         (go-mode . eglot-ensure)))
+(use-package lsp-mode
+  :hook ((python-mode . lsp)
+         (rust-mode . lsp)
+         (go-mode . lsp)
+         (clojure-mode . lsp))
+  :commands lsp)
+
+(use-package company-lsp
+    :commands company-lsp)
 #+END_SRC
 
 ** Rainbow delimiters
