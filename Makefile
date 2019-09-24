@@ -17,6 +17,7 @@ install:
 	@chmod -R 700 ${RT_HOME}/.mail
 	@chmod 600 ${RT_HOME}/.msmtprc
 	@chmod 700 ${RT_HOME}/.gnupg
+	@touch ${RT_HOME}/.sh_history
 
 # Copy bin directory
 	@cp -r bin ${RT_HOME}
