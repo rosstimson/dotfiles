@@ -3,8 +3,8 @@
 set -o emacs
 set -o csh-history
 
-HISTFILE="~/.sh_history"
-HISTSIZE="2000"
+HISTFILE="$HOME/.sh_history"
+HISTSIZE="5000"
 
 JAVA_HOME="/usr/local/jdk-11"
 GOPATH="$HOME/code/go"
@@ -43,7 +43,7 @@ alias l="ls -lah"
 alias less="less -i"
 alias t="tmux new-session -A -s rt"
 alias tf="terraform"
-alias pwup="cd ~/.password-store && git push -u origin master && cd -"
+alias pwup="cd $HOME/.password-store && git push -u origin master && cd -"
 alias showpath="echo $PATH | tr -s ':' '\n'"
 
 
@@ -59,9 +59,9 @@ fi
 # Prompt
 #------------------------------------------------------------------------------
 
-if [ -e ~/.git-prompt ]; then
+if [ -e $HOME/.git-prompt ]; then
 	# shellcheck source=~/.git-prompt
-	. ~/.git-prompt
+	. $HOME/.git-prompt
 	export GIT_PS1_SHOWDIRTYSTATE=true
 	export GIT_PS1_SHOWUNTRACKEDFILES=true
 	export GIT_PS1_SHOWUPSTREAM="auto"
