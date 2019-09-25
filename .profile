@@ -16,7 +16,7 @@ GPG_TTY="$(tty)"
 PAGER="less -i"
 PATH="$JAVA_HOME/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/bin:/$PATH"
 
-export LANG LC_ALL PATH KEYID GPG_TTY PAGER JAVA_HOME
+export LANG LC_ALL PATH KEYID GPG_TTY PAGER JAVA_HOME GOPATH
 
 
 # Colours
