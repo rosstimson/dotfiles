@@ -50,11 +50,18 @@ alias showpath="echo $PATH | tr -s ':' '\n'"
 # Completions
 #------------------------------------------------------------------------------
 
-if [ -e /usr/local/bin/terraform ]; then
+# Terraform
+if [ -x /usr/local/bin/terraform ]; then
 	set -A complete_terraform_1 -- apply console destroy env fmt get graph import init output plan providers push refresh show taint untaint validate version workspace
 	set -A complete_tf_1 -- apply console destroy env fmt get graph import init output plan providers push refresh show taint untaint validate version workspace
 fi
 
+# Pass - password-store
+if [ -x /usr/local/bin/pass ]; then
+	PASSDIR=$HOME/.password-store
+	PASSPATHS=$(find $PASSDIR -path ./.git -prune -o -name '*.gpg' -print | sed "s~${PASSDIR}/~~g" | sed 's~.gpg$~~g')
+	set -A complete_pass_2 -- $PASSPATHS
+fi
 
 # Prompt
 #------------------------------------------------------------------------------
