@@ -12,8 +12,8 @@ gap                     0 0 0 0
 moveamount              20
 fontname                fixed-13
 
-color                   inactiveborder Black
-color                   activeborder HotPink
+color                   inactiveborder RebeccaPurple
+color                   activeborder MediumAquamarine
 
 # Ignore windows with these names
 ignore dmenu
@@ -29,6 +29,7 @@ unbind-key all
 # General
 bind-key 4-Return       terminal
 bind-key 4S-r           restart
+bind-key 4S-Return      "emacsclient -c"
 
 # Windows
 bind-key 4-Tab          window-cycle

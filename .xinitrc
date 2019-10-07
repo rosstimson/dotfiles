@@ -12,6 +12,9 @@ xbanish &
 # Start GPG Agent
 gpg-agent --homedir /home/rosstimson/.gnupg --use-standard-socket --allow-emacs-pinentry --daemon &
 
+# Start Emacs server/daemon
+emacs --daemon &
+
 # Set wallpaper
 feh --bg-scale ~/pictures/wallpapers/wallpaper
 
