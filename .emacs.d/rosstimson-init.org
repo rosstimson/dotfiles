@@ -540,6 +540,8 @@ Auto-completion via [[https://company-mode.github.io/][Company]].
 
 ** LSP
 
+[[https://github.com/emacs-lsp/lsp-mode][LSP Mode]] -- Emacs client/library for the Language Server Protocol 
+
 #+BEGIN_SRC emacs-lisp
 (use-package lsp-mode
   :hook ((python-mode . lsp)
