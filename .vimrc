@@ -49,3 +49,6 @@ if executable('rg')
   let g:ackprg = 'rg --vimgrep'
 endif
 
+" Clears the search register
+nnoremap <silent> <leader>/ :nohlsearch<CR>
+
