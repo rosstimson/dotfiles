@@ -64,6 +64,9 @@
 ;; Always ensure packages are installed automatically if not present
 (setq use-package-always-ensure t)
 
+;; Additional load paths.
+(add-to-list 'load-path "~/.emacs.d/rt")
+
 ;; Load the rest of my personal settings
 (org-babel-load-file (expand-file-name "~/.emacs.d/rosstimson-init.org"))
 

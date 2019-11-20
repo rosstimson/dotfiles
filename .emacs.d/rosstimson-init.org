@@ -528,6 +528,9 @@ Auto-completion via [[https://company-mode.github.io/][Company]].
         company-tooltip-flip-when-above t
         ;; Easy navigation to candidates with M-<n>
         company-show-numbers t))
+
+  ;; Add custom completion for Org mode code blocks.
+  (add-to-list 'company-backends 'company-org-block)
 #+END_SRC
 
 [[https://github.com/company-mode/company-statistics][Company-statistics]] sorts completion candidates by previous completion choices.
@@ -714,6 +717,19 @@ Custom colours for [[http://orgmode.org/manual/Faces-for-TODO-keywords.html][TOD
     ("DONE" . "SeaGreen3")
     ("CANCELLED" . "MediumPurple2")
     ("DELEGATED" . "DarkSlateGray2")))
+#+END_SRC
+
+Set active Org Babel languages
+
+#+BEGIN_SRC emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (makefile . t)
+   (org . t)
+   (python . t)
+   (shell . t)
+   (sql . t)))
 #+END_SRC
 
 #+begin_src emacs-lisp
