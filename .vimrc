@@ -52,3 +52,6 @@ endif
 " Clears the search register
 nnoremap <silent> <leader>/ :nohlsearch<CR>
 
+" Toggle show/hide invisible chars
+nnoremap <leader>w :set list!<cr>
+
