@@ -27,7 +27,8 @@ ignore lemonbar
 unbind-key all
 
 # General
-bind-key 4-Return       terminal
+#bind-key 4-Return       terminal
+bind-key 4-Return       "urxvtc"
 bind-key 4S-r           restart
 bind-key 4S-Return      "emacsclient -c"
 
@@ -80,3 +81,8 @@ command firefox         "firefox"
 command st              "st"
 command xterm           "xterm"
 command emacs           "emacs"
+command urxvt           "urxvt"
+command zoom            "flatpak run --user us.zoom.Zoom"
+command slack           "flatpak run --user com.slack.Slack"
+command spotify         "flatpak run --user com.spotify.Client"
+command vscode          "flatpak run --user com.visualstudio.code"
