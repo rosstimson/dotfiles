@@ -647,6 +647,27 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
   (add-hook 'html-mode-hook 'emmet-mode))
 #+END_SRC
 
+** YASnippet
+
+[[https://github.com/joaotavora/yasnippet][YASnippet]] is a template
+system for Emacs.
+
+#+begin_src emacs-lisp
+(use-package yasnippet
+  :config
+  (yas-global-mode 1)
+)
+#+end_src
+
+[[https://github.com/AndreaCrotti/yasnippet-snippets/][YASnippet-snippets]],
+the official collection of snippets for many languages.
+
+#+begin_src emacs-lisp
+(use-package yasnippet-snippets
+  :after yasnipet
+)
+#+end_src
+
 * Major Modes / Language Specific Stuff
 ** Org
 
