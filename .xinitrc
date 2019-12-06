@@ -17,6 +17,17 @@ fi
 # Hide cursor when it is not being used
 xbanish &
 
+# Start ssh-agent
+# Only do this on Linux (Void) because OpenBSD defaults to starting the agent anyway.
+if [ "$(uname -o)" = "GNU/Linux" ]
+   if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+       ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+   fi
+   if [[ ! "$SSH_AUTH_SOCK" ]]; then
+       eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")"
+   fi
+fi
+
 # Start GPG Agent
 gpg-agent --homedir /home/rosstimson/.gnupg --use-standard-socket --allow-emacs-pinentry --daemon &
 
