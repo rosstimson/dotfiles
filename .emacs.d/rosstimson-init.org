@@ -852,9 +852,7 @@ for Python.
 #+BEGIN_SRC emacs-lisp
 (use-package go-mode
   :mode ("\\.go\\'" . go-mode)
-  :hook (before-save . gofmt-before-save)
-  :config
-  (setq gofmt-command "goimports"))
+  :hook (before-save . gofmt-before-save))
 #+END_SRC
 
 ** Rust
