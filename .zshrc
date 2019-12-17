@@ -162,6 +162,10 @@ if _command_exists gh; then
   eval  "$(gh alias -s)"
 fi
 
+# Jump quickly to frequently used directories.
+# https://github.com/rupa/z/blob/master/z.sh
+. $HOME/bin/z.sh
+
 
 # ------------------------------------------------------------------------- }}}
 # Prompt ------------------------------------------------------------------ {{{
@@ -262,27 +266,27 @@ alias showpath="echo $PATH | tr -s ':' '\n'"
 
 # Docker {{{
 
-alias d='docker'
-alias da='docker attach'
-alias db='docker build'
-alias dc='docker commit'                    # Clobbers GNU dc calculator tool
-alias dclean='docker rmi -f $(docker images -q -a -f dangling=true)' # Removes all untagged images
-alias ddr='docker run -d'
-alias de='docker exec -t -i'
-alias di='docker images'
-alias dl='docker pull'
-alias dlg='docker logs'
+alias d='podman'
+alias da='podman attach'
+alias db='podman build'
+alias dc='podman commit'                    # Clobbers GNU dc calculator tool
+alias dclean='podman rmi -f $(podman images -q -a -f dangling=true)' # Removes all untagged images
+alias ddr='podman run -d'
+alias de='podman exec -t -i'
+alias di='podman images'
+alias dl='podman pull'
+alias dlg='podman logs'
 alias dm='docker-machine'
-alias dp='docker push'
-alias dps='docker ps'
-alias dr='docker run'
-alias dri='docker run -it --rm'
-alias drm='docker rm'
-alias drma='docker rm $(docker ps -a -q)'    # Remove all containers
-alias drmi='docker rmi'
-alias ds='docker stop'
-alias dsa='docker stop $(docker ps -a -q)'  # Stop all containers
-alias dt='docker tag'
+alias dp='podman push'
+alias dps='podman ps'
+alias dr='podman run'
+alias dri='podman run -it --rm'
+alias drm='podman rm'
+alias drma='podman rm $(podman ps -a -q)'    # Remove all containers
+alias drmi='podman rmi'
+alias ds='podman stop'
+alias dsa='podman stop $(podman ps -a -q)'  # Stop all containers
+alias dt='podman tag'
 
 # }}}
 
