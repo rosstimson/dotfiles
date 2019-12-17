@@ -59,7 +59,7 @@ values:
           post_format: '%{%f%}'
     - type: separator
       display: surrounded
-      pre_format: '│'
+      pre_format: '|'
       post_format: ''
     - type: remote_difference
       remote_branch: 'upstream/master'
@@ -78,7 +78,7 @@ values:
           post_format: '%{%f%}'
     - type: separator
       display: surrounded
-      pre_format: '│'
+      pre_format: '|'
       post_format: ''
       # the number of untracked files
     - type: new
