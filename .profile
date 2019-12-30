@@ -63,12 +63,13 @@ if [ -x /usr/local/bin/pass ]; then
 	set -A complete_pass_2 -- $PASSPATHS
 fi
 
+
 # Prompt
 #------------------------------------------------------------------------------
 
-if [ -e $HOME/.git-prompt ]; then
-	# shellcheck source=~/.git-prompt
-	. $HOME/.git-prompt
+if [ -e $HOME/bin/git-prompt-ksh.sh ]; then
+	# shellcheck source=~/bin/git-prompt-ksh.sh
+	. $HOME/bin/git-prompt-ksh.sh
 	export GIT_PS1_SHOWDIRTYSTATE=true
 	export GIT_PS1_SHOWUNTRACKEDFILES=true
 	export GIT_PS1_SHOWUPSTREAM="auto"
