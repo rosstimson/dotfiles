@@ -1,7 +1,7 @@
 font:
   normal:
-    family: GohuFont
-  size: 14.0
+    family: FiraMono
+  size: 10.0
 
 colors:
   primary:
