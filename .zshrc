@@ -164,7 +164,7 @@ fi
 
 # Jump quickly to frequently used directories.
 # https://github.com/rupa/z/blob/master/z.sh
-. $HOME/bin/z.sh
+source $HOME/bin/z.sh
 
 
 # ------------------------------------------------------------------------- }}}
@@ -192,8 +192,16 @@ export light_cyan=$'%{\e[1;36m%}'
 export white=$'%{\e[1;37m%}'
 export reset_color=$'%{\e[0m%}'
 
+# Prompt for:  https://github.com/TomasTomecek/pretty-git-prompt
+#PROMPT='${green}%m${reset_color}:%c$(pretty-git-prompt) %# '
 
-PROMPT='${green}%m${reset_color}:%c$(pretty-git-prompt) %# '
+# Prompt for the 'official' git contrib status script.
+source ~/bin/git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWUNTRACKEDFILES=true
+export GIT_PS1_SHOWUPSTREAM="auto"
+precmd () { __git_ps1 "${green}%m${reset_color}:%c" " %# " "(%s)" }
+
 
 # ------------------------------------------------------------------------- }}}
 # Aliases ----------------------------------------------------------------- {{{
