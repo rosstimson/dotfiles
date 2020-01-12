@@ -270,6 +270,9 @@ e() {emacsclient -a "" -c "$@" &}
 # Pretty print $PATH
 alias showpath="echo $PATH | tr -s ':' '\n'"
 
+# Push passwords
+alias pwup="cd $HOME/.password-store && git push -u origin master && cd -"
+
 # }}}
 
 # Docker {{{
