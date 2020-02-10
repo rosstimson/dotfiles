@@ -18,6 +18,11 @@ PATH="$JAVA_HOME/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/bin:/$P
 
 export LANG LC_ALL PATH KEYID GPG_TTY PAGER JAVA_HOME GOPATH
 
+# Set Pulseaudo socket info so that flatpak apps can work with sound.
+if command -v pulseaudio >/dev/null 2>&1; then
+    export PULSE_SERVER="unix:$HOME/.config/pulse/$(cat /var/lib/dbus/machine-id)-runtime/native"
+fi
+
 
 # Colours
 # -----------------------------------------------------------------------------
@@ -54,13 +59,6 @@ alias showpath="echo $PATH | tr -s ':' '\n'"
 if [ -x /usr/local/bin/terraform ]; then
 	set -A complete_terraform_1 -- apply console destroy env fmt get graph import init output plan providers push refresh show taint untaint validate version workspace
 	set -A complete_tf_1 -- apply console destroy env fmt get graph import init output plan providers push refresh show taint untaint validate version workspace
-fi
-
-# Pass - password-store
-if [ -x /usr/local/bin/pass ]; then
-	PASSDIR=$HOME/.password-store
-	PASSPATHS=$(find $PASSDIR -path ./.git -prune -o -name '*.gpg' -print | sed "s~${PASSDIR}/~~g" | sed 's~.gpg$~~g')
-	set -A complete_pass_2 -- $PASSPATHS
 fi
 
 
