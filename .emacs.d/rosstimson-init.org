@@ -551,7 +551,9 @@ Auto-completion via [[https://company-mode.github.io/][Company]].
          (rust-mode . lsp)
          (go-mode . lsp)
          (clojure-mode . lsp))
-  :commands lsp)
+  :commands lsp
+  :config
+  (setq lsp-rust-server 'rust-analyzer))
 
 (use-package company-lsp
     :commands company-lsp)
