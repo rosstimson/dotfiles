@@ -550,7 +550,8 @@ Auto-completion via [[https://company-mode.github.io/][Company]].
   :hook ((python-mode . lsp)
          (rust-mode . lsp)
          (go-mode . lsp)
-         (clojure-mode . lsp))
+         (clojure-mode . lsp)
+         (js2-mode . lsp))
   :commands lsp
   :config
   (setq lsp-rust-server 'rust-analyzer))
