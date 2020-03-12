@@ -90,7 +90,10 @@
    `(company-scrollbar-bg ((,class (:background ,white-light))))
    `(company-scrollbar-fg ((,class (:background ,magenta-light))))
 
-   
+;;; js2-mode
+   `(js2-error ((,class (:underline (:color ,red :style wave)))))
+   `(js2-warning ((,class (:underline (:color ,yellow-light :style line)))))
+   `(js2-external-variable ((,class (:foreground ,red))))
    ))
 
 
