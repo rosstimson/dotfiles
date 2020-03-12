@@ -200,7 +200,7 @@ source ~/bin/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM="auto"
-precmd () { __git_ps1 "${green}%m${reset_color}:%c" " %# " "(%s)" }
+PS1='${green}%m${reset_color}:%c$(__git_ps1 "(%s)") %# '
 
 
 # ------------------------------------------------------------------------- }}}
