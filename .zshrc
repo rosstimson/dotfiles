@@ -75,13 +75,17 @@ REPORTTIME=10
 # Automatically decide when to page a list of completions
 LISTMAX=0
 
-# ls colors
+# ls colours
 autoload colors; colors;  # Also need this present for colours in the prompt
-# LS colors, made with http://geoff.greer.fm/lscolors/
+# LS colours, made with http://geoff.greer.fm/lscolors/
 # BSD
 export LSCOLORS="exfxcxdxbxxeadabagacaf"
 # Linux
 export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=0;44:cd=30;43:su=30;41:sg=30;46:tw=30;42:ow=30;45"
+
+# exa colours (A modern replacement for ls written in Rust:  https://the.exa.website)
+# Turn off some of the colours as this many colours is just obnoxious.
+export EXA_COLORS="uu=0:gu=0:ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0"
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
