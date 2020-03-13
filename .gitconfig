@@ -32,6 +32,7 @@
 	c = commit -v
 	cl = clone
 	co = checkout
+	com= checkout master
 	d = diff
 	dt = difftool
 	f = fetch
