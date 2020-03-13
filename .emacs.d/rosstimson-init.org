@@ -231,11 +231,28 @@ Disable external GPG PIN entry, let Emacs handle it.
 (setenv "GPG_AGENT_INFO" nil)
 #+END_SRC
 
+Start pinentry so that GPG PIN can be entered via the minibuffer, for
+example when signing Git commits within Magit.
+
+#+BEGIN_SRC emacs-lisp
+(use-package pinentry
+  :config
+  (pinentry-start))
+#+END_SRC
+
 #+BEGIN_SRC emacs-lisp
 (use-package epa-file
   :ensure nil
   :config
   (setq epa-armor t))
+#+END_SRC
+
+This is another thing needed for Emacs to prompt for GPG PIN within
+the minibuffer, there also needs to be a setting enabled in
+~/.gnupg/gpg-agent.conf
+
+#+BEGIN_SRC emacs-lisp
+(setq epa-pinentry-mode 'loopback)
 #+END_SRC
 
 ** Hippie-expand
