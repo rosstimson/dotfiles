@@ -55,3 +55,14 @@ nnoremap <silent> <leader>/ :nohlsearch<CR>
 " Toggle show/hide invisible chars
 nnoremap <leader>w :set list!<cr>
 
+" Whitespace
+set nowrap                          " Don't wrap lines
+set tabstop=2                       " A tab is 2 spaces
+set shiftwidth=2                    " An autoindent is 2 spaces
+set expandtab                       " Use spaces, not tabs
+set list                            " Show invisible characters
+set backspace=indent,eol,start      " Backspace through everything in insert mode
+set autoindent                      " Always autoindent
+
+" List chars / highlight whitespace
+set listchars=eol:$,tab:›\ ,trail:~,nbsp:.,extends:>,precedes:<
