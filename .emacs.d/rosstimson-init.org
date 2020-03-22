@@ -1032,6 +1032,17 @@ Mode for working with REST APIs.
   :mode ("\\.http\\'" . restclient-mode))
 #+end_src
 
+** Shell
+
+Use tabs in shell scripts otherwise heredoc functionality around
+whitespace can be weird.
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'sh-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode t)))
+#+END_SRC
+
 * Extras
 ** Email / mu4e
 

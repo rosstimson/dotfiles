@@ -100,6 +100,7 @@ path=(
   /usr/local/go/bin       # System installed Go binaries e.g. godoc
   $GOPATH/bin             # Go binaries
   $HOME/.cargo/bin        # Rust binaries
+  $HOME/.yarn/bin/eslint  # Globally installed node packages via Yarn
   $HOME/.npm-global/bin   # Globally installed npm binaries
   /usr/local/nim/bin      # Where I install Nim, inc. nimsuggest etc.
   $HOME/.nimble/bin       # Nimble installed binaries.
