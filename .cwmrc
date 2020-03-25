@@ -8,9 +8,11 @@ sticky yes
 # Look 'n' Feel
 # -----------------------------------------------
 borderwidth             1
-gap                     0 0 0 0
+# Set gap of 21px at top of screen to accomodate
+# Lemonbar which is set to 20px
+gap                     21 0 0 0
 moveamount              20
-fontname                fixed-13
+fontname                "xft:Roboto:style=Regular:size=12"
 
 color                   inactiveborder RebeccaPurple
 color                   activeborder MediumAquamarine
@@ -47,7 +49,7 @@ bind-key 4-Right        window-snap-right
 bind-key 4-e            menu-exec
 bind-key 4-a            menu-cmd
 bind-key 4-w            menu-window
-bind-key 4-p            "dmenu_run -fn -misc-spleen-medium-r-normal--16-160-72-72-c-80-iso10646-1"
+bind-key 4-p            "dmenu_run"
 
 # Show groups
 bind-key 4-1            group-only-1
@@ -55,6 +57,10 @@ bind-key 4-2            group-only-2
 bind-key 4-3            group-only-3
 bind-key 4-4            group-only-4
 bind-key 4-5            group-only-5
+bind-key 4-6            group-only-6
+bind-key 4-7            group-only-7
+bind-key 4-8            group-only-8
+bind-key 4-9            group-only-9
 bind-key 4S-a           group-toggle-all
 
 # Move to group
@@ -63,6 +69,10 @@ bind-key 4S-2           window-movetogroup-2
 bind-key 4S-3           window-movetogroup-3
 bind-key 4S-4           window-movetogroup-4
 bind-key 4S-5           window-movetogroup-5
+bind-key 4S-6           window-movetogroup-6
+bind-key 4S-7           window-movetogroup-7
+bind-key 4S-8           window-movetogroup-8
+bind-key 4S-9           window-movetogroup-9
 
 
 # Commands
@@ -82,7 +92,7 @@ command st              "st"
 command xterm           "xterm"
 command emacs           "emacs"
 command urxvt           "urxvt"
-command zoom            "flatpak run --user us.zoom.Zoom"
-command slack           "flatpak run --user com.slack.Slack"
-command spotify         "flatpak run --user com.spotify.Client"
+command zoom            "zoom"
+command slack           "slack"
+command spotify         "spotify"
 command vscode          "flatpak run --user com.visualstudio.code"
