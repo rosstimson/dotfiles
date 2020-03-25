@@ -1,12 +1,13 @@
 #!/bin/sh
 
-export ENV=${HOME}/.profile
-
 xrdb -load $HOME/.Xresources
 xset -b
 
 # Set keyboard layout
 setxkbmap us -variant colemak -option ctrl:nocaps
+
+# Bind keys such as media keys
+xbindkeys
 
 # Set touchpad options
 # Natural scrolling, disable edge scrolling, enable palm detection, enable tap to click
