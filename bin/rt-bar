@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+fg="#f0dfda"
+bg="#000000"
+geo="x20" # Just set the height, the rest is omitted so uses defaults.
+font="Roboto Medium:size=11"
+icon="Font Awesome:size=10"
+
+
+batt() {
+	CAP=$(cat /sys/class/power_supply/BAT0/capacity)
+	case "$(cat /sys/class/power_supply/BAT0/status)" in
+		D*)	STAT="" ;;
+		*)	STAT="\uf0e7" ;;
+	esac
+	if (( 0 < CAP && CAP <= 20 )); then
+		SYM="\uf244"
+	elif (( 20 < CAP && CAP <= 40 )); then
+		SYM="\uf243"
+	elif (( 40 < CAP && CAP <= 60 )); then
+		SYM="\uf242"
+	elif (( 60 < CAP && CAP <= 80 )); then
+		SYM="\uf241"
+	else
+		SYM="\uf240"
+	fi
+	echo -e "$STAT $SYM"
+}
+
+
+clk() {
+	time="$(date '+%R')"
+	date="$(date '+%a %d %b %Y')"
+	printf "%b\n" "\uf133%{O15}${date}%{O15}\uf017%{O15}${time}"
+}
+
+cpu() {
+	# Get the load averages
+	cpu="$(cat /proc/loadavg | awk '{print $1 " " $2 " " $3}')"
+	printf "%b\n" "\uf2db%{O15}${cpu}"
+}
+
+
+wifi() {
+	echo -e "\uf1eb%{O15}$(iw wlp5s0 info | grep -oP '(?<=ssid ).*$')"
+}
+
+
+while true
+do
+	printf "%s%s\n" \
+		   "%{l}  $(batt)     $(cpu)     $(wifi)" \
+		   "%{r}  $(clk)  "
+	sleep 1
+done | lemonbar -p -d \
+				-F "$fg" \
+				-B "$bg" \
+				-g "$geo" \
+				-f "$font" -o 2 \
+				-f "$icon" -o 0 | sh &
