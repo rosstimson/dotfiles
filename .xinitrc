@@ -6,15 +6,18 @@ xset -b
 # Set keyboard layout
 setxkbmap us -variant colemak -option ctrl:nocaps
 
+# Set media key bindings
 xbindkeys
 
 # Set touchpad options
-
 xinput set-prop 'Synaptics TM3383-032' 'libinput Tapping Enabled' 1
 xinput set-prop 'Synaptics TM3383-032' 'libinput Natural Scrolling Enabled' 1
 
 # Hide cursor when it is not being used
 xbanish &
+
+# Set screen locker (10 mins)
+xautolock -time 10 -locker slock &
 
 # Start my custom status bar (Lemonbar-xft)
 rt-bar &
