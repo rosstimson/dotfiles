@@ -49,8 +49,11 @@ if executable('rg')
   let g:ackprg = 'rg --vimgrep'
 endif
 
-" Clears the search register
-nnoremap <silent> <leader>/ :nohlsearch<CR>
+" Highlight all search results
+set hlsearch
+
+" Toggle the search highlighting
+noremap <leader>/ :set hlsearch! hlsearch?<CR>
 
 " Toggle show/hide invisible chars
 nnoremap <leader>w :set list!<cr>
