@@ -20,6 +20,7 @@ color                   activeborder MediumAquamarine
 # Ignore windows with these names
 ignore dmenu
 ignore lemonbar
+ignore dunst
 
 
 # Key Bindings
@@ -95,4 +96,4 @@ command urxvt           "urxvt"
 command zoom            "zoom"
 command slack           "slack"
 command spotify         "spotify"
-command vscode          "flatpak run --user com.visualstudio.code"
+command vscode          "code"
