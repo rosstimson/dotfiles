@@ -6,17 +6,18 @@ xset -b
 # Set keyboard layout
 setxkbmap us -variant colemak -option ctrl:nocaps
 
-# Bind keys such as media keys
 xbindkeys
 
 # Set touchpad options
-# Natural scrolling, disable edge scrolling, enable palm detection, enable tap to click
-if [ "$(uname -o)" = "GNU/Linux" ] && [ -x "$(command -v synclient)" ]; then
-    synclient VertEdgeScroll=0 VertScrollDelta=-111 HorizEdgeScroll=0 HorizScrollDelta=-111 PalmDetect=1 PalmMinWidth=8 PalmMinZ=100 TapButton1=1 TapButton2=2 TapButton3=3 FingerLow=35 FingerHigh=60
-fi
+
+xinput set-prop 'Synaptics TM3383-032' 'libinput Tapping Enabled' 1
+xinput set-prop 'Synaptics TM3383-032' 'libinput Natural Scrolling Enabled' 1
 
 # Hide cursor when it is not being used
 xbanish &
+
+# Start my custom status bar (Lemonbar-xft)
+rt-bar &
 
 # Start ssh-agent
 # Only do this on Linux (Void) because OpenBSD defaults to starting the agent anyway.
@@ -37,6 +38,9 @@ urxvtd -q -o -f &
 
 # Start Emacs server/daemon
 emacs --daemon &
+
+# Start Dunst for notifications
+dunst &
 
 # Set wallpaper
 feh --bg-scale ~/pictures/wallpapers/wallpaper
