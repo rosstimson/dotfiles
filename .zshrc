@@ -53,6 +53,9 @@ _command_exists() {
 autoload -U compinit
 compinit
 
+autoload bashcompinit
+bashcompinit
+
 # Enables the negation ^ operator for displaying files
 setopt extendedglob
 
@@ -327,11 +330,11 @@ gpip() {
 # ------------------------------------------------------------------------- }}}
 
 # AWS CLI Completion
-if [ -f /usr/bin/aws_zsh_completer.sh ]; then
-  source /usr/bin/aws_zsh_completer.sh
+if _command_exists aws_completer ]; then
+	complete -C '/usr/local/bin/aws_completer' aws
 fi
 
 # Kubernetes CLI Completion
 if _command_exists kubectl; then
-  source <(kubectl completion zsh)
+	source <(kubectl completion zsh)
 fi
