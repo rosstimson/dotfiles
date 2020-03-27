@@ -1,13 +1,27 @@
 # For the benefit of emacs users: -*- shell-script -*-
 
+# Sound
+# ----------------------------------------------------------
+
 # Mute volume
 "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-   XF86AudioMute
+	XF86AudioMute
 
 # Increase volume
 "pactl set-sink-volume @DEFAULT_SINK@ +10%"
-   XF86AudioRaiseVolume
+	XF86AudioRaiseVolume
 
 # Decrease volume
 "pactl set-sink-volume @DEFAULT_SINK@ -10%"
-   XF86AudioLowerVolume
+	XF86AudioLowerVolume
+
+
+# Screen
+
+# Increase backlight
+"xbacklight -inc 10"
+	XF86MonBrightnessUp
+
+# Decrease backlight
+"xbacklight -dec 10"
+	XF86MonBrightnessDown
