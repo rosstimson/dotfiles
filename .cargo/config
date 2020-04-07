@@ -12,4 +12,4 @@ email = "me@rosstimson.com"
 vcs = "git"
 
 [build]
-rustc-wrapper = "~/.cargo/bin/sccache"
+rustc-wrapper = "/home/rosstimson/.cargo/bin/sccache"
