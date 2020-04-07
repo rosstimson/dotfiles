@@ -13,7 +13,7 @@ batt() {
 		D*)	STAT="" ;;
 		*)	STAT="\uf0e7" ;;
 	esac
-	if (( 0 < CAP && CAP <= 20 )); then
+	if (( 0 <= CAP && CAP <= 20 )); then
 		SYM="\uf244"
 	elif (( 20 < CAP && CAP <= 40 )); then
 		SYM="\uf243"
