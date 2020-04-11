@@ -11,7 +11,6 @@
 [core]
 	excludesfile = ~/.gitignore
 	autocrlf = input
-	editor = mg
 
 [push]
 	default = simple

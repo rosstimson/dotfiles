@@ -69,7 +69,8 @@ if [ -f ${HOME}/.termcap ]; then
 fi
 
 # Set default editor and pager
-export EDITOR='mg'
+export EDITOR='emacsclient -t'
+export VISUAL='emacsclient'
 export PAGER='less -FRi'
 
 # Print elapsed time when more than 10 seconds
