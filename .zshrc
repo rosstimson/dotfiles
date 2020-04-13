@@ -71,6 +71,7 @@ fi
 # Set default editor and pager
 export EDITOR='emacsclient -t'
 export VISUAL='emacsclient'
+export ALTERNATE_EDITOR='mg'
 export PAGER='less -FRi'
 
 # Print elapsed time when more than 10 seconds
