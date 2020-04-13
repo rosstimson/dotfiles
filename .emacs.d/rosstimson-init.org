@@ -594,12 +594,18 @@ Check my spelling on the fly with [[https://www.emacswiki.org/emacs/FlySpell][Fl
 This also spellchecks spelling in programming mode but only within comments.
 
 #+BEGIN_SRC emacs-lisp
-(use-package flyspell
-  :config
-  (setq ispell-program-name "hunspell"
-        ispell-dictionary "en_GB")
-  (add-hook 'text-mode-hook #'flyspell-mode)
-  :diminish (flyspell-mode . "Spell"))
+  (use-package flyspell
+    :config
+    (setq ispell-program-name "hunspell")
+    (setq ispell-local-dictionary "en_GB")
+    (setq ispell-local-dictionary-alist
+          ;; Please note the list `("-d" "en_GB")` contains ACTUAL parameters passed to hunspell
+          ;; You could use `("-d" "en_GB,en_US")` to check with multiple dictionaries
+          '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_GB") nil utf-8)))
+
+    :hook ((text-mode . flyspell-mode)
+           (org-mode . flyspell-mode))
+    :diminish (flyspell-mode . "Spell"))
 #+END_SRC
 
 Use Ivy to select spelling corrections.
@@ -696,71 +702,61 @@ the official collection of snippets for many languages.
 [[http://orgmode.org/][Org mode]] - Your life in plain text.
 
 #+BEGIN_SRC emacs-lisp
-(use-package org
-  :pin org
-  :init (add-to-list 'org-modules 'org-eww)
-  :mode ("\\.org$'" . org-mode)
-  :bind (("C-c a" . org-agenda)
-         ("C-c c" . org-capture)
-         ("C-c l" . org-store-link))
-  :config
-  ;; Syntax highlight code blocks and make tabs work as expected.
-  (setq org-src-fontify-natively t
-        org-src-tab-acts-natively t)
+  (use-package org
+    :pin org
+    :mode ("\\.org$'" . org-mode)
+    :bind (("C-c a" . org-agenda)
+           ("C-c c" . org-capture)
+           ("C-c l" . org-store-link))
+    :config
+    ;; Syntax highlight code blocks and make tabs work as expected.
+    (setq org-src-fontify-natively t
+          org-src-tab-acts-natively t)
 
-  (setq org-directory "~/org")
-  (setq org-default-notes-file (concat org-directory "/notes.org"))
-  (setq org-agenda-files (list "~/org/personal.org"
-                               "~/org/work.org"))
-  (setq org-log-done 'time)
-  (setq org-log-done-with-time t)
-  (setq org-log-into-drawer t)
-  (setq org-completion-use-ido t)
+    (setq org-directory "~/org")
+    (setq org-default-notes-file (concat org-directory "/notes.org"))
+    (setq org-agenda-files '("todo.org" "someday-maybe.org"))
+    (setq org-log-done 'time)
+    (setq org-log-done-with-time t)
+    (setq org-log-into-drawer t)
+    (setq org-completion-use-ido t)
 
-  ;; Follow links with RET.
-  (setq org-return-follows-link t)
+    ;; Follow links with RET.
+    (setq org-return-follows-link t)
 
-  ;; Turn on spell checking by default for Org mode.
-  (add-hook 'org-mode-hook 'turn-on-flyspell)
+    (setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELLED(c@)")))
 
-  (setq org-todo-keywords
-    '((sequence "TODO(t)" "WAIT(w@/!)" "APPT(a)" "|" "DONE(d!)" "CANCELLED(c@)" "DELEGATED(l@)")))
+    ;; Capture templates
+    (setq org-capture-templates
+      `(("t" "Todo" entry (file+headline ,(concat org-directory "/todo.org") "Inbox") "* TODO %?\n  %i\n")
+        ("s" "Someday / Maybe" entry (file+headline ,(concat org-directory "/someday-maybe.org") "Inbox") "* TODO %?\n  %i\n")
+        ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "Inbox") "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n")
+        ("j" "Journal" entry (file+olp+datetree ,(concat org-directory "/journal.org")) "* %?\nEntered on %U\n  %i\n")
+        ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox") "* %a %^g\n %?\n %T\n %i" :prepend t)
+        ))
 
-  ;; Capture templates
-  (setq org-capture-templates
-    `(("p" "Personal Todo" entry (file+headline ,(concat org-directory "/personal.org") "INBOX") "* TODO %?\n  %i\n")
-      ("w" "Work Todo" entry (file+headline ,(concat org-directory "/work.org") "INBOX") "* TODO %?\n  %i\n")
-      ("s" "Someday Todo" entry (file+headline ,(concat org-directory "/someday.org") "INBOX") "* TODO %?\n  %i\n")
-      ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "INBOX") "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n")
-      ("j" "Journal" entry (file+olp+datetree ,(concat org-directory "/journal.org")) "* %?\nEntered on %U\n  %i\n")
-      ("k" "Work Journal" entry (file+olp+datetree ,(concat org-directory "/work-journal.org")) "* %?\nEntered on %U\n  %i\n")
-      ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "INBOX") "* %? %^L %^g \n%T" :prepend t)
-      ))
+    ;; Refile targets - all agenda files, nodes up to 2 level deep.
+    (setq org-refile-targets
+          '((nil :maxlevel . 3)
+            (org-agenda-files :maxlevel . 3)))
 
-  ;; Refile targets - all agenda files, nodes up to 3 levels deep.
-  (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
-
-  ;; Custom function to quickly archive all done tasks.
-  (defun rt/org-archive-done-tasks ()
-    (interactive)
-    (org-map-entries
-      (lambda ()
-        (org-archive-subtree)
-        (setq org-map-continue-from (outline-previous-heading)))
-          "/DONE" 'file)))
+    ;; Custom function to quickly archive all done tasks.
+    (defun rt/org-archive-done-tasks ()
+      (interactive)
+      (org-map-entries
+        (lambda ()
+          (org-archive-subtree)
+          (setq org-map-continue-from (outline-previous-heading)))
+            "/DONE" 'file)))
 #+END_SRC
 
-Custom colours for [[http://orgmode.org/manual/Faces-for-TODO-keywords.html][TODO keywords]].
+[[https://orgmode.org/worg/org-contrib/org-protocol.html][Org Protocol]] - Lets me easily grab links or notes direct from my web browser
 
-#+BEGIN_SRC emacs-lisp
-(setq org-todo-keyword-faces
-  '(("TODO" . "IndianRed1")
-    ("WAIT" . "orange2")
-    ("APPT" . "gold2")
-    ("DONE" . "SeaGreen3")
-    ("CANCELLED" . "MediumPurple2")
-    ("DELEGATED" . "DarkSlateGray2")))
-#+END_SRC
+#+begin_src emacs-lisp
+(require 'org-protocol)
+#+end_src
+
 
 Set active Org Babel languages
 
