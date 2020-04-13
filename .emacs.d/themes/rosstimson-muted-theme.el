@@ -22,7 +22,7 @@
    `(cursor ((,class (:background ,fg))))
    
    ;; Highlighting faces
-   `(fringe ((,class (:background ,bg-light))))
+   `(fringe ((,class (:background ,bg-darker))))
    `(highlight ((,class (:background ,white-light))))
    `(region ((,class (:background ,blue-light :foreground ,fg-dark))))
    `(secondary-selection ((,class (:background ,yellow-light))))
@@ -94,6 +94,14 @@
    `(js2-error ((,class (:underline (:color ,red :style wave)))))
    `(js2-warning ((,class (:underline (:color ,yellow-light :style line)))))
    `(js2-external-variable ((,class (:foreground ,red))))
+
+;;; Org Mode
+   `(org-todo ((,class (:weight bold :foreground ,red))))
+   `(org-done ((,class (:weight bold :foreground ,green))))
+   `(org-tag ((,class (:weight bold :foreground ,yellow))))
+   `(org-date ((,class (:foreground ,magenta))))
+   `(org-special-keyword ((,class (:foreground ,magenta-light))))
+   `(org-drawer ((,class (:foreground ,cyan))))
    ))
 
 
