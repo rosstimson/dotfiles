@@ -7,7 +7,7 @@ sticky yes
 
 # Look 'n' Feel
 # -----------------------------------------------
-borderwidth             1
+borderwidth             2
 # Set gap of 21px at top of screen to accomodate
 # Lemonbar which is set to 20px
 gap                     21 0 0 0
