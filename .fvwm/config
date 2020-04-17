@@ -25,12 +25,6 @@ SetEnv icons $[HOME]/.fvwm/icons
 DestroyFunc StartFunction
 AddToFunc   StartFunction
 + I Test Exec exec fvwm-root ~/.fvwm/images/drone.png
-# Only execute once
-DestroyFunc InitFunction
-AddToFunc InitFunction
-+ I Exec exec xsettingsd &
-+ I Exec exec xbacklight -set 10
-+ I Exec exec dunst &
 
 ## To Create a Thumbnail on Minimize
 # Call the script to create a thumbnail using ImageMagick & xwd
@@ -38,6 +32,7 @@ DestroyFunc Thumbnail
 AddToFunc Thumbnail
 + I ThisWindow (Shaded) WindowShade
 + I PipeRead 'bash $[scripts]/crthumb "$[w.id]" "$[cache]"'
+
 # Restore the window
 DestroyFunc DeThumbnail
 AddToFunc DeThumbnail
