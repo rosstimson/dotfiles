@@ -24,6 +24,10 @@ set encoding=utf-8
 " Show matching parentheses
 set showmatch
 
+" Case insensitive search unless search term has capital letters.
+set ignorecase
+set smartcase
+
 " Don't keep backup files, it's 70s style clutter.
 set nobackup
 
