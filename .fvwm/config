@@ -481,11 +481,5 @@ AddToFunc StartFunction
 Style FvwmPager !Title, !Borders, StaysOnBottom, Sticky
 
 ## Minimize to Thumbnail Placeholder
-Style * IconBox 400x768+12+12, IconGrid 15 15, \
+Style * IconBox 400x768+16+48, IconGrid 15 15, \
 IconFill top left, !IconTitle, IconBackgroundRelief 0
-
-
-
-
-
-
