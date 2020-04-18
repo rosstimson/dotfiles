@@ -137,10 +137,6 @@ Key Up A C4 Move w+0 0
 Key Down A C4 Move w+0 -0
 # Move to the center of the screen
 Key a A 4 Move 50-50w 50-50w
-# Free move using mouse
-Key m A M Move
-# Free resize using mouse
-Key r A M Resize
 # ALT-Tab type window switching but with the Super/Windows key
 Key Tab A 4 WindowList Root c c NoDeskSort, SelectOnRelease Super_L
 
@@ -158,6 +154,9 @@ MoveThreshold 3
 ## Focus a window only when clicked
 Style * ClickToFocus
 
+Mouse 1 W 4 Move
+Mouse 1 W 4S Resize
+
 ## Titlebar Buttons
 Mouse 1 1 A Menu MenuWindowOps Delete
 Mouse 1 2 A Close
@@ -166,9 +165,6 @@ Mouse 1 6 A Thumbnail
 
 ## Titlebar Itself
 Mouse 1 T A RaiseMoveX Move Maximize
-Mouse 1 FS A RaiseMove Resize
-Mouse 4 T A WindowShade True
-Mouse 5 T A WindowShade False
 Mouse 3 T A Menu MenuWindowOps
 
 ## Rootmenu on The Desktop
@@ -192,7 +188,7 @@ MenuStyle * MenuColorset 5, ActiveColorset 6, GreyedColorset 7, TitleColorset 8
 MenuStyle * Hilight3DOff, HilightBack, HilightTitleBack, SeparatorsLong
 MenuStyle * TrianglesSolid, TrianglesUseFore
 MenuStyle * ItemFormat "%|%4.2i%5.3l%5.3>%|"
-MenuStyle * Font "xft:Sans:Regular:size=8:antialias=True"
+MenuStyle * Font "xft:Roboto:Light:size=11:antialias=True"
 
 ## Root Menu on The Desktop
 DestroyMenu MenuFvwmRoot
@@ -365,7 +361,7 @@ Colorset 35 fg #ead1be, bg #ead1be, hi, sh, Plain, NoShape
 ##          /___/         /___/  
 
 ## Default Font
-DefaultFont "xft:Sans:Regular:size=8:antialias=True"
+DefaultFont "xft:Roboto:Light:size=11:antialias=True"
 
 ## Place It On Center instead of MinOverlapPlacement
 Style * PositionPlacement Center
@@ -446,7 +442,7 @@ AddButtonStyle 1 \
 # Used in Titlebar Right Click >> More >> Identify
 DestroyModuleConfig FvwmIdent:*
 *FvwmIdent: Colorset 10
-*FvwmIdent: Font "xft:Sans:Regular:size=8:antialias=True"
+*FvwmIdent: Font "xft:Roboto:Light:size=11:antialias=True"
 
 ## FvwmScript
 # To create desktop widget like date time & quit popup menu
