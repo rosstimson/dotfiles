@@ -20,11 +20,6 @@ SetEnv icons $[HOME]/.fvwm/icons
 ##  /_/ \_,_/_//_/\__/\__/_/\___/_//_/___/
 ##
                                          
-## Autostart
-# Start or restart
-DestroyFunc StartFunction
-AddToFunc   StartFunction
-+ I Test Exec exec fvwm-root ~/.fvwm/images/drone.png
 
 ## To Create a Thumbnail on Minimize
 # Call the script to create a thumbnail using ImageMagick & xwd
@@ -105,10 +100,10 @@ IgnoreModifiers L25
 Key space A 4 Exec $[scripts]/rofia
 Key Print A A Exec $[scripts]/screeny
 Key Return A 4S Exec $[scripts]/urdraw
-Key Return A 4 Exec urxvt
+Key p A 4 Exec dmenu_run
+Key Return A 4 Exec urxvtc
 Key w A 4S Exec firefox
 Key f A 4S Exec thunar
-Key g A 4S Exec geany
 # Volume control
 Key XF86AudioRaiseVolume A A Exec amixer -q set Master 5%+
 Key XF86AudioLowerVolume A A Exec amixer -q set Master 5%-
@@ -128,16 +123,18 @@ Key i A 4 Exec notify-send "$(LANG=en_US.utf8 LC_TIME=en_US.utf8 date +'%H:%M')"
 Key c WT 4 Close
 Key f WT 4 Maximize
 Key t WT 4 Thumbnail
-# Super + 1-4 to switch workspace
+# Super + 1-5 to switch workspace
 Key 1 A 4 GotoPage 0 0
 Key 2 A 4 GotoPage 1 0
 Key 3 A 4 GotoPage 2 0
 Key 4 A 4 GotoPage 3 0
-# Super + Shift + 1-4 to send to another workspace
+Key 5 A 4 GotoPage 4 0
+# Super + Shift + 1-5 to send to another workspace
 Key 1 A 4S MovetoPage 0 0
 Key 2 A 4S MovetoPage 1 0
 Key 3 A 4S MovetoPage 2 0
 Key 4 A 4S MovetoPage 3 0
+Key 5 A 4S MovetoPage 4 0
 # Control + Alt + Left/Right like usual
 Key Left A CM GotoPage -1p +0p
 Key Right A CM GotoPage +1p +0p
@@ -158,6 +155,8 @@ Key a A 4 Move 50-50w 50-50w
 Key m A M Move
 # Free resize using mouse
 Key r A M Resize
+# ALT-Tab type window switching but with the Super/Windows key
+Key Tab A 4 WindowList Root c c NoDeskSort, SelectOnRelease Super_L
 
 
 ##                             __   _         __  
@@ -170,8 +169,8 @@ Key r A M Resize
 ClickTime 250
 MoveThreshold 3
 
-## Focus on Hover Instead of ClickToFocus
-Style * SloppyFocus, MouseFocusClickRaises
+## Focus a window only when clicked
+Style * ClickToFocus
 
 ## Titlebar Buttons
 Mouse 1 1 A Menu MenuWindowOps Delete
@@ -212,7 +211,7 @@ MenuStyle * Font "xft:Sans:Regular:size=8:antialias=True"
 ## Root Menu on The Desktop
 DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot "Quick Menu" Title
-+ "&Terminal" Exec exec urxvt
++ "&Terminal" Exec exec xterm
 + "&Shortcut" Popup MenuPrograms
 + "" Nop
 + "Re&fresh" Refresh
@@ -476,7 +475,7 @@ DestroyModuleConfig FvwmScript:*
 ##
 
 ## Workspace
-DesktopSize 4x1
+DesktopSize 5x1
 EdgeScroll 0 0
 EdgeResistance 0
 EdgeThickness 0
@@ -490,10 +489,10 @@ AddToFunc StartFunction
 + I Module FvwmPager
 *FvwmPager: font none
 *FvwmPager: Rows 1
-*FvwmPager: Column 4
+*FvwmPager: Column 5
 *FvwmPager: Back #131c26
 *FvwmPager: WindowColorsets 1 2
-*FvwmPager: Geometry 128x18-12-12
+*FvwmPager: Geometry 256x32-12-12
 Style FvwmPager !Title, !Borders, StaysOnBottom, Sticky
 
 ## Minimize to Thumbnail Placeholder
