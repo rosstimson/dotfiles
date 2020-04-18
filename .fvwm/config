@@ -179,16 +179,16 @@ Mouse 1 4 A Maximize
 Mouse 1 6 A Thumbnail
 
 ## Titlebar Itself
-Mouse 1	T A RaiseMoveX Move Maximize
-Mouse 1	FS A RaiseMove Resize
-Mouse 4	T A WindowShade True
-Mouse 5	T A WindowShade False
-Mouse 3	T A Menu MenuWindowOps
+Mouse 1 T A RaiseMoveX Move Maximize
+Mouse 1 FS A RaiseMove Resize
+Mouse 4 T A WindowShade True
+Mouse 5 T A WindowShade False
+Mouse 3 T A Menu MenuWindowOps
 
 ## Rootmenu on The Desktop
-Mouse 1	R A Menu MenuFvwmRoot
-Mouse 2	R A WindowList
-Mouse 3	R A Menu MenuWindowOpsLong
+Mouse 1 R A Menu MenuFvwmRoot
+Mouse 2 R A WindowList
+Mouse 3 R A Menu MenuWindowOpsLong
 
 ## On minimized windows
 Mouse 1 I A Iconify off
