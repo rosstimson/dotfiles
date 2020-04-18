@@ -97,32 +97,18 @@ AddToFunc RaiseMove
 # Ignore Numlock and other modifiers for bindings
 IgnoreModifiers L25
 # Launching apps
-Key space A 4 Exec $[scripts]/rofia
-Key Print A A Exec $[scripts]/screeny
-Key Return A 4S Exec $[scripts]/urdraw
+Key Print A 4 Exec $[scripts]/screeny
 Key p A 4 Exec dmenu_run
 Key Return A 4 Exec urxvtc
+Key Return A 4S Exec emacsclient
 Key w A 4S Exec firefox
 Key f A 4S Exec thunar
-# Volume control
-Key XF86AudioRaiseVolume A A Exec amixer -q set Master 5%+
-Key XF86AudioLowerVolume A A Exec amixer -q set Master 5%-
-Key XF86AudioMute A A Exec amixer set Master toggle
-# Music control
-Key XF86AudioNext A A Exec mpc next
-Key XF86AudioPrev A A Exec mpc prev
-Key XF86AudioPlay A A Exec mpc toggle
-Key XF86AudioStop A A Exec mpc stop
-Key m A 4 Exec notify-send "Now Playing ♫" "$(mpc current)"
-# Check time and date
-Key i A 4 Exec notify-send "$(LANG=en_US.utf8 LC_TIME=en_US.utf8 date +'%H:%M')" \
-"$(LANG=en_US.utf8 LC_TIME=en_US.utf8 date +'%A %-d %B %Y')"
 
 ## Workspace & window Bindings
 # Close, maximize, and minimize
-Key c WT 4 Close
-Key f WT 4 Maximize
-Key t WT 4 Thumbnail
+Key c A 4S Close
+Key m A 4 Maximize
+Key t A 4 Thumbnail
 # Super + 1-5 to switch workspace
 Key 1 A 4 GotoPage 0 0
 Key 2 A 4 GotoPage 1 0
@@ -136,8 +122,8 @@ Key 3 A 4S MovetoPage 2 0
 Key 4 A 4S MovetoPage 3 0
 Key 5 A 4S MovetoPage 4 0
 # Control + Alt + Left/Right like usual
-Key Left A CM GotoPage -1p +0p
-Key Right A CM GotoPage +1p +0p
+Key Left A 4S GotoPage -1p +0p
+Key Right A 4S GotoPage +1p +0p
 # Window snapping
 Key Left A 4 SnapLeft
 Key Right A 4 SnapRight
@@ -482,7 +468,9 @@ EdgeResistance 0
 EdgeThickness 0
 Style * EdgeMoveDelay 350
 Style * EdgeMoveResistance 350
-EwmhBaseStruts 12 12 12 12
+# Gap at edges of screen (Left, Right, Top, Bottom)
+# Lemonbar at top is 20px so leave 21px gap at top.
+EwmhBaseStruts 0 0 21 0
 
 ## Workspace Indicator
 DestroyModuleConfig FvwmPager: *
