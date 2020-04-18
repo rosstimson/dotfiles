@@ -296,6 +296,7 @@ AddToMenu MenuSendTo
 + " Workspace 2 " MoveToPage 1 0
 + " Workspace 3 " MoveToPage 2 0
 + " Workspace 4 " MoveToPage 3 0
++ " Workspace 5 " MoveToPage 4 0
 
 
 ##             __                 __ 
