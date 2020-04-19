@@ -1,6 +1,10 @@
+env:
+  # Fonts render huge if this is not set.
+  WINIT_X11_SCALE_FACTOR: '1'
+
 font:
   normal:
-    family: FiraMono
+    family: Fira Mono
   size: 10.0
 
 colors:
