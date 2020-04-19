@@ -787,6 +787,24 @@ Set active Org Babel languages
 (require 'ox-beamer)
 #+end_src
 
+#+BEGIN_SRC emacs-lisp
+  (use-package org-caldav
+    :commands (org-caldav-sync)
+    :after (org)
+    :config
+    (setq org-caldav-url "https://caldav.fastmail.com/dav/calendars/user/me@rosstimson.com")
+    (setq org-icalendar-timezone "Europe/London")
+
+    (setq org-caldav-calendars
+          '((:calendar-id "530726a6-d153-4195-b3dc-18f2985aea53"
+                          :inbox (file+headline "~/org/cal.org" "Personal Inbox"))
+            (:calendar-id "97fb7751-8aad-41ea-a48d-0b9199de9f20"
+                          :inbox (file+headline "~/org/cal.org" "Work Inbox"))))
+
+    ;; never delete anything at the CALDAV end
+    (setq org-caldav-delete-calendar-entries 'never))
+#+end_src
+
 ** Markdown
 
 [[http://jblevins.org/projects/markdown-mode/][Markdown Mode]] is a major mode for Markdown offering syntax highlighting
