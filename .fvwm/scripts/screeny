@@ -1,5 +1,4 @@
 #!/bin/sh
 
-
-scrot '%Y-%m-%d_$wx$h.png' \
+scrot '%Y-%m-%d-%T_$wx$h.png' \
   -e 'mv $f ~/pictures/screenshots/'
