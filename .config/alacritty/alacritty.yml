@@ -7,6 +7,11 @@ font:
     family: Fira Mono
   size: 10.0
 
+window:
+  padding:
+    x: 12
+    y: 2
+
 colors:
   primary:
     background: '0xe5e3d9'
