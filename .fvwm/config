@@ -100,7 +100,7 @@ IgnoreModifiers L25
 Key Print A 4 Exec $[scripts]/screeny
 Key p A 4 Exec dmenu_run
 Key Return A 4 Exec urxvtc
-Key Return A 4S Exec emacsclient
+Key Return A 4S Exec emacsclient -c
 Key w A 4S Exec firefox
 Key f A 4S Exec thunar
 
@@ -137,9 +137,12 @@ Key Up A C4 Move w+0 0
 Key Down A C4 Move w+0 -0
 # Move to the center of the screen
 Key a A 4 Move 50-50w 50-50w
-# ALT-Tab type window switching but with the Super/Windows key
-Key Tab A 4 WindowList Root c c NoDeskSort, SelectOnRelease Super_L
-
+# Remove default Alt-Tab binding as it interferes with Emacs.
+Key Tab A M -
+# Super-Tab window switching for current desktops.
+Key Tab A 4 WindowList Root c c CurrentDesk, NoGeometry, CurrentAtEnd, IconifiedAtEnd, SelectOnRelease Super_L
+# Super-Tab window switching for all desktops.
+Key Tab A 4S WindowList Root c c NoDeskSort, NoGeometry, CurrentAtEnd, IconifiedAtEnd, SelectOnRelease Super_L
 
 ##                             __   _         __  
 ##    __ _  ___  __ _____ ___ / /  (_)__  ___/ /__
