@@ -141,8 +141,6 @@ Key a A 4 Move 50-50w 50-50w
 Key Tab A M -
 # Super-Tab window switching for current desktops.
 Key Tab A 4 WindowList Root c c CurrentDesk, NoGeometry, CurrentAtEnd, IconifiedAtEnd, SelectOnRelease Super_L
-# Super-Tab window switching for all desktops.
-Key Tab A 4S WindowList Root c c NoDeskSort, NoGeometry, CurrentAtEnd, IconifiedAtEnd, SelectOnRelease Super_L
 
 ##                             __   _         __  
 ##    __ _  ___  __ _____ ___ / /  (_)__  ___/ /__
