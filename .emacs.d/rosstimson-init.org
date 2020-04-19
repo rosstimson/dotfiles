@@ -736,10 +736,12 @@ the official collection of snippets for many languages.
         ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox") "* %a %^g\n %?\n %T\n %i" :prepend t)
         ))
 
-    ;; Refile targets - all agenda files, nodes up to 2 level deep.
+
+    ;; Refile targets
     (setq org-refile-targets
-          '((nil :maxlevel . 3)
-            (org-agenda-files :maxlevel . 3)))
+          '(("todo.org" :maxlevel . 3)
+            ("someday-maybe.org" :maxlevel . 3)
+            ("links.org" :maxlevel . 3)))
 
     ;; https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
     ;; Show full path for refile targets.
