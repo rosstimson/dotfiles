@@ -741,6 +741,16 @@ the official collection of snippets for many languages.
           '((nil :maxlevel . 3)
             (org-agenda-files :maxlevel . 3)))
 
+    ;; https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
+    ;; Show full path for refile targets.
+    (setq org-refile-use-outline-path t)
+    ;; This option is also needed for the full path stuff to work,
+    ;; without it you just get lots of repeated file names in the Ivy
+    ;; selection window.  Full details in the blog post linked above.
+    (setq org-outline-path-complete-in-steps nil)
+    ;; Allow refiling to a new parent heading.
+    (setq org-refile-allow-creating-parent-nodes 'confirm)
+
     ;; Custom function to quickly archive all done tasks.
     (defun rt/org-archive-done-tasks ()
       (interactive)
