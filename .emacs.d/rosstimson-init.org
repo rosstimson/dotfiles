@@ -704,11 +704,16 @@ the official collection of snippets for many languages.
 #+BEGIN_SRC emacs-lisp
   (use-package org
     :pin org
+    :ensure org-plus-contrib
     :mode ("\\.org$'" . org-mode)
     :bind (("C-c a" . org-agenda)
            ("C-c c" . org-capture)
            ("C-c l" . org-store-link))
     :config
+    ;; Load extra Org modules from contrib
+    (add-to-list 'org-modules 'org-protocol)
+    (add-to-list 'org-modules 'org-contacts)
+
     ;; Syntax highlight code blocks and make tabs work as expected.
     (setq org-src-fontify-natively t
           org-src-tab-acts-natively t)
@@ -724,6 +729,9 @@ the official collection of snippets for many languages.
     ;; Follow links with RET.
     (setq org-return-follows-link t)
 
+    ;; Org contacts
+    (setq org-contacts-files (concat org-directory "/contacts.org"))
+
     (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELLED(c@)")))
 
@@ -734,7 +742,11 @@ the official collection of snippets for many languages.
         ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "Inbox") "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n")
         ("j" "Journal" entry (file+olp+datetree ,(concat org-directory "/journal.org")) "* %?\nEntered on %U\n  %i\n")
         ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox") "* %a %^g\n %?\n %T\n %i" :prepend t)
-        ))
+        ("c" "Contacts" entry (file "~/org/contacts.org")
+         "* %(org-contacts-template-name)
+  :PROPERTIES:
+  :EMAIL: %(org-contacts-template-email)
+  :END:")))
 
 
     ;; Refile targets
@@ -762,13 +774,6 @@ the official collection of snippets for many languages.
           (setq org-map-continue-from (outline-previous-heading)))
             "/DONE" 'file)))
 #+END_SRC
-
-[[https://orgmode.org/worg/org-contrib/org-protocol.html][Org Protocol]] - Lets me easily grab links or notes direct from my web browser
-
-#+begin_src emacs-lisp
-(require 'org-protocol)
-#+end_src
-
 
 Set active Org Babel languages
 
