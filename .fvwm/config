@@ -116,7 +116,7 @@ Key Space A 4 Menu MenuFvwmRoot
 
 # Launching Apps
 Key Print A 4 Exec $[scripts]/screeny
-Key p A 4 Exec dmenu_run
+Key p A 4 Exec dmenu_run -fn 'Roboto' -sb '#BF4D28'
 Key o A 4 Exec notify-send -u low "$(sp current)"
 Key Return A 4 Exec alacritty
 Key Return A 4S Exec emacsclient -c
