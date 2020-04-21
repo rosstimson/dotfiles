@@ -43,6 +43,20 @@ AddToFunc   ToggleTitle
 + I WindowStyle !Title
 + I State 1 True
 
+## Function for a Windows/GNOME style show desktop
+DestroyFunc ShowDesktop
+AddToFunc   ShowDesktop
++ I All (CurrentPage, Iconic, State 1) RestoreDesktop
++ I TestRc (Match) Break
++ I All (CurrentPage, !Iconic, !State 1) ThisWindow State 1 True
++ I All (CurrentPage, !Iconic, State 1) Iconify
+
+# The other half of the show desktop functionality
+DestroyFunc RestoreDesktop
+AddToFunc   RestoreDesktop
++ I All (CurrentPage, Iconic, State 1) Iconify off
++ I All (CurrentPage, State 1) ThisWindow State 1 False
+
 ## Window Snapping
 # Snap left
 DestroyFunc SnapLeft
@@ -102,7 +116,7 @@ Key p A 4 Exec dmenu_run
 Key p A 4S Exec notify-send -u low "$(sp current)"
 Key Return A 4 Exec urxvtc
 Key Return A 4S Exec emacsclient -c
-Key w A 4S Exec firefox
+Key b A 4S Exec firefox
 Key f A 4S Exec thunar
 
 ## Workspace & window Bindings
@@ -110,6 +124,8 @@ Key f A 4S Exec thunar
 Key c A 4S Close
 Key m A 4 Maximize
 Key t A 4 Thumbnail
+Key s A 4 Function ShowDesktop
+Key w A 4 Function ToggleTitle
 # Super + 1-5 to switch workspace
 Key 1 A 4 GotoPage 0 0
 Key 2 A 4 GotoPage 1 0
