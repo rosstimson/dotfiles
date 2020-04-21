@@ -212,8 +212,10 @@ MenuStyle * Font "xft:Roboto:Light:size=11:antialias=True"
 ## Root Menu on The Desktop
 DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot "Quick Menu" Title
-+ "&Terminal" Exec exec xterm
-+ "&Shortcut" Popup MenuPrograms
++ "&Xterm" Exec exec xterm
++ "&Rxvt Unicode" Exec exec urxvtc
++ "&Alacritty" Exec exec 
++ "&Shortcut" Popup MenuApps
 + "" Nop
 + "Re&fresh" Refresh
 + "&Restart" Restart
@@ -221,15 +223,17 @@ AddToMenu   MenuFvwmRoot "Quick Menu" Title
 + "" Nop
 
 ## Root Menu >> Shortcut
-DestroyMenu MenuPrograms
-AddToMenu   MenuPrograms "Shortcut" Title
-Test (x audacious) + "Audacious" Exec exec audacious
+DestroyMenu MenuApps
+AddToMenu   MenuApps "Applications" Title
 Test (x firefox) + "Firefox" Exec exec firefox
-Test (x geany) + "Geany" Exec exec geany
 Test (x gimp) + "Gimp" Exec exec gimp
 Test (x inkscape) + "Inkscape" Exec exec inkscape
+Test (x libreoffice) + "LibreOffice" Exec exec libreoffice
+Test (x slack) + "Slack" Exec exec slack
+Test (x spotify) + "Spotify" Exec exec spotify
 Test (x thunar) + "Thunar" Exec exec thunar
 Test (x vlc) + "VLC" Exec exec vlc
+Test (x zoom) + "Zoom" Exec exec zoom
 
 ## Titlebar Right Click
 DestroyMenu MenuWindowOps
