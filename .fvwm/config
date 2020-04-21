@@ -110,7 +110,11 @@ AddToFunc RaiseMove
 ## Common Keybinds
 # Ignore Numlock and other modifiers for bindings
 IgnoreModifiers L25
-# Launching apps
+
+# Launcing Main Menu
+Key Space A 4 Menu MenuFvwmRoot
+
+# Launching Apps
 Key Print A 4 Exec $[scripts]/screeny
 Key p A 4 Exec dmenu_run
 Key o A 4 Exec notify-send -u low "$(sp current)"
@@ -126,34 +130,42 @@ Key m A 4 Maximize
 Key t A 4 Thumbnail
 Key s A 4 Function ShowDesktop
 Key w A 4 Function ToggleTitle
+
 # Super + 1-5 to switch workspace
 Key 1 A 4 GotoPage 0 0
 Key 2 A 4 GotoPage 1 0
 Key 3 A 4 GotoPage 2 0
 Key 4 A 4 GotoPage 3 0
 Key 5 A 4 GotoPage 4 0
+
 # Super + Shift + 1-5 to send to another workspace
 Key 1 A 4S MovetoPage 0 0
 Key 2 A 4S MovetoPage 1 0
 Key 3 A 4S MovetoPage 2 0
 Key 4 A 4S MovetoPage 3 0
 Key 5 A 4S MovetoPage 4 0
+
 # Control + Alt + Left/Right like usual
 Key Left A 4S GotoPage -1p +0p
 Key Right A 4S GotoPage +1p +0p
+
 # Window snapping
 Key Left A 4 SnapLeft
 Key Right A 4 SnapRight
 Key Up A 4 SnapHalf
 Key Down A 4 SnapQuarter
 Key n A 4 SnapTiny
+
 # Move to the edge of the screen
 Key Left A C4 Move 0 w+0
 Key Right A C4 Move -0 w+0
 Key Up A C4 Move w+0 0
 Key Down A C4 Move w+0 -0
+
 # Move to the center of the screen
 Key a A 4 Move 50-50w 50-50w
+
+# Alt-Tab (or in my case, Super-Tab)
 # Remove default Alt-Tab binding as it interferes with Emacs.
 Key Tab A M -
 # Super-Tab window switching for current desktops.
