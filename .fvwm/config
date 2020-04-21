@@ -113,8 +113,8 @@ IgnoreModifiers L25
 # Launching apps
 Key Print A 4 Exec $[scripts]/screeny
 Key p A 4 Exec dmenu_run
-Key p A 4S Exec notify-send -u low "$(sp current)"
-Key Return A 4 Exec urxvtc
+Key o A 4 Exec notify-send -u low "$(sp current)"
+Key Return A 4 Exec alacritty
 Key Return A 4S Exec emacsclient -c
 Key b A 4S Exec firefox
 Key f A 4S Exec thunar
