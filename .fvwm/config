@@ -218,6 +218,7 @@ MenuStyle * Win
 MenuStyle * MenuColorset 5, ActiveColorset 6, GreyedColorset 7, TitleColorset 8
 MenuStyle * Hilight3DOff, HilightBack, HilightTitleBack, SeparatorsLong
 MenuStyle * TrianglesSolid, TrianglesUseFore
+MenuStyle * BorderWidth 0
 MenuStyle * ItemFormat "%|%4.2i%5.3l%5.3>%|"
 MenuStyle * Font "xft:Roboto:Light:size=11:antialias=True"
 
