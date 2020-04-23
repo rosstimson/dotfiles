@@ -112,11 +112,13 @@ AddToFunc RaiseMove
 IgnoreModifiers L25
 
 # Launcing Main Menu
-Key Space A 4 Menu MenuFvwmRoot
+Key q A 4 Menu MenuFvwmRoot
 
 # Launching Apps
 Key Print A 4 Exec $[scripts]/screeny
 Key p A 4 Exec dmenu_run -fn 'Roboto' -sb '#BF4D28'
+Key a A 4 Exec rofi -show run
+Key w A 4 Exec rofi -show window
 Key o A 4 Exec notify-send -u low "$(sp current)"
 Key Return A 4 Exec alacritty
 Key Return A 4S Exec emacsclient -c
@@ -129,7 +131,7 @@ Key c A 4S Close
 Key m A 4 Maximize
 Key t A 4 Thumbnail
 Key s A 4 Function ShowDesktop
-Key w A 4 Function ToggleTitle
+Key g A 4 Function ToggleTitle
 
 # Super + 1-5 to switch workspace
 Key 1 A 4 GotoPage 0 0
@@ -163,7 +165,7 @@ Key Up A C4 Move w+0 0
 Key Down A C4 Move w+0 -0
 
 # Move to the center of the screen
-Key a A 4 Move 50-50w 50-50w
+Key d A 4 Move 50-50w 50-50w
 
 # Alt-Tab (or in my case, Super-Tab)
 # Remove default Alt-Tab binding as it interferes with Emacs.
