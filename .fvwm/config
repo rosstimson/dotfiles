@@ -147,7 +147,7 @@ Key 3 A 4S MovetoPage 2 0
 Key 4 A 4S MovetoPage 3 0
 Key 5 A 4S MovetoPage 4 0
 
-# Control + Alt + Left/Right like usual
+# Control + Super + Left/Right to go to next/previous workspace
 Key Left A 4S GotoPage -1p +0p
 Key Right A 4S GotoPage +1p +0p
 
@@ -167,7 +167,6 @@ Key Down A C4 Move w+0 -0
 # Move to the center of the screen
 Key d A 4 Move 50-50w 50-50w
 
-# Alt-Tab (or in my case, Super-Tab)
 # Remove default Alt-Tab binding as it interferes with Emacs.
 Key Tab A M -
 # Super-Tab window switching for current desktops.
