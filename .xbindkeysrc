@@ -17,6 +17,7 @@
 
 
 # Screen
+# ----------------------------------------------------------
 
 # Increase backlight
 "xbacklight -inc 10"
