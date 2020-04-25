@@ -734,7 +734,17 @@ the official collection of snippets for many languages.
     (setq org-contacts-files (concat org-directory "/contacts.org"))
 
     (setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELLED(c@)")))
+          '((sequence "TODO(t)" "NEXT(n)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELLED(c@)")))
+
+    ;; Function needed to integrate org-journal with org capture.
+    ;; https://github.com/bastibe/org-journal/#journal-capture-template
+    (defun org-journal-find-location ()
+      ;; Open today's journal, but specify a non-nil prefix argument in order to
+      ;; inhibit inserting the heading; org-capture will insert the heading.
+      (org-journal-new-entry t)
+      ;; Position point on the journal's top-level heading so that org-capture
+      ;; will add the new entry as a child entry.
+      (goto-char (point-min)))
 
     ;; Capture templates
     (setq org-capture-templates
@@ -742,6 +752,8 @@ the official collection of snippets for many languages.
         ("s" "Someday / Maybe" entry (file+headline ,(concat org-directory "/someday-maybe.org") "Inbox") "* TODO %?\n  %i\n")
         ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "Inbox") "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n")
         ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox") "* %a %^g\n %?\n %T\n %i" :prepend t)
+        ("j" "Journal entry" entry (function org-journal-find-location)
+         "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
         ("c" "Contacts" entry (file "~/org/contacts.org")
          "* %(org-contacts-template-name)
   :PROPERTIES:
