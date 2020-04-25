@@ -713,6 +713,7 @@ the official collection of snippets for many languages.
     ;; Load extra Org modules from contrib
     (add-to-list 'org-modules 'org-protocol)
     (add-to-list 'org-modules 'org-contacts)
+    (add-to-list 'org-modules 'org-crypt)
 
     ;; Syntax highlight code blocks and make tabs work as expected.
     (setq org-src-fontify-natively t
@@ -740,7 +741,6 @@ the official collection of snippets for many languages.
       `(("t" "Todo" entry (file+headline ,(concat org-directory "/todo.org") "Inbox") "* TODO %?\n  %i\n")
         ("s" "Someday / Maybe" entry (file+headline ,(concat org-directory "/someday-maybe.org") "Inbox") "* TODO %?\n  %i\n")
         ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "Inbox") "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n")
-        ("j" "Journal" entry (file+olp+datetree ,(concat org-directory "/journal.org")) "* %?\nEntered on %U\n  %i\n")
         ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox") "* %a %^g\n %?\n %T\n %i" :prepend t)
         ("c" "Contacts" entry (file "~/org/contacts.org")
          "* %(org-contacts-template-name)
@@ -774,6 +774,54 @@ the official collection of snippets for many languages.
           (setq org-map-continue-from (outline-previous-heading)))
             "/DONE" 'file)))
 #+END_SRC
+
+Org-Crypt
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-crypt
+    :ensure nil
+    :after org
+    :config
+    (org-crypt-use-before-save-magic)
+
+    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+
+    ;; GPG key to use for encryption
+    ;; Either the Key ID or set to nil to use symmetric encryption.
+    (setq org-crypt-key "0x4799AD5040FF28FB5F3D71D7667A3481E4BB34F3")
+
+    ;; Auto-saving does not cooperate with org-crypt.el: so you need
+    ;; to turn it off if you plan to use org-crypt.el quite often.
+    ;; Otherwise, you'll get an (annoying) message each time you
+    ;; start Org.
+    (setq auto-save-default nil))
+#+END_SRC
+
+Journal
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-journal
+    :after org
+    :bind ("C-c T" . org-journal-new-entry)
+    :config
+    (defun org-journal-file-header-func (time)
+      "Custom function to create journal header."
+      (concat
+       (pcase org-journal-file-type
+         (`daily "#+TITLE: Daily Journal\n#+STARTUP: showeverything")
+         (`weekly "#+TITLE: Weekly Journal\n#+STARTUP: folded")
+         (`monthly "#+TITLE: Monthly Journal\n#+STARTUP: folded")
+         (`yearly "#+TITLE: Yearly Journal\n#+STARTUP: folded"))))
+
+    (setq org-journal-file-header 'org-journal-file-header-func)
+    :custom
+    (org-journal-file-type "monthly")
+    (org-journal-date-format "%A, %d %B %Y")
+    (org-journal-dir (format "~/org/journal/" (format-time-string "%Y")))
+    (org-journal-dir (format (concat org-directory "/journal/") (format-time-string "%Y")))
+    (org-journal-enable-encryption t))
+#+END_SRC
+
 
 Set active Org Babel languages
 
