@@ -754,7 +754,7 @@ the official collection of snippets for many languages.
         ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox") "* %a %^g\n %?\n %T\n %i" :prepend t)
         ("j" "Journal entry" entry (function org-journal-find-location)
          "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
-        ("c" "Contacts" entry (file "~/org/contacts.org")
+        ("c" "Contact" entry (file "~/org/contacts.org")
          "* %(org-contacts-template-name)
   :PROPERTIES:
   :EMAIL: %(org-contacts-template-email)
