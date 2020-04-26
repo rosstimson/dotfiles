@@ -34,7 +34,7 @@ if [ "$(uname -o)" = "GNU/Linux" ]; then
 fi
 
 # Start GPG Agent
-gpg-agent --homedir /home/rosstimson/.gnupg --allow-emacs-pinentry --daemon &
+gpg-agent --homedir /home/rosstimson/.gnupg --daemon &
 
 # Start rxvt-unicode daemon
 urxvtd -q -o -f &
