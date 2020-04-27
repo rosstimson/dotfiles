@@ -839,9 +839,8 @@ Journal
 
     (setq org-journal-file-header 'org-journal-file-header-func)
     :custom
-    (org-journal-file-type "monthly")
+    (org-journal-file-type 'monthly)
     (org-journal-date-format "%A, %d %B %Y")
-    (org-journal-dir (format "~/org/journal/" (format-time-string "%Y")))
     (org-journal-dir (format (concat org-directory "/journal/") (format-time-string "%Y")))
     (org-journal-enable-encryption t))
 #+END_SRC
