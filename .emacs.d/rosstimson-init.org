@@ -754,7 +754,7 @@ the official collection of snippets for many languages.
         ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox") "* %a %^g\n %?\n %T\n %i" :prepend t)
         ("j" "Journal entry" entry (function org-journal-find-location)
          "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
-        ("c" "Contact" entry (file "~/org/contacts.org")
+        ("c" "Contacts" entry (file "~/org/contacts.org")
          "* %(org-contacts-template-name)
   :PROPERTIES:
   :EMAIL: %(org-contacts-template-email)
@@ -786,6 +786,18 @@ the official collection of snippets for many languages.
           (setq org-map-continue-from (outline-previous-heading)))
             "/DONE" 'file)))
 #+END_SRC
+
+Org Agenda
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-agenda
+    :ensure nil
+    :after org
+    :custom
+    (org-agenda-skip-deadline-if-done t)
+    (org-agenda-skip-scheduled-if-done t))
+#+END_SRC
+
 
 Org-Crypt
 
