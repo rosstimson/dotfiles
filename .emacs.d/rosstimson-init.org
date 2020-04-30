@@ -81,7 +81,7 @@ Stop the annoying bloody beeping.
 Set default font.
 
 #+BEGIN_SRC emacs-lisp
-(set-frame-font "GohuFont-14" t t)
+(set-frame-font "Fira Mono 10" nil t)
 #+END_SRC
 
 Stop resizing the frame all the time and just start emacs maximised.
@@ -236,7 +236,6 @@ Disable external GPG PIN entry, let Emacs handle it.
   :config
   (pinentry-start))
 #+END_SRC
-
 
 #+BEGIN_SRC emacs-lisp
 (use-package epa-file
@@ -751,7 +750,7 @@ the official collection of snippets for many languages.
       `(("t" "Todo" entry (file+headline ,(concat org-directory "/todo.org") "Inbox") "* TODO %?\n  %i\n")
         ("s" "Someday / Maybe" entry (file+headline ,(concat org-directory "/someday-maybe.org") "Inbox") "* TODO %?\n  %i\n")
         ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "Inbox") "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n")
-        ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox") "* %a %^g\n %?\n %T\n %i" :prepend t)
+        ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox") "* %a %^g\n %?\n %i" :prepend t)
         ("j" "Journal entry" entry (function org-journal-find-location)
          "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
         ("c" "Contacts" entry (file "~/org/contacts.org")
@@ -765,7 +764,8 @@ the official collection of snippets for many languages.
     (setq org-refile-targets
           '(("todo.org" :maxlevel . 3)
             ("someday-maybe.org" :maxlevel . 3)
-            ("links.org" :maxlevel . 3)))
+            ("links.org" :maxlevel . 3)
+            ("cal.org" :maxlevel . 3)))
 
     ;; https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
     ;; Show full path for refile targets.
@@ -837,6 +837,17 @@ Journal
          (`monthly "#+TITLE: Monthly Journal\n#+STARTUP: folded")
          (`yearly "#+TITLE: Yearly Journal\n#+STARTUP: folded"))))
 
+    (defun org-journal-save-entry-and-exit()
+      "Simple convenience function.
+    Saves the buffer of the current day's entry and kills the window
+    Similar to org-capture like behavior"
+      (interactive)
+      (save-buffer)
+      (kill-buffer-and-window))
+
+    ;; Key binding for the above function
+    (define-key org-journal-mode-map (kbd "C-x C-s") 'org-journal-save-entry-and-exit)
+
     (setq org-journal-file-header 'org-journal-file-header-func)
     :custom
     (org-journal-file-type 'monthly)
@@ -868,17 +879,24 @@ Set active Org Babel languages
     :commands (org-caldav-sync)
     :after (org)
     :config
+    (setq org-caldav-debug-level 2)
+    (setq org-caldav-show-sync-results t)
     (setq org-caldav-url "https://caldav.fastmail.com/dav/calendars/user/me@rosstimson.com")
     (setq org-icalendar-timezone "Europe/London")
+    ;; never delete anything at the CALDAV end
+    (setq org-caldav-delete-calendar-entries 'never)
+
+    ;; Default inbox, without this it still seems to want to create the
+    ;; default of ~/org/appointments.org despite the settings below in
+    ;; org-caldav-calendars.
+    (setq org-caldav-inbox '(file+headline "~/org/cal.org" "Inbox"))
+    (setq org-caldav-files '("~/org/cal.org"))
 
     (setq org-caldav-calendars
           '((:calendar-id "530726a6-d153-4195-b3dc-18f2985aea53"
                           :inbox (file+headline "~/org/cal.org" "Personal Inbox"))
             (:calendar-id "97fb7751-8aad-41ea-a48d-0b9199de9f20"
-                          :inbox (file+headline "~/org/cal.org" "Work Inbox"))))
-
-    ;; never delete anything at the CALDAV end
-    (setq org-caldav-delete-calendar-entries 'never))
+                          :inbox (file+headline "~/org/cal.org" "Work Inbox")))))
 #+end_src
 
 ** Markdown

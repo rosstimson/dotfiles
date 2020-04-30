@@ -47,11 +47,6 @@ xft.dpi: 96
 xft.rgba: rgb
 
 
-! Emacs
-! -----------------------------------------------------------------------
-emacs.font: GohuFont-14
-
-
 ! Rofi
 ! -----------------------------------------------------------------------
 ! This is a light theme using muted colours that kinda go well with my
