@@ -53,6 +53,9 @@ if executable('rg')
   let g:ackprg = 'rg --vimgrep'
 endif
 
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+
 " Highlight all search results
 set hlsearch
 
