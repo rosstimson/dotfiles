@@ -1,2 +1,2 @@
 # Set wallpaper
-feh --bg-scale ~/pictures/wallpapers/default &
+feh --bg-scale ~/Pictures/wallpapers/wallpaper &
