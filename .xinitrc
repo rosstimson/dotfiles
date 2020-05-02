@@ -10,8 +10,18 @@ setxkbmap us -variant colemak -option ctrl:nocaps
 xbindkeys
 
 # Set touchpad options
-xinput set-prop 'Synaptics TM3383-032' 'libinput Tapping Enabled' 1
-xinput set-prop 'Synaptics TM3383-032' 'libinput Natural Scrolling Enabled' 1
+if grep -q 'ID=ubuntu' /etc/os-release && command -v synclient; then
+	synclient PalmDetect=1 \
+			  PalmMinWidth=8 \
+			  PalmMinZ=100 \
+			  HorizScrollDelta=-111 \
+			  VertScrollDelta=-111 \
+			  HorizEdgeScroll=0 \
+			  VertEdgeScroll=0
+else
+	xinput set-prop 'Synaptics TM3383-032' 'libinput Tapping Enabled' 1
+	xinput set-prop 'Synaptics TM3383-032' 'libinput Natural Scrolling Enabled' 1
+fi
 
 # Hide cursor when it is not being used
 xbanish &
@@ -46,7 +56,7 @@ emacs --daemon &
 dunst &
 
 # Set wallpaper
-feh --bg-scale ~/pictures/wallpapers/wallpaper
+feh --bg-scale ~/Pictures/wallpapers/wallpaper
 
 # WM
-cwm
+fvwm
