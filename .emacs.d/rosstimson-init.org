@@ -781,10 +781,18 @@ the official collection of snippets for many languages.
     (defun rt/org-archive-done-tasks ()
       (interactive)
       (org-map-entries
-        (lambda ()
-          (org-archive-subtree)
-          (setq org-map-continue-from (outline-previous-heading)))
-            "/DONE" 'file)))
+       (lambda ()
+         (org-archive-subtree)
+         (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
+       "/DONE" 'tree)
+      ;; I'm sure this could be done better as part of the
+      ;; org-map-entries function above but I'm not sure how so just
+      ;; repeat for cancelled tasks.
+      (org-map-entries
+       (lambda ()
+         (org-archive-subtree)
+         (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
+       "/CANCELLED" 'tree)))
 #+END_SRC
 
 Org Agenda
