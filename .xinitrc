@@ -17,7 +17,11 @@ if grep -q 'ID=ubuntu' /etc/os-release && command -v synclient; then
 			  HorizScrollDelta=-111 \
 			  VertScrollDelta=-111 \
 			  HorizEdgeScroll=0 \
-			  VertEdgeScroll=0
+			  VertEdgeScroll=0 \
+			  TapButton1=1 \
+			  TapButton2=0 \
+			  RTCornerButton=0 \
+			  RBCornerButton=0
 else
 	xinput set-prop 'Synaptics TM3383-032' 'libinput Tapping Enabled' 1
 	xinput set-prop 'Synaptics TM3383-032' 'libinput Natural Scrolling Enabled' 1
@@ -35,12 +39,12 @@ rt-bar &
 # Start ssh-agent
 # Only do this on Linux (Void) because OpenBSD defaults to starting the agent anyway.
 if [ "$(uname -o)" = "GNU/Linux" ]; then
-    if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-        ssh-agent > "$HOME/.ssh/ssh-agent.env"
-    fi
-    if [ -z "$SSH_AUTH_SOCK" ]; then
-        eval "$(cat "$HOME/.ssh/ssh-agent.env")"
-    fi
+	if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+		ssh-agent > "$HOME/.ssh/ssh-agent.env"
+	fi
+	if [ -z "$SSH_AUTH_SOCK" ]; then
+		eval "$(cat "$HOME/.ssh/ssh-agent.env")"
+	fi
 fi
 
 # Start GPG Agent
