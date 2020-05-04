@@ -713,6 +713,7 @@ the official collection of snippets for many languages.
     (add-to-list 'org-modules 'org-protocol)
     (add-to-list 'org-modules 'org-contacts)
     (add-to-list 'org-modules 'org-crypt)
+    (add-to-list 'org-modules 'org-habit)
 
     ;; Syntax highlight code blocks and make tabs work as expected.
     (setq org-src-fontify-natively t
