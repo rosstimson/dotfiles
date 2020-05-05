@@ -189,8 +189,8 @@ Mouse 1 W 4 Move
 Mouse 1 W 4S Resize
 
 ## Titlebar Buttons
-Mouse 1 1 A Menu MenuWindowOps Delete
-Mouse 1 2 A Close
+Mouse 1 2 A WindowShade
+Mouse 1 1 A Close
 Mouse 1 4 A Maximize
 Mouse 1 6 A Thumbnail
 
@@ -399,28 +399,15 @@ Style FvwmIdent WindowListSkip
 ##
                                       
 # Buttons Locations 1 3 5 7 9 T T T T T 0 8 6 4 2
-# 2 >> Close, 4 >> Maximize, 6 >> Minimize, 1 >> Window Menu
+# 2 >> WindowShade, 4 >> Maximize, 6 >> Minimize, 1 >> Close
 TitleStyle Centered Height 28 -- Flat
 ButtonStyle Reset
 ButtonStyle All -- Flat
-ButtonStyle All -- UseTitleStyle
 AddButtonStyle All Vector 2 1x1@4 1x1@4
-AddButtonStyle 2 \
-	ActiveUp (Pixmap $[icons]/close.png -- Flat) \
-	ActiveDown (Pixmap $[icons]/close.png -- Flat) \
-	Inactive (Pixmap $[icons]/close.png -- Flat)
-AddButtonStyle 4 \
-	ActiveUp (Pixmap $[icons]/maximize.png -- Flat) \
-	ActiveDown (Pixmap $[icons]/maximize.png -- Flat) \
-	Inactive (Pixmap $[icons]/maximize.png -- Flat)
-AddButtonStyle 6 \
-	ActiveUp (Pixmap $[icons]/iconify.png -- Flat) \
-	ActiveDown (Pixmap $[icons]/iconify.png -- Flat) \
-	Inactive (Pixmap $[icons]/iconify.png -- Flat)
-AddButtonStyle 1 \
-	ActiveUp (Pixmap $[icons]/options.png -- Flat) \
-	ActiveDown (Pixmap $[icons]/options.png -- Flat) \
-	Inactive (Pixmap $[icons]/options.png -- Flat)
+AddButtonStyle 1 Pixmap $[icons]/close.png
+AddButtonStyle 4 Pixmap $[icons]/maximize.png
+AddButtonStyle 6 Pixmap $[icons]/iconify.png
+AddButtonStyle 2 Pixmap $[icons]/shade.png
 
 
 ##                   __     __      
