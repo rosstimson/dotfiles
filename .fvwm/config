@@ -372,13 +372,11 @@ Colorset 14 fg #a1a8b9, bg #131c26, hi #131c26, sh #131c26, Plain, NoShape
 ## Default Font
 DefaultFont "xft:Roboto:Light:size=11:antialias=True"
 
-## Place It On Center instead of MinOverlapPlacement
-Style * PositionPlacement Center
-Style * GrabFocusOff, !UsePPosition
+## Place new windows where the mouse pointer is
+Style * PositionPlacement UnderMouse
 
 ## Transient Windows, Such as Open File Windows
 Style * DecorateTransient, StackTransientParent
-Style * !FPGrabFocusTransient, FPReleaseFocusTransient
 
 ## Window Shade / Roll Up
 Style * WindowShadeScrolls, WindowShadeSteps 10
