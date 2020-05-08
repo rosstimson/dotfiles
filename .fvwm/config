@@ -119,11 +119,17 @@ Key Print A 4 Exec $[scripts]/screeny
 Key p A 4 Exec dmenu_run -fn 'Roboto' -sb '#BF4D28'
 Key a A 4 Exec rofi -show run
 Key w A 4 Exec rofi -show window
-Key o A 4 Exec notify-send -u low "$(sp current)"
 Key Return A 4 Exec alacritty
 Key Return A 4S Exec emacsclient -c
 Key b A 4S Exec firefox
 Key f A 4S Exec thunar
+
+# Spotify bindings
+Key z A 4 Exec sp prev
+Key x A 4 Exec sp play
+Key c A 4 Exec sp pause
+Key v A 4 Exec sp next
+Key b A 4 Exec notify-send -u low "$(sp current)"
 
 ## Workspace & window Bindings
 # Close, maximize, and minimize
