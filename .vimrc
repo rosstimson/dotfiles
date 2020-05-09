@@ -14,6 +14,8 @@ call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-commentary')
 call minpac#add('mileszs/ack.vim')
+call minpac#add('lotabout/skim', { 'do': 'silent !./install' })
+call minpac#add('lotabout/skim.vim')
 
 " Load some sensible defaults.
 source $VIMRUNTIME/defaults.vim
