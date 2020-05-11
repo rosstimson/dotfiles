@@ -127,9 +127,8 @@ Key f A 4S Exec thunar
 # Spotify bindings
 Key z A 4 Exec sp prev
 Key x A 4 Exec sp play
-Key c A 4 Exec sp pause
-Key v A 4 Exec sp next
-Key b A 4 Exec notify-send -u low "$(sp current)"
+Key c A 4 Exec sp next
+Key v A 4 Exec notify-send -u low "$(sp current)"
 
 ## Workspace & window Bindings
 # Close, maximize, and minimize
