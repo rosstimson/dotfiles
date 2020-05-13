@@ -210,25 +210,6 @@ PS1='${green}%m${reset_color}:%c$(__git_ps1 "(%s)") %# '
 
 # General {{{
 
-# Set an alias for 'ls' so colours can be used across OSs
-case `uname` in
-  FreeBSD)
-    alias ls='ls -GF'
-  ;;
-  NetBSD)
-    alias ls='ls -F'
-  ;;
-  OpenBSD)
-    alias ls='gls --color=always -F'
-  ;;
-  Linux)
-    alias ls='ls --color=always -F'
-  ;;
-  *)
-    alias ls='ls -G'
-  ;;
-esac
-
 # Basic directory operations
 alias ...='cd ../..'
 alias -- -='cd -'
@@ -239,9 +220,8 @@ alias _='sudo '
 alias ffs='sudo '
 
 # List direcory contents
-alias l='ls -lah'
-alias ll='ls -l'
-alias lr='ls -lr'
+alias ls='exa'
+alias l='exa -agl --git'
 
 # Tmux - Attach to previous session or start a new one named rt.
 alias t='tmux new-session -A -s rt'
