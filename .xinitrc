@@ -22,7 +22,8 @@ if grep -q 'ID=ubuntu' /etc/os-release && command -v synclient; then
 			  TapButton2=0 \
 			  RTCornerButton=0 \
 			  RBCornerButton=0 \
-			  FingerHigh=50
+			  FingerHigh=50 \
+			  PressureMotionMinZ=80
 else
 	xinput set-prop 'Synaptics TM3383-032' 'libinput Tapping Enabled' 1
 	xinput set-prop 'Synaptics TM3383-032' 'libinput Natural Scrolling Enabled' 1
