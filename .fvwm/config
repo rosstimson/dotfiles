@@ -407,10 +407,26 @@ TitleStyle Centered Height 28 -- Flat
 ButtonStyle Reset
 ButtonStyle All -- Flat
 AddButtonStyle All Vector 2 1x1@4 1x1@4
-AddButtonStyle 1 Pixmap $[icons]/close.png
-AddButtonStyle 4 Pixmap $[icons]/maximize.png
-AddButtonStyle 6 Pixmap $[icons]/iconify.png
-AddButtonStyle 2 Pixmap $[icons]/shade.png
+
+AddButtonStyle 1 \
+	ActiveUp (Pixmap $[icons]/close.png -- Flat) \
+	ActiveDown (Pixmap $[icons]/close-down.png -- Flat) \
+	Inactive (Pixmap $[icons]/close.png -- Flat)
+
+AddButtonStyle 2 \
+	ActiveUp (Pixmap $[icons]/shade.png -- Flat) \
+	ActiveDown (Pixmap $[icons]/shade-down.png -- Flat) \
+	Inactive (Pixmap $[icons]/shade.png -- Flat)
+
+AddButtonStyle 4 \
+	ActiveUp (Pixmap $[icons]/maximize.png -- Flat) \
+	ActiveDown (Pixmap $[icons]/maximize-down.png -- Flat) \
+	Inactive (Pixmap $[icons]/maximize.png -- Flat)
+
+AddButtonStyle 6 \
+	ActiveUp (Pixmap $[icons]/iconify.png -- Flat) \
+	ActiveDown (Pixmap $[icons]/iconify-down.png -- Flat) \
+	Inactive (Pixmap $[icons]/iconify.png -- Flat)
 
 
 ##                   __     __      
