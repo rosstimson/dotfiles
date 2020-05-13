@@ -1,3 +1,8 @@
-# Set the theme to "TwoDark"
---theme="Monokai Extended Light"
+# ~/.config/bat/config
+#
+# bat config -- bat is a cat(1) clone with wings.
+#
+
+--theme="ansi-light"
+--style="changes"
 
