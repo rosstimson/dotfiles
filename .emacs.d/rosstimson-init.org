@@ -721,7 +721,6 @@ the official collection of snippets for many languages.
 
     (setq org-directory "~/org")
     (setq org-default-notes-file (concat org-directory "/notes.org"))
-    (setq org-agenda-files '("todo.org" "someday-maybe.org"))
     (setq org-log-done 'time)
     (setq org-log-done-with-time t)
     (setq org-log-into-drawer t)
@@ -803,6 +802,7 @@ Org Agenda
     :ensure nil
     :after org
     :custom
+    (org-agenda-files '("~/org/todo.org" "~/org/someday-maybe.org" "~/org/cal.org"))
     (org-agenda-skip-deadline-if-done t)
     (org-agenda-skip-scheduled-if-done t))
 #+END_SRC
