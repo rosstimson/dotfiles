@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# Need to add my scripts location to path specifically for Xorg.  The PATH is
+# set elsewhere for my shell. Without this the top bar 'rt-bar' doesn't work at
+# startup and neither do the Spofity keybinding in FVWM which rely on the 'sp'
+# script in '~/bin'.
+export PATH=$HOME/bin:$PATH
+
 xrdb -load $HOME/.Xresources
 xset -b
 
