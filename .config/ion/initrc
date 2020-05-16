@@ -8,7 +8,7 @@ export LC_ALL='en_GB.UTF-8'
 export KEYID='0x667A3481E4BB34F3'
 export GPG_TTY="$(tty)"
 export PAGER='less -i'
-export PATH="$JAVA_HOME/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/bin:$PATH"
+export PATH="$JAVA_HOME/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/.yarn/bin:$HOME/bin:$PATH"
 
 # exa colours (A modern replacement for ls written in Rust:  https://the.exa.website)
 # Turn off some of the colours as this many colours is just obnoxious.
