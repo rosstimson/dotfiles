@@ -13,14 +13,18 @@
 
 ;; Warn when opening files bigger than 100MB
 (setq large-file-warning-threshold 100000000)
+#+END_SRC
 
-;; Add to exec-path (Emacs equivalent to $PATH)
-;; (add-to-list 'exec-path "/usr/local/bin/")
-;; (add-to-list 'exec-path "/usr/local/go/bin")
-;; (add-to-list 'exec-path "~/code/go/bin")
-(use-package exec-path-from-shell
-:init
-(exec-path-from-shell-initialize))
+Emacs might need access to executables that are stored in some custom
+locations, for example a Rust tool installed via ~cargo~ or a Python
+tool installed via `pip install --user`. This is essentially the Emacs
+equivalent of your system's ~$PATH~.
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'exec-path "~/.local/bin")  ;; Python -- pip installed
+  (add-to-list 'exec-path "~/code/go/bin") ;; Go
+  (add-to-list 'exec-path "~/.cargo/bin")  ;; Rust
+  (add-to-list 'exec-path "~/.yarn/bin")   ;; JS -- Yarn installed
 #+END_SRC
 
 ** Personal information
@@ -221,31 +225,6 @@ Make C-l clear eshell screen just as it would a normal shell.
 (add-hook 'eshell-mode-hook
 '(lambda()
   (local-set-key (kbd "C-l") 'eshell-clear-buffer)))
-#+END_SRC
-
-** EasyPG / Encryption
-
-Disable external GPG PIN entry, let Emacs handle it.
-
-#+BEGIN_SRC emacs-lisp
-(setenv "GPG_AGENT_INFO" nil)
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(use-package pinentry
-  :config
-  (pinentry-start))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(use-package epa-file
-  :ensure nil
-  :config
-  (setq epa-armor t))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(setq epa-pinentry-mode 'loopback)
 #+END_SRC
 
 ** Hippie-expand
