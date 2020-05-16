@@ -1,13 +1,30 @@
+# Config for ion shell: https://doc.redox-os.org/ion-manual
+# ~/.config/ion/initrc
+
+# General
+# --------------------------------------------------------------------
+
+# Set Emacs style keybindings
 keybindings emacs
 
-export JAVA_HOME='/usr/lib/jvm/java-14-openjdk-amd64'
-export GOPATH="$HOME/code/go"
+# Command History
+let HISTFILE_SIZE = 5000
+let HISTORY_IGNORE = [ no_such_command whitespace ]
+
+
+# Env vars
+# --------------------------------------------------------------------
 
 export LANG='en_GB.UTF-8'
 export LC_ALL='en_GB.UTF-8'
 export KEYID='0x667A3481E4BB34F3'
 export GPG_TTY="$(tty)"
 export PAGER='less -i'
+
+# Lang specific
+export JAVA_HOME='/usr/lib/jvm/java-14-openjdk-amd64'
+export GOPATH="$HOME/code/go"
+
 export PATH="$JAVA_HOME/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/.yarn/bin:$HOME/bin:$PATH"
 
 # exa colours (A modern replacement for ls written in Rust:  https://the.exa.website)
@@ -15,10 +32,12 @@ export PATH="$JAVA_HOME/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/
 export EXA_COLORS='uu=0:gu=0:ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0'
 
 
+# Aliases
+# --------------------------------------------------------------------
 
 alias _='sudo '
 alias g='git'
-alias h='fc -l 0'
+alias h='history'
 alias l='exa -agl --git'
 alias less='less -i'
 alias ls='exa'
@@ -26,6 +45,16 @@ alias pwup="cd $HOME/.password-store && git push -u origin master && cd -"
 alias showpath="echo $PATH | tr -s ':' '\n'"
 alias t='tmux new-session -A -s rt'
 alias tf='terraform'
+
+# Functions
+# --------------------------------------------------------------------
+
+# Show the environment for a process.
+# Example:  penv fvwm
+fn penv proc
+   cat /proc/$(pgrep $proc)/environ | tr '\0' '\n'
+end
+
 
 
 
