@@ -38,6 +38,9 @@ symbol = " "
 symbol = " "
 style = "blue"
 
+[git_status]
+deleted = "x"
+
 [golang]
 symbol = " "
 
@@ -78,3 +81,6 @@ symbol = " "
 [rust]
 symbol = " "
 style = "red"
+
+[terraform]
+style = "magenta"
