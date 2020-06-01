@@ -1,0 +1,40 @@
+alias _='sudo '
+alias ..="cd .."
+alias ...="cd ../.."
+alias g='git'
+alias h='history'
+alias ip='ip --color'
+alias ipb='ip --color --brief'
+alias k='kubectl'
+alias l='exa -agl --git'
+alias less='less -i'
+alias ls='exa'
+alias pwup="cd $HOME/.password-store && git push -u origin master && cd -"
+alias ru='rustup'
+alias sc=shellcheck'
+alias showpath="echo $PATH | tr -s ':' '\n'"
+alias t='tmux new-session -A -s rt'
+alias tf='terraform'
+
+# Docker
+alias d='docker'
+alias da='docker attach'
+alias db='docker build'
+alias dc='docker commit'                        # Clobbers GNU dc calculator tool
+alias dclean='docker rmi -f $(docker images -q -a -f dangling=true)' # Removes all untagged images
+alias ddr='docker run -d'
+alias de='docker exec -t -i'
+alias di='docker images'
+alias dl='docker pull'
+alias dlg='docker logs'
+alias dm='docker-machine'
+alias dp='docker push'
+alias dps='docker ps'
+alias dr='docker run'
+alias dri='docker run -it --rm'
+alias drm='docker rm'
+alias drma='docker rm $(docker ps -a -q)'       # Remove all containers
+alias drmi='docker rmi'
+alias ds='docker stop'
+alias dsa='docker stop $(docker ps -a -q)'      # Stop all containers
+alias dt='docker tag'
