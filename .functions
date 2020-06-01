@@ -1,0 +1,17 @@
+# Checks if a command exists, something like 'which' could be used
+# instead of 'command -v' but 'which' is non-standard and shellcheck
+# will report it as such and will suggest 'command -v'.
+#
+# This function is mainly used to test for commands with 'it' statements like so:
+#     if _command_exists pyenv; then
+#         echo "Command exists so do something"
+#     fi
+installed() {
+	command -v "$1" >/dev/null 2>&1
+}
+
+# Get the env vars of a running process
+# Example: penv docker
+penv () {
+	sudo sh -c "tr '\0' '\n' < /proc/$(pgrep "$1")/environ"
+}
