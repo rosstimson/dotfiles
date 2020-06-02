@@ -94,9 +94,9 @@ zle -N down-line-or-beginning-search
 # Tools settings
 # --------------------------------------------------------------------
 
-# Jump quickly to frequently used directories.
-# https://github.com/rupa/z/blob/master/z.sh
-. $HOME/bin/z.sh
+# Zoxide (https://github.com/ajeetdsouza/zoxide)
+# Jump quickly to commonly used directories
+eval "$(zoxide init zsh)"
 
 
 # Prompt
