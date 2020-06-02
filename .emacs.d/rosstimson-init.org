@@ -985,24 +985,9 @@ for Python.
   (setq rust-format-on-save t))
 #+END_SRC
 
-** Lisp / Clojure
+** Clojure
 
-[[https://common-lisp.net/project/slime/][SLIME]]: The Superior Lisp Interaction Mode for Emacs.
-
-#+BEGIN_SRC emacs-lisp
-(use-package slime
-  :config
-  (setq inferior-lisp-program "clisp")
-  (slime-setup '(slime-fancy))
-
-  (add-hook 'emacs-lisp-mode-hook #'eldoc-mode)
-  (add-hook 'ielm-mode-hook #'eldoc-mode)
-  (add-hook 'lisp-interaction-mode-hook #'eldoc-mode)
-
-  (add-hook 'lisp-mode-hook #'slime-lisp-mode-hook))
-#+END_SRC
-
-[[https://github.com/clojure-emacs/clojure-mode][Clojure Mode]] is a major mode for Clojure.
+[[https://common-lisp.net/project/slime/][[[https://github.com/clojure-emacs/clojure-mode][Clojure Mode]] is a major mode for Clojure.
 
 #+BEGIN_SRC emacs-lisp
 (use-package clojure-mode
@@ -1020,20 +1005,6 @@ for Python.
   (add-hook 'cider-repl-mode-hook #'eldoc-mode))
 #+END_SRC
 
-[[https://github.com/Malabarba/speed-of-thought-lisp][Speed of Thought Lisp]] and [[https://github.com/Malabarba/speed-of-thought-clojure][Speed of Thought Clojure]] increase the speed at
-which you can write Lisp/Clojure by including many abbreviations that
-activated when typing them directly after parentheses.
-
-#+BEGIN_SRC emacs-lisp
-(use-package sotlisp
-  :config
-  (sotlisp-define-all-abbrevs))
-
-(use-package sotclojure
-  :config
-  (sotclojure-define-all-abbrevs))
-#+END_SRC
-
 ** Terraform
 
 [[https://github.com/syohex/emacs-terraform-mode][Terraform Mode]] is a major mode for editing Terraform files.
@@ -1042,18 +1013,6 @@ activated when typing them directly after parentheses.
 (use-package terraform-mode
   :config
   (setq terraform-indent-level 2))
-#+END_SRC
-
-** Nim
-
-Setup [[https://github.com/nim-lang/nim-mode][nim-mode]] for coding [[https://nim-lang.org/][Nim]].
-
-#+BEGIN_SRC emacs-lisp
-(use-package nim-mode
-  :init
-  (add-hook 'nim-mode-hook 'nimsuggest-mode)
-  :config
-  (setq nim-nimsuggest-path "/usr/local/nim/bin/nimsuggest"))
 #+END_SRC
 
 ** Web Mode
@@ -1079,18 +1038,6 @@ appropriately for embedded CSS or Javascript.
 
   (setq web-mode-engines-alist
     '(("jinja2"    . "\\.j2\\'"))))
-#+END_SRC
-
-** Elm
-
-[[http://elm-lang.org/][Elm]] is a delightful language for reliable webapps. It compiles to JS.
-First install elm with ~npm install -g elm elm-oracle elm-format~.
-
-#+BEGIN_SRC emacs-lisp
-(use-package elm-mode
-  :config
-  (setq elm-format-on-save t)
-  (add-to-list 'company-backends 'company-elm))
 #+END_SRC
 
 ** Javascript / JS2
@@ -1167,20 +1114,6 @@ Use [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]] to read email with E
         mu4e-sent-folder "/Sent"
         mu4e-drafts-folder "/Drafts"
         mu4e-trash-folder "/Trash"))
-#+END_SRC
-
-** Elfeed
-
-#+BEGIN_SRC emacs-lisp
-(use-package elfeed
-  :bind ("C-x w" . elfeed)
-  :config
-  (setq-default elfeed-search-filter "@2-weeks-ago +unread "))
-
-(use-package elfeed-org
-  :config
-  (elfeed-org)
-  (setq rmh-elfeed-org-files (list "~/org/feeds.org")))
 #+END_SRC
 
 ** Ediff
