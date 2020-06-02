@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+
+# Double check external monitor is connected and exit if not.
+xrandr | grep 'HDMI-1 connected' || { >&2 echo 'HDMI-1 disconnected'; exit 1; }
+# Use external monitor as primary.
+xrandr --output eDP-1 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --primary --mode 2560x1440 --pos 1920x0 --rotate normal --output DP-1 --off --output HDMI-2 --off
+
+# Restart FVWM
+fvwm --replace
+
+# Revert to standard US keyboard layout, this is needed for ErgodoxEZ
+# custom Colemak layout to work properly.
+setxkbmap us -option ctrl:nocaps
+
+# Reset wallpaper to scale to screens properly.
+feh --bg-scale ~/Pictures/wallpapers/wallpaper
