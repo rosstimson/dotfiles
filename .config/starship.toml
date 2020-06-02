@@ -83,4 +83,4 @@ symbol = " "
 style = "red"
 
 [terraform]
-style = "magenta"
+style = "purple"
