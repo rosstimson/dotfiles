@@ -9,8 +9,13 @@ export PATH=$HOME/bin:$PATH
 xrdb -load $HOME/.Xresources
 xset -b
 
-# Set keyboard layout
-setxkbmap us -variant colemak -option ctrl:nocaps
+# Set US keyboard layout and toggle between standard QWERTY and
+# Colemak layouts by pressing both CTRL keys together, this is helpful
+# when I use my Ergodox keyboard which is configured to do Colemak but
+# needs to have the OS set to standard US layout for it to work.
+setxkbmap -layout 'us,us' \
+	-variant 'colemak,' \
+	-option 'grp:ctrls_toggle,ctrl:nocaps'
 
 # Set media key bindings
 xbindkeys
