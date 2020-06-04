@@ -7,11 +7,15 @@
 #         echo "Command exists so do something"
 #     fi
 installed() {
-	command -v "$1" >/dev/null 2>&1
+        command -v "$1" >/dev/null 2>&1
 }
 
 # Get the env vars of a running process
 # Example: penv docker
-penv () {
-	sudo sh -c "tr '\0' '\n' < /proc/$(pgrep "$1")/environ"
+penv() {
+       sudo sh -c "tr '\0' '\n' < /proc/$(pgrep "$1")/environ"
+}
+
+bna() {
+      boot -d boot/new new -t app -n "$1"
 }
