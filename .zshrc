@@ -6,6 +6,11 @@
 # shellcheck source=/home/rosstimson/.profile
 . "$HOME"/.profile
 
+# Remove duplicates in $PATH
+# $PATH gets set via .profile but duplicates can happen if zshrc gets sourced
+# multiple times e.g. when working on this config.
+typeset -U path
+
 
 # Setup --------------------------------------------------------------
 
