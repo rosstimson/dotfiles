@@ -233,7 +233,7 @@ DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot "Quick Menu" Title
 + "&Xterm" Exec exec xterm
 + "&Rxvt Unicode" Exec exec urxvtc
-+ "&Alacritty" Exec exec 
++ "&Alacritty" Exec exec alacritty
 + "&Shortcut" Popup MenuApps
 + "" Nop
 + "Re&fresh" Refresh
