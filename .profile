@@ -13,7 +13,7 @@ KEYID='0x667A3481E4BB34F3'
 LANG='en_GB.UTF-8'
 LC_ALL='en_GB.UTF-8'
 PAGER='less -i'
-PATH="$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/.yarn/bin:$HOME/bin:$PATH"
+PATH="$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$HOME/bin:$PATH"
 TZ='Europe/London'
 VISUAL='emacsclient'
 
