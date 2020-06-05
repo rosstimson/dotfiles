@@ -21,10 +21,10 @@ tool installed via `pip install --user`. This is essentially the Emacs
 equivalent of your system's ~$PATH~.
 
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'exec-path "~/.local/bin")  ;; Python -- pip installed
-  (add-to-list 'exec-path "~/code/go/bin") ;; Go
-  (add-to-list 'exec-path "~/.cargo/bin")  ;; Rust
-  (add-to-list 'exec-path "~/.yarn/bin")   ;; JS -- Yarn installed
+  (add-to-list 'exec-path "~/.local/bin")        ;; Python, pip installed
+  (add-to-list 'exec-path "~/code/go/bin")       ;; Go
+  (add-to-list 'exec-path "~/.cargo/bin")        ;; Rust
+  (add-to-list 'exec-path "~/.npm-global/bin")   ;; JS, NPM / Yarn installed
 #+END_SRC
 
 ** Personal information
@@ -602,11 +602,6 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
 #+BEGIN_SRC emacs-lisp
 (use-package smartparens
   :commands (smartparens-mode smartparens-strict-mode)
-  :init
-  (add-hook 'slime-repl-mode-hook #'smartparens-mode)
-  (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-  (add-hook 'lisp-mode-hook #'smartparens-mode)
-  (add-hook 'clojure-mode-hook #'smartparens-mode)
   :config
   (require 'smartparens-config)
   (sp-use-smartparens-bindings))
@@ -987,22 +982,49 @@ for Python.
 
 ** Clojure
 
-[[https://common-lisp.net/project/slime/][[[https://github.com/clojure-emacs/clojure-mode][Clojure Mode]] is a major mode for Clojure.
+[[https://github.com/clojure-emacs/clojure-mode][Clojure Mode]] is a major mode for Clojure.
 
 #+BEGIN_SRC emacs-lisp
-(use-package clojure-mode
-  :config
-  (add-hook 'clojure-mode-hook #'subword-mode))
+  (use-package clojure-mode
+    :mode (("\\.clj\\'" . clojure-mode)
+           ("\\.cljs\\'" . clojurescript-mode)
+           ("\\.cljc\\'" . clojurec-mode)
+           ("\\.boot\\'" . clojure-mode))
+    :hook ((clojure-mode . eldoc-mode)
+           (clojure-mode . subword-mode)
+           (clojure-mode . smartparens-strict-mode)
+           (clojure-mode . rainbow-delimiters-mode)
+           (clojure-mode . clj-refactor-mode))
+    :config (require 'flycheck-clj-kondo))
 #+END_SRC
 
-[[https://cider.readthedocs.io/en/latest/][CIDER]] is the Clojure(Script) Interactive Development Environment that Rocks!
+[[https://cider.readthedocs.io/en/latest][CIDER]] is the Clojure(Script) Interactive Development Environment that Rocks!
 
 #+BEGIN_SRC emacs-lisp
-(use-package cider
-  :commands (cider cider-connect cider-jack-in)
-  :config
-  (add-hook 'cider-mode-hook #'eldoc-mode)
-  (add-hook 'cider-repl-mode-hook #'eldoc-mode))
+  (use-package cider
+    :after clojure-mode
+    :commands (cider cider-connect cider-jack-in)
+    :bind ("C-c M-j" . cider-jack-in)
+    :custom
+    (cider-boot-parameters "cider repl -s wait")
+    (cider-repl-display-help-banner nil))
+#+END_SRC
+
+[[https://github.com/clojure-emacs/clj-refactor.el][clj-refactor]] is a collection of functions for refactoring Clojure code.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package clj-refactor
+    :config
+    ;; This choice of keybinding leaves cider-macroexpand-1 unbound
+    (cljr-add-keybindings-with-prefix "C-c C-r")
+    (setq cljr-warn-on-eval nil)
+    :diminish clj-refactor-mode)
+#+END_SRC
+
+[[https://github.com/borkdude/flycheck-clj-kondo][flycheck-clj-kondo]] integrates [[https://github.com/borkdude/clj-kondo/][clj-kondo]] a Clojure linter with flycheck.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck-clj-kondo)
 #+END_SRC
 
 ** Terraform
