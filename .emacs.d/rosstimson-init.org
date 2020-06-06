@@ -1007,7 +1007,8 @@ for Python.
     :bind ("C-c M-j" . cider-jack-in)
     :custom
     (cider-boot-parameters "cider repl -s wait")
-    (cider-repl-display-help-banner nil))
+    (cider-repl-display-help-banner nil)
+    (cider-repl-result-prefix "=> "))
 #+END_SRC
 
 [[https://github.com/clojure-emacs/clj-refactor.el][clj-refactor]] is a collection of functions for refactoring Clojure code.
