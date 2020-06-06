@@ -64,6 +64,7 @@ symbol = " "
 
 [nodejs]
 symbol = " "
+style = "green"
 
 [package]
 symbol = " "
