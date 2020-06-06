@@ -49,3 +49,10 @@ LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=0;44:cd=30;43:su=30;41:sg=30;46:tw=3
 EXA_COLORS="uu=0:gu=0:ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0"
 
 export LSCOLORS LS_COLORS EXA_COLORS
+
+
+# Tools - Custom options for tools
+# --------------------------------------------------------------------
+
+SKIM_DEFAULT_OPTIONS='--layout=reverse --color=light,fg:8,bg:15,current_bg:7,matched_bg:10,current_match:8'
+export SKIM_DEFAULT_OPTIONS
