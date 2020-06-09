@@ -862,24 +862,16 @@ Set active Org Babel languages
     :commands (org-caldav-sync)
     :after (org)
     :config
-    (setq org-caldav-debug-level 2)
-    (setq org-caldav-show-sync-results t)
-    (setq org-caldav-url "https://caldav.fastmail.com/dav/calendars/user/me@rosstimson.com")
-    (setq org-icalendar-timezone "Europe/London")
-    ;; never delete anything at the CALDAV end
-    (setq org-caldav-delete-calendar-entries 'never)
-
-    ;; Default inbox, without this it still seems to want to create the
-    ;; default of ~/org/appointments.org despite the settings below in
-    ;; org-caldav-calendars.
-    (setq org-caldav-inbox '(file+headline "~/org/cal.org" "Inbox"))
-    (setq org-caldav-files '("~/org/cal.org"))
-
-    (setq org-caldav-calendars
-          '((:calendar-id "530726a6-d153-4195-b3dc-18f2985aea53"
-                          :inbox (file+headline "~/org/cal.org" "Personal Inbox"))
-            (:calendar-id "97fb7751-8aad-41ea-a48d-0b9199de9f20"
-                          :inbox (file+headline "~/org/cal.org" "Work Inbox")))))
+    (setq org-caldav-debug-level 2
+          org-caldav-show-sync-results t
+          org-caldav-url "https://caldav.fastmail.com/dav/calendars/user/me@rosstimson.com"
+          org-icalendar-timezone "Europe/London"
+          ;; never delete anything at the CALDAV end
+          org-caldav-delete-calendar-entries 'never
+          org-caldav-inbox '(file+headline "~/org/cal.org" "Inbox")
+          org-caldav-files '("~/org/cal.org")
+          org-caldav-calendar-id "530726a6-d153-4195-b3dc-18f2985aea53"
+          org-caldav-sync-direction 'cal->org))
 #+end_src
 
 ** Markdown
