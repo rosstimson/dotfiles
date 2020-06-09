@@ -27,6 +27,21 @@ equivalent of your system's ~$PATH~.
   (add-to-list 'exec-path "~/.npm-global/bin")   ;; JS, NPM / Yarn installed
 #+END_SRC
 
+Set some defaults
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default
+   ad-redefinition-action 'accept                   ; Silence warnings for redefinition
+   cursor-in-non-selected-windows t                 ; Hide the cursor in inactive windows
+   display-time-default-load-average nil            ; Don't display load average
+   help-window-select t                             ; Focus new help windows when opened
+   initial-scratch-message ""                       ; Empty the initial *scratch* buffer
+   kill-ring-max 128                                ; Maximum length of kill ring
+   load-prefer-newer t                              ; Prefers the newest version of a file
+   vc-follow-symlinks t                             ; Always follow the symlinks
+   view-read-only t)                                ; Always open read-only buffers in view-mode
+#+END_SRC
+
 ** Personal information
 
 #+BEGIN_SRC emacs-lisp
