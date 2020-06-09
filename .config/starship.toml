@@ -75,6 +75,7 @@ symbol = " "
 
 [python]
 symbol = " "
+style = "yellow"
 
 [ruby]
 symbol = " "
