@@ -890,12 +890,20 @@ and preview as well as other niceties.
 Markdown command is set to [[http://fletcherpenney.net/multimarkdown/][multimarkdown]] so that needs installed on the system.
 
 #+BEGIN_SRC emacs-lisp
-(use-package markdown-mode
-  :commands (markdown-mode gfm-mode)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "pandoc"))
+  (use-package markdown-mode
+    :commands (markdown-mode gfm-mode)
+    :mode (("README\\.md\\'" . gfm-mode)
+           ("\\.md\\'" . markdown-mode)
+           ("\\.markdown\\'" . markdown-mode))
+    :init (setq markdown-command "pandoc")
+    :hook (markdown-mode . markdown-toc-mode))
+#+END_SRC
+
+Generate table of contents within Markdown files with [[https://github.com/ardumont/markdown-toc][markdown-toc]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-toc
+    :diminish markdown-toc-mode)
 #+END_SRC
 
 ** YAML
