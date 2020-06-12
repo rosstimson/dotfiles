@@ -49,17 +49,6 @@ xautolock -time 10 -locker slock &
 # Start my custom status bar (Lemonbar-xft)
 rt-bar &
 
-# Start ssh-agent
-# Only do this on Linux (Void) because OpenBSD defaults to starting the agent anyway.
-if [ "$(uname -o)" = "GNU/Linux" ]; then
-	if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-		ssh-agent > "$HOME/.ssh/ssh-agent.env"
-	fi
-	if [ -z "$SSH_AUTH_SOCK" ]; then
-		eval "$(cat "$HOME/.ssh/ssh-agent.env")"
-	fi
-fi
-
 # Start GPG Agent
 gpg-agent --homedir /home/rosstimson/.gnupg --daemon &
 
