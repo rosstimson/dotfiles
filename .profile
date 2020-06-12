@@ -51,6 +51,32 @@ EXA_COLORS="uu=0:gu=0:ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0"
 export LSCOLORS LS_COLORS EXA_COLORS
 
 
+# SSH Agent
+# --------------------------------------------------------------------
+
+SSH_ENV="$HOME/.ssh/env"
+
+start_ssh_agent() {
+	echo "Initialising new SSH agent..."
+	/usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+	echo "Succeeded"
+	chmod 600 "${SSH_ENV}"
+	. "${SSH_ENV}" > /dev/null
+}
+
+# Source SSH settings, if applicable
+if [ "$(uname -s)" = "Linux" ]; then
+	if [ -f "${SSH_ENV}" ]; then
+		. "${SSH_ENV}" > /dev/null
+		pgrep -u "${USER}" ssh-agent | grep "${SSH_AGENT_PID}" > /dev/null || {
+			start_ssh_agent;
+		}
+	else
+		start_ssh_agent;
+	fi
+fi
+
+
 # Tools - Custom options for tools
 # --------------------------------------------------------------------
 
