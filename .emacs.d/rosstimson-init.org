@@ -718,9 +718,6 @@ the official collection of snippets for many languages.
     ;; Follow links with RET.
     (setq org-return-follows-link t)
 
-    ;; Org contacts
-    (setq org-contacts-files (concat org-directory "/contacts.org"))
-
     (setq org-todo-keywords
           '((sequence "TODO(t)" "NEXT(n)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELLED(c@)")))
 
@@ -734,6 +731,15 @@ the official collection of snippets for many languages.
       ;; will add the new entry as a child entry.
       (goto-char (point-min)))
 
+    (defvar rt/org-contacts-template "* %(org-contacts-template-name)
+    :PROPERTIES:
+    :EMAIL: %(org-contacts-template-email)
+    :PHONE: %^{+44 1234 123456}
+    :ADDRESS: %^{289 Cleveland St. Brooklyn, 11206 NY, USA}
+    :BIRTHDAY: %^{yyyy-mm-dd}
+    :NOTE: %^{NOTE}
+    :END:" "Template for org-contacts.")
+  
     ;; Capture templates
     (setq org-capture-templates
       `(("t" "Todo" entry (file+headline ,(concat org-directory "/todo.org") "Inbox") "* TODO %?\n  %i\n")
@@ -742,12 +748,9 @@ the official collection of snippets for many languages.
         ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox") "* %a %^g\n %?\n %i" :prepend t)
         ("j" "Journal entry" entry (function org-journal-find-location)
          "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
-        ("c" "Contacts" entry (file "~/org/contacts.org")
-         "* %(org-contacts-template-name)
-  :PROPERTIES:
-  :EMAIL: %(org-contacts-template-email)
-  :END:")))
-
+        ("c" "Contacts" entry (file "~/org/contacts.org"),
+         rt/org-contacts-template
+         :empty-lines 1)))
 
     ;; Refile targets
     (setq org-refile-targets
@@ -796,6 +799,14 @@ Org Agenda
     (org-agenda-skip-scheduled-if-done t))
 #+END_SRC
 
+Org Contacts
+
+#+begin_src emacs-lisp
+  (use-package org-contacts
+    :ensure nil
+    :after org
+    :custom (org-contacts-files '("~/org/contacts.org")))
+#+end_src
 
 Org-Crypt
 
