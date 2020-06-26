@@ -1,0 +1,3 @@
+#!bin/sh
+
+aws --profile rosstimson s3 sync --storage-class DEEP_ARCHIVE ~/Music s3://backup-rosstimson/Music/
