@@ -434,11 +434,35 @@ is defined by a .git (others supported) in the top level dir.
 
 ** Ripgrep
 
-Projectile has a handy ~projectile-ripgrep~ function but it does not
-work until the Ripgrep frontend package is installed.
+[[https://github.com/dajva/rg.el][rg.el]] - Use ripgrep in Emacs.
+
+Ripgrep is my search tool of choice and has essentially completely
+replaced ~grep~ for me.
+
+Ripgrep is a replacement for both grep like (search one file) and ag
+like (search many files) tools. It's fast and versatile and written in
+Rust.
 
 #+begin_src emacs-lisp
-  (use-package ripgrep)
+  (use-package rg
+    :config
+    (rg-enable-default-bindings))
+#+end_src
+
+** Wgrep
+
+[[https://github.com/mhayashi1120/Emacs-wgrep][wgrep]]
+
+wgrep allows you to edit a grep buffer and apply those changes to the
+file buffer like sed interactively. No need to learn sed script, just
+learn Emacs.
+
+rg.el also integrates with wgrep out of the box.
+
+#+begin_src emacs-lisp
+  (use-package wgrep
+    :config
+    (setq wgrep-auto-save-buffer t))
 #+end_src
 
 ** Paradox
