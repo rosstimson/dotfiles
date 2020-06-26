@@ -98,7 +98,5 @@ eval "$(starship init zsh)"
 # For work
 # --------------------------------------------------------------------
 export VAULT_ADDR='https://vault.matillion-security.matillion.com:8200'
-alias vl='vault login -method=oidc role=ops'
-alias vpn='_ openvpn --config /etc/openvpn/client/matillion.conf'
 
 eval $(vault-aws-creds.py -w)
