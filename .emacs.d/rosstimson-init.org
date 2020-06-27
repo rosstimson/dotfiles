@@ -419,9 +419,10 @@ Quickly switch between windows with [[https://github.com/dimitri/switch-window][
 
 ** Projectile
 
-Use [[https://github.com/bbatsov/projectile][Projectile]] which makes working within a project a lot nicer.  For example
-you can use search (with Ivy) for files just within the project.  A project
-is defined by a .git (others supported) in the top level dir.
+Use [[https://github.com/bbatsov/projectile][Projectile]] which makes working within a project a lot nicer.  For
+example you can use search (with Ivy) for files just within the
+project.  A project is defined by a .git (others supported) in the top
+level dir.
 
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
@@ -1177,16 +1178,22 @@ whitespace can be weird.
 Use [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]] to read email with Emacs.
 
 #+BEGIN_SRC emacs-lisp
-(use-package mu4e
-  :ensure nil
-  :load-path "/usr/local/share/emacs/site-lisp/mu4e"
-  :commands (mu4e mu4e-compose-new)
-  :config
-  (setq mu4e-maildir (expand-file-name "~/.mail/rosstimson")
-        mu4e-get-mail-command "mbsync -a"
-        mu4e-sent-folder "/Sent"
-        mu4e-drafts-folder "/Drafts"
-        mu4e-trash-folder "/Trash"))
+  (use-package mu4e
+    :ensure nil
+    :load-path "/usr/local/share/emacs/site-lisp/mu4e"
+    :commands (mu4e mu4e-compose-new)
+    :config
+    (setq mu4e-maildir (expand-file-name "~/.mail/rosstimson")
+          mu4e-get-mail-command "mbsync -a"
+          mu4e-sent-folder "/Sent"
+          mu4e-drafts-folder "/Drafts"
+          mu4e-trash-folder "/Trash")
+
+    (setq mu4e-org-contacts-file ~/org/contacts.org)
+    (add-to-list 'mu4e-headers-actions
+                 '("org-contact-add" . mu4e-action-add-org-contact) t)
+    (add-to-list 'mu4e-view-actions
+                 '("org-contact-add" . mu4e-action-add-org-contact) t))
 #+END_SRC
 
 ** Ediff
