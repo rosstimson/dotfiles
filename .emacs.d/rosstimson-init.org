@@ -17,15 +17,20 @@
 
 Emacs might need access to executables that are stored in some custom
 locations, for example a Rust tool installed via ~cargo~ or a Python
-tool installed via `pip install --user`. This is essentially the Emacs
-equivalent of your system's ~$PATH~.
+tool installed via ~pip install --user~.  ~exec-path~ is essentially
+the Emacs equivalent of your system's ~$PATH~ and [[https://github.com/purcell/exec-path-from-shell][exec-path-from-shell]]
+lets you set the Emacs ~exec-path~ using the same settings as the
+shell env.  I also grab the ~ssh-agent~ env vars so that I don't have
+to keep entering SSH key passphrases for actions such as pushing Git
+changes up to the remote via Magit.
 
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'exec-path "~/.local/bin")        ;; Python, pip installed
-  (add-to-list 'exec-path "~/code/go/bin")       ;; Go
-  (add-to-list 'exec-path "~/.cargo/bin")        ;; Rust
-  (add-to-list 'exec-path "~/.npm-global/bin")   ;; JS, NPM / Yarn installed
-#+END_SRC
+#+begin_src emacs-lisp
+  (use-package exec-path-from-shell
+    :config
+    (exec-path-from-shell-initialize)
+    (exec-path-from-shell-copy-env "SSH_AGENT_PID")
+    (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
+#+end_src
 
 Set some defaults
 
