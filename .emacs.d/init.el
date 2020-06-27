@@ -49,9 +49,6 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-(unless (package-installed-p 'diminish)
-  (package-refresh-contents)
-  (package-install 'diminish))
 
 ;; use-package.el is no longer needed at runtime
 ;; add the following to further reduce load time
