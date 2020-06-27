@@ -276,6 +276,12 @@ Default to spaces for indentation.
 #+END_SRC
 
 * Minor Modes
+** Delight
+
+#+begin_src emacs-lisp
+  (use-package delight)
+#+end_src
+
 ** which-key
 
 [[https://github.com/justbur/emacs-which-key][which-key]] is a package that displays available keybindings in popup.
@@ -284,7 +290,7 @@ Default to spaces for indentation.
 (use-package which-key
   :config
   (which-key-mode t)
-  :diminish which-key-mode)
+  :delight)
 #+END_SRC
 
 ** Smart Tabs
@@ -341,7 +347,7 @@ Ivy, a generic completion mechanism for Emacs.
   (setq ivy-fixed-height-minibuffer t)
   (setq ivy-use-virtual-buffers t)
   (setq ivy-format-function 'ivy-format-function-line) ; Highlight entire line in Ivy completion buffer.
-  :diminish ivy-mode)
+  :delight ivy-mode)
 #+END_SRC
 
 Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
@@ -546,7 +552,7 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 #+BEGIN_SRC emacs-lisp
 (use-package undo-tree
   :init (global-undo-tree-mode)
-  :diminish undo-tree-mode)
+  :delight)
 #+END_SRC
 
 ** Company
@@ -556,7 +562,7 @@ Auto-completion via [[https://company-mode.github.io/][Company]].
 #+BEGIN_SRC emacs-lisp
 (use-package company
   :init (global-company-mode)
-  :diminish company-mode
+  :delight
   :config
   (setq company-tooltip-align-annotations t
         company-tooltip-flip-when-above t
@@ -628,7 +634,7 @@ This also spellchecks spelling in programming mode but only within comments.
 
     :hook ((text-mode . flyspell-mode)
            (org-mode . flyspell-mode))
-    :diminish (flyspell-mode . "Spell"))
+    :delight " Spell")
 #+END_SRC
 
 Use Ivy to select spelling corrections.
@@ -679,7 +685,7 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
   (add-to-list 'whole-line-or-region-extensions-alist
     '(comment-dwim whole-line-or-region-comment-dwim-2 nil))
   (whole-line-or-region-mode 1)
-  :diminish whole-line-or-region-local-mode)
+  :delight whole-line-or-region-local-mode)
 #+END_SRC
 
 ** Emmet
@@ -951,7 +957,7 @@ Generate table of contents within Markdown files with [[https://github.com/ardum
 
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-toc
-    :diminish markdown-toc-mode)
+    :delight)
 #+END_SRC
 
 ** YAML
@@ -1075,7 +1081,7 @@ for Python.
     ;; This choice of keybinding leaves cider-macroexpand-1 unbound
     (cljr-add-keybindings-with-prefix "C-c C-r")
     (setq cljr-warn-on-eval nil)
-    :diminish clj-refactor-mode)
+    :delight)
 #+END_SRC
 
 [[https://github.com/borkdude/flycheck-clj-kondo][flycheck-clj-kondo]] integrates [[https://github.com/borkdude/clj-kondo/][clj-kondo]] a Clojure linter with flycheck.
