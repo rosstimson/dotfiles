@@ -775,18 +775,21 @@ the official collection of snippets for many languages.
     :BIRTHDAY: %^{yyyy-mm-dd}
     :NOTE: %^{NOTE}
     :END:" "Template for org-contacts.")
-  
+
     ;; Capture templates
     (setq org-capture-templates
-      `(("t" "Todo" entry (file+headline ,(concat org-directory "/todo.org") "Inbox") "* TODO %?\n  %i\n")
-        ("s" "Someday / Maybe" entry (file+headline ,(concat org-directory "/someday-maybe.org") "Inbox") "* TODO %?\n  %i\n")
-        ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "Inbox") "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n")
-        ("l" "Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox") "* %a %^g\n %?\n %i" :prepend t)
-        ("j" "Journal entry" entry (function org-journal-find-location)
-         "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?")
-        ("c" "Contacts" entry (file "~/org/contacts.org"),
-         rt/org-contacts-template
-         :empty-lines 1)))
+          `(("t" "Todo" entry (file+headline ,(concat org-directory "/todo.org") "Inbox")
+             "* TODO %?\n  %i\n" :empty-lines 1)
+            ("s" "Someday / Maybe" entry (file+headline ,(concat org-directory "/someday-maybe.org") "Inbox")
+             "* TODO %?\n  %i\n" :empty-lines 1)
+            ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "Inbox")
+             "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n" :empty-lines 1)
+            ("l" "Protocol Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox")
+             "* [[%:link][%:description]] \n\n%i\n%?\nCaptured On: %U" :empty-lines 1)
+            ("j" "Journal entry" entry (function org-journal-find-location)
+             "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?" :empty-lines 1)
+            ("c" "Contacts" entry (file "~/org/contacts.org"),
+             rt/org-contacts-template :empty-lines 1)))
 
     ;; Refile targets
     (setq org-refile-targets
@@ -865,6 +868,14 @@ Org-Crypt
     ;; start Org.
     (setq auto-save-default nil))
 #+END_SRC
+
+Org-Protocol
+
+#+begin_src emacs-lisp
+  (use-package org-protocol
+    :ensure nil
+    :after org )
+#+end_src
 
 Journal
 
