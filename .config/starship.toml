@@ -9,7 +9,8 @@ use_symbol_for_status = true
 style_success = "black"
 
 [aws]
-symbol = " "
+symbol = "  "
+style = "yellow"
 
 [battery]
 full_symbol = ""
