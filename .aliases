@@ -12,6 +12,7 @@ alias less='less -i'
 alias ls='exa'
 alias pwup='cd $HOME/.password-store && git push -u origin master && cd -'
 alias ru='rustup'
+alias rup='rustup update'
 alias sc='shellcheck'
 alias showpath="echo \$PATH | tr -s ':' '\n'"
 alias t='tmux new-session -A -s rt'
