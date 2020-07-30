@@ -7,8 +7,5 @@ xrandr --output eDP-1 --auto --output HDMI-1 --off
 # Restart FVWM
 fvwm --replace
 
-# Set laptop keyboard back to Colemak.
-setxkbmap us -variant colemak -option ctrl:nocaps
-
 # Reset wallpaper to scale to screens properly.
 feh --bg-scale ~/Pictures/wallpapers/wallpaper

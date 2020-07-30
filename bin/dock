@@ -9,9 +9,5 @@ xrandr --output eDP-1 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1
 # Restart FVWM
 fvwm --replace
 
-# Revert to standard US keyboard layout, this is needed for ErgodoxEZ
-# custom Colemak layout to work properly.
-setxkbmap us -option ctrl:nocaps
-
 # Reset wallpaper to scale to screens properly.
 feh --bg-scale ~/Pictures/wallpapers/wallpaper

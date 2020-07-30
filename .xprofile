@@ -1,0 +1,5 @@
+#!/bin/sh
+
+setxkbmap -layout 'us,us' \
+  -variant 'colemak,' \
+  -option 'grp:ctrls_toggle,ctrl:nocaps'
