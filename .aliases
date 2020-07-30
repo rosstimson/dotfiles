@@ -1,4 +1,5 @@
 alias _='sudo '
+alias ~='cd $HOME'
 alias -- -='cd -'
 alias ..="cd .."
 alias ...="cd ../.."
