@@ -80,5 +80,13 @@ fi
 # Tools - Custom options for tools
 # --------------------------------------------------------------------
 
+# Skim - Fuzzy finder written in Rust: https://github.com/lotabout/skim
 SKIM_DEFAULT_OPTIONS='--layout=reverse --color=light,fg:8,bg:15,current_bg:7,matched_bg:10,current_match:8'
 export SKIM_DEFAULT_OPTIONS
+
+# sccache - Shared compilation cache: https://github.com/mozilla/sccache
+# Set here rather than in Cargo config as you can't use $HOME in Cargo
+# config and an absolute path means choosing between Linux/BSD style:
+# '/home/rosstimson' or Mac style 'Users/rosstimson'.
+RUSTC_WRAPPER="$HOME/.cargo/bin/sccache"
+export RUSTC_WRAPPER

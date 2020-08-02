@@ -10,6 +10,3 @@ rr = "run --release"
 name = "Ross Timson"
 email = "me@rosstimson.com"
 vcs = "git"
-
-[build]
-rustc-wrapper = "/home/rosstimson/.cargo/bin/sccache"
