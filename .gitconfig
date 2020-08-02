@@ -16,6 +16,9 @@
 	autocrlf = input
 	editor = emacsclient -t -a=
 
+[pull]
+	ff = only
+
 [push]
 	default = simple
 	followTags = true
