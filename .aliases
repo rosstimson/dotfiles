@@ -1,4 +1,12 @@
-alias _='sudo '
+# Common shell aliases that I source in ~/.profile
+
+# Use 'doas' rather than 'sudo' when available
+if command -v doas > /dev/null; then
+   alias _='doas '
+else
+   alias _='sudo '
+fi
+
 alias ~='cd $HOME'
 alias -- -='cd -'
 alias ..="cd .."
