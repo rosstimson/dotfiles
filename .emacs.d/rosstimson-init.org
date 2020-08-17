@@ -105,7 +105,8 @@ Stop the annoying bloody beeping.
 Set default font.
 
 #+BEGIN_SRC emacs-lisp
-(set-frame-font "Fira Mono 10" nil t)
+(add-to-list 'default-frame-alist
+             '(font . "VictorMono Nerd Font 12"))
 #+END_SRC
 
 Stop resizing the frame all the time and just start emacs maximised.
