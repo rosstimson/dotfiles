@@ -11,6 +11,7 @@ alias ~='cd $HOME'
 alias -- -='cd -'
 alias ..="cd .."
 alias ...="cd ../.."
+alias e='emacsclient -c '
 alias g='git'
 alias h='fc -li 1'
 alias ip='ip --color'
