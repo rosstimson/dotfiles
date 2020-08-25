@@ -90,3 +90,14 @@ export SKIM_DEFAULT_OPTIONS
 # '/home/rosstimson' or Mac style 'Users/rosstimson'.
 RUSTC_WRAPPER="$HOME/.cargo/bin/sccache"
 export RUSTC_WRAPPER
+
+# Nix
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+	. "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
+
+# This is needed for nix-env installed dictionaries to get picked up by Hunspell
+if [ -d "$HOME/.nix-profile/share/hunspell" ]; then
+	DICPATH="$HOME/.nix-profile/share/hunspell"
+	export DICPATH
+fi
