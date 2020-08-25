@@ -1186,6 +1186,16 @@ whitespace can be weird.
             (setq indent-tabs-mode t)))
 #+END_SRC
 
+** Nix
+
+[[https://github.com/NixOS/nix-mode/][Nix Mode]] -- An Emacs major mode for editing Nix expressions. There is
+also a manual available at nix-mode.org.
+
+#+begin_src emacs-lisp
+  (use-package nix-mode
+    :mode "\\.nix\\'")
+#+end_src
+
 * Extras
 ** Email / mu4e
 
