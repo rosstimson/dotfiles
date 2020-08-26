@@ -45,6 +45,8 @@ Set some defaults
    load-prefer-newer t                              ; Prefers the newest version of a file
    vc-follow-symlinks t                             ; Always follow the symlinks
    view-read-only t)                                ; Always open read-only buffers in view-mode
+
+  (cd "~/")                                         ; Start in $HOME
 #+END_SRC
 
 ** Personal information
