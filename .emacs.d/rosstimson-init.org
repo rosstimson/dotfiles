@@ -29,7 +29,8 @@ changes up to the remote via Magit.
     :config
     (exec-path-from-shell-initialize)
     (exec-path-from-shell-copy-env "SSH_AGENT_PID")
-    (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
+    (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
+    (exec-path-from-shell-copy-env "DICPATH"))
 #+end_src
 
 Set some defaults
