@@ -480,17 +480,6 @@ rg.el also integrates with wgrep out of the box.
     (setq wgrep-auto-save-buffer t))
 #+end_src
 
-** Paradox
-
-[[https://github.com/Malabarba/paradox][Paradox]] is an enhanced package list/utility.
-
-#+BEGIN_SRC emacs-lisp
-(use-package paradox
-  :commands (paradox-upgrade-packages paradox-list-packages)
-  :config
-  (setq paradox-execute-asynchronously t))
-#+END_SRC
-
 ** Magit
 
 [[https://magit.vc/][Magit]] the one and only Git frontend.
