@@ -3,9 +3,19 @@ env:
   WINIT_X11_SCALE_FACTOR: '1'
 
 font:
-  normal:
-    family: Fira Mono
   size: 10.0
+  normal:
+    family: VictorMono Nerd Font
+    style: Regular
+  bold:
+    family: VictorMono Nerd Font
+    style: Bold
+  italic:
+    family: VictorMono Nerd Font
+    style: Italic
+  bold_italic:
+    family: VictorMono Nerd Font
+    style: Bold Italic
 
 window:
   padding:
