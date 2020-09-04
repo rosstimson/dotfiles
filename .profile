@@ -15,7 +15,7 @@ LC_ALL='en_GB.UTF-8'
 PAGER='less -i'
 PATH="$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$HOME/bin:$PATH"
 TZ='Europe/London'
-VISUAL='emacsclient'
+VISUAL='emacsclient -c'
 
 # Set Pulseaudo socket info so that flatpak apps can work with sound.
 if command -v pulseaudio >/dev/null 2>&1; then
