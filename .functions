@@ -13,8 +13,11 @@ installed() {
 
 # Get the env vars of a running process
 # Example: penv docker
+#
+# NOTE: Using the sudo/doas alias '_' here rather than hard-coding to
+# one orr the other.
 penv() {
-	sudo sh -c "tr '\0' '\n' < /proc/$(pgrep "$1")/environ"
+	_ sh -c "tr '\0' '\n' < /proc/$(pgrep "$1")/environ"
 }
 
 
