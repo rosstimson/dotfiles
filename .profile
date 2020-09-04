@@ -27,11 +27,12 @@ export GOPATH GPG_TTY KEYID LANG LC_ALL PAGER PATH PULSE_SERVER TZ ALTERNATE_EDI
 
 # Source common aliases and functions
 # --------------------------------------------------------------------
+# shellcheck source=/home/rosstimson/.aliases
+# Aliases first as functions might make use of them, e.g. sudo vs doas.
+. "$HOME"/.aliases
+
 # shellcheck source=/home/rosstimson/.functions
 . "$HOME"/.functions
-
-# shellcheck source=/home/rosstimson/.aliases
-. "$HOME"/.aliases
 
 
 # Colours
