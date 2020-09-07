@@ -28,6 +28,13 @@ alias showpath="echo \$PATH | tr -s ':' '\n'"
 alias t='tmux new-session -A -s rt'
 alias tf='terraform'
 
+# Nix / Home Manager
+alias hm='home-manager'
+alias hms='home-manager switch'
+alias hme='home-manager edit'
+alias hmg='home-manager generations'
+alias hmp='home-manager packages'
+
 # Docker
 alias d='docker'
 alias da='docker attach'

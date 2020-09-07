@@ -102,3 +102,8 @@ if [ -d "$HOME/.nix-profile/share/hunspell" ]; then
 	DICPATH="$HOME/.nix-profile/share/hunspell"
 	export DICPATH
 fi
+
+# Nix Home Manager (https://github.com/rycee/home-manager)
+if [ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+	. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+fi
