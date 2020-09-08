@@ -29,6 +29,10 @@ alias t='tmux new-session -A -s rt'
 alias tf='terraform'
 
 # Nix / Home Manager
+alias nxe='nix-env'
+alias nxs='nix-shell'
+alias nxu='nix-channel --update'
+
 alias hm='home-manager'
 alias hms='home-manager switch'
 alias hme='home-manager edit'
