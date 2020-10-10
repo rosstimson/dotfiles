@@ -29,17 +29,15 @@
     lorri
     mg
     nodePackages.eslint
+    nodePackages.pyright
     nodePackages.typescript
     nodePackages.typescript-language-server
     nodejs
-    pipenv
+    poetry
     procs
     python3
     python38Packages.jedi
     python38Packages.pip
-    python38Packages.pyls-black
-    python38Packages.pyls-isort
-    python38Packages.python-language-server
     ripgrep
     rust-analyzer
     rustup
