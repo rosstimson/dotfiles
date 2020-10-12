@@ -46,6 +46,7 @@
     skim
     starship
     terraform
+    terraform-ls
     tmux
     vim
     wget
