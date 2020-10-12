@@ -27,6 +27,10 @@ style = "green"
 [docker]
 symbol = " "
 
+# Disable GCloud module as it permanently shows cruft in the prompt
+[gcloud]
+disabled = true
+
 [elixir]
 symbol = " "
 
