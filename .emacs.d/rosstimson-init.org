@@ -674,12 +674,10 @@ In many editors cut and copy act on the current line if no text is
 visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master/whole-line-or-region.el][whole-line-or-region]] does just that for Emacs.
 
 #+BEGIN_SRC emacs-lisp
-(use-package whole-line-or-region
-  :config
-  (add-to-list 'whole-line-or-region-extensions-alist
-    '(comment-dwim whole-line-or-region-comment-dwim-2 nil))
-  (whole-line-or-region-mode 1)
-  :delight whole-line-or-region-local-mode)
+  (use-package whole-line-or-region
+   :delight whole-line-or-region-mode
+   :config
+   (whole-line-or-region-global-mode t))
 #+END_SRC
 
 ** Emmet
@@ -988,17 +986,6 @@ Setup Python mode
   (setq fill-column 79)
   (setq python-check-command "flake8")
   (setq tab-width 4))
-#+END_SRC
-
-Make working with Pipenv in Emacs easier with [[https://github.com/pwalsh/pipenv.el][pipenv.el]].
-
-#+BEGIN_SRC emacs-lisp
-(use-package pipenv
-  :hook (python-mode . pipenv-mode)
-  :init
-  (setq
-   pipenv-projectile-after-switch-function
-   #'pipenv-projectile-after-switch-extended))
 #+END_SRC
 
 [[https://github.com/proofit404/anaconda-mode][Anaconde mode]] offers code navigation, documentation lookup, and completion
