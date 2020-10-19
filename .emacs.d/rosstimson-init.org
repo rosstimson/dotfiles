@@ -587,18 +587,19 @@ Auto-completion via [[https://company-mode.github.io/][Company]].
 [[https://github.com/emacs-lsp/lsp-mode][LSP Mode]] -- Emacs client/library for the Language Server Protocol 
 
 #+BEGIN_SRC emacs-lisp
-(use-package lsp-mode
-  :hook ((python-mode . lsp)
-         (rust-mode . lsp)
-         (go-mode . lsp)
-         (clojure-mode . lsp)
-         (js2-mode . lsp))
-  :commands lsp
-  :config
-  (setq lsp-rust-server 'rust-analyzer))
+  (use-package lsp-mode
+    :hook ((clojure-mode . lsp)
+           (go-mode . lsp)
+           (js2-mode . lsp)
+           (python-mode . lsp)
+           (rust-mode . lsp)
+           (terraform-mode . lsp))
+    :commands lsp
+    :config
+    (setq lsp-rust-server 'rust-analyzer))
 
-(use-package company-lsp
-    :commands company-lsp)
+  (use-package company-lsp
+      :commands company-lsp)
 #+END_SRC
 
 ** Rainbow delimiters
