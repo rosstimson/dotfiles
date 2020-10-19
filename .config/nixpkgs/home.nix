@@ -12,10 +12,10 @@
   home.packages = with pkgs; [
     adoptopenjdk-hotspot-bin-11
     awscli2
-    babashka
+    #babashka
     bat
     boot
-    clj-kondo
+    #clj-kondo
     clojure-lsp
     direnv
     du-dust
@@ -25,11 +25,11 @@
     go
     hunspell
     hunspellDicts.en_GB-large
+    jq
     leiningen
     lorri
     mg
     nodePackages.eslint
-    nodePackages.pyright
     nodePackages.typescript
     nodePackages.typescript-language-server
     nodejs
@@ -38,6 +38,11 @@
     python3
     python38Packages.jedi
     python38Packages.pip
+    python38Packages.pipx
+    python38Packages.pyls-black
+    python38Packages.pyls-isort
+    python38Packages.pyls-mypy
+    python38Packages.python-language-server
     ripgrep
     rust-analyzer
     rustup
