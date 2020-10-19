@@ -12,6 +12,7 @@
 	user = rosstimson
 
 [core]
+	attributesfile = ~/.gitattributes
 	excludesfile = ~/.gitignore
 	autocrlf = input
 	editor = emacsclient -t -a=
