@@ -95,6 +95,15 @@ export RUSTC_WRAPPER
 # Nix
 if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
 	. "$HOME/.nix-profile/etc/profile.d/nix.sh"
+
+	# When using Nix installed tools such as 'bat' some of them throw a warning:
+	#
+	#     $ bat /etc/apt/sources.list.d/pgdg.list
+	#     /nix/store/2jysm3dfsgby5sw5jgj43qjrb5v79ms9-bash-4.4-p23/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+	#
+	# By setting the location to the Nix locale stuff you can stop this harmless but annoying warning.
+	LOCALE_ARCHIVE_2_27="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
+	export LOCALE_ARCHIVE_2_27
 fi
 
 # This is needed for nix-env installed dictionaries to get picked up by Hunspell
