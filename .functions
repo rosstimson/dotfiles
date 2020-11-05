@@ -72,8 +72,8 @@ e()
 
 	# emacsclient $args
 	if $nw; then
-		emacsclient "${args[@]}"
+		emacsclient -a '' "${args[@]}"
 	else
-		(nohup emacsclient "${args[@]}" > /dev/null 2>&1 &) > /dev/null
+		(nohup emacsclient -a '' "${args[@]}" > /dev/null 2>&1 &) > /dev/null
 	fi
 }
