@@ -39,10 +39,6 @@
     python38Packages.jedi
     python38Packages.pip
     python38Packages.pipx
-    python38Packages.pyls-black
-    python38Packages.pyls-isort
-    python38Packages.pyls-mypy
-    python38Packages.python-language-server
     ripgrep
     rust-analyzer
     rustup
