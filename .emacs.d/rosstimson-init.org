@@ -586,7 +586,7 @@ Auto-completion via [[https://company-mode.github.io/][Company]].
 
 [[https://github.com/emacs-lsp/lsp-mode][LSP Mode]] -- Emacs client/library for the Language Server Protocol 
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package lsp-mode
     :hook ((clojure-mode . lsp)
            (go-mode . lsp)
@@ -597,10 +597,20 @@ Auto-completion via [[https://company-mode.github.io/][Company]].
     :commands lsp
     :config
     (setq lsp-rust-server 'rust-analyzer))
+#+end_src
 
+#+begin_src emacs-lisp
   (use-package company-lsp
-      :commands company-lsp)
-#+END_SRC
+    :after lsp-mode
+    :commands company-lsp)
+#+end_src
+
+[[https://github.com/emacs-lsp/lsp-ui][lsp-ui]] -- Add some extra UI enhancements to LSP Mode.
+
+#+begin_src emacs-lisp
+  (use-package lsp-ui
+    :after lsp-mode)
+#+end_src
 
 ** Rainbow delimiters
 
