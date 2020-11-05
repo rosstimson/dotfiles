@@ -109,7 +109,7 @@ Set default font.
 
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'default-frame-alist
-             '(font . "VictorMono Nerd Font 12"))
+             '(font . "VictorMono Nerd Font 11"))
 #+END_SRC
 
 Stop resizing the frame all the time and just start emacs maximised.
