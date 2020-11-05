@@ -1127,7 +1127,7 @@ appropriately for embedded CSS or Javascript.
     '(("jinja2"    . "\\.j2\\'"))))
 #+END_SRC
 
-** Javascript / JS2
+** JavaScript / TypeScript
 
 [[https://github.com/mooz/js2-mode][JS2 Mode]] is an improved Javascript mode.
 
@@ -1136,14 +1136,26 @@ JS.  Without this Smart Tabs would do its thing but then upon saving
 the globally enabled Whitespace Cleanup mode would set tabbed
 indentation back to spaces.
 
-#+BEGIN_SRC emacs-lisp
-(use-package js2-mode
-  :mode ("\\.js\\'")
-  :init
-  (add-hook 'js2-mode-hook
-            (lambda ()
-              (setq indent-tabs-mode t))))
-#+END_SRC
+
+#+begin_src emacs-lisp
+  (use-package js2-mode
+    :mode ("\\.js\\'")
+    :init
+    (add-hook 'js2-mode-hook
+              (lambda ()
+                (setq indent-tabs-mode t))))
+#+end_src
+
+[[https://github.com/ananthakumaran/tide][Tide]]  is the canonical way of using TypeScript within Emacs.
+
+#+begin_src emacs-lisp
+  (use-package tide
+    :ensure t
+    :after (typescript-mode company flycheck)
+    :hook ((typescript-mode . tide-setup)
+           (typescript-mode . tide-hl-identifier-mode)
+           (before-save . tide-format-before-save)))
+#+end_src
 
 ** C
 
