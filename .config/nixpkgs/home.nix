@@ -17,12 +17,14 @@
     boot
     #clj-kondo
     clojure-lsp
+    deno
     direnv
     du-dust
     exa
     fd
     git
     go
+    gopls
     hunspell
     hunspellDicts.en_GB-large
     jq
