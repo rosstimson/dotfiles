@@ -90,6 +90,9 @@
    `(company-scrollbar-bg ((,class (:background ,white-light))))
    `(company-scrollbar-fg ((,class (:background ,magenta-light))))
 
+;;; YASnippet
+   `(yas-field-highlight-face ((,class (:background ,white-light))))
+
 ;;; js2-mode
    `(js2-error ((,class (:underline (:color ,red :style wave)))))
    `(js2-warning ((,class (:underline (:color ,yellow-light :style line)))))
