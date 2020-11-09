@@ -21,7 +21,7 @@
    `(default ((,class (:foreground ,fg :background ,bg))))
    `(cursor ((,class (:background ,fg))))
    
-   ;; Highlighting faces
+;;; Highlighting faces
    `(fringe ((,class (:background ,bg-darker))))
    `(highlight ((,class (:background ,white-light))))
    `(region ((,class (:background ,blue-light :foreground ,fg-dark))))
@@ -34,12 +34,12 @@
    `(show-paren-match ((,class (:background ,white))))
    `(show-paren-mismatch ((,class (:background ,red-light :foreground ,white-light))))
 
-   ;; Mode line faces
+;;; Mode line faces
    `(mode-line ((,class (:box nil :background ,bg-lighter))))
    `(mode-line-inactive ((,class (:box nil :background ,bg-dark))))
    `(mode-line-highlight ((,class (:box nil :foreground ,blue))))
 
-   ;; Escape and prompt faces
+;;; Escape and prompt faces
    `(minibuffer-prompt ((,class (:weight bold :foreground ,blue))))
    ;; `(escape-glyph ((,class (:foreground ,red-3))))
    ;; `(homoglyph ((,class (:foreground ,red-3))))
@@ -47,7 +47,7 @@
    `(warning ((,class (:foreground ,yellow))))
    `(success ((,class (:foreground ,green))))
 
-   ;; Font lock faces
+;;; Font lock faces
    `(font-lock-builtin-face ((,class (:foreground ,red))))
    `(font-lock-comment-face ((,class (:slant italic :foreground ,fg-lighter))))
    `(font-lock-constant-face ((,class (:weight bold :foreground ,cyan-light))))
@@ -57,15 +57,15 @@
    `(font-lock-type-face ((,class (:foreground ,green))))
    `(font-lock-variable-name-face ((,class (:foreground ,yellow))))
 
-   ;; Button and link faces
+;;; Button and link faces
    `(link ((,class (:underline t :foreground ,blue))))
    `(link-visited ((,class (:underline t :foreground ,magenta))))
 
-   ;; Web Mode
+;;; Web Mode
    `(web-mode-current-column-highlight-face ((,class (:background ,white))))
    `(web-mode-current-element-highlight-face ((,class (:background ,white))))
 
-   ;; ivy-mode
+;;; Ivy Mode
    `(ivy-current-match ((,class (:foreground ,fg :background ,white))))
    `(ivy-minibuffer-match-face-1 ((,class (:weight bold :foreground ,cyan))))
    `(ivy-minibuffer-match-face-2 ((,class (:weight bold :foreground ,green))))
