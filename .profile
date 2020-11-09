@@ -102,8 +102,10 @@ if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
 	#     /nix/store/2jysm3dfsgby5sw5jgj43qjrb5v79ms9-bash-4.4-p23/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
 	#
 	# By setting the location to the Nix locale stuff you can stop this harmless but annoying warning.
-	LOCALE_ARCHIVE_2_27="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
-	export LOCALE_ARCHIVE_2_27
+	if [ "$(uname -s)" = "Linux" ]; then
+		LOCALE_ARCHIVE_2_27="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
+		export LOCALE_ARCHIVE_2_27
+	fi
 fi
 
 # This is needed for nix-env installed dictionaries to get picked up by Hunspell
