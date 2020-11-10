@@ -7,13 +7,12 @@
 # --------------------------------------------------------------------
 ALTERNATE_EDITOR='mg'
 EDITOR='emacsclient -t'
-GOPATH="$HOME/code/go"
 GPG_TTY="$(tty)"
 KEYID='0x667A3481E4BB34F3'
 LANG='en_GB.UTF-8'
 LC_ALL='en_GB.UTF-8'
 PAGER='less -i'
-PATH="$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$HOME/bin:$PATH"
+PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$HOME/bin:$PATH"
 TZ='Europe/London'
 VISUAL='emacsclient -c'
 
@@ -22,8 +21,7 @@ if command -v pulseaudio >/dev/null 2>&1; then
     PULSE_SERVER="unix:$HOME/.config/pulse/$(cat /var/lib/dbus/machine-id)-runtime/native"
 fi
 
-export GOPATH GPG_TTY KEYID LANG LC_ALL PAGER PATH PULSE_SERVER TZ ALTERNATE_EDITOR EDITOR VISUAL
-
+export ALTERNATE_EDITOR EDITOR GPG_TTY KEYID LANG LC_ALL PAGER PATH PULSE_SERVER TZ VISUAL
 
 # Source common aliases and functions
 # --------------------------------------------------------------------
