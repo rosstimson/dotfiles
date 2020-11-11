@@ -28,6 +28,7 @@
     hunspell
     hunspellDicts.en_GB-large
     jq
+    just
     leiningen
     lorri
     mg
