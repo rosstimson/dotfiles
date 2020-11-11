@@ -1018,12 +1018,23 @@ for Python.
 
 ** Jinja2
 
-[[https://melpa.org/#/jinja2-mode][Jinja2 Mode]] is a majore mode for the jinja2 templating language.
+[[https://melpa.org/#/jinja2-mode][Jinja2 Mode]] is a major mode for the jinja2 templating language.
 
 #+BEGIN_SRC emacs-lisp
 (use-package jinja2-mode
   :mode ("\\.j2\\'" . jinja2-mode))
 #+END_SRC
+
+** Just
+
+[[https://github.com/casey/just][Just]] is a command runner that is similar to Make but is a bit nicer to
+work with.  This persuades Emacs to use makefile mode for ~justfile~.
+
+#+begin_src emacs-lisp
+  (use-package make-mode
+    :ensure nil
+    :mode (("justfile\\'" . makefile-mode)))
+#+end_src
 
 ** Go
 
