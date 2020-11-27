@@ -19,6 +19,7 @@
     clojure-lsp
     deno
     direnv
+    dogdns
     du-dust
     exa
     fd
