@@ -57,7 +57,6 @@
     wget
     yarn
     zoxide
-    zsh
   ];
 
   # This value determines the Home Manager release that your
