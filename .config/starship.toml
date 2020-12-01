@@ -23,9 +23,10 @@ symbol = " "
 
 [custom.toolbox]
 when = """ test -e /run/.toolboxenv """
-command = "echo toolbox"
-prefix = "in "
-symbol = "  "
+format = "  in toolbox "
+#command = "echo toolbox"
+#prefix = "in "
+#symbol = "  "
 
 [directory]
 style = "green"
