@@ -31,7 +31,7 @@
 	conflictstyle = diff3
 
 [gpg]
-	program = gpg2
+	program = gpg
 
 [alias]
 	a = add
