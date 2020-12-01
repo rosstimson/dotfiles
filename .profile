@@ -87,7 +87,7 @@ export SKIM_DEFAULT_OPTIONS
 # Set here rather than in Cargo config as you can't use $HOME in Cargo
 # config and an absolute path means choosing between Linux/BSD style:
 # '/home/rosstimson' or Mac style 'Users/rosstimson'.
-RUSTC_WRAPPER="$HOME/.cargo/bin/sccache"
+RUSTC_WRAPPER="sccache"
 export RUSTC_WRAPPER
 
 # Nix
