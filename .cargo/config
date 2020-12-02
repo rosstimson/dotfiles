@@ -6,6 +6,9 @@ t = "test"
 r = "run"
 rr = "run --release"
 
+[build]
+rustc-wrapper = "sccache"
+
 [cargo-new]
 name = "Ross Timson"
 email = "me@rosstimson.com"
