@@ -48,6 +48,7 @@
     rustup
     sccache
     shellcheck
+    signify
     skim
     starship
     terraform
