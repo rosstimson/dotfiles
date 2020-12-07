@@ -91,12 +91,14 @@ Remove a bunch of cruft from the interface.
 Set some further UI options.
 
 #+BEGIN_SRC emacs-lisp
-(show-paren-mode 1)
-(blink-cursor-mode -1)
-(global-hl-line-mode t)
-(line-number-mode t)
-(column-number-mode t)
-(setq-default indicate-empty-lines t)
+  (show-paren-mode 1)
+  (blink-cursor-mode -1)
+  (set-cursor-color "#444")
+  (setq default-frame-alist '((cursor-color . "#444")))
+  (global-hl-line-mode t)
+  (line-number-mode t)
+  (column-number-mode t)
+  (setq-default indicate-empty-lines t)
 #+END_SRC
 
 Stop the annoying bloody beeping.
