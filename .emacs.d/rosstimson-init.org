@@ -94,11 +94,17 @@ Set some further UI options.
   (show-paren-mode 1)
   (blink-cursor-mode -1)
   (set-cursor-color "#444")
-  (setq default-frame-alist '((cursor-color . "#444")))
   (global-hl-line-mode t)
   (line-number-mode t)
   (column-number-mode t)
   (setq-default indicate-empty-lines t)
+  ;; Setting cursor colour and no scrollbars for all inc. emacsclient,
+  ;; without these set standard emacs has was I want but when using
+  ;; emacsclient the cursor colour is almost white and the scrollbars
+  ;; show.
+  (setq default-frame-alist '((cursor-color . "#444")
+                              (vertical-scroll-bars . nil)
+                              (horizontal-scroll-bars . nil)))
 #+END_SRC
 
 Stop the annoying bloody beeping.
