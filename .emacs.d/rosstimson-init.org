@@ -385,6 +385,27 @@ Swiper, an Ivy-enhanced alternative to isearch.
          ("C-r" . swiper)))
 #+END_SRC
 
+** Prescient
+
+[[https://github.com/raxod502/prescient.el][prescient.el]]: Supercharge the sorting and filtering for algorithm used
+for Ivy and Company.
+
+#+begin_src emacs-lisp
+  (use-package prescient
+    :config
+    (prescient-persist-mode t))
+
+  (use-package ivy-prescient
+    :after (prescient ivy counsel)
+    :config
+    (ivy-prescient-mode t))
+
+  (use-package company-prescient
+    :after (prescient company)
+    :config
+    (company-prescient-mode t))
+#+end_src
+
 ** Dumb Jump
 
 [[https://github.com/jacktasia/dumb-jump][Dump Jump]] allows you to jump to definition similar to Etags but without the
