@@ -58,6 +58,7 @@
 	undo = reset --soft HEAD^
 	unstage = reset HEAD --
 	r = remote
+	re = restore
 	rs = reset
 	i = init
 	m = merge
