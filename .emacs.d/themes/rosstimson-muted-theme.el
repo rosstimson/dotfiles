@@ -105,6 +105,10 @@
    `(org-date ((,class (:foreground ,magenta))))
    `(org-special-keyword ((,class (:foreground ,magenta-light))))
    `(org-drawer ((,class (:foreground ,cyan))))
+
+;;; Terraform Mode
+   `(terraform--resource-type-face ((,class (:foreground ,cyan))))
+   `(terraform--resource-name-face ((,class (:foreground ,blue))))
    ))
 
 
