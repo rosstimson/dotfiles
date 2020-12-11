@@ -12,7 +12,7 @@ KEYID='0x667A3481E4BB34F3'
 LANG='en_GB.UTF-8'
 LC_ALL='en_GB.UTF-8'
 PAGER='less -i'
-PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$HOME/bin:$PATH"
+PATH="$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$HOME/bin:$PATH"
 TZ='Europe/London'
 VISUAL='emacsclient -c'
 
@@ -82,30 +82,3 @@ fi
 # Skim - Fuzzy finder written in Rust: https://github.com/lotabout/skim
 SKIM_DEFAULT_OPTIONS='--layout=reverse --color=light,fg:8,bg:15,current_bg:7,matched_bg:10,current_match:8'
 export SKIM_DEFAULT_OPTIONS
-
-# Nix
-if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
-	. "$HOME/.nix-profile/etc/profile.d/nix.sh"
-
-	# When using Nix installed tools such as 'bat' some of them throw a warning:
-	#
-	#     $ bat /etc/apt/sources.list.d/pgdg.list
-	#     /nix/store/2jysm3dfsgby5sw5jgj43qjrb5v79ms9-bash-4.4-p23/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
-	#
-	# By setting the location to the Nix locale stuff you can stop this harmless but annoying warning.
-	if [ "$(uname -s)" = "Linux" ]; then
-		LOCALE_ARCHIVE_2_27="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
-		export LOCALE_ARCHIVE_2_27
-	fi
-fi
-
-# This is needed for nix-env installed dictionaries to get picked up by Hunspell
-if [ -d "$HOME/.nix-profile/share/hunspell" ]; then
-	DICPATH="$HOME/.nix-profile/share/hunspell"
-	export DICPATH
-fi
-
-# Nix Home Manager (https://github.com/rycee/home-manager)
-if [ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
-	. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-fi
