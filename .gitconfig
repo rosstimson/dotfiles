@@ -48,16 +48,19 @@
 	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %C(black)%s%C(reset) %C(magenta)- %an%C(reset)%C(yellow)%d%C(reset)' --all
 	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)%n''          %C(black)%s%C(reset) %C(magenta)- %an%C(reset)' --all
 	p = push
+	pu = push --set-upstream origin HEAD
 	prune = fetch --prune
 	l = pull
 	lr = pull --rebase
 	s = status
 	st = stash
+	std = stash show -p
 	stash-all = stash save --include-untracked
 	t = tag
 	undo = reset --soft HEAD^
 	unstage = reset HEAD --
 	r = remote
+	rb = rebase
 	re = restore
 	rs = reset
 	i = init
