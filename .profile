@@ -16,11 +16,6 @@ PATH="$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$HOME
 TZ='Europe/London'
 VISUAL='emacsclient -c'
 
-# Set Pulseaudo socket info so that flatpak apps can work with sound.
-if command -v pulseaudio >/dev/null 2>&1; then
-    PULSE_SERVER="unix:$HOME/.config/pulse/$(cat /var/lib/dbus/machine-id)-runtime/native"
-fi
-
 export ALTERNATE_EDITOR EDITOR GPG_TTY KEYID LANG LC_ALL PAGER PATH PULSE_SERVER TZ VISUAL
 
 # Source common aliases and functions
