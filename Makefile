@@ -3,8 +3,15 @@
 
 # List out all dotfiles except .git so that we can iteratively copy them.
 DOTFILES != find . -maxdepth 1 -name '.[^.]*' ! -name '.git'
-# Hardcoded home in case some config mngt tool is installing.
-RT_HOME='/home/rosstimson'
+
+# Set absolute path in case some config mngt tool is installing.
+OS := $(shell uname -s)
+ifeq ($(OS),Darwin)
+	RT_HOME='/Users/rosstimson'
+else
+	RT_HOME='/home/rosstimson'
+endif
+
 
 install:
 	@for file in ${DOTFILES} ; do \
