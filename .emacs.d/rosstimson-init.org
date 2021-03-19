@@ -625,7 +625,8 @@ Auto-completion via [[https://company-mode.github.io/][Company]].
            (terraform-mode . lsp))
     :commands lsp
     :config
-    (setq lsp-rust-server 'rust-analyzer))
+    (setq lsp-rust-server 'rust-analyzer)
+    (setq lsp-terraform-server '("terraform-ls" "serve")))
 #+end_src
 
 [[https://github.com/emacs-lsp/lsp-ui][lsp-ui]] -- Add some extra UI enhancements to LSP Mode.
