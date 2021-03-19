@@ -3,6 +3,6 @@
 # bat config -- bat is a cat(1) clone with wings.
 #
 
---theme="ansi-light"
+--theme="ansi"
 --style="changes"
 
