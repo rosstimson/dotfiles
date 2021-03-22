@@ -567,15 +567,18 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
   (global-whitespace-cleanup-mode t)) ; Enabled globally
 #+END_SRC
 
-** Undo-tree
+** Undo Fu
 
-[[https://www.emacswiki.org/emacs/UndoTree][UndoTree]] lets you visualise undo.
+[[https://gitlab.com/ideasman42/emacs-undo-fu][Undo Fu]] - Simple,
+stable linear undo with redo for Emacs via a light weight wrapper for
+Emacs built-in undo system,
 
-#+BEGIN_SRC emacs-lisp
-(use-package undo-tree
-  :init (global-undo-tree-mode)
-  :delight)
-#+END_SRC
+#+begin_src emacs-lisp
+  (use-package undo-fu
+    :config
+    :bind (("C-/" . undo-fu-only-undo)
+           ("C-M-/" . undo-fu-only-redo)))
+#+end_src
 
 ** Company
 
