@@ -15,6 +15,15 @@
 (setq large-file-warning-threshold 100000000)
 #+END_SRC
 
+Auto-saving does not cooperate with org-crypt.el: so you need
+to turn it off if you plan to use org-crypt.el quite often.
+Otherwise, you'll get an (annoying) message each time you
+start Org.
+
+#+begin_src emacs-lisp
+  (setq auto-save-default nil)
+#+end_src
+
 Emacs might need access to executables that are stored in some custom
 locations, for example a Rust tool installed via ~cargo~ or a Python
 tool installed via ~pip install --user~.  ~exec-path~ is essentially
@@ -736,162 +745,133 @@ the official collection of snippets for many languages.
 [[http://orgmode.org/][Org mode]] - Your life in plain text.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package org
-    :pin org
-    :ensure org-plus-contrib
+  (use-package org-plus-contrib
     :mode ("\\.org$'" . org-mode)
     :bind (("C-c a" . org-agenda)
            ("C-c c" . org-capture)
            ("C-c l" . org-store-link))
-    :config
+    :init
     ;; Load extra Org modules from contrib
     (add-to-list 'org-modules 'org-protocol)
     (add-to-list 'org-modules 'org-contacts)
     (add-to-list 'org-modules 'org-crypt)
     (add-to-list 'org-modules 'org-habit)
+    (add-to-list 'org-modules 'ox-beamer)
 
-    ;; Syntax highlight code blocks and make tabs work as expected.
-    (setq org-src-fontify-natively t
-          org-src-tab-acts-natively t)
-
-    (setq org-directory "~/org")
-    (setq org-default-notes-file (concat org-directory "/notes.org"))
-    (setq org-log-done 'time)
-    (setq org-log-done-with-time t)
-    (setq org-log-into-drawer t)
-    (setq org-completion-use-ido t)
-
-    ;; Follow links with RET.
-    (setq org-return-follows-link t)
-
-    (setq org-todo-keywords
-          '((sequence "TODO(t)" "NEXT(n)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELLED(c@)")))
-
-    ;; Function needed to integrate org-journal with org capture.
-    ;; https://github.com/bastibe/org-journal/#journal-capture-template
-    (defun org-journal-find-location ()
-      ;; Open today's journal, but specify a non-nil prefix argument in order to
-      ;; inhibit inserting the heading; org-capture will insert the heading.
-      (org-journal-new-entry t)
-      ;; Position point on the journal's top-level heading so that org-capture
-      ;; will add the new entry as a child entry.
-      (goto-char (point-min)))
-
-    (defvar rt/org-contacts-template "* %(org-contacts-template-name)
-    :PROPERTIES:
-    :EMAIL: %(org-contacts-template-email)
-    :PHONE: %^{+44 1234 123456}
-    :ADDRESS: %^{289 Cleveland St. Brooklyn, 11206 NY, USA}
-    :BIRTHDAY: %^{yyyy-mm-dd}
-    :NOTE: %^{NOTE}
-    :END:" "Template for org-contacts.")
-
-    ;; Capture templates
-    (setq org-capture-templates
-          `(("t" "Todo" entry (file+headline ,(concat org-directory "/todo.org") "Inbox")
-             "* TODO %?\n  %i\n" :empty-lines 1)
-            ("s" "Someday / Maybe" entry (file+headline ,(concat org-directory "/someday-maybe.org") "Inbox")
-             "* TODO %?\n  %i\n" :empty-lines 1)
-            ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "Inbox")
-             "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n" :empty-lines 1)
-            ("l" "Protocol Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox")
-             "* [[%:link][%:description]] \n\n%i\n%?\nCaptured On: %U" :empty-lines 1)
-            ("j" "Journal entry" entry (function org-journal-find-location)
-             "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?" :empty-lines 1)
-            ("c" "Contacts" entry (file "~/org/contacts.org"),
-             rt/org-contacts-template :empty-lines 1)))
-
-    ;; Refile targets
-    (setq org-refile-targets
-          '(("todo.org" :maxlevel . 3)
-            ("someday-maybe.org" :maxlevel . 3)
-            ("links.org" :maxlevel . 3)
-            ("cal.org" :maxlevel . 3)))
-
-    ;; https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
-    ;; Show full path for refile targets.
-    (setq org-refile-use-outline-path t)
-    ;; This option is also needed for the full path stuff to work,
-    ;; without it you just get lots of repeated file names in the Ivy
-    ;; selection window.  Full details in the blog post linked above.
-    (setq org-outline-path-complete-in-steps nil)
-    ;; Allow refiling to a new parent heading.
-    (setq org-refile-allow-creating-parent-nodes 'confirm)
-
-    ;; Custom function to quickly archive all done tasks.
-    (defun rt/org-archive-done-tasks ()
-      (interactive)
-      (org-map-entries
-       (lambda ()
-         (org-archive-subtree)
-         (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
-       "/DONE" 'tree)
-      ;; I'm sure this could be done better as part of the
-      ;; org-map-entries function above but I'm not sure how so just
-      ;; repeat for cancelled tasks.
-      (org-map-entries
-       (lambda ()
-         (org-archive-subtree)
-         (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
-       "/CANCELLED" 'tree)))
-#+END_SRC
-
-Org Agenda
-
-#+BEGIN_SRC emacs-lisp
-  (use-package org-agenda
-    :ensure nil
-    :after org
-    :custom
-    (org-agenda-files '("~/org/todo.org" "~/org/someday-maybe.org" "~/org/cal.org"))
-    (org-agenda-skip-deadline-if-done t)
-    (org-agenda-skip-scheduled-if-done t))
-#+END_SRC
-
-Org Contacts
-
-#+begin_src emacs-lisp
-  (use-package org-contacts
-    :ensure nil
-    :after org
-    :custom (org-contacts-files '("~/org/contacts.org")))
-#+end_src
-
-Org-Crypt
-
-#+BEGIN_SRC emacs-lisp
-  (use-package org-crypt
-    :ensure nil
-    :after org
     :config
-    (org-crypt-use-before-save-magic)
+  ;; Syntax highlight code blocks and make tabs work as expected.
+  (setq org-src-fontify-natively t
+        org-src-tab-acts-natively t)
 
-    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+  (setq org-directory "~/org")
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
+  (setq org-log-done 'time)
+  (setq org-log-done-with-time t)
+  (setq org-log-into-drawer t)
+  (setq org-completion-use-ido t)
 
-    ;; GPG key to use for encryption
-    ;; Either the Key ID or set to nil to use symmetric encryption.
-    (setq org-crypt-key "0x4799AD5040FF28FB5F3D71D7667A3481E4BB34F3")
+  ;; Follow links with RET.
+  (setq org-return-follows-link t)
 
-    ;; Auto-saving does not cooperate with org-crypt.el: so you need
-    ;; to turn it off if you plan to use org-crypt.el quite often.
-    ;; Otherwise, you'll get an (annoying) message each time you
-    ;; start Org.
-    (setq auto-save-default nil))
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "NEXT(n)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELLED(c@)")))
+
+  ;; Function needed to integrate org-journal with org capture.
+  ;; https://github.com/bastibe/org-journal/#journal-capture-template
+  (defun org-journal-find-location ()
+    ;; Open today's journal, but specify a non-nil prefix argument in order to
+    ;; inhibit inserting the heading; org-capture will insert the heading.
+    (org-journal-new-entry t)
+    ;; Position point on the journal's top-level heading so that org-capture
+    ;; will add the new entry as a child entry.
+    (goto-char (point-min)))
+
+  (defvar rt/org-contacts-template "* %(org-contacts-template-name)
+  :PROPERTIES:
+  :EMAIL: %(org-contacts-template-email)
+  :PHONE: %^{+44 1234 123456}
+  :ADDRESS: %^{289 Cleveland St. Brooklyn, 11206 NY, USA}
+  :BIRTHDAY: %^{yyyy-mm-dd}
+  :NOTE: %^{NOTE}
+  :END:" "Template for org-contacts.")
+
+  ;; Capture templates
+  (setq org-capture-templates
+        `(("t" "Todo" entry (file+headline ,(concat org-directory "/todo.org") "Inbox")
+           "* TODO %?\n  %i\n" :empty-lines 1)
+          ("s" "Someday / Maybe" entry (file+headline ,(concat org-directory "/someday-maybe.org") "Inbox")
+           "* TODO %?\n  %i\n" :empty-lines 1)
+          ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "Inbox")
+           "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n" :empty-lines 1)
+          ("l" "Protocol Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox")
+           "* [[%:link][%:description]] \n\n%i\n%?\nCaptured On: %U" :empty-lines 1)
+          ("j" "Journal entry" entry (function org-journal-find-location)
+           "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?" :empty-lines 1)
+          ("c" "Contacts" entry (file "~/org/contacts.org"),
+           rt/org-contacts-template :empty-lines 1)))
+
+  ;; Refile targets
+  (setq org-refile-targets
+        '(("todo.org" :maxlevel . 3)
+          ("someday-maybe.org" :maxlevel . 3)
+          ("links.org" :maxlevel . 3)
+          ("cal.org" :maxlevel . 3)))
+
+  ;; https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
+  ;; Show full path for refile targets.
+  (setq org-refile-use-outline-path t)
+
+  ;; This option is also needed for the full path stuff to work,
+  ;; without it you just get lots of repeated file names in the Ivy
+  ;; selection window.  Full details in the blog post linked above.
+  (setq org-outline-path-complete-in-steps nil)
+
+  ;; Allow refiling to a new parent heading.
+  (setq org-refile-allow-creating-parent-nodes 'confirm)
+
+  ;; Custom function to quickly archive all done tasks.
+  (defun rt/org-archive-done-tasks ()
+    (interactive)
+    (org-map-entries
+     (lambda ()
+       (org-archive-subtree)
+       (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
+     "/DONE" 'tree)
+    ;; I'm sure this could be done better as part of the
+    ;; org-map-entries function above but I'm not sure how so just
+    ;; repeat for cancelled tasks.
+    (org-map-entries
+     (lambda ()
+       (org-archive-subtree)
+       (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
+     "/CANCELLED" 'tree))
+
+
+  ;; org-agenda
+  (setq org-agenda-files '("~/org/todo.org" "~/org/someday-maybe.org" "~/org/cal.org")
+        org-agenda-skip-deadline-if-done t
+        org-agenda-skip-scheduled-if-done t)
+
+  ;; org-contacts
+  (org-contacts-files '("~/org/contacts.org"))
+
+  ;; org-crypt
+  (org-crypt-use-before-save-magic)
+
+  (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+
+  ;; GPG key to use for encryption
+  ;; Either the Key ID or set to nil to use symmetric encryption.
+  (setq org-crypt-key "0x4799AD5040FF28FB5F3D71D7667A3481E4BB34F3")
+
+  )
 #+END_SRC
 
-Org-Protocol
-
-#+begin_src emacs-lisp
-  (use-package org-protocol
-    :ensure nil
-    :after org )
-#+end_src
-
-Journal
+Org Journal
 
 #+BEGIN_SRC emacs-lisp
   (use-package org-journal
-    :after org
+    :after org-plus-contrib
     :bind ("C-c T" . org-journal-new-entry)
     :config
     (defun org-journal-file-header-func (time)
@@ -936,14 +916,10 @@ Set active Org Babel languages
    (sql . t)))
 #+END_SRC
 
-#+begin_src emacs-lisp
-(require 'ox-beamer)
-#+end_src
-
 #+BEGIN_SRC emacs-lisp
   (use-package org-caldav
     :commands (org-caldav-sync)
-    :after (org)
+    :after org-plus-contrib
     :config
     (setq org-caldav-debug-level 2
           org-caldav-show-sync-results t
