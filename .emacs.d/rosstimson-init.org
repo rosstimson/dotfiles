@@ -515,10 +515,16 @@ rg.el also integrates with wgrep out of the box.
 [[https://magit.vc/][Magit]] the one and only Git frontend.
 
 #+BEGIN_SRC emacs-lisp
-(use-package magit
-  :bind ("C-c g" . magit-status)
-  :config
-  (setq magit-completing-read-function 'ivy-completing-read))
+  (use-package magit
+    ;; Don't lazy load, force loading to occur immediately and not
+    ;; establish an autoload for the bound key.  I do this so that Magit
+    ;; is around whent git committing from terminal via emacsclient,
+    ;; without it magit does not get loaded and you edit the commit
+    ;; message without magit's extras.
+    :demand
+    :bind ("C-c g" . magit-status)
+    :config
+    (setq magit-completing-read-function 'ivy-completing-read))
 #+END_SRC
 
 ** Dired
