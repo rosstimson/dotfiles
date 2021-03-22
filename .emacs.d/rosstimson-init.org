@@ -1165,11 +1165,10 @@ indentation back to spaces.
                 (setq indent-tabs-mode t))))
 #+end_src
 
-[[https://github.com/ananthakumaran/tide][Tide]]  is the canonical way of using TypeScript within Emacs.
+[[https://github.com/ananthakumaran/tide][Tide]] is the canonical way of using TypeScript within Emacs.
 
 #+begin_src emacs-lisp
   (use-package tide
-    :ensure t
     :after (typescript-mode company flycheck)
     :hook ((typescript-mode . tide-setup)
            (typescript-mode . tide-hl-identifier-mode)
@@ -1178,8 +1177,8 @@ indentation back to spaces.
 
 ** C
 
-Similar to with JS mode use Smart Tabs for C code and ensure
-Whitespace Cleanup doesn't clobber tabs upon save.
+Similar to JS mode use Smart Tabs for C code and make sure Whitespace
+Cleanup doesn't clobber tabs upon save.
 
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c-mode-common-hook
