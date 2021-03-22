@@ -35,30 +35,24 @@
 ;; Always load newest byte code
 (setq load-prefer-newer t)
 
-(require 'package)
-(setq package-enable-at-startup nil)
+;; Use straight.el (https://github.com/raxod502/straight.el) a next-gen package manager.
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-;; Standard package repositories
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
-
-(package-initialize)
-
-;; Bootstrap use-package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-;; use-package.el is no longer needed at runtime
-;; add the following to further reduce load time
-;; https://github.com/jwiegley/use-package#use-packageel-is-no-longer-needed-at-runtime
-(eval-when-compile
-  (require 'use-package))
-(require 'bind-key)
-
-;; Always ensure packages are installed automatically if not present
-(setq use-package-always-ensure t)
+;; Install use-package via Straight and make the integration a default
+;; so that I don't have to repeat `:straight t` everywhere.
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
 ;; Additional load paths.
 (add-to-list 'load-path "~/.emacs.d/rt")
