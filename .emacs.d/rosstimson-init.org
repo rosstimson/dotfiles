@@ -342,57 +342,16 @@ Prettify the mode line with [[https://github.com/Malabarba/smart-mode-line][Smar
   (add-to-list 'sml/replacer-regexp-list '("^~/code/dotfiles/" ":DOT:") t))
 #+END_SRC
 
-** Smex
+** Selectrum
 
-Use Smex so that ~Counsel-M-x~ which is bound to ~M-x~ will show
-commands in order of last used.  Without this Counsel just lists
-alphabetically.
-
-#+BEGIN_SRC emacs-lisp
-(use-package smex
-  :init (smex-initialize))
-#+END_SRC
-
-** Ivy / Counsel / Swiper
-
-Use [[https://github.com/abo-abo/swiper][Swiper]] and friends for searching and ido-like completion.
-
-Ivy, a generic completion mechanism for Emacs.
-
-#+BEGIN_SRC emacs-lisp
-(use-package ivy
-  :bind (("C-x b" . ivy-switch-buffer)
-         ("C-c C-r" . ivy-resume))
-  :config
-  (ivy-mode)
-  (setq ivy-fixed-height-minibuffer t)
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-format-function 'ivy-format-function-line) ; Highlight entire line in Ivy completion buffer.
-  :delight ivy-mode)
-#+END_SRC
-
-Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
-
-#+BEGIN_SRC emacs-lisp
-(use-package counsel
-  :bind (("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)
-         ("C-x f" . counsel-recentf)
-         ("C-c j" . counsel-git-grep)
-         ("C-c k" . counsel-rg)
-         ("C-c m" . counsel-imenu)
-         ("M-y" . counsel-yank-pop)
-         :map ivy-minibuffer-map
-         ("M-y" . ivy-next-line-and-call)))
-#+END_SRC
-
-Swiper, an Ivy-enhanced alternative to isearch.
-
-#+BEGIN_SRC emacs-lisp
-(use-package swiper
-  :bind (("C-s" . swiper)
-         ("C-r" . swiper)))
-#+END_SRC
+[[https://github.com/raxod502/selectrum][Selectrum]] is a better solution for incremental narrowing in Emacs,
+replacing Helm, Ivy, and Ido.
+   
+#+begin_src emacs-lisp
+  (use-package selectrum
+    :config
+    (selectrum-mode t))
+#+end_src
 
 ** Marginalia
 
@@ -429,20 +388,20 @@ short explanations next to items in the minibuffer.
 ** Prescient
 
 [[https://github.com/raxod502/prescient.el][prescient.el]]: Supercharge the sorting and filtering for algorithm used
-for Ivy and Company.
+for Selectrum and Company.
 
 #+begin_src emacs-lisp
   (use-package prescient
     :config
     (prescient-persist-mode t))
 
-  (use-package ivy-prescient
-    :after (prescient ivy counsel)
+  (use-package selectrum-prescient
+    :requires selectrum
     :config
-    (ivy-prescient-mode t))
+    (selectrum-prescient-mode t))
 
   (use-package company-prescient
-    :after (prescient company)
+    :requires company
     :config
     (company-prescient-mode t))
 #+end_src
