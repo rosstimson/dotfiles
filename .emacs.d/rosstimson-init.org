@@ -582,25 +582,17 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 Auto-completion via [[https://company-mode.github.io/][Company]].
 
 #+BEGIN_SRC emacs-lisp
-(use-package company
-  :init (global-company-mode)
-  :delight
-  :config
-  (setq company-tooltip-align-annotations t
-        company-tooltip-flip-when-above t
-        ;; Easy navigation to candidates with M-<n>
-        company-show-numbers t))
+  (use-package company
+    :init (global-company-mode)
+    :delight
+    :config
+    (setq company-tooltip-align-annotations t
+          company-tooltip-flip-when-above t
+          ;; Easy navigation to candidates with M-<n>
+          company-show-numbers t))
 
   ;; Add custom completion for Org mode code blocks.
   (add-to-list 'company-backends 'company-org-block)
-#+END_SRC
-
-[[https://github.com/company-mode/company-statistics][Company-statistics]] sorts completion candidates by previous completion choices.
-
-#+BEGIN_SRC emacs-lisp
-(use-package company-statistics
-  :after company
-  :config (company-statistics-mode))
 #+END_SRC
 
 [[https://github.com/rafalcieslak/emacs-company-terraform][Company-terraform]] is a Company backend for Terraform files.
@@ -645,33 +637,16 @@ Highlight parens etc. by depth with [[https://www.emacswiki.org/emacs/RainbowDel
   :hook (prog-mode . rainbow-delimiters-mode))
 #+END_SRC
 
-** Flyspell
+** Spelling
 
-Check my spelling on the fly with [[https://www.emacswiki.org/emacs/FlySpell][FlySpell]]. Requires `hunspell` to be installed.
+Check my spelling on the fly with [[https://gitlab.com/ideasman42/emacs-spell-fu][spell-fu]]. Requires `aspell` to be installed.
 This also spellchecks spelling in programming mode but only within comments.
 
-#+BEGIN_SRC emacs-lisp
-  (use-package flyspell
-    :config
-    (setq ispell-program-name "hunspell")
-    (setq ispell-local-dictionary "en_GB")
-    (setq ispell-local-dictionary-alist
-          ;; Please note the list `("-d" "en_GB")` contains ACTUAL parameters passed to hunspell
-          ;; You could use `("-d" "en_GB,en_US")` to check with multiple dictionaries
-          '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_GB") nil utf-8)))
-
-    :hook ((text-mode . flyspell-mode)
-           (org-mode . flyspell-mode))
-    :delight " Spell")
-#+END_SRC
-
-Use Ivy to select spelling corrections.
-
 #+begin_src emacs-lisp
-(use-package flyspell-correct-ivy
-  :bind ("C-M-;" . flyspell-correct-at-point)
-  :init
-  (setq flyspell-correct-interface #'flyspell-correct-ivy))
+  (use-package spell-fu
+    :config (setq ispell-dictionary "en_GB")
+    :hook ((text-mode . spell-fu-mode)
+           (org-mode . spell-fu-mode)))
 #+end_src
 
 ** Smartparens
