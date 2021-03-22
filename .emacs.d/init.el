@@ -54,6 +54,12 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
+;; Important to install here before reading my main config that uses
+;; org mode.  This way the built-in org mode doesn't load and
+;; therefore the latest and greatest gets installed and used rather
+;; that the older built-in stuff.
+(straight-use-package '(org-plus-contrib :includes org))
+
 ;; Additional load paths.
 (add-to-list 'load-path "~/.emacs.d/rt")
 
