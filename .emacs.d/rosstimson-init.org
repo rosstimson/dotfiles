@@ -1065,6 +1065,12 @@ work with.  This persuades Emacs to use makefile mode for ~justfile~.
 
 ** Clojure
 
+[[https://github.com/borkdude/clj-kondo/][clj-kondo]] a Clojure linter via flycheck.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck-clj-kondo)
+#+END_SRC
+
 [[https://github.com/clojure-emacs/clojure-mode][Clojure Mode]] is a major mode for Clojure.
 
 #+BEGIN_SRC emacs-lisp
@@ -1103,12 +1109,6 @@ work with.  This persuades Emacs to use makefile mode for ~justfile~.
     (cljr-add-keybindings-with-prefix "C-c C-r")
     (setq cljr-warn-on-eval nil)
     :delight)
-#+END_SRC
-
-[[https://github.com/borkdude/flycheck-clj-kondo][flycheck-clj-kondo]] integrates [[https://github.com/borkdude/clj-kondo/][clj-kondo]] a Clojure linter with flycheck.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package flycheck-clj-kondo)
 #+END_SRC
 
 ** Terraform
