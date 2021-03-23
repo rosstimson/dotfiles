@@ -748,6 +748,12 @@ Highlight parens etc. by depth with [[https://www.emacswiki.org/emacs/RainbowDel
 
 ** Spelling
 
+Set location for personal dictionary.
+   
+#+begin_src emacs-lisp
+  (setq ispell-personal-dictionary "~/.aspell.en.pws")
+#+end_src
+
 Check my spelling on the fly with [[https://gitlab.com/ideasman42/emacs-spell-fu][spell-fu]]. Requires `aspell` to be installed.
 This also spellchecks spelling in programming mode but only within comments.
 
