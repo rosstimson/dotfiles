@@ -474,7 +474,11 @@ function with ~consult-line~.
 
     ;; Optionally configure a function which returns the project root directory.
     (autoload 'projectile-project-root "projectile")
-    (setq consult-project-root-function #'projectile-project-root))
+    (setq consult-project-root-function #'projectile-project-root)
+
+    ;; Use `fd' for `consult-find', with the following arguments.
+    ;; Ignore case, include hidden, show absolute path, and never colour.
+    (setq consult-find-command "fd -i -H -a -c never OPTS ARG"))
 
   ;; Optionally add the `consult-flycheck' command.
   (use-package consult-flycheck
