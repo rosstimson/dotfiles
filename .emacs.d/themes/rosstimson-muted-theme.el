@@ -109,6 +109,10 @@
 ;;; Terraform Mode
    `(terraform--resource-type-face ((,class (:foreground ,cyan))))
    `(terraform--resource-name-face ((,class (:foreground ,blue))))
+
+;;; Marginalia
+   ;; Too much italic in minibuffer so just make this plain.
+   `(marginalia-documentation ((,class (:foreground ,fg-light))))
    ))
 
 
