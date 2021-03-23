@@ -406,6 +406,82 @@ for Selectrum and Company.
     (company-prescient-mode t))
 #+end_src
 
+** Consult
+
+[[https://github.com/minad/consult][Consult]] provides various handy commands based on the Emacs completion
+function completing-read.  It provides a bunch of helper functions
+similar to those found in Counsel and also includes a Swiper-like
+function with ~consult-line~.
+
+#+begin_src emacs-lisp
+  ;; Example configuration for Consult
+  (use-package consult
+    ;; Load immediately so I can use recent file search or search stuff on startup.
+    :demand
+    ;; Replace bindings. Lazily loaded due by `use-package'.
+    :bind (("C-c f" . consult-recent-file)
+           ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
+           ("M-y" . consult-yank-pop)                ;; orig. yank-pop
+           ("<help> a" . consult-apropos)            ;; orig. apropos-command
+           ;; M-g bindings (goto-map)
+           ("M-g e" . consult-compile-error)
+           ("M-g g" . consult-goto-line)             ;; orig. goto-line
+           ("M-g o" . consult-outline)
+           ("M-g m" . consult-mark)
+           ("M-g k" . consult-global-mark)
+           ("M-g i" . consult-imenu)
+           ("M-g I" . consult-project-imenu)
+           ;; M-s bindings (search-map)
+           ("M-s f" . consult-find)
+           ("M-s L" . consult-locate)
+           ("M-s g" . consult-grep)
+           ("M-s G" . consult-git-grep)
+           ("M-s r" . consult-ripgrep)
+           ("M-s l" . consult-line)
+           ("M-s m" . consult-multi-occur)
+           ("M-s k" . consult-keep-lines)
+           ("M-s u" . consult-focus-lines)
+           ;; Isearch integration
+           ("M-e" . consult-isearch)
+           :map isearch-mode-map
+           ("M-e" . consult-isearch)                 ;; orig. isearch-edit-string
+           ("M-s l" . consult-line))                 ;; required by consult-line to detect isearch
+
+    ;; The :init configuration is always executed (Not lazy)
+    :init
+
+    ;; Optionally configure the register formatting. This improves the register
+    ;; preview for `consult-register', `consult-register-load',
+    ;; `consult-register-store' and the Emacs built-ins.
+    (setq register-preview-delay 0
+          register-preview-function #'consult-register-format)
+
+    ;; Optionally tweak the register preview window.
+    ;; This adds thin lines, sorting and hides the mode line of the window.
+    (advice-add #'register-preview :override #'consult-register-window)
+
+    ;; Use Consult to select xref locations with preview
+    (setq xref-show-xrefs-function #'consult-xref
+          xref-show-definitions-function #'consult-xref)
+
+    ;; Configure other variables and modes in the :config section,
+    ;; after lazily loading the package.
+    :config
+
+    ;; Optionally configure the narrowing key.
+    ;; Both < and C-+ work reasonably well.
+    (setq consult-narrow-key "<") ;; (kbd "C-+")
+
+    ;; Optionally configure a function which returns the project root directory.
+    (autoload 'projectile-project-root "projectile")
+    (setq consult-project-root-function #'projectile-project-root))
+
+  ;; Optionally add the `consult-flycheck' command.
+  (use-package consult-flycheck
+    :bind (:map flycheck-command-map
+                ("!" . consult-flycheck)))
+#+end_src
+
 ** Dumb Jump
 
 [[https://github.com/jacktasia/dumb-jump][Dump Jump]] allows you to jump to definition similar to Etags but without the
