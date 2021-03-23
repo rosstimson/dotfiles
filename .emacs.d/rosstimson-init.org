@@ -793,7 +793,7 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
 
 #+BEGIN_SRC emacs-lisp
   (use-package whole-line-or-region
-   :delight whole-line-or-region-mode
+   :delight whole-line-or-region-local-mode
    :config
    (whole-line-or-region-global-mode t))
 #+END_SRC
