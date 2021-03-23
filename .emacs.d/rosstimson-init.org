@@ -419,7 +419,7 @@ function with ~consult-line~.
     ;; Load immediately so I can use recent file search or search stuff on startup.
     :demand t
     ;; Replace bindings. Lazily loaded due by `use-package'.
-    :bind (("C-c f" . consult-recent-file)
+    :bind (("C-x f" . consult-recent-file)
            ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
            ("M-y" . consult-yank-pop)                ;; orig. yank-pop
            ("<help> a" . consult-apropos)            ;; orig. apropos-command
