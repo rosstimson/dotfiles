@@ -417,7 +417,7 @@ function with ~consult-line~.
   ;; Example configuration for Consult
   (use-package consult
     ;; Load immediately so I can use recent file search or search stuff on startup.
-    :demand
+    :demand t
     ;; Replace bindings. Lazily loaded due by `use-package'.
     :bind (("C-c f" . consult-recent-file)
            ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
@@ -594,7 +594,7 @@ rg.el also integrates with wgrep out of the box.
     ;; is around whent git committing from terminal via emacsclient,
     ;; without it magit does not get loaded and you edit the commit
     ;; message without magit's extras.
-    :demand
+    :demand t
     :bind ("C-c g" . magit-status)
     :config
     (setq magit-completing-read-function 'ivy-completing-read))
