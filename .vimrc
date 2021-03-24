@@ -78,3 +78,18 @@ set autoindent                      " Always autoindent
 
 " List chars / highlight whitespace
 set listchars=eol:$,tab:›\ ,trail:~,nbsp:.,extends:>,precedes:<
+
+
+" Misc Keybindings
+
+" Insert mode navigations
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+
+" Insert literal tab
+inoremap <S-Tab> <C-V><Tab>
+
+" Toggle line numbers
+nnoremap <leader>n :set number!<CR>
