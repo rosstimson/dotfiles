@@ -704,9 +704,6 @@ Auto-completion via [[https://company-mode.github.io/][Company]].
           company-tooltip-flip-when-above t
           ;; Easy navigation to candidates with M-<n>
           company-show-numbers t))
-
-  ;; Add custom completion for Org mode code blocks.
-  (add-to-list 'company-backends 'company-org-block)
 #+END_SRC
 
 [[https://github.com/rafalcieslak/emacs-company-terraform][Company-terraform]] is a Company backend for Terraform files.
