@@ -622,10 +622,15 @@ rg.el also integrates with wgrep out of the box.
     ;; without it magit does not get loaded and you edit the commit
     ;; message without magit's extras.
     :demand t
-    :bind ("C-c g" . magit-status)
-    :config
-    (setq magit-completing-read-function 'ivy-completing-read))
+    :bind ("C-c g" . magit-status))
 #+END_SRC
+
+#+begin_src emacs-lisp
+  (use-package forge
+    :after magit
+    :custom
+    (forge-topic-list-limit '(60 . 0) "Maximum of 60 open topics and 0 closed topics."))
+#+end_src
 
 ** Dired
 
