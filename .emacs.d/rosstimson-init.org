@@ -1127,9 +1127,13 @@ work with.  This persuades Emacs to use makefile mode for ~justfile~.
 [[https://github.com/dominikh/go-mode.el][Go mode]]
 
 #+BEGIN_SRC emacs-lisp
-(use-package go-mode
-  :mode ("\\.go\\'" . go-mode)
-  :hook (before-save . gofmt-before-save))
+  (use-package go-mode
+    :mode ("\\.go\\'" . go-mode)
+    :init
+    (setq compile-command "go build -v && go test -v")
+    (setq compilation-read-command nil)
+    :hook (before-save . gofmt-before-save)
+    :bind (("C-c C-c" . compile)))
 #+END_SRC
 
 ** Rust
