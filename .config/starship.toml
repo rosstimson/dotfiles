@@ -30,7 +30,7 @@ format = "  in toolbox "
 [directory]
 style = "green"
 
-[docker]
+[docker_context]
 symbol = " "
 
 # Disable GCloud module as it permanently shows cruft in the prompt
@@ -52,9 +52,6 @@ deleted = "x"
 
 [golang]
 symbol = " "
-
-[haskell]
-symbol = " "
 
 [hg_branch]
 symbol = " "
