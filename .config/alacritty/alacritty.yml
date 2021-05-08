@@ -24,7 +24,7 @@ window:
 
 colors:
   primary:
-    background: '0xe5e3d9'
+    background: '0xf2f0e6'
     foreground: '0x444444'
 
   normal:

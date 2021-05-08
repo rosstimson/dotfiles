@@ -1,7 +1,7 @@
 ! Ross Timson - Muted
 ! A light colour theme with a muted palette.
 
-#define BG #e5e3d9
+#define BG #f2f0e6
 #define FG #444444
 
 *.background: BG
