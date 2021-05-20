@@ -1,9 +1,5 @@
-env:
-  # Fonts render huge if this is not set.
-  WINIT_X11_SCALE_FACTOR: '1'
-
 font:
-  size: 10.0
+  size: 12.0
   normal:
     family: FiraMono Nerd Font
     style: Regular
