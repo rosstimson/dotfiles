@@ -91,4 +91,5 @@ symbol = " "
 style = "red"
 
 [terraform]
+symbol = " "
 style = "purple"
