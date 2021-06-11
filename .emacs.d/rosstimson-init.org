@@ -848,7 +848,8 @@ the official collection of snippets for many languages.
     :mode ("\\.org$'" . org-mode)
     :bind (("C-c a" . org-agenda)
            ("C-c c" . org-capture)
-           ("C-c l" . org-store-link))
+           ("C-c l" . org-store-link)
+           ("C-c C-," . org-insert-structure-template))
     :init
     ;; Load extra Org modules from contrib
     (add-to-list 'org-modules 'org-protocol)
