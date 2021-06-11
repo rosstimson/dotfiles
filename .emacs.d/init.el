@@ -58,10 +58,10 @@
 ;; org mode.  This way the built-in org mode doesn't load and
 ;; therefore the latest and greatest gets installed and used rather
 ;; that the older built-in stuff.
-(straight-use-package '(org-plus-contrib :includes org))
+(straight-use-package '(org))
 
 ;; Additional load paths.
-(add-to-list 'load-path "~/.emacs.d/rt")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 ;; Load the rest of my personal settings
 (org-babel-load-file (expand-file-name "~/.emacs.d/rosstimson-init.org"))
