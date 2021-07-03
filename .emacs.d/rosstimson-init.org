@@ -54,7 +54,8 @@ Set some defaults
    kill-ring-max 128                                ; Maximum length of kill ring
    load-prefer-newer t                              ; Prefers the newest version of a file
    vc-follow-symlinks t                             ; Always follow the symlinks
-   view-read-only t)                                ; Always open read-only buffers in view-mode
+   view-read-only t                                 ; Always open read-only buffers in view-mode
+   calendar-week-start-day 1)                       ; Start calendar on Monday not Sunday
 
   (cd "~/")                                         ; Start in $HOME
 #+END_SRC
@@ -1115,11 +1116,13 @@ work with.  This persuades Emacs to use makefile mode for ~justfile~.
     :init
     (setq compile-command "go build -v && go test -v")
     (setq compilation-read-command nil)
-    :hook (before-save . gofmt-before-save)
-    :bind (("C-c C-c" . compile)))
+    :bind ("C-c C-c" . compile)
+    :hook (before-save . gofmt-before-save))
 #+END_SRC
 
 ** Rust
+
+[[https://github.com/rust-lang/rust-mode][Rust-mode]] -- A major mode for Rust.
 
 #+BEGIN_SRC emacs-lisp
 (use-package rust-mode
@@ -1127,6 +1130,14 @@ work with.  This persuades Emacs to use makefile mode for ~justfile~.
   :config
   (setq rust-format-on-save t))
 #+END_SRC
+
+[[https://github.com/kwrooijen/cargo.el][Cargo.el]] -- A minor mode for Cargo the Rust build tool, it adds some
+convenient bindings for running Cargo commands.
+
+#+begin_src emacs-lisp
+  (use-package cargo
+    :hook (rust-mode . cargo-minor-mode))
+#+end_src
 
 ** Clojure
 
