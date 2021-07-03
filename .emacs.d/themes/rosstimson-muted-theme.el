@@ -7,7 +7,7 @@
 
 (let ((class '((class color) (min-colors 89)))
       (fg "#444") (fg-light "#666") (fg-lighter "#999") (fg-dark "#333") (fg-darker "#222")
-      (bg "#e5e3d9") (bg-light "#F5F3E8") (bg-lighter "#FCFAEF") (bg-dark "#DBD9D0") (bg-darker "#D1CFC6")
+      (bg "#F2F0E6") (bg-light "#F5F3E8") (bg-lighter "#FCFAEF") (bg-dark "#DBD9D0") (bg-darker "#D1CFC6")
       (red "#825b69") (red-light "#bda0aa")
       (green "#69825b") (green-light "#aabda0")
       (yellow "#82755b") (yellow-light "#bdb3a0")
@@ -113,6 +113,14 @@
 ;;; Marginalia
    ;; Too much italic in minibuffer so just make this plain.
    `(marginalia-documentation ((,class (:foreground ,fg-light))))
+
+;;; LSP-UI
+   ;; Make the LSP-UI background much lighter, it defaults to a
+   ;; relatively dark grey which makes certain keywords that have been
+   ;; highlighted completely unreadable and there doesn't seem to be
+   ;; an easy way to work out how to customise that highlighing in
+   ;; fact Github issues suggest it may not even be possible.
+   `(lsp-ui-doc-background ((,class (:background ,bg-lighter))))
    ))
 
 
