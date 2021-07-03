@@ -7,6 +7,4 @@ r = "run"
 rr = "run --release"
 
 [cargo-new]
-name = "Ross Timson"
-email = "me@rosstimson.com"
 vcs = "git"
