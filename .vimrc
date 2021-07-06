@@ -9,19 +9,55 @@ call minpac#init()
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 " Add other plugins here.
-call minpac#add('tpope/vim-git')
-call minpac#add('tpope/vim-fugitive')
-call minpac#add('tpope/vim-surround')
-call minpac#add('tpope/vim-commentary')
-call minpac#add('mileszs/ack.vim')
+call minpac#add('ayu-theme/ayu-vim')
 call minpac#add('lotabout/skim', { 'do': 'silent !./install' })
 call minpac#add('lotabout/skim.vim')
+call minpac#add('mileszs/ack.vim')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-git')
+call minpac#add('tpope/vim-surround')
 
-" Load some sensible defaults.
-source $VIMRUNTIME/defaults.vim
+
+" Use Vim settingr, rather than Vi settings.
+set nocompatible
+
+" Set colour scheme.
+set termguicolors     " enable true colors support
+let ayucolor='light'  " for light version of theme
+colorscheme ayu
+
+set history=500       " Keep 500 lines of command line history.
+set ruler             " Show the cursor position all the time.
+set showcmd           " Display incomplete commands.
+set wildmenu          " Display completion matches in a status line.
+set ttimeout          " Time out for key codes.
+set ttimeoutlen=100   " Wait up to 100ms after Esc for special key.
 
 " Set UTF-8 as default encoding
 set encoding=utf-8
+
+" Enable filetype detection.
+filetype plugin indent on
+
+" Switch syntax highlighting on when the terminal has colors or when using the
+" GUI (which always has colors).
+if &t_Co > 2 || has("gui_running")
+  " Revert with ":syntax off".
+  syntax on
+endif
+
+" Show @@@ in the last line if it is truncated.
+set display=truncate
+
+" Show a few lines of context around the cursor.  Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching when it's possible to timeout.
+if has('reltime')
+  set incsearch
+endif
 
 " Show matching parentheses
 set showmatch
