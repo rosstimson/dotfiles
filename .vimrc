@@ -9,7 +9,7 @@ call minpac#init()
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 " Add other plugins here.
-call minpac#add('ayu-theme/ayu-vim')
+call minpac#add('NLKNguyen/papercolor-theme')
 call minpac#add('lotabout/skim', { 'do': 'silent !./install' })
 call minpac#add('lotabout/skim.vim')
 call minpac#add('mileszs/ack.vim')
@@ -24,8 +24,8 @@ set nocompatible
 
 " Set colour scheme.
 set termguicolors     " enable true colors support
-let ayucolor='light'  " for light version of theme
-colorscheme ayu
+set background=light
+colorscheme PaperColor
 
 set history=500       " Keep 500 lines of command line history.
 set ruler             " Show the cursor position all the time.
