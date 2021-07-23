@@ -1306,13 +1306,7 @@ Use [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]] to read email with E
           mu4e-get-mail-command "mbsync -a"
           mu4e-sent-folder "/Sent"
           mu4e-drafts-folder "/Drafts"
-          mu4e-trash-folder "/Trash")
-
-    (setq mu4e-org-contacts-file ~/org/contacts.org)
-    (add-to-list 'mu4e-headers-actions
-                 '("org-contact-add" . mu4e-action-add-org-contact) t)
-    (add-to-list 'mu4e-view-actions
-                 '("org-contact-add" . mu4e-action-add-org-contact) t))
+          mu4e-trash-folder "/Trash"))
 #+END_SRC
 
 ** Ediff
