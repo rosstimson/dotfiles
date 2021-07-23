@@ -298,114 +298,52 @@ Default to spaces for indentation.
 #+END_SRC
 
 * Minor Modes
-** Delight
+** Ace-link
 
-#+begin_src emacs-lisp
-  (use-package delight)
-#+end_src
-
-** which-key
-
-[[https://github.com/justbur/emacs-which-key][which-key]] is a package that displays available keybindings in popup.
+Quickly follow links with [[https://github.com/abo-abo/ace-link][Ace-link]].
 
 #+BEGIN_SRC emacs-lisp
-(use-package which-key
+(use-package ace-link
   :config
-  (which-key-mode t)
-  :delight)
+  (ace-link-setup-default)
+  (define-key org-mode-map (kbd "M-o") 'ace-link-org))
 #+END_SRC
 
-** Smart Tabs
+** Avy
 
-Use [[https://www.emacswiki.org/emacs/SmartTabs][Smart Tabs]] for certain langs/modes.  Smart Tabs offers semantic
-way of using tab characters in source code: tabs for indentation,
-spaces for alignment.
+Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy]].
 
 #+BEGIN_SRC emacs-lisp
-(use-package smart-tabs-mode
+(use-package avy
+  :bind (("M-g c" . avy-goto-char)
+         ("M-g w" . avy-goto-word-1)
+         ("M-g l" . avy-goto-line))
   :config
-  (smart-tabs-insinuate 'c 'c++ 'java 'javascript)
-)
+  (avy-setup-default))
 #+END_SRC
 
-** Smart Mode Line
+** Company
 
-Prettify the mode line with [[https://github.com/Malabarba/smart-mode-line][Smart Mode Line]].
+Auto-completion via [[https://company-mode.github.io/][Company]].
 
 #+BEGIN_SRC emacs-lisp
-(use-package smart-mode-line
-  :config
-  (setq sml/no-confirm-load-theme t)
-  (setq sml/theme 'respectful)
-  (sml/setup)
-
-  ;; Shorten certain paths with 'directory prefixes'.
-  (add-to-list 'sml/replacer-regexp-list '("^~/code/dotfiles/" ":DOT:") t))
+  (use-package company
+    :init (global-company-mode)
+    :delight
+    :config
+    (setq company-tooltip-align-annotations t
+          company-tooltip-flip-when-above t
+          ;; Easy navigation to candidates with M-<n>
+          company-show-numbers t))
 #+END_SRC
 
-** Selectrum
+[[https://github.com/rafalcieslak/emacs-company-terraform][Company-terraform]] is a Company backend for Terraform files.
 
-[[https://github.com/raxod502/selectrum][Selectrum]] is a better solution for incremental narrowing in Emacs,
-replacing Helm, Ivy, and Ido.
-   
-#+begin_src emacs-lisp
-  (use-package selectrum
-    :config
-    (selectrum-mode t))
-#+end_src
-
-** Marginalia
-
-Enable richer annotations using the [[https://github.com/minad/marginalia/][Marginalia]] package, this shows
-short explanations next to items in the minibuffer.
-
-#+begin_src emacs-lisp
-  (use-package marginalia
-    ;; Either bind `marginalia-cycle` globally or only in the minibuffer
-    :bind (("M-A" . marginalia-cycle)
-           :map minibuffer-local-map
-           ("M-A" . marginalia-cycle))
-
-    ;; The :init configuration is always executed (Not lazy!)
-    :init
-
-    ;; Must be in the :init section of use-package such that the mode gets
-    ;; enabled right away. Note that this forces loading the package.
-    (marginalia-mode)
-
-    ;; When using Selectrum, ensure that Selectrum is refreshed when cycling annotations.
-    (advice-add #'marginalia-cycle :after
-                (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit 'keep-selected))))
-
-    ;; Prefer richer, more heavy, annotations over the lighter default variant.
-    ;; E.g. M-x will show the documentation string additional to the keybinding.
-    ;; By default only the keybinding is shown as annotation.
-    ;; Note that there is the command `marginalia-cycle' to
-    ;; switch between the annotators.
-    ;; (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
-  )
-#+end_src
-
-** Prescient
-
-[[https://github.com/raxod502/prescient.el][prescient.el]]: Supercharge the sorting and filtering for algorithm used
-for Selectrum and Company.
-
-#+begin_src emacs-lisp
-  (use-package prescient
-    :config
-    (prescient-persist-mode t))
-
-  (use-package selectrum-prescient
-    :requires selectrum
-    :config
-    (selectrum-prescient-mode t))
-
-  (use-package company-prescient
-    :requires company
-    :config
-    (company-prescient-mode t))
-#+end_src
+#+BEGIN_SRC emacs-lisp
+(use-package company-terraform
+  :after company
+  :config (company-terraform-init))
+#+END_SRC
 
 ** Consult
 
@@ -487,150 +425,22 @@ function with ~consult-line~.
                 ("!" . consult-flycheck)))
 #+end_src
 
-** Embark
+** Cut/Copy/Comment current line if no region selected
 
-[[https://github.com/oantolin/embark/][Embark]] is minibuffer actions rooted in keymaps which provides a sort
-of right-click contextual menu for Emacs, accessed through the
-embark-act command (which you should bind to a convenient key),
-offering you relevant actions to use on a target determined by the
-context:
+In many editors cut and copy act on the current line if no text is
+visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master/whole-line-or-region.el][whole-line-or-region]] does just that for Emacs.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package whole-line-or-region
+   :delight whole-line-or-region-local-mode
+   :config
+   (whole-line-or-region-global-mode t))
+#+END_SRC
+
+** Delight
 
 #+begin_src emacs-lisp
-  (use-package embark
-    :bind
-    ("C-S-a" . embark-act))
-
-  ;; Consult integration.
-  (use-package embark-consult
-    :after (embark consult)
-    :demand t ; only necessary if you have the hook below
-    ;; if you want to have consult previews as you move around an
-    ;; auto-updating embark collect buffer
-    :hook
-    (embark-collect-mode . embark-consult-preview-minor-mode))
-#+end_src
-
-** Dumb Jump
-
-[[https://github.com/jacktasia/dumb-jump][Dump Jump]] allows you to jump to definition similar to Etags but without the
-extra config and need for tag files.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package dumb-jump
-    :config
-    (setq dumb-jump-default-project "~/code"
-          dumb-jump-selector 'completing-read
-          dumb-jump-prefer-searcher 'rg)
-    :hook (xref-backend-functions . dumb-jump-xref-activate))
-#+END_SRC
-
-** Avy
-
-Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy]].
-
-#+BEGIN_SRC emacs-lisp
-(use-package avy
-  :bind (("M-g c" . avy-goto-char)
-         ("M-g w" . avy-goto-word-1)
-         ("M-g l" . avy-goto-line))
-  :config
-  (avy-setup-default))
-#+END_SRC
-
-** Ace-link
-
-Quickly follow links with [[https://github.com/abo-abo/ace-link][Ace-link]].
-
-#+BEGIN_SRC emacs-lisp
-(use-package ace-link
-  :config
-  (ace-link-setup-default)
-  (define-key org-mode-map (kbd "M-o") 'ace-link-org))
-#+END_SRC
-
-** Switch-window
-
-Quickly switch between windows with [[https://github.com/dimitri/switch-window][switch-window]].
-
-#+BEGIN_SRC emacs-lisp
-(use-package switch-window
-  :bind ("C-x o" . switch-window)
-  :config
-  (setq switch-window-shortcut-style 'qwerty)
-  (setq switch-window-qwerty-shortcuts
-    '("a" "r" "s" "t" "n" "e" "i" "o"))
-  (setq switch-window-threshold 2))
-#+END_SRC
-
-** Projectile
-
-Use [[https://github.com/bbatsov/projectile][Projectile]] which makes working within a project a lot nicer.  For
-example you can use search (with Ivy) for files just within the
-project.  A project is defined by a .git (others supported) in the top
-level dir.
-
-#+BEGIN_SRC emacs-lisp
-(use-package projectile
-  :config
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1)
-  (setq projectile-enable-caching t
-  projectile-completion-system 'ivy))
-#+END_SRC
-
-** Ripgrep
-
-[[https://github.com/dajva/rg.el][rg.el]] - Use ripgrep in Emacs.
-
-Ripgrep is my search tool of choice and has essentially completely
-replaced ~grep~ for me.
-
-Ripgrep is a replacement for both grep like (search one file) and ag
-like (search many files) tools. It's fast and versatile and written in
-Rust.
-
-#+begin_src emacs-lisp
-  (use-package rg
-    :config
-    (rg-enable-default-bindings))
-#+end_src
-
-** Wgrep
-
-[[https://github.com/mhayashi1120/Emacs-wgrep][wgrep]]
-
-wgrep allows you to edit a grep buffer and apply those changes to the
-file buffer like sed interactively. No need to learn sed script, just
-learn Emacs.
-
-rg.el also integrates with wgrep out of the box.
-
-#+begin_src emacs-lisp
-  (use-package wgrep
-    :config
-    (setq wgrep-auto-save-buffer t))
-#+end_src
-
-** Magit
-
-[[https://magit.vc/][Magit]] the one and only Git frontend.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package magit
-    ;; Don't lazy load, force loading to occur immediately and not
-    ;; establish an autoload for the bound key.  I do this so that Magit
-    ;; is around whent git committing from terminal via emacsclient,
-    ;; without it magit does not get loaded and you edit the commit
-    ;; message without magit's extras.
-    :demand t
-    :bind ("C-c g" . magit-status))
-#+END_SRC
-
-#+begin_src emacs-lisp
-  (use-package forge
-    :after magit
-    :custom
-    (forge-topic-list-limit '(60 . 0) "Maximum of 60 open topics and 0 closed topics."))
+  (use-package delight)
 #+end_src
 
 ** Dired
@@ -659,60 +469,68 @@ warning message will appear.
   (put 'dired-find-alternate-file 'disabled nil)
 #+END_SRC
 
-** Whitespace
+** Dumb Jump
 
-[[https://www.emacswiki.org/emacs/WhiteSpace][WhiteSpace]], a mode to toggle visibility of whitespace.
+[[https://github.com/jacktasia/dumb-jump][Dump Jump]] allows you to jump to definition similar to Etags but without the
+extra config and need for tag files.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package whitespace
-    :bind ("C-c w" . whitespace-mode)
+  (use-package dumb-jump
     :config
-    (setq whitespace-line-column 80)
-    (setq whitespace-style '(face tabs spaces indentation lines-tail empty trailing)))
+    (setq dumb-jump-default-project "~/code"
+          dumb-jump-selector 'completing-read
+          dumb-jump-prefer-searcher 'rg)
+    :hook (xref-backend-functions . dumb-jump-xref-activate))
 #+END_SRC
 
-Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/whitespace-cleanup-mode][whitespace-cleanup-mode]]. 
+** ElDoc
 
 #+BEGIN_SRC emacs-lisp
-(use-package whitespace-cleanup-mode
-  :init
-  (global-whitespace-cleanup-mode t)) ; Enabled globally
+(use-package eldoc)
 #+END_SRC
 
-** Undo Fu
+** Embark
 
-[[https://gitlab.com/ideasman42/emacs-undo-fu][Undo Fu]] - Simple,
-stable linear undo with redo for Emacs via a light weight wrapper for
-Emacs built-in undo system,
+[[https://github.com/oantolin/embark/][Embark]] is minibuffer actions rooted in keymaps which provides a sort
+of right-click contextual menu for Emacs, accessed through the
+embark-act command (which you should bind to a convenient key),
+offering you relevant actions to use on a target determined by the
+context:
 
 #+begin_src emacs-lisp
-  (use-package undo-fu
-    :config
-    :bind (("C-/" . undo-fu-only-undo)
-           ("C-M-/" . undo-fu-only-redo)))
+  (use-package embark
+    :bind
+    ("C-S-a" . embark-act))
+
+  ;; Consult integration.
+  (use-package embark-consult
+    :after (embark consult)
+    :demand t ; only necessary if you have the hook below
+    ;; if you want to have consult previews as you move around an
+    ;; auto-updating embark collect buffer
+    :hook
+    (embark-collect-mode . embark-consult-preview-minor-mode))
 #+end_src
 
-** Company
-
-Auto-completion via [[https://company-mode.github.io/][Company]].
+** Emmet
 
 #+BEGIN_SRC emacs-lisp
-  (use-package company
-    :init (global-company-mode)
-    :delight
-    :config
-    (setq company-tooltip-align-annotations t
-          company-tooltip-flip-when-above t
-          ;; Easy navigation to candidates with M-<n>
-          company-show-numbers t))
+(use-package emmet-mode
+  :bind ("C-<return>" . emmet-expand-line)
+  :config
+  (add-hook 'web-mode-hook 'emmet-mode)
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  (add-hook 'html-mode-hook 'emmet-mode))
 #+END_SRC
 
-[[https://github.com/rafalcieslak/emacs-company-terraform][Company-terraform]] is a Company backend for Terraform files.
+** Iedit
+
+Edit multiple regions in the same way simultaneously with [[https://github.com/victorhge/iedit][Iedit]].
 
 #+BEGIN_SRC emacs-lisp
-(use-package company-terraform
-  :after company
-  :config (company-terraform-init))
+(use-package iedit
+  :commands (iedit-mode iedit-rectangle-mode)
+  :bind ("C-;" . iedit-mode))
 #+END_SRC
 
 ** LSP
@@ -740,6 +558,97 @@ Auto-completion via [[https://company-mode.github.io/][Company]].
     :after lsp-mode)
 #+end_src
 
+** Magit
+
+[[https://magit.vc/][Magit]] the one and only Git frontend.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    ;; Don't lazy load, force loading to occur immediately and not
+    ;; establish an autoload for the bound key.  I do this so that Magit
+    ;; is around whent git committing from terminal via emacsclient,
+    ;; without it magit does not get loaded and you edit the commit
+    ;; message without magit's extras.
+    :demand t
+    :bind ("C-c g" . magit-status))
+#+END_SRC
+
+#+begin_src emacs-lisp
+  (use-package forge
+    :after magit
+    :custom
+    (forge-topic-list-limit '(60 . 0) "Maximum of 60 open topics and 0 closed topics."))
+#+end_src
+
+** Marginalia
+
+Enable richer annotations using the [[https://github.com/minad/marginalia/][Marginalia]] package, this shows
+short explanations next to items in the minibuffer.
+
+#+begin_src emacs-lisp
+  (use-package marginalia
+    ;; Either bind `marginalia-cycle` globally or only in the minibuffer
+    :bind (("M-A" . marginalia-cycle)
+           :map minibuffer-local-map
+           ("M-A" . marginalia-cycle))
+
+    ;; The :init configuration is always executed (Not lazy!)
+    :init
+
+    ;; Must be in the :init section of use-package such that the mode gets
+    ;; enabled right away. Note that this forces loading the package.
+    (marginalia-mode)
+
+    ;; When using Selectrum, ensure that Selectrum is refreshed when cycling annotations.
+    (advice-add #'marginalia-cycle :after
+                (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit 'keep-selected))))
+
+    ;; Prefer richer, more heavy, annotations over the lighter default variant.
+    ;; E.g. M-x will show the documentation string additional to the keybinding.
+    ;; By default only the keybinding is shown as annotation.
+    ;; Note that there is the command `marginalia-cycle' to
+    ;; switch between the annotators.
+    ;; (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  )
+#+end_src
+
+** Prescient
+
+[[https://github.com/raxod502/prescient.el][prescient.el]]: Supercharge the sorting and filtering for algorithm used
+for Selectrum and Company.
+
+#+begin_src emacs-lisp
+  (use-package prescient
+    :config
+    (prescient-persist-mode t))
+
+  (use-package selectrum-prescient
+    :requires selectrum
+    :config
+    (selectrum-prescient-mode t))
+
+  (use-package company-prescient
+    :requires company
+    :config
+    (company-prescient-mode t))
+#+end_src
+
+** Projectile
+
+Use [[https://github.com/bbatsov/projectile][Projectile]] which makes working within a project a lot nicer.  For
+example you can use search (with Ivy) for files just within the
+project.  A project is defined by a .git (others supported) in the top
+level dir.
+
+#+BEGIN_SRC emacs-lisp
+(use-package projectile
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1)
+  (setq projectile-enable-caching t
+  projectile-completion-system 'ivy))
+#+END_SRC
+
 ** Rainbow delimiters
 
 Highlight parens etc. by depth with [[https://www.emacswiki.org/emacs/RainbowDelimiters][Rainbow Delimiters]].
@@ -747,6 +656,74 @@ Highlight parens etc. by depth with [[https://www.emacswiki.org/emacs/RainbowDel
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
+#+END_SRC
+
+** Ripgrep
+
+[[https://github.com/dajva/rg.el][rg.el]] - Use ripgrep in Emacs.
+
+Ripgrep is my search tool of choice and has essentially completely
+replaced ~grep~ for me.
+
+Ripgrep is a replacement for both grep like (search one file) and ag
+like (search many files) tools. It's fast and versatile and written in
+Rust.
+
+#+begin_src emacs-lisp
+  (use-package rg
+    :config
+    (rg-enable-default-bindings))
+#+end_src
+
+** Selectrum
+
+[[https://github.com/raxod502/selectrum][Selectrum]] is a better solution for incremental narrowing in Emacs,
+replacing Helm, Ivy, and Ido.
+   
+#+begin_src emacs-lisp
+  (use-package selectrum
+    :config
+    (selectrum-mode t))
+#+end_src
+
+** Smart Mode Line
+
+Prettify the mode line with [[https://github.com/Malabarba/smart-mode-line][Smart Mode Line]].
+
+#+BEGIN_SRC emacs-lisp
+(use-package smart-mode-line
+  :config
+  (setq sml/no-confirm-load-theme t)
+  (setq sml/theme 'respectful)
+  (sml/setup)
+
+  ;; Shorten certain paths with 'directory prefixes'.
+  (add-to-list 'sml/replacer-regexp-list '("^~/code/dotfiles/" ":DOT:") t))
+#+END_SRC
+
+** Smart Tabs
+
+Use [[https://www.emacswiki.org/emacs/SmartTabs][Smart Tabs]] for certain langs/modes.  Smart Tabs offers semantic
+way of using tab characters in source code: tabs for indentation,
+spaces for alignment.
+
+#+BEGIN_SRC emacs-lisp
+(use-package smart-tabs-mode
+  :config
+  (smart-tabs-insinuate 'c 'c++ 'java 'javascript)
+)
+#+END_SRC
+
+** Smartparens
+
+Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartparens]].
+
+#+BEGIN_SRC emacs-lisp
+(use-package smartparens
+  :commands (smartparens-mode smartparens-strict-mode)
+  :config
+  (require 'smartparens-config)
+  (sp-use-smartparens-bindings))
 #+END_SRC
 
 ** Spelling
@@ -767,55 +744,78 @@ This also spellchecks spelling in programming mode but only within comments.
            (org-mode . spell-fu-mode)))
 #+end_src
 
-** Smartparens
+** Switch-window
 
-Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartparens]].
+Quickly switch between windows with [[https://github.com/dimitri/switch-window][switch-window]].
 
 #+BEGIN_SRC emacs-lisp
-(use-package smartparens
-  :commands (smartparens-mode smartparens-strict-mode)
+(use-package switch-window
+  :bind ("C-x o" . switch-window)
   :config
-  (require 'smartparens-config)
-  (sp-use-smartparens-bindings))
+  (setq switch-window-shortcut-style 'qwerty)
+  (setq switch-window-qwerty-shortcuts
+    '("a" "r" "s" "t" "n" "e" "i" "o"))
+  (setq switch-window-threshold 2))
 #+END_SRC
 
-** ElDoc
+** Undo Fu
+
+[[https://gitlab.com/ideasman42/emacs-undo-fu][Undo Fu]] - Simple,
+stable linear undo with redo for Emacs via a light weight wrapper for
+Emacs built-in undo system,
+
+#+begin_src emacs-lisp
+  (use-package undo-fu
+    :config
+    :bind (("C-/" . undo-fu-only-undo)
+           ("C-M-/" . undo-fu-only-redo)))
+#+end_src
+
+** Wgrep
+
+[[https://github.com/mhayashi1120/Emacs-wgrep][wgrep]]
+
+wgrep allows you to edit a grep buffer and apply those changes to the
+file buffer like sed interactively. No need to learn sed script, just
+learn Emacs.
+
+rg.el also integrates with wgrep out of the box.
+
+#+begin_src emacs-lisp
+  (use-package wgrep
+    :config
+    (setq wgrep-auto-save-buffer t))
+#+end_src
+
+** Which-key
+
+[[https://github.com/justbur/emacs-which-key][which-key]] is a package that displays available keybindings in popup.
 
 #+BEGIN_SRC emacs-lisp
-(use-package eldoc)
-#+END_SRC
-
-** Iedit
-
-Edit multiple regions in the same way simultaneously with [[https://github.com/victorhge/iedit][Iedit]].
-
-#+BEGIN_SRC emacs-lisp
-(use-package iedit
-  :commands (iedit-mode iedit-rectangle-mode)
-  :bind ("C-;" . iedit-mode))
-#+END_SRC
-
-** Cut/Copy/Comment current line if no region selected
-
-In many editors cut and copy act on the current line if no text is
-visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master/whole-line-or-region.el][whole-line-or-region]] does just that for Emacs.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package whole-line-or-region
-   :delight whole-line-or-region-local-mode
-   :config
-   (whole-line-or-region-global-mode t))
-#+END_SRC
-
-** Emmet
-
-#+BEGIN_SRC emacs-lisp
-(use-package emmet-mode
-  :bind ("C-<return>" . emmet-expand-line)
+(use-package which-key
   :config
-  (add-hook 'web-mode-hook 'emmet-mode)
-  (add-hook 'sgml-mode-hook 'emmet-mode)
-  (add-hook 'html-mode-hook 'emmet-mode))
+  (which-key-mode t)
+  :delight)
+#+END_SRC
+
+** Whitespace
+
+[[https://www.emacswiki.org/emacs/WhiteSpace][WhiteSpace]], a mode to toggle visibility of whitespace.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package whitespace
+    :bind ("C-c w" . whitespace-mode)
+    :config
+    (setq whitespace-line-column 80)
+    (setq whitespace-style '(face tabs spaces indentation lines-tail empty trailing)))
+#+END_SRC
+
+Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/whitespace-cleanup-mode][whitespace-cleanup-mode]]. 
+
+#+BEGIN_SRC emacs-lisp
+(use-package whitespace-cleanup-mode
+  :init
+  (global-whitespace-cleanup-mode t)) ; Enabled globally
 #+END_SRC
 
 ** YASnippet
