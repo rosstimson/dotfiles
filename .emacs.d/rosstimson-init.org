@@ -726,6 +726,19 @@ Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartpare
   (sp-use-smartparens-bindings))
 #+END_SRC
 
+** Smerge
+
+Smerge is a handy tool that helps resolve merge conflicts, however the
+default command prefix key binding is rather cumbersome so set it to
+something a bit nicer.
+
+#+begin_src emacs-lisp
+  (use-package smerge-mode
+    :ensure nil
+    :init
+    (setq smerge-command-prefix "\C-cv"))
+#+end_src
+
 ** Spelling
 
 Set location for personal dictionary.
