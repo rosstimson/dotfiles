@@ -1,6 +1,6 @@
 #
-# Copyright (C) 2008-2014 Sebastien Helleu <flashcode@flashtux.org>
-# Copyright (C) 2010-2015 Nils Görs <weechatter@arcor.de>
+# Copyright (C) 2008-2017 Sebastien Helleu <flashcode@flashtux.org>
+# Copyright (C) 2010-2017 Nils Görs <weechatter@arcor.de>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,6 +19,10 @@
 #
 # History:
 #
+# 2020-06-21, Sebastien Helleu <flashcode@flashtux.org>:
+#     version 4.4: make call to bar_new compatible with WeeChat >= 2.9
+# 2017-04-14, nils_2 <freenode.#weechat>
+#     version 4.3: add option "use_color" (https://github.com/weechat/scripts/issues/93)
 # 2016-07-08, nils_2 <weechatter@arcor.de>
 #     version 4.2: add diff function
 # 2016-02-06, Sebastien Helleu <flashcode@flashtux.org>:
@@ -130,7 +134,7 @@
 use strict;
 
 my $PRGNAME = "iset";
-my $VERSION = "4.2";
+my $VERSION = "4.4";
 my $DESCR   = "Interactive Set for configuration options";
 my $AUTHOR  = "Sebastien Helleu <flashcode\@flashtux.org>";
 my $LICENSE = "GPL3";
@@ -619,6 +623,10 @@ sub iset_refresh_line
                 }
             }
             my $value = $options_values[$y];
+            if (weechat::config_boolean($options_iset{"use_color"}) == 1 and $options_types[$y] eq "color")
+            {
+                $value = weechat::color($options_values[$y]) . $options_values[$y];
+            }
             if ($options_is_null[$y])
             {
                 $value = "null";
@@ -1509,6 +1517,10 @@ sub iset_config_init
         $iset_config_file, $section_look,
         "use_mute", "boolean", "/mute command will be used in input bar", "", 0, 0,
         "off", "off", 0, "", "", "", "", "", "");
+    $options_iset{"use_color"} = weechat::config_new_option(
+        $iset_config_file, $section_look,
+        "use_color", "boolean", "display the color value in the corresponding color", "", 0, 0,
+        "off", "off", 0, "", "", "full_refresh_cb", "", "", "");
 }
 
 sub iset_config_reload_cb
@@ -1608,9 +1620,18 @@ weechat::hook_signal("upgrade_ended", "iset_upgrade_ended", "");
 weechat::hook_signal("window_scrolled", "iset_signal_window_scrolled_cb", "");
 weechat::hook_signal("buffer_switch", "iset_signal_buffer_switch_cb","");
 weechat::bar_item_new("isetbar_help", "iset_item_cb", "");
-weechat::bar_new("isetbar", "on", "0", "window", "", "top", "horizontal",
-                 "vertical", "3", "3", "default", "cyan", "default", "1",
-                 "isetbar_help");
+if ($wee_version_number >= 0x02090000)
+{
+    weechat::bar_new("isetbar", "on", "0", "window", "", "top", "horizontal",
+                     "vertical", "3", "3", "default", "cyan", "default", "default", "1",
+                     "isetbar_help");
+}
+else
+{
+    weechat::bar_new("isetbar", "on", "0", "window", "", "top", "horizontal",
+                     "vertical", "3", "3", "default", "cyan", "default", "1",
+                     "isetbar_help");
+}
 weechat::hook_modifier("bar_condition_isetbar", "iset_check_condition_isetbar_cb", "");
 weechat::hook_config("*", "iset_config_cb", "");
 $iset_buffer = weechat::buffer_search($LANG, $PRGNAME);
