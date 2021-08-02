@@ -11,8 +11,8 @@ alias ~='cd $HOME'
 alias -- -='cd -'
 alias ..="cd .."
 alias ...="cd ../.."
-alias cg="cargo"
 alias bup='brew update && brew upgrade'
+alias cg='cargo'
 alias g='git'
 alias h='fc -li 1'
 alias ip='ip --color'
@@ -28,18 +28,14 @@ alias rup='rustup update'
 alias sc='shellcheck'
 alias showpath="echo \$PATH | tr -s ':' '\n'"
 alias t='tmux new-session -A -s rt'
+
+# Terraform
 alias tf='terraform'
-
-# Nix / Home Manager
-alias nxe='nix-env'
-alias nxs='nix-shell'
-alias nxu='nix-channel --update'
-
-alias hm='home-manager'
-alias hms='home-manager switch'
-alias hme='home-manager edit'
-alias hmg='home-manager generations'
-alias hmp='home-manager packages'
+alias tfa='terraform apply'
+alias tfi='terraform init'
+alias tfp='terraform plan'
+alias tfs='terraform state'
+alias tfw='terraform workspace'
 
 # Docker
 alias d='docker'
