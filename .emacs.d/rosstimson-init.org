@@ -636,17 +636,15 @@ for Selectrum and Company.
 ** Projectile
 
 Use [[https://github.com/bbatsov/projectile][Projectile]] which makes working within a project a lot nicer.  For
-example you can use search (with Ivy) for files just within the
-project.  A project is defined by a .git (others supported) in the top
-level dir.
+example you can search for files just within the project.  A project
+is defined by a .git (others supported) in the top level dir.
 
 #+BEGIN_SRC emacs-lisp
-(use-package projectile
-  :config
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1)
-  (setq projectile-enable-caching t
-  projectile-completion-system 'ivy))
+  (use-package projectile
+    :config
+    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+    (projectile-mode +1)
+    (setq projectile-enable-caching t))
 #+END_SRC
 
 ** Rainbow delimiters
