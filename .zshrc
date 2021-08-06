@@ -95,6 +95,14 @@ eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 
+# Auto Suggestions
+# --------------------------------------------------------------------
+
+# https://github.com/zsh-users/zsh-autosuggestions
+# Set the colour for the autosuggestion completions.  The tool/lib itself has
+# been installed simply by its inclusion in ~/.zsh/lib
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#878787'
+
 # For work
 # --------------------------------------------------------------------
 export VAULT_ADDR='https://vault.matillion-security.matillion.com:8200'
