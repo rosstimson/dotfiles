@@ -17,6 +17,19 @@
 	autocrlf = input
 	editor = emacsclient -t -a=
 
+[pager]
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
+
+# https://github.com/dandavison/delta
+[delta]
+	line-numbers = true
+	navigate = true
+#	side-by-side = true
+	syntax-theme = GitHub
+
 [pull]
 	ff = only
 
