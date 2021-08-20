@@ -425,6 +425,22 @@ function with ~consult-line~.
                 ("!" . consult-flycheck)))
 #+end_src
 
+** Crux
+
+[[https://github.com/bbatsov/crux][Crux]] -- A Collection of Ridiculously Useful eXtensions for Emacs.
+
+#+begin_src emacs-lisp
+  (use-package crux
+    :bind
+    ("C-k" . crux-smart-kill-line)
+    ("C-c n" . crux-cleanup-buffer-or-region)
+    ("C-S-RET" . crux-smart-open-line-above)
+    ("S-RET" . crux-smart-open-line)
+    ("C-Backspace" . crux-kill-line-backwards)
+    ("C-x C-u" . crux-upcase-region)
+    ("C-x C-l" . crux-downcase-region))
+#+end_src
+
 ** Cut/Copy/Comment current line if no region selected
 
 In many editors cut and copy act on the current line if no text is
