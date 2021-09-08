@@ -22,7 +22,7 @@ discharging_symbol = ""
 style = "cyan"
 
 [conda]
-symbol = " "
+symbol = "C "
 
 [custom.toolbox]
 when = """ test -e /run/.toolboxenv """
