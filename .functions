@@ -21,6 +21,14 @@ penv() {
 }
 
 
+# Show files open by a running process, also useful for finding the absolute
+# path of a process.
+# Example: pspath ssh-agent
+pspath() {
+	lsof -p $(pgrep "$1")
+}
+
+
 # Create a new Clojure application using Boot: https://boot-clj.com
 # Example: bna myapp
 bna() {
