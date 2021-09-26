@@ -1,15 +1,16 @@
 # ~/.zshrc
 #
-# Config for interactive zsh shells
-
-# Source common settings such as env vars.
-# shellcheck source=/home/rosstimson/.profile
-. "$HOME"/.profile
-
-# Remove duplicates in $PATH
-# $PATH gets set via .profile but duplicates can happen if zshrc gets sourced
-# multiple times e.g. when working on this config.
-typeset -U path
+# .zshenv -> .zprofile -> .zshrc
+#
+# .zshenv
+# Read every time.  Be careful not to modify default behaviour of
+# standard commands here such as setting aliases.
+#
+# .zprofile
+# Read at login.
+#
+# .zshrc
+# Read when interactive.
 
 
 # Setup --------------------------------------------------------------
@@ -26,6 +27,16 @@ for lib_file ($HOME/.zsh/lib/*.zsh); do
 done
 
 fpath=($HOME/.zsh/completions $fpath)
+
+
+# Source common aliases and functions
+# --------------------------------------------------------------------
+# shellcheck source=/home/rosstimson/.aliases
+# Aliases first as functions might make use of them, e.g. sudo vs doas.
+. "$HOME"/.aliases
+
+# shellcheck source=/home/rosstimson/.functions
+. "$HOME"/.functions
 
 
 # Zsh settings
@@ -51,7 +62,7 @@ REPORTTIME=10
 LISTMAX=0
 
 # ls colours, also need this present for colours in the prompt
-autoload colors; colors;  
+autoload colors; colors;
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
@@ -80,12 +91,67 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
 
+# Colours
+# --------------------------------------------------------------------
+
+# LS colours, made with http://geoff.greer.fm/lscolors/
+# BSD
+export LSCOLORS="exfxcxdxbxxeadabagacaf"
+
+# Linux
+export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=0;44:cd=30;43:su=30;41:sg=30;46:tw=30;42:ow=30;45"
+
+# exa colours (A modern replacement for ls written in Rust:  https://the.exa.website)
+# Turn off some of the colours as this many colours is just obnoxious.
+export EXA_COLORS="uu=0:gu=0:ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0"
+
+# Skim - Fuzzy finder written in Rust: https://github.com/lotabout/skim
+export SKIM_DEFAULT_OPTIONS='--layout=reverse --color=light,fg:8,bg:15,current_bg:7,matched_bg:10,current_match:8'
+
+# https://github.com/zsh-users/zsh-autosuggestions
+# Set the colour for the autosuggestion completions.  The tool/lib itself has
+# been installed simply by its inclusion in ~/.zsh/lib
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#878787'
+
+
+# SSH Agent
+# --------------------------------------------------------------------
+
+SSH_ENV="$HOME/.ssh/env"
+
+start_ssh_agent() {
+	echo 'Initialising new SSH agent...'
+	# Intentionally don't set full path to ssh-agent, let $PATH
+	# precedence take care of this.  This is especially important on
+	# macOS where it is sometimes preferable to install a newer
+	# version of OpenSSH via Homebrew, the path this gets installed
+	# varies depending on chip architecture so hardcoding would add
+	# complexity as you'd need some logic to set the path to the
+	# binary first.
+	ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+	echo 'Succeeded'
+	chmod 600 "${SSH_ENV}"
+	. "${SSH_ENV}" > /dev/null
+}
+
+# Source SSH settings, if applicable
+if [ -f "${SSH_ENV}" ]; then
+	. "${SSH_ENV}" > /dev/null
+	ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+		start_ssh_agent;
+	}
+else
+	start_ssh_agent;
+fi
+
+
 # Tools settings
 # --------------------------------------------------------------------
 
 # Zoxide (https://github.com/ajeetdsouza/zoxide)
 # Jump quickly to commonly used directories
 eval "$(zoxide init zsh)"
+
 
 
 # Prompt
@@ -102,9 +168,3 @@ eval "$(starship init zsh)"
 # Set the colour for the autosuggestion completions.  The tool/lib itself has
 # been installed simply by its inclusion in ~/.zsh/lib
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#878787'
-
-# For work
-# --------------------------------------------------------------------
-export VAULT_ADDR='https://vault.matillion-security.matillion.com:8200'
-
-eval $(vault-aws-creds.py -w)
