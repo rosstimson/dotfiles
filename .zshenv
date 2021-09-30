@@ -47,6 +47,7 @@ path=($HOME/.local/bin
 	  $HOME/.npm-global/bin
 	  $HOME/bin
 	  /usr/local/MacGPG2/bin(N-/)
+	  /opt/homebrew/bin(N-/)
 	  /Applications/Postgres.app/Contents/Versions/latest/bin(N-/)
 	  /usr/local/{bin,sbin}
 	  /usr/{bin,sbin}
