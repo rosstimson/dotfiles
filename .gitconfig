@@ -73,6 +73,7 @@
 	re = restore
 	rs = reset
 	s = status
+	sh = show
 	st = stash
 	stash-all = stash save --include-untracked
 	std = stash show -p
