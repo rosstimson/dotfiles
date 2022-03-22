@@ -35,6 +35,7 @@ alias tfa='terraform apply'
 alias tfi='terraform init'
 alias tfp='terraform plan'
 alias tfs='terraform state'
+alias tfv='terraform validate'
 alias tfw='terraform workspace'
 
 # Docker
