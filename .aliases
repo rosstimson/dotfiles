@@ -61,6 +61,9 @@ alias ds='docker stop'
 alias dsa='docker stop $(docker ps -a -q)'      # Stop all containers
 alias dt='docker tag'
 
+# Kubernetes
+alias k8s-start='colima start --runtime containerd --with-kubernetes'
+alias k8s-stop='colima stop'
 
 # Work
 alias vl='vault login -method=ldap username=ross.timson'
