@@ -40,8 +40,25 @@
 [commit]
 	gpgsign = true
 
+[diff]
+	tool = Kaleidoscope
+
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[difftool]
+	prompt = false
+
 [merge]
 	conflictstyle = diff3
+	tool = Kaleidoscope
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+
+[mergetool]
+	prompt = false
 
 [gpg]
 	program = gpg
@@ -64,7 +81,7 @@
 	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)%n''          %C(black)%s%C(reset) %C(magenta)- %an%C(reset)' --all
 	lr = pull --rebase
 	m = merge
-	mt = git mergetool --no-prompt
+	mt = mergetool --no-prompt
 	p = push
 	prune = fetch --prune
 	pu = push --set-upstream origin HEAD
@@ -81,3 +98,4 @@
 	t = tag
 	undo = reset --soft HEAD^
 	unstage = reset HEAD --
+
