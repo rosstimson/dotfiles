@@ -60,6 +60,13 @@ Set some defaults
   (cd "~/")                                         ; Start in $HOME
 #+END_SRC
 
+Completion settings, see [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Completion-Styles.html][Emacs Docs - Completion Options]] for details.
+
+#+begin_src emacs-lisp
+  (setq completion-styles '(partial-completion substring))
+  (setq completion-ignore-case t)
+#+end_src
+
 ** Personal information
 
 #+BEGIN_SRC emacs-lisp
