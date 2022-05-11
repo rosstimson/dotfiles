@@ -381,10 +381,13 @@ function with ~consult-line~.
            ("M-s k" . consult-keep-lines)
            ("M-s u" . consult-focus-lines)
            ;; Isearch integration
-           ("M-e" . consult-isearch)
+           ("M-s e" . consult-isearch-history)
            :map isearch-mode-map
-           ("M-e" . consult-isearch)                 ;; orig. isearch-edit-string
-           ("M-s l" . consult-line))                 ;; required by consult-line to detect isearch
+           ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
+           ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
+           ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
+           ("M-s L" . consult-line-multi))           ;; needed by consult-line to detect isearch
+
 
     ;; The :init configuration is always executed (Not lazy)
     :init
@@ -1219,9 +1222,12 @@ convenient bindings for running Cargo commands.
 [[https://github.com/syohex/emacs-terraform-mode][Terraform Mode]] is a major mode for editing Terraform files.
 
 #+BEGIN_SRC emacs-lisp
-(use-package terraform-mode
-  :config
-  (setq terraform-indent-level 2))
+  (use-package terraform-mode
+    :config
+    ;; Need to add this hook for formatting via 'terraform fmt' to work.
+    (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode)
+    (setq terraform-indent-level 2
+          terraform-format-on-save t))
 #+END_SRC
 
 ** Web Mode
@@ -1310,32 +1316,6 @@ whitespace can be weird.
 #+END_SRC
 
 * Extras
-** Email / mu4e
-
-#+BEGIN_SRC emacs-lisp
-(require 'smtpmail)
-
-(setq send-mail-function 'smtpmail-send-it
-      smtpmail-smtp-server "smtp.fastmail.com"
-      smtpmail-smtp-service 465
-      smtpmail-stream-type 'ssl)
-#+END_SRC
-
-Use [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]] to read email with Emacs.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package mu4e
-    :ensure nil
-    :load-path "/usr/local/share/emacs/site-lisp/mu4e"
-    :commands (mu4e mu4e-compose-new)
-    :config
-    (setq mu4e-maildir (expand-file-name "~/.mail/rosstimson")
-          mu4e-get-mail-command "mbsync -a"
-          mu4e-sent-folder "/Sent"
-          mu4e-drafts-folder "/Drafts"
-          mu4e-trash-folder "/Trash"))
-#+END_SRC
-
 ** Ediff
 
 #+begin_src emacs-lisp
