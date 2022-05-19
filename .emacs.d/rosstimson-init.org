@@ -1039,23 +1039,6 @@ Set active Org Babel languages
    (sql . t)))
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
-  (use-package org-caldav
-    :commands (org-caldav-sync)
-    :after org
-    :config
-    (setq org-caldav-debug-level 2
-          org-caldav-show-sync-results t
-          org-caldav-url "https://caldav.fastmail.com/dav/calendars/user/me@rosstimson.com"
-          org-icalendar-timezone "Europe/London"
-          ;; never delete anything at the CALDAV end
-          org-caldav-delete-calendar-entries 'never
-          org-caldav-inbox '(file+headline "~/org/cal.org" "Inbox")
-          org-caldav-files '("~/org/cal.org")
-          org-caldav-calendar-id "530726a6-d153-4195-b3dc-18f2985aea53"
-          org-caldav-sync-direction 'cal->org))
-#+end_src
-
 ** Markdown
 
 [[http://jblevins.org/projects/markdown-mode/][Markdown Mode]] is a major mode for Markdown offering syntax highlighting
