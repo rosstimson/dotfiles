@@ -55,7 +55,10 @@ Set some defaults
    load-prefer-newer t                              ; Prefers the newest version of a file
    vc-follow-symlinks t                             ; Always follow the symlinks
    view-read-only t                                 ; Always open read-only buffers in view-mode
-   calendar-week-start-day 1)                       ; Start calendar on Monday not Sunday
+   calendar-week-start-day 1                        ; Start calendar on Monday not Sunday
+   create-lockfiles nil                             ; No lockfiles, don't need them and they mess with Terraform
+  )                       
+
 
   (cd "~/")                                         ; Start in $HOME
 #+END_SRC
