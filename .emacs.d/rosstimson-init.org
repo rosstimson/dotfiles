@@ -298,6 +298,12 @@ I don't have the extra step.
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
 #+END_SRC
 
+Keyboard shortcut for quickly compiling code.
+
+#+begin_src emacs-lisp
+  (global-set-key [?\C-x ?c] 'compile)
+#+end_src
+
 ** Tabs vs Spaces
 
 Default to spaces for indentation.
@@ -1139,7 +1145,6 @@ work with.  This persuades Emacs to use makefile mode for ~justfile~.
     :init
     (setq compile-command "go build -v && go test -v")
     (setq compilation-read-command nil)
-    :bind ("C-c C-c" . compile)
     :hook (before-save . gofmt-before-save))
 #+END_SRC
 
