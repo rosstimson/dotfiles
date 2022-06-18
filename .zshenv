@@ -45,6 +45,7 @@ path=($HOME/.local/bin
 	  $GOPATH/bin
 	  $HOME/.cargo/bin
 	  $HOME/.npm-global/bin
+	  $HOME/.krew/bin
 	  $HOME/bin
 	  /usr/local/MacGPG2/bin(N-/)
 	  /opt/homebrew/bin(N-/)
