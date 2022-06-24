@@ -430,10 +430,6 @@ function with ~consult-line~.
     ;; Both < and C-+ work reasonably well.
     (setq consult-narrow-key "<") ;; (kbd "C-+")
 
-    ;; Optionally configure a function which returns the project root directory.
-    (autoload 'projectile-project-root "projectile")
-    (setq consult-project-root-function #'projectile-project-root)
-
     ;; Use `fd' for `consult-find', with the following arguments.
     ;; Ignore case, include hidden, show absolute path, and never colour.
     (setq consult-find-command "fd -i -H -a -c never OPTS ARG"))
@@ -568,7 +564,7 @@ Edit multiple regions in the same way simultaneously with [[https://github.com/v
   :bind ("C-;" . iedit-mode))
 #+END_SRC
 
-** LSP
+** Language Server Protocol (LSP)
 
 [[https://github.com/emacs-lsp/lsp-mode][LSP Mode]] -- Emacs client/library for the Language Server Protocol 
 
@@ -576,6 +572,7 @@ Edit multiple regions in the same way simultaneously with [[https://github.com/v
   (use-package lsp-mode
     :hook ((clojure-mode . lsp)
            (go-mode . lsp)
+           (java-mode . lsp-deferred)
            (js2-mode . lsp)
            (python-mode . lsp)
            (rust-mode . lsp)
@@ -583,7 +580,10 @@ Edit multiple regions in the same way simultaneously with [[https://github.com/v
     :commands lsp
     :config
     (setq lsp-rust-server 'rust-analyzer)
-    (setq lsp-terraform-server '("terraform-ls" "serve")))
+    (setq lsp-terraform-server '("terraform-ls" "serve"))
+    (setq lsp-restart 'auto-restart)
+  
+    (require 'dap-java))
 #+end_src
 
 [[https://github.com/emacs-lsp/lsp-ui][lsp-ui]] -- Add some extra UI enhancements to LSP Mode.
@@ -591,6 +591,30 @@ Edit multiple regions in the same way simultaneously with [[https://github.com/v
 #+begin_src emacs-lisp
   (use-package lsp-ui
     :after lsp-mode)
+#+end_src
+
+LSP needs some manual installation stuff for Java, that's what this
+next package is doing.  Also, you need to install the lang server, on
+MacOS that would be ~brew install jdtls~.
+
+#+begin_src emacs-lisp
+  (use-package lsp-java
+    :config (add-hook 'java-mode-hook 'lsp))
+#+end_src
+
+** Debug Adapter Protocol (DAP)
+
+[[https://emacs-lsp.github.io/dap-mode][DAP Mode]] - Emacs client/library for Debug Adapter Protocol is a wire
+protocol for communication between client and Debug Server. It's
+similar to the LSP but provides integration with debug server.
+
+#+begin_src emacs-lisp
+  (use-package dap-mode
+    :after lsp-mode
+    :config
+    (dap-auto-configure-mode)
+    (add-hook 'dap-stopped-hook
+              (lambda (arg) (call-interactively #'dap-hydra))))
 #+end_src
 
 ** Magit
@@ -667,20 +691,6 @@ for Selectrum and Company.
     :config
     (company-prescient-mode t))
 #+end_src
-
-** Projectile
-
-Use [[https://github.com/bbatsov/projectile][Projectile]] which makes working within a project a lot nicer.  For
-example you can search for files just within the project.  A project
-is defined by a .git (others supported) in the top level dir.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package projectile
-    :config
-    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-    (projectile-mode +1)
-    (setq projectile-enable-caching t))
-#+END_SRC
 
 ** Rainbow delimiters
 
