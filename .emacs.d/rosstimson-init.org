@@ -66,7 +66,7 @@ Set some defaults
 Completion settings, see [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Completion-Styles.html][Emacs Docs - Completion Options]] for details.
 
 #+begin_src emacs-lisp
-  (setq completion-styles '(partial-completion substring))
+  (setq completion-styles '(substring orderless basic))
   (setq completion-ignore-case t)
 #+end_src
 
@@ -621,7 +621,7 @@ similar to the LSP but provides integration with debug server.
 
 [[https://magit.vc/][Magit]] the one and only Git frontend.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package magit
     ;; Don't lazy load, force loading to occur immediately and not
     ;; establish an autoload for the bound key.  I do this so that Magit
@@ -630,13 +630,72 @@ similar to the LSP but provides integration with debug server.
     ;; message without magit's extras.
     :demand t
     :bind ("C-c g" . magit-status))
-#+END_SRC
+#+end_src
+
+[[https://magit.vc/manual/forge.html][Forge]] allows you to work with Git forges, such as Github and Gitlab,
+from the comfort of Magit and the rest of Emacs.
 
 #+begin_src emacs-lisp
   (use-package forge
     :after magit
     :custom
     (forge-topic-list-limit '(60 . 0) "Maximum of 60 open topics and 0 closed topics."))
+#+end_src
+
+** Vertico
+
+[[https://github.com/minad/vertico][Vertico]] provides a performant and minimalistic vertical completion UI
+based on the default completion system. The main focus of Vertico is
+to provide a UI which behaves correctly under all circumstances. By
+reusing the built-in facilities system, Vertico achieves full
+compatibility with built-in Emacs completion commands and completion
+tables.
+
+#+begin_src emacs-lisp
+  (use-package vertico
+    :init
+    (vertico-mode)
+
+    ;; Different scroll margin
+    ;; (setq vertico-scroll-margin 0)
+
+    ;; Show more candidates
+    ;; (setq vertico-count 20)
+
+    ;; Grow and shrink the Vertico minibuffer
+    ;; (setq vertico-resize t)
+
+    ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+    ;; (setq vertico-cycle t)
+    )
+#+end_src
+
+Persist history over Emacs restarts. Vertico sorts by history position.
+
+#+begin_src emacs-lisp
+  (use-package savehist
+    :init
+    (savehist-mode))
+#+end_src
+
+** Orderless
+
+[[https://github.com/oantolin/orderless][Orderless]] completion style that divides the pattern into
+space-separated components, and matches candidates that match all of
+the components in any order. Each component can match in any one of
+several ways: literally, as a regexp, as an initialism, in the flex
+style, or as multiple word prefixes. By default, regexp and literal
+matches are enabled.
+
+#+begin_src emacs-lisp
+  (use-package orderless
+    :init
+    ;; Configure a custom style dispatcher (see the Consult wiki)
+    ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+    ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+    (setq completion-styles '(orderless basic)
+          completion-category-defaults nil
+          completion-category-overrides '((file (styles partial-completion)))))
 #+end_src
 
 ** Marginalia
@@ -658,10 +717,6 @@ short explanations next to items in the minibuffer.
     ;; enabled right away. Note that this forces loading the package.
     (marginalia-mode)
 
-    ;; When using Selectrum, ensure that Selectrum is refreshed when cycling annotations.
-    (advice-add #'marginalia-cycle :after
-                (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit 'keep-selected))))
-
     ;; Prefer richer, more heavy, annotations over the lighter default variant.
     ;; E.g. M-x will show the documentation string additional to the keybinding.
     ;; By default only the keybinding is shown as annotation.
@@ -669,27 +724,6 @@ short explanations next to items in the minibuffer.
     ;; switch between the annotators.
     ;; (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
   )
-#+end_src
-
-** Prescient
-
-[[https://github.com/raxod502/prescient.el][prescient.el]]: Supercharge the sorting and filtering for algorithm used
-for Selectrum and Company.
-
-#+begin_src emacs-lisp
-  (use-package prescient
-    :config
-    (prescient-persist-mode t))
-
-  (use-package selectrum-prescient
-    :requires selectrum
-    :config
-    (selectrum-prescient-mode t))
-
-  (use-package company-prescient
-    :requires company
-    :config
-    (company-prescient-mode t))
 #+end_src
 
 ** Rainbow delimiters
@@ -716,17 +750,6 @@ Rust.
   (use-package rg
     :config
     (rg-enable-default-bindings))
-#+end_src
-
-** Selectrum
-
-[[https://github.com/raxod502/selectrum][Selectrum]] is a better solution for incremental narrowing in Emacs,
-replacing Helm, Ivy, and Ido.
-   
-#+begin_src emacs-lisp
-  (use-package selectrum
-    :config
-    (selectrum-mode t))
 #+end_src
 
 ** Smart Mode Line
