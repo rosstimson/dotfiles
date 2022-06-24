@@ -651,8 +651,23 @@ reusing the built-in facilities system, Vertico achieves full
 compatibility with built-in Emacs completion commands and completion
 tables.
 
+Note the keybinding being set here to ignore completion suggestions
+and just do.  Example of this issue is when trying to create a
+directory with dired called java but there is already a javascript
+directory, hitting return just uses the completion suggestion so you'd
+get an error about how you cannot create the directory as it already
+exists.  You can encounter this type of scenario frequently in other
+situations too. This Github issue has more details:
+[[https://github.com/minad/vertico/issues/211][https://github.com/minad/vertico/issues/211]]. The key binding should be
+there by default according to the Github issue but it doesn't seem to
+be set for me so I explicitly set it here.  The alternative to using
+this binding for ~vertico-exit-input~ would be to use C-p to put the
+line back up into the minibuffer text entry line rather than the
+completion suggestion.
+
 #+begin_src emacs-lisp
   (use-package vertico
+    :bind ("M-<return>" . vertico-exit-input)
     :init
     (vertico-mode)
 
