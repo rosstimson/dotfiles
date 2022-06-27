@@ -121,6 +121,13 @@
    ;; an easy way to work out how to customise that highlighing in
    ;; fact Github issues suggest it may not even be possible.
    `(lsp-ui-doc-background ((,class (:background ,bg-lighter))))
+
+;;; Vertico
+   ;; When using Vertico autocompletion the current line in the
+   ;; matches doesn't get fully highlighted which makes it difficult
+   ;; to see what one you're on, by inheriting hl-line we can use the
+   ;; normal current line highlighing.
+   `(vertico-current ((,class (:inherit hl-line :extend t))))
    ))
 
 
