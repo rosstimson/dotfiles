@@ -133,13 +133,6 @@ Stop the annoying bloody beeping.
 (setq visible-bell t)
 #+END_SRC
 
-Set default font.
-
-#+BEGIN_SRC emacs-lisp
-(add-to-list 'default-frame-alist
-             '(font . "FiraMono Nerd Font 13"))
-#+END_SRC
-
 Stop resizing the frame all the time and just start emacs maximised.
 
 #+BEGIN_SRC emacs-lisp
