@@ -246,7 +246,6 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
 #+BEGIN_SRC emacs-lisp
 (use-package eshell
   :commands eshell
-  :bind ("C-x e" . eshell)
   :init
   (setq eshell-aliases-file (concat user-emacs-directory "eshell.aliases")
         eshell-cmpl-ignore-case t
