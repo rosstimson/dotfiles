@@ -40,6 +40,7 @@
 [push]
 	default = simple
 	followTags = true
+	autoSetupRemote = true
 
 [commit]
 	gpgsign = true
@@ -88,7 +89,6 @@
 	mt = mergetool --no-prompt
 	p = push
 	prune = fetch --prune
-	pu = push --set-upstream origin HEAD
 	r = remote
 	rb = rebase
 	re = restore
