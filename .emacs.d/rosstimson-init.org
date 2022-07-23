@@ -113,7 +113,6 @@ Set some further UI options.
 #+BEGIN_SRC emacs-lisp
   (show-paren-mode 1)
   (blink-cursor-mode -1)
-  (set-cursor-color "#444")
   (global-hl-line-mode t)
   (line-number-mode t)
   (column-number-mode t)
@@ -154,14 +153,56 @@ Smooth scrolling.
       scroll-step 1)
 #+END_SRC
 
-Set my custom colour theme.
+Add my custom colour theme.
 
-#+BEGIN_SRC emacs-lisp
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'rosstimson-muted t)
-#+END_SRC
+#+begin_src emacs-lisp
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+  ;; Currently using modus themes as my default so I can toggle between
+  ;; light and dark depending on time of day so don't load my theme by
+  ;; default.
+  ;;(load-theme 'rosstimson-muted t)
+#+end_src
 
-Get a bunch of other themes.
+Get other nice themes.
+
+
+[[https://protesilaos.com/emacs/modus-themes][Modus Themes]] -- Modus Operandi (Light) and Modus Vivendi (Dark)
+Accessible themes for GNU Emacs, conforming with the highest standard
+for colour contrast between background and foreground values (WCAG
+AAA)
+
+#+begin_src emacs-lisp
+  (use-package modus-themes
+    :bind ("<f5>" . modus-themes-toggle)
+    :init
+    ;; Customizations should be done prior to loading the themes.
+    (setq modus-themes-italic-constructs t
+      modus-themes-bold-constructs nil
+      modus-themes-region '(bg-only no-extend))
+
+    ;; Load the theme files before enabling a theme
+    (modus-themes-load-themes)
+
+    :config
+    ;; Load the theme of your choice:
+    (modus-themes-load-operandi) ;; OR (modus-themes-load-vivendi)
+
+    ;; Settings for the modeline.
+    (setq modus-themes-mode-line '(accented borderless padded))
+
+    ;; Rich colours for completion matches.
+    (setq modus-themes-completions 'opinionated)
+
+    ;; Make Org mode headings nicer.
+    (setq modus-themes-headings
+          '((1 . (rainbow overline background 1.4))
+            (2 . (rainbow background 1.3))
+            (3 . (rainbow bold 1.2))
+            (t . (semilight 1.1))))
+
+          ;; Important!
+          (setq modus-themes-scale-headings t))
+#+end_src
 
 #+BEGIN_SRC emacs-lisp
 (use-package base16-theme)
