@@ -179,14 +179,7 @@ AAA)
     (setq modus-themes-italic-constructs t
       modus-themes-bold-constructs nil
       modus-themes-region '(bg-only no-extend))
-
-    ;; Load the theme files before enabling a theme
-    (modus-themes-load-themes)
-
-    :config
-    ;; Load the theme of your choice:
-    (modus-themes-load-operandi) ;; OR (modus-themes-load-vivendi)
-
+  
     ;; Settings for the modeline.
     (setq modus-themes-mode-line '(accented borderless padded))
 
@@ -200,8 +193,15 @@ AAA)
             (3 . (rainbow bold 1.2))
             (t . (semilight 1.1))))
 
-          ;; Important!
-          (setq modus-themes-scale-headings t))
+    ;; Important!
+    (setq modus-themes-scale-headings t)
+
+    ;; Load the theme files before enabling a theme
+    (modus-themes-load-themes)
+
+    :config
+    ;; Load the theme of your choice:
+    (modus-themes-load-operandi)) ;; OR (modus-themes-load-vivendi)
 #+end_src
 
 #+BEGIN_SRC emacs-lisp
