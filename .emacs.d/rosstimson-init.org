@@ -208,6 +208,21 @@ AAA)
 (use-package base16-theme)
 #+END_SRC
 
+Set a light or dark theme depending on the systems current appearance
+which I have set to 'auto' on my Macs meaning they will switch to dark
+mode at nighttime.
+
+#+begin_src emacs-lisp
+  (defun rt/apply-theme (appearance)
+    "Load theme, taking current system APPEARANCE into consideration."
+    (mapc #'disable-theme custom-enabled-themes)
+    (pcase appearance
+      ('light (load-theme 'modus-operandi t))
+      ('dark (load-theme 'modus-vivendi t))))
+
+  (add-hook 'ns-system-appearance-change-functions #'rt/apply-theme)
+#+end_src
+
 Allow easy movement between windows/splits.
 
 #+BEGIN_SRC emacs-lisp
