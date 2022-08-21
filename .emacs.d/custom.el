@@ -16,4 +16,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:height 140 :family "Dank Mono"))))
- '(variable-pitch ((t (:height 1.0 :family "Linux Libertine Display O")))))
+ '(variable-pitch ((t (:height 1.0 :family "ETBembo")))))
+
