@@ -170,7 +170,7 @@ eval "$(starship init zsh)"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#878787'
 
 
-# Conda
+# Conda (https://docs.conda.io/en/latest/miniconda.html)
 # -------------------------------------------------------------------
 
 # Set correct path if on an Apple Silicon Mac, Homebrew uses
@@ -196,10 +196,18 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# SDKMAN!
+# SDKMAN! (https://sdkman.io/)
 # -------------------------------------------------------------------
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
+# RVM (https://rvm.io/)
+# -------------------------------------------------------------------
+
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
