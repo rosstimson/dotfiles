@@ -17,7 +17,7 @@
 
 [core]
 	attributesfile = ~/.gitattributes
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore-global
 	autocrlf = input
 	editor = emacsclient -t -a=
 
