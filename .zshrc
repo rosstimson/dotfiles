@@ -117,32 +117,32 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#878787'
 # SSH Agent
 # --------------------------------------------------------------------
 
-SSH_ENV="$HOME/.ssh/env"
+# SSH_ENV="$HOME/.ssh/env"
 
-start_ssh_agent() {
-	echo 'Initialising new SSH agent...'
-	# Intentionally don't set full path to ssh-agent, let $PATH
-	# precedence take care of this.  This is especially important on
-	# macOS where it is sometimes preferable to install a newer
-	# version of OpenSSH via Homebrew, the path this gets installed
-	# varies depending on chip architecture so hardcoding would add
-	# complexity as you'd need some logic to set the path to the
-	# binary first.
-	ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-	echo 'Succeeded'
-	chmod 600 "${SSH_ENV}"
-	. "${SSH_ENV}" > /dev/null
-}
+# start_ssh_agent() {
+# 	echo 'Initialising new SSH agent...'
+# 	# Intentionally don't set full path to ssh-agent, let $PATH
+# 	# precedence take care of this.  This is especially important on
+# 	# macOS where it is sometimes preferable to install a newer
+# 	# version of OpenSSH via Homebrew, the path this gets installed
+# 	# varies depending on chip architecture so hardcoding would add
+# 	# complexity as you'd need some logic to set the path to the
+# 	# binary first.
+# 	ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+# 	echo 'Succeeded'
+# 	chmod 600 "${SSH_ENV}"
+# 	. "${SSH_ENV}" > /dev/null
+# }
 
-# Source SSH settings, if applicable
-if [ -f "${SSH_ENV}" ]; then
-	. "${SSH_ENV}" > /dev/null
-	ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-		start_ssh_agent;
-	}
-else
-	start_ssh_agent;
-fi
+# # Source SSH settings, if applicable
+# if [ -f "${SSH_ENV}" ]; then
+# 	. "${SSH_ENV}" > /dev/null
+# 	ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+# 		start_ssh_agent;
+# 	}
+# else
+# 	start_ssh_agent;
+# fi
 
 
 # Tools settings

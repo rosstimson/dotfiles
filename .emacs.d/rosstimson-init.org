@@ -63,6 +63,15 @@ Set some defaults
   (cd "~/")                                         ; Start in $HOME
 #+END_SRC
 
+Use GNU ~ls~ from the ~coreutils~ package when on macOS.
+
+#+begin_src emacs-lisp
+  (when (string= system-type "darwin")
+    (setq dired-use-ls-dired t
+          insert-directory-program "gls"
+          dired-listing-switches "-aBhl --group-directories-first"))
+#+end_src
+
 Completion settings, see [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Completion-Styles.html][Emacs Docs - Completion Options]] for details.
 
 #+begin_src emacs-lisp
@@ -188,13 +197,13 @@ AAA)
 
     ;; Make Org mode headings nicer.
     (setq modus-themes-headings
-	'((0 . (variable-pitch light (height 2.2)))
-	  (1 . (variable-pitch light (height 1.6)))
-	  (2 . (variable-pitch light (height 1.4)))
-	  (3 . (variable-pitch regular (height 1.3)))
-	  (4 . (regular (height 1.2)))
-	  (5 . ((height 1.1)))
-	  (t . (variable-pitch extrabold))))
+          '((0 . (variable-pitch (height 2.2)))
+            (1 . (variable-pitch (height 1.8)))
+            (2 . (variable-pitch monochrome (height 1.4)))
+            (3 . (variable-pitch monochrome (height 1.3)))
+            (4 . (variable-pitch monochrome (height 1.2)))
+            (5 . (variable-pitch monochrome (height 1.1)))
+            (t . (variable-pitch monochrome))))
 
     ;; Important!
     (setq modus-themes-scale-headings t)
