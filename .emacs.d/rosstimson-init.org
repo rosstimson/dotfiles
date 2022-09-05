@@ -72,7 +72,16 @@ Use GNU ~ls~ from the ~coreutils~ package when on macOS.
           dired-listing-switches "-aBhl --group-directories-first"))
 #+end_src
 
-Completion settings, see [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Completion-Styles.html][Emacs Docs - Completion Options]] for details.
+Don't bombard me with elisp compilation warnings when initialising new
+or updated packages.
+
+#+begin_src emacs-lisp
+  (setq warning-minimum-level :error)
+#+end_src
+
+Completion settings, see
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Completion-Styles.html][Emacs
+Docs - Completion Options]] for details.
 
 #+begin_src emacs-lisp
   (setq completion-styles '(substring orderless basic))
