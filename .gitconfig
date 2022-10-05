@@ -6,7 +6,7 @@
 [user]
 	name = Ross Timson
 	email = me@rosstimson.com
-	SigningKey = 0x667A3481E4BB34F3
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFLG4jA01/e+2YsYsRVkwsimmDKwCu6oZUTGo79sSZm5
 
 # Conditionally set work email when in work dir.
 [includeIf "gitdir:~/code/work/"]
@@ -69,7 +69,10 @@
 	prompt = false
 
 [gpg]
-	program = gpg
+	format = ssh
+
+[gpg "ssh"]
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
 [alias]
 	a = add
