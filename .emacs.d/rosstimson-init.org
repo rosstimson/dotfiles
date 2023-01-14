@@ -195,12 +195,13 @@ AAA)
 
 #+begin_src emacs-lisp
   (use-package modus-themes
+    :demand t
     :bind ("<f5>" . modus-themes-toggle)
-    :init
+    :config
     ;; Customizations should be done prior to loading the themes.
     (setq modus-themes-italic-constructs t
-          modus-themes-bold-constructs nil
-          modus-themes-region '(accented))
+      modus-themes-bold-constructs nil
+      modus-themes-region '(accented))
 
     ;; Settings for the modeline.
     (setq modus-themes-mode-line '(accented borderless padded))
@@ -210,23 +211,19 @@ AAA)
 
     ;; Make Org mode headings nicer.
     (setq modus-themes-headings
-          '((0 . (variable-pitch (height 2.2)))
-            (1 . (variable-pitch monochrome (height 2.0)))
-            (2 . (variable-pitch monochrome (height 1.7)))
-            (3 . (variable-pitch monochrome (height 1.5)))
-            (4 . (variable-pitch monochrome (height 1.2)))
-            (5 . (variable-pitch monochrome (height 1.0)))
-            (t . (variable-pitch monochrome))))
+      '((0 . (variable-pitch (height 2.2)))
+        (1 . (variable-pitch monochrome (height 2.0)))
+        (2 . (variable-pitch monochrome (height 1.7)))
+        (3 . (variable-pitch monochrome (height 1.5)))
+        (4 . (variable-pitch monochrome (height 1.2)))
+        (5 . (variable-pitch monochrome (height 1.0)))
+        (t . (variable-pitch monochrome))))
 
     ;; Important!
     (setq modus-themes-scale-headings t)
 
-    ;; Load the theme files before enabling a theme
-    (modus-themes-load-themes)
-
-    :config
-    ;; Load the theme of your choice:
-    (modus-themes-load-operandi)) ;; OR (modus-themes-load-vivendi)
+    ;; Load the theme of your choice.
+    (load-theme 'modus-operandi :no-confirm))
 #+end_src
 
 Set a light or dark theme depending on the systems current appearance
@@ -407,6 +404,15 @@ Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy
   (avy-setup-default))
 #+END_SRC
 
+** Blackout
+
+[[https://github.com/radian-software/blackout][Blackout]] is a package which allows you to hide or customize the
+display of major and minor modes in the mode line.
+
+#+begin_src emacs-lisp
+  (use-package blackout)
+#+end_src
+
 ** Company
 
 Auto-completion via [[https://company-mode.github.io/][Company]].
@@ -536,15 +542,6 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
    :config
    (whole-line-or-region-global-mode t))
 #+END_SRC
-
-** Blackout
-
-[[https://github.com/radian-software/blackout][Blackout]] is a package which allows you to hide or customize the
-display of major and minor modes in the mode line.
-
-#+begin_src emacs-lisp
-  (use-package blackout)
-#+end_src
 
 ** Denote
 
