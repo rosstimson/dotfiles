@@ -181,6 +181,12 @@ Add my custom colour theme.
 
 Get other nice themes.
 
+#+BEGIN_SRC emacs-lisp
+  (use-package base16-theme)
+  (use-package ef-themes)
+#+END_SRC
+
+Configure my main theme.
 
 [[https://protesilaos.com/emacs/modus-themes][Modus Themes]] -- Modus Operandi (Light) and Modus Vivendi (Dark)
 Accessible themes for GNU Emacs, conforming with the highest standard
@@ -222,10 +228,6 @@ AAA)
     ;; Load the theme of your choice:
     (modus-themes-load-operandi)) ;; OR (modus-themes-load-vivendi)
 #+end_src
-
-#+BEGIN_SRC emacs-lisp
-(use-package base16-theme)
-#+END_SRC
 
 Set a light or dark theme depending on the systems current appearance
 which I have set to 'auto' on my Macs meaning they will switch to dark
