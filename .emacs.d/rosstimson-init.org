@@ -414,7 +414,7 @@ Auto-completion via [[https://company-mode.github.io/][Company]].
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :init (global-company-mode)
-    :delight
+    :blackout
     :config
     (setq company-tooltip-align-annotations t
           company-tooltip-flip-when-above t
@@ -532,15 +532,18 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
 
 #+BEGIN_SRC emacs-lisp
   (use-package whole-line-or-region
-   :delight whole-line-or-region-local-mode
+   :blackout whole-line-or-region-local-mode
    :config
    (whole-line-or-region-global-mode t))
 #+END_SRC
 
-** Delight
+** Blackout
+
+[[https://github.com/radian-software/blackout][Blackout]] is a package which allows you to hide or customize the
+display of major and minor modes in the mode line.
 
 #+begin_src emacs-lisp
-  (use-package delight)
+  (use-package blackout)
 #+end_src
 
 ** Denote
@@ -1030,7 +1033,7 @@ rg.el also integrates with wgrep out of the box.
 (use-package which-key
   :config
   (which-key-mode t)
-  :delight)
+  :blackout)
 #+END_SRC
 
 ** Whitespace
@@ -1283,7 +1286,7 @@ Generate table of contents within Markdown files with [[https://github.com/ardum
 
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-toc
-    :delight)
+    :blackout)
 #+END_SRC
 
 ** YAML
@@ -1426,7 +1429,7 @@ convenient bindings for running Cargo commands.
     ;; This choice of keybinding leaves cider-macroexpand-1 unbound
     (cljr-add-keybindings-with-prefix "C-c C-r")
     (setq cljr-warn-on-eval nil)
-    :delight)
+    :blackout)
 #+END_SRC
 
 ** Terraform
