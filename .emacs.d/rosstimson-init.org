@@ -404,6 +404,18 @@ Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy
   (avy-setup-default))
 #+END_SRC
 
+** Beacon
+
+[[https://github.com/Malabarba/beacon][Beacon]] - A light that follows your cursor around so you don't lose it.
+
+#+begin_src emacs-lisp
+  (use-package beacon
+    :custom
+    (beacon-size 60)
+    :config
+    (beacon-mode 1))
+#+end_src
+
 ** Blackout
 
 [[https://github.com/radian-software/blackout][Blackout]] is a package which allows you to hide or customize the
@@ -591,7 +603,8 @@ limitations.
 Use human readable file sizes.
 
 #+BEGIN_SRC emacs-lisp
-  (setq dired-listing-switches "-lah")
+  (setq dired-listing-switches
+        "-l --all --human-readable --group-directories-first")
 #+END_SRC
 
 Allow visiting of files via 'a' key which won't create multiple Dired
