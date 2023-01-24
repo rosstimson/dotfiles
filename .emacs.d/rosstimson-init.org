@@ -391,6 +391,17 @@ Quickly follow links with [[https://github.com/abo-abo/ace-link][Ace-link]].
   (define-key org-mode-map (kbd "M-o") 'ace-link-org))
 #+END_SRC
 
+** All The Icons
+
+[[https://github.com/domtronn/all-the-icons.el][All the Icons]] is a utility package to collect various Icon Fonts and
+propertize them within Emacs.  It is used for different filetype icons
+in Dirvish etc.
+
+#+begin_src emacs-lisp
+  (use-package all-the-icons
+    :if (display-graphic-p))
+#+end_src
+
 ** Avy
 
 Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy]].
@@ -627,11 +638,14 @@ warning message will appear.
     (dirvish-quick-access-entries
      '(("h" "~/"              "Home")
        ("c" "~/code/"         "Code")
-       ("." "~/.dotfiles/"    "Dotfilesn")
+       ("." "~/.dotfiles/"    "Dotfiles")
        ("d" "~/Downloads/"    "Downloads")
        ("w" "~/code/work/"    "Work")
        ))
     :config
+    (setq delete-by-moving-to-trash t)
+    (setq dirvish-attributes
+          '(all-the-icons file-time file-size collapse subtree-state vc-state git-msg))
     :bind ; Bind `dirvish|dirvish-side|dirvish-dwim' as you see fit
     (("C-c f" . dirvish-fd)
      :map dirvish-mode-map ; Dirvish inherits `dired-mode-map'
