@@ -1122,7 +1122,7 @@ the official collection of snippets for many languages.
 
     :config
     (setq org-startup-indented t
-          org-ellipsis "  " ;; folding symbol
+          org-ellipsis "  " ;; folding symbol
           org-pretty-entities t
           org-hide-emphasis-markers t
           ;; show actually italicized text instead of /italicized text/
