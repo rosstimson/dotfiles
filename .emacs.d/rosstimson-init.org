@@ -645,7 +645,7 @@ warning message will appear.
     :config
     (setq delete-by-moving-to-trash t)
     (setq dirvish-attributes
-          '(all-the-icons file-time file-size collapse subtree-state vc-state git-msg))
+          '(all-the-icons file-time file-size collapse subtree-state))
     :bind ; Bind `dirvish|dirvish-side|dirvish-dwim' as you see fit
     (("C-c f" . dirvish-fd)
      :map dirvish-mode-map ; Dirvish inherits `dired-mode-map'
