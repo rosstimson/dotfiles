@@ -182,6 +182,12 @@ else
 	homebrew_path='/usr/local'
 fi
 
+# Chruby -- simple helper to change Rubies
+# https://github.com/postmodern/chruby
+source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
+# Set a default Ruby version.
+chruby ruby-3.2.0
+
 
 __conda_setup="$("${homebrew_path}/Caskroom/miniconda/base/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
@@ -202,12 +208,3 @@ unset __conda_setup
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-
-# RVM (https://rvm.io/)
-# -------------------------------------------------------------------
-
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
