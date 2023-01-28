@@ -1,0 +1,8 @@
+# Ignore everything in ~/.ssh except ~/.ssh/config
+
+.ssh/*
+!.ssh/config
+
+# Ignore transient junk
+
+.local/state
