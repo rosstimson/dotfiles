@@ -1,8 +1,17 @@
 # Ignore everything in ~/.ssh except ~/.ssh/config
-
 .ssh/*
 !.ssh/config
 
 # Ignore transient junk
+.local/*
+!.local/applications
+!.local/rofi/themes
 
-.local/state
+.gnupg/*
+!.gnupg/gpg-agent.conf
+!.gnupg/gpg.conf
+!.gnupg/scdaemon.conf
+
+.emacs.d/spell-fu
+
+.vim/pack/minpac/start
