@@ -1,0 +1,4 @@
+# Do not stow (i.e. symlink) the following:
+
+Makefile
+
