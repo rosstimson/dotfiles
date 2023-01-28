@@ -170,6 +170,16 @@ eval "$(starship init zsh)"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#878787'
 
 
+# chruby 
+# -------------------------------------------------------------------
+#
+# A simple helper to change Rubies
+# https://github.com/postmodern/chruby
+source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
+# Set a default Ruby version.
+chruby ruby-3.2.0
+
+
 # Conda (https://docs.conda.io/en/latest/miniconda.html)
 # -------------------------------------------------------------------
 
@@ -181,13 +191,6 @@ if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "arm64" ] ; then
 else
 	homebrew_path='/usr/local'
 fi
-
-# Chruby -- simple helper to change Rubies
-# https://github.com/postmodern/chruby
-source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
-# Set a default Ruby version.
-chruby ruby-3.2.0
-
 
 __conda_setup="$("${homebrew_path}/Caskroom/miniconda/base/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
@@ -202,9 +205,17 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
 # SDKMAN! (https://sdkman.io/)
 # -------------------------------------------------------------------
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+
+
+# Work
+# -------------------------------------------------------------------
+
+WORK_CONFIG=~/.zshrc-work && test -f $WORK_CONFIG && source $WORK_CONFIG
+
