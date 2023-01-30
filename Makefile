@@ -1,4 +1,4 @@
-# ~/dotfiles/Makefile
+# ~/.dotfiles/Makefile
 # $HOME Sweet $HOME
 
 # List out all dotfiles except .git so that we can iteratively copy them.
