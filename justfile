@@ -16,12 +16,12 @@ install:
 	touch ~/.sh_history
 
 	# Symlink all files with GNU Stow.
-	stow --target=~ .
+	stow -v -R --target=$HOME .
 
 # remove all stowed symlinks
 uninstall:
-	stow -D --target=~ .
+	stow -D --target=$HOME .
 
 # dry run of stow
 dry:
-	stow -n --target=~ .
+	stow -v -R -n --target=$HOME .

@@ -1,4 +1,7 @@
 # Do not stow (i.e. symlink) the following:
 
+.git
 Makefile
+justfile
+README.md
 
