@@ -307,7 +307,7 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
   ;; ibuffer-auto-mode is a minor mode that automatically keeps the
   ;; buffer list up to date.
   (add-hook 'ibuffer-mode-hook
-            '(lambda ()
+            #'(lambda ()
               (ibuffer-auto-mode 1)
               (ibuffer-switch-to-saved-filter-groups "default")))
 
@@ -341,7 +341,7 @@ Make C-l clear eshell screen just as it would a normal shell.
         (eshell-send-input)))
 
 (add-hook 'eshell-mode-hook
-'(lambda()
+#'(lambda()
   (local-set-key (kbd "C-l") 'eshell-clear-buffer)))
 #+END_SRC
 
