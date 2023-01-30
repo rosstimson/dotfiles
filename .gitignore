@@ -17,5 +17,6 @@
 .emacs.d/eln-cache
 .emacs.d/history
 .emacs.d/spell-fu
+.emacs.d/straight/
 
 .vim/pack/minpac/start
