@@ -5,18 +5,22 @@
 
 # Ignore transient junk
 # ------------------------------------------------------------------
-.local/*
-!.local/applications
-!.local/rofi/themes
+.config/iterm2/
+
+.emacs.d/eln-cache
+.emacs.d/forge-database.sqlite
+.emacs.d/history
+.emacs.d/spell-fu
+.emacs.d/straight/
+.emacs.d/transient/
 
 .gnupg/*
 !.gnupg/gpg-agent.conf
 !.gnupg/gpg.conf
 !.gnupg/scdaemon.conf
 
-.emacs.d/eln-cache
-.emacs.d/history
-.emacs.d/spell-fu
-.emacs.d/straight/
+.local/*
+!.local/applications
+!.local/rofi/themes
 
 .vim/pack/minpac/start
