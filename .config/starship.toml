@@ -57,6 +57,9 @@ deleted = "x"
 [golang]
 symbol = " "
 
+[helm]
+style = "blue"
+
 [hg_branch]
 symbol = " "
 
