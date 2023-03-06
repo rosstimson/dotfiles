@@ -113,6 +113,10 @@ export SKIM_DEFAULT_OPTIONS='--layout=reverse --color=light,fg:8,bg:15,current_b
 # been installed simply by its inclusion in ~/.zsh/lib
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#878787'
 
+# kubectx - https://github.com/ahmetb/kubectx#customizing-colors
+export KUBECTX_CURRENT_FGCOLOR=$(tput setaf 6) # blue text
+export KUBECTX_CURRENT_BGCOLOR=$(tput setab 7) # white background
+
 
 # SSH Agent
 # --------------------------------------------------------------------
