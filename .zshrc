@@ -174,48 +174,11 @@ eval "$(starship init zsh)"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#878787'
 
 
-# chruby 
-# -------------------------------------------------------------------
-#
-# A simple helper to change Rubies
-# https://github.com/postmodern/chruby
-source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
-# Set a default Ruby version.
-chruby ruby-3.2.0
+# asdf (https://asdf-vm.com)
+# Manage multiple runtime versions with a single CLI tool
+# --------------------------------------------------------------------
 
-
-# Conda (https://docs.conda.io/en/latest/miniconda.html)
-# -------------------------------------------------------------------
-
-# Set correct path if on an Apple Silicon Mac, Homebrew uses
-# /opt/homebrew when on the arm64 (Apple Silicon) architecture whereas
-# any other time it'd be /usr/local.
-# if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "arm64" ] ; then
-# 	homebrew_path='/opt/homebrew'
-# else
-# 	homebrew_path='/usr/local'
-# fi
-
-__conda_setup="$("$(brew --prefix)/Caskroom/miniconda/base/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$(brew --prefix)/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "$(brew --prefix)/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="$(brew --prefix)/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-
-# SDKMAN! (https://sdkman.io/)
-# -------------------------------------------------------------------
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="${HOME}/.sdkman"
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+source $(brew --prefix)/opt/asdf/libexec/asdf.sh
 
 
 # Work
