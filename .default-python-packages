@@ -1,0 +1,5 @@
+pipx
+poetry
+python-lsp-server
+ruff-lsp
+
