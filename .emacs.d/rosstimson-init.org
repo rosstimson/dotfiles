@@ -743,6 +743,7 @@ Edit multiple regions in the same way simultaneously with [[https://github.com/v
            (java-mode . lsp-deferred)
            (js2-mode . lsp)
            (python-mode . lsp)
+           (ruby-mode . lsp)
            (rust-mode . lsp)
            (terraform-mode . lsp))
     :commands lsp
@@ -750,7 +751,7 @@ Edit multiple regions in the same way simultaneously with [[https://github.com/v
     (setq lsp-rust-server 'rust-analyzer)
     (setq lsp-terraform-server '("terraform-ls" "serve"))
     (setq lsp-restart 'auto-restart)
-  
+
     (require 'dap-java))
 #+end_src
 
