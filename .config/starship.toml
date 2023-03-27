@@ -24,13 +24,6 @@ style = "cyan"
 [conda]
 symbol = "C "
 
-[custom.toolbox]
-when = """ test -e /run/.toolboxenv """
-format = "  in toolbox "
-#command = "echo toolbox"
-#prefix = "in "
-#symbol = "  "
-
 [directory]
 style = "green"
 
