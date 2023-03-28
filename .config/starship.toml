@@ -5,10 +5,10 @@ add_newline = false
 # with git prompt on larger repos.
 command_timeout = 1000
 
-# Replace the "❯" symbol in the prompt with "➜"
+# replace the "❯" symbol in the prompt with "$", keeping it old skool.
 [character]
-success_symbol = "[➜](black)"
-error_symbol = "✖"
+success_symbol = "[\\$](black)"
+error_symbol = "x"
 
 [aws]
 disabled = true
