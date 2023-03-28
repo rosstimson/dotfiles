@@ -16,6 +16,14 @@ font:
 startup_mode: Maximized
 decorations: none
 
+shell:
+  program: /opt/homebrew/bin/tmux
+  args:
+    - new-session
+    - -A
+    - -s
+    - rt
+
 window:
   padding:
     x: 12
