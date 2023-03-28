@@ -5,15 +5,16 @@ font:
     style: Regular
   bold:
     family: FuraMono Nerd Font
-    style: Bold
+    style: Regular
   italic:
     family: FuraMono Nerd Font
     style: Italic
   bold_italic:
     family: FuraMono Nerd Font
-    style: Bold Italic
+    style: Italic
 
 startup_mode: Maximized
+decorations: none
 
 window:
   padding:
@@ -44,3 +45,8 @@ colors:
    magenta: '0xb3a0bd'
    cyan:    '0xa0bdb3'
    white:   '0xffffff'
+
+key_bindings:
+  # This fixes Option-v (Meta-v) key on macOS, this is used in Tmux selection
+  # mode to scroll up when using Emacs bindings.
+  - { key: V,         mods: Alt,       chars: "\x1bv"                       }
