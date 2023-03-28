@@ -49,4 +49,5 @@ colors:
 key_bindings:
   # This fixes Option-v (Meta-v) key on macOS, this is used in Tmux selection
   # mode to scroll up when using Emacs bindings.
-  - { key: V,         mods: Alt,       chars: "\x1bv"                       }
+  - { key: V,  mods: Alt,  chars: "\x1bv" }  # Scroll up a page
+  - { key: W,  mods: Alt,  chars: "\x1bw" }  # Copy selection
