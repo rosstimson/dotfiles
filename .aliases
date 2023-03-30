@@ -29,6 +29,16 @@ alias sc='shellcheck'
 alias showpath="echo \$PATH | tr -s ':' '\n'"
 alias t='tmux new-session -A -s rt'
 
+# Bundler
+alias bi='bundle install'
+alias be='bundle exec'
+
+# Rails
+alias r='rails'
+alias rc='rails console'
+alias rm='rails db:migrate'
+alias rgen='rails generate'
+
 # Terraform
 alias tf='terraform'
 alias tfa='terraform apply'
@@ -69,3 +79,4 @@ alias k8s-stop='colima stop'
 alias vl='vault login -method=oidc -path=okta'
 alias vpn='_ openvpn --config /etc/openvpn/client/matillion.conf'
 alias unaws='unset $(env | grep "^AWS_" | egrep -o "^[^=]+")'
+
