@@ -35,8 +35,8 @@ alias be='bundle exec'
 
 # Rails
 alias r='rails'
-alias rc='rails console'
-alias rm='rails db:migrate'
+alias rcon='rails console'
+alias rmig='rails db:migrate'
 alias rgen='rails generate'
 
 # Terraform
