@@ -85,3 +85,5 @@ key_bindings:
   # mode to scroll up when using Emacs bindings.
   - { key: V,  mods: Alt,  chars: "\x1bv" }  # Scroll up a page
   - { key: W,  mods: Alt,  chars: "\x1bw" }  # Copy selection
+  - { key: X,  mods: Alt,  chars: "\x1bx" }  # Used in Emacs lots
+  - { key: Q,  mods: Alt,  chars: "\x1bq" }  # Emacs fill-paragraph / format text
