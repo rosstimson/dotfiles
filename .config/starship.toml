@@ -10,88 +10,19 @@ command_timeout = 1000
 success_symbol = "[\\$](black)"
 error_symbol = "x"
 
-[aws]
-disabled = true
-
-[battery]
-full_symbol = ""
-charging_symbol = ""
-discharging_symbol = ""
-
 [cmd_duration]
 style = "cyan"
-
-[conda]
-symbol = "C "
 
 [directory]
 style = "green"
 
-[docker_context]
-symbol = " "
+
+# Disabled
+# ----------------------------------------------------------------------------
+
+[aws]
+disabled = true
 
 # Disable GCloud module as it permanently shows cruft in the prompt
 [gcloud]
 disabled = true
-
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
-[git_branch]
-symbol = " "
-style = "blue"
-
-[git_status]
-deleted = "x"
-
-[golang]
-symbol = " "
-
-[helm]
-style = "blue"
-
-[hg_branch]
-symbol = " "
-
-[java]
-symbol = " "
-style = "purple"
-
-[julia]
-symbol = " "
-
-[memory_usage]
-symbol = " "
-
-[nix_shell]
-symbol = " "
-
-[nodejs]
-symbol = " "
-style = "green"
-
-[package]
-symbol = " "
-style = "yellow"
-
-[php]
-symbol = " "
-
-[python]
-symbol = " "
-style = "yellow"
-
-[ruby]
-symbol = " "
-detect_variables = [""]
-
-[rust]
-symbol = " "
-style = "red"
-
-[terraform]
-symbol = " "
-style = "purple"
