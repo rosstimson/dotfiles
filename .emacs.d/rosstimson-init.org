@@ -1556,6 +1556,15 @@ whitespace can be weird.
 #+END_SRC
 
 * Extras
+** Sqlite3
+
+[[https://github.com/pekingduck/emacs-sqlite3-api][sqlite3]] is a dynamic module for GNU Emacs 25+ that provides direct
+access to the core SQLite3 C API from Emacs Lisp.
+
+#+begin_src emacs-lisp
+  (use-package sqlite3)
+#+end_src
+
 ** Ediff
 
 #+begin_src emacs-lisp
