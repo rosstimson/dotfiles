@@ -82,6 +82,7 @@
 	cl = clone
 	co = checkout
 	com= checkout master
+	cp= cherry-pick
 	d = diff
 	ds = diff --staged
 	dt = difftool
