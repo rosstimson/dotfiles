@@ -3,9 +3,12 @@
 .ssh/*
 !.ssh/config
 
+
 # Ignore transient junk
 # ------------------------------------------------------------------
-.config/iterm2/
+
+.cargo/*
+!.cargo/config
 
 .emacs.d/eln-cache
 .emacs.d/forge-database.sqlite
