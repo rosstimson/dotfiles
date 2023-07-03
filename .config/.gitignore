@@ -1,0 +1,7 @@
+# Not everything that gets dumped in ~/.config wants tracked in Git.
+
+iterm2
+jgit
+raycast
+yarn
+
