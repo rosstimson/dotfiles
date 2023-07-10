@@ -27,6 +27,11 @@ export PAGER='less -i'
 export TZ='Europe/London'
 export VISUAL='emacsclient -c'
 
+# For compiling stuff on Apple Silicon Macs.
+export CPATH=/opt/homebrew/include
+export LIBRARY_PATH=/opt/homebrew/lib
+
+
 
 # PATH
 # -------------------------------------------------------------------
