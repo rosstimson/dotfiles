@@ -48,16 +48,16 @@
 [git]
 #max_concurrency = 5
 # Additional git repositories to pull
-#repos = [
-#    "~/src/*/",
-#    "~/.config/something"
-#]
+repos = [
+   "~/.dotfiles",
+   "~/code/shell/run-rosstimson"
+]
 
 # Don't pull the predefined git repos
 #pull_predefined = false
 
 # Arguments to pass Git when pulling Repositories
-#arguments = "--rebase --autostash"
+arguments = "--rebase --autostash"
 
 [composer]
 #self_update = true
@@ -65,6 +65,7 @@
 # Commands to run before anything
 [pre_commands]
 #"Emacs Snapshot" = "rm -rf ~/.emacs.d/elpa.bak && cp -rl ~/.emacs.d/elpa ~/.emacs.d/elpa.bak"
+"Emacs: straight-pull-all" = "emacsclient --eval '(straight-pull-all)'"
 
 # Custom commands
 [commands]
