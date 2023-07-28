@@ -39,7 +39,7 @@ export LIBRARY_PATH=/opt/homebrew/lib
 #    To link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded) add the following
 #    to your shell profile e.g. ~/.profile or ~/.zshrc:
 #      export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(/opt/homebrew/opt/openssl@1.1)"
+export RUBY_CONFIGURE_OPTS='--with-openssl-dir=/opt/homebrew/opt/openssl@1.1'
 
 # PATH
 # -------------------------------------------------------------------
