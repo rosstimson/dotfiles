@@ -102,6 +102,7 @@
 	rb = rebase
 	re = restore
 	rs = reset
+	rv = revert
 	s = status
 	sh = show
 	st = stash
