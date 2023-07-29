@@ -181,6 +181,19 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#878787'
 source $(brew --prefix)/opt/asdf/libexec/asdf.sh
 
 
+# Nix (https://nixos.org/)
+# --------------------------------------------------------------------
+
+# Ensure Nix stuff is in $PATH.  I use the
+# https://determinate.systems/posts/determinate-nix-installer but it
+# puts stuff in /etc/bashrc which gets clobbered on macOS updates so
+# ensure stuff gets sourced here.  There is a good overview of the
+# problem and further potential fixes here, for now though this is a
+# quick fix: https://checkoway.net/musings/nix/
+
+[[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+
+
 # Work
 # -------------------------------------------------------------------
 
