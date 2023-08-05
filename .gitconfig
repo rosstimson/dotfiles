@@ -81,7 +81,7 @@
 	c = commit -v
 	cl = clone
 	co = checkout
-	com= checkout master
+	com= checkout main
 	cp= cherry-pick
 	d = diff
 	ds = diff --staged
