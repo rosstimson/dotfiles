@@ -194,8 +194,17 @@ source $(brew --prefix)/opt/asdf/libexec/asdf.sh
 [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 
 
+# pnpm (https://pnpm.io/)
+# --------------------------------------------------------------------
+
+export PNPM_HOME="/Users/rosstimson/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+
 # Work
 # -------------------------------------------------------------------
 
 WORK_CONFIG=~/.zshrc-work && test -f $WORK_CONFIG && source $WORK_CONFIG
-
