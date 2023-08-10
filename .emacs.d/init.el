@@ -49,10 +49,6 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-;; Install use-package via Straight and make the integration a default
-;; so that I don't have to repeat `:straight t` everywhere.
-(straight-use-package 'use-package)
-(setq straight-use-package-by-default t)
 
 ;; Important to install here before reading my main config that uses
 ;; org mode.  This way the built-in org mode doesn't load and
