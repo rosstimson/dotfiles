@@ -7,6 +7,9 @@ default: install
 
 # stow (symlink) all dotfiles into $HOME
 install:
+	# Symlink all files with GNU Stow.
+	stow -v -R --target=$HOME .
+
 	# Some programs will complain or not work until certain directories or
 	# permissions are present/set.
 	mkdir -p ~/.mail/rosstimson.com
@@ -15,8 +18,6 @@ install:
 	chmod 700 ~/.gnupg
 	touch ~/.sh_history
 
-	# Symlink all files with GNU Stow.
-	stow -v -R --target=$HOME .
 
 # remove all stowed symlinks
 uninstall:

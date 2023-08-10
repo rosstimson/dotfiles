@@ -3,6 +3,7 @@
 anaconda-mode/
 company-statistics-cache.el
 elpa/
+elpaca/
 eshell/
 ido.last
 image-dired/
