@@ -1,57 +1,13 @@
-;;; init.el --- Emacs configuration of Ross Timson -*- lexical-binding: t; -*-
-
-
-;; Author: Ross Timson <ross@rosstimson.com>
-;; URL: https://gihub.com/rosstimson/dotfiles
-;; Keywords: convenience
-
-;; This file is not part of GNU Emacs.
-
-;; Copyright (c) 2016, Ross Timson <ross@rosstimson>
-
-;; Permission to use, copy, modify, and/or distribute this software for
-;; any purpose with or without fee is hereby granted, provided that the
-;; above copyright notice and this permission notice appear in all
-;; copies.
-
-;; THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL
-;; WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED
-;; WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE
-;; AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL
-;; DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
-;; PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
-;; TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-;; PERFORMANCE OF THIS SOFTWARE.
-
-;;; Commentary:
-
-;; Emacs configuration of Ross Timson.
-
-;;; Code:
-
-
-;;; Package Management
+;; init.el --- Emacs configuration of Ross Timson -*- lexical-binding: t; -*-
 
 ;; Always load newest byte code
 (setq load-prefer-newer t)
 
-;; Use straight.el (https://github.com/raxod502/straight.el) a next-gen package manager.
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/master/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
+;; Use elpaca (https://github.com/progfolio/elpaca) package manager.
+(load-file "~/.emacs.d/package-manager.el")
 
 ;; Additional load paths.
-(add-to-list 'load-path "~/.emacs.d/lisp")
+(add-to-list 'load-path "~/.emacs.d/elisp")
 
 ;; Load the rest of my personal settings
 (org-babel-load-file (expand-file-name "~/.emacs.d/rosstimson-init.org"))
@@ -60,4 +16,8 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
-;;; init.el ends here
+;; Local Variables:
+;; no-byte-compile: t
+;; no-native-compile: t
+;; no-update-autoloads: t
+;; End:

@@ -251,6 +251,7 @@ Allow easy movement between windows/splits.
 
 #+BEGIN_SRC emacs-lisp
 (use-package recentf
+  :elpaca nil
   :config
   (setq recentf-max-saved-items 50
         recentf-auto-cleanup 100
@@ -273,6 +274,7 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
 
 #+BEGIN_SRC emacs-lisp
 (use-package ibuffer
+  :elpaca nil
   :bind ("C-x C-b" . ibuffer)
   :config
   ;; Don't prompt to delete unmodified buffers.
@@ -319,6 +321,7 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
 
 #+BEGIN_SRC emacs-lisp
 (use-package eshell
+  :elpaca nil
   :commands eshell
   :init
   (setq eshell-aliases-file (concat user-emacs-directory "eshell.aliases")
@@ -433,7 +436,8 @@ Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy
 display of major and minor modes in the mode line.
 
 #+begin_src emacs-lisp
-  (use-package blackout)
+  (use-package blackout :demand t)
+  (elpaca-wait)
 #+end_src
 
 ** Company
@@ -858,6 +862,7 @@ Persist history over Emacs restarts. Vertico sorts by history position.
 
 #+begin_src emacs-lisp
   (use-package savehist
+    :elpaca nil
     :init
     (savehist-mode))
 #+end_src
@@ -984,7 +989,7 @@ something a bit nicer.
 
 #+begin_src emacs-lisp
   (use-package smerge-mode
-    :ensure nil
+    :elpaca nil
     :init
     (setq smerge-command-prefix "\C-cv"))
 #+end_src
@@ -1067,6 +1072,7 @@ rg.el also integrates with wgrep out of the box.
 
 #+BEGIN_SRC emacs-lisp
   (use-package whitespace
+    :elpaca nil
     :bind ("C-c w" . whitespace-mode)
     :config
     (setq whitespace-line-column 80)
@@ -1109,7 +1115,7 @@ the official collection of snippets for many languages.
 
 #+BEGIN_SRC emacs-lisp
   (use-package org
-    :ensure nil
+    :elpaca nil
     :mode ("\\.org$'" . org-mode)
     :bind (("C-c a" . org-agenda)
            ("C-c c" . org-capture)
@@ -1326,7 +1332,7 @@ work with.  This persuades Emacs to use makefile mode for ~justfile~.
 
 #+begin_src emacs-lisp
   (use-package make-mode
-    :ensure nil
+    :elpaca nil
     :mode (("justfile\\'" . makefile-mode)))
 #+end_src
 
@@ -1532,6 +1538,7 @@ access to the core SQLite3 C API from Emacs Lisp.
 
 #+begin_src emacs-lisp
 (use-package ediff
+  :elpaca nil
   :config
   ;; Use the selected frame for ediff rather that a new one.
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
