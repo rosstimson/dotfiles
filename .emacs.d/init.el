@@ -50,12 +50,6 @@
   (load bootstrap-file nil 'nomessage))
 
 
-;; Important to install here before reading my main config that uses
-;; org mode.  This way the built-in org mode doesn't load and
-;; therefore the latest and greatest gets installed and used rather
-;; that the older built-in stuff.
-(straight-use-package '(org))
-
 ;; Additional load paths.
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
