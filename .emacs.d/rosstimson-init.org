@@ -1109,6 +1109,7 @@ the official collection of snippets for many languages.
 
 #+BEGIN_SRC emacs-lisp
   (use-package org
+    :ensure nil
     :mode ("\\.org$'" . org-mode)
     :bind (("C-c a" . org-agenda)
            ("C-c c" . org-capture)
@@ -1131,7 +1132,7 @@ the official collection of snippets for many languages.
           org-fontify-whole-heading-line t
           org-fontify-done-headline t
           org-fontify-quote-and-verse-blocks t)
-  
+
     ;; Syntax highlight code blocks and make tabs work as expected.
     (setq org-src-fontify-natively t
           org-src-tab-acts-natively t)
