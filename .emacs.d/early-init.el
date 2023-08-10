@@ -36,8 +36,13 @@
 ;;
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Early-Init-File.html
 
-;; Disable package.el, the built-in package manager, as using straight.el
+;; Disable package.el, the built-in package manager, as using elpaca
+;; (https://github.com/progfolio/elpaca)
 (setq package-enable-at-startup nil)
 
 
-;;; early-init.el ends here
+;; Local Variables:
+;; no-byte-compile: t
+;; no-native-compile: t
+;; no-update-autoloads: t
+;; End:
