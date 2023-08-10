@@ -686,6 +686,23 @@ extra config and need for tag files.
     :hook (xref-backend-functions . dumb-jump-xref-activate))
 #+END_SRC
 
+** Eglot
+
+[[https://joaotavora.github.io/eglot/][Eglot]] is the Emacs client for the Language Server Protocol (LSP), it
+is included by default with Emacs since version 29.1.
+
+#+begin_src emacs-lisp
+  (use-package eglot
+    :bind (:map eglot-mode-map
+                ("M-." . xref-find-definitions)
+                ("C-c h" . eglot-help-at-point))
+    :hook (
+           (clojure-mode . eglot-ensure)
+           (go-mode . eglot-ensure)
+           (python-mode . eglot-ensure)
+           (rust-mode . eglot-ensure)))
+#+end_src
+
 ** ElDoc
 
 #+BEGIN_SRC emacs-lisp
@@ -736,45 +753,6 @@ Edit multiple regions in the same way simultaneously with [[https://github.com/v
   :bind ("C-;" . iedit-mode))
 #+END_SRC
 
-** Language Server Protocol (LSP)
-
-[[https://github.com/emacs-lsp/lsp-mode][LSP Mode]] -- Emacs client/library for the Language Server Protocol 
-
-#+begin_src emacs-lisp
-  (use-package lsp-mode
-    :hook ((clojure-mode . lsp)
-           (go-mode . lsp)
-           (java-mode . lsp-deferred)
-           (js2-mode . lsp)
-           (python-mode . lsp)
-           (ruby-mode . lsp)
-           (rust-mode . lsp)
-           (terraform-mode . lsp))
-    :commands lsp
-    :config
-    (setq lsp-rust-server 'rust-analyzer)
-    (setq lsp-terraform-server '("terraform-ls" "serve"))
-    (setq lsp-restart 'auto-restart)
-
-    (require 'dap-java))
-#+end_src
-
-[[https://github.com/emacs-lsp/lsp-ui][lsp-ui]] -- Add some extra UI enhancements to LSP Mode.
-
-#+begin_src emacs-lisp
-  (use-package lsp-ui
-    :after lsp-mode)
-#+end_src
-
-LSP needs some manual installation stuff for Java, that's what this
-next package is doing.  Also, you need to install the lang server, on
-MacOS that would be ~brew install jdtls~.
-
-#+begin_src emacs-lisp
-  (use-package lsp-java
-    :config (add-hook 'java-mode-hook 'lsp))
-#+end_src
-
 ** Debug Adapter Protocol (DAP)
 
 [[https://emacs-lsp.github.io/dap-mode][DAP Mode]] - Emacs client/library for Debug Adapter Protocol is a wire
@@ -783,7 +761,6 @@ similar to the LSP but provides integration with debug server.
 
 #+begin_src emacs-lisp
   (use-package dap-mode
-    :after lsp-mode
     :config
     (dap-auto-configure-mode)
     (add-hook 'dap-stopped-hook
