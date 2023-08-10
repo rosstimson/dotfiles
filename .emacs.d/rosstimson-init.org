@@ -693,6 +693,7 @@ is included by default with Emacs since version 29.1.
 
 #+begin_src emacs-lisp
   (use-package eglot
+    :elpaca nil
     :bind (:map eglot-mode-map
                 ("M-." . xref-find-definitions)
                 ("C-c h" . eglot-help-at-point))
