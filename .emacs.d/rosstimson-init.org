@@ -1137,7 +1137,7 @@ the official collection of snippets for many languages.
     (setq org-src-fontify-natively t
           org-src-tab-acts-natively t)
 
-    (setq org-directory "~/org")
+    (setq org-directory "~/Documents/org")
     (setq org-default-notes-file (concat org-directory "/notes.org"))
     (setq org-log-done 'time)
     (setq org-log-done-with-time t)
