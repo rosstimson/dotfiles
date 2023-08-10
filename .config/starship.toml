@@ -3,7 +3,7 @@ add_newline = false
 
 # Set timeout to 1 second, default is 500 milliseconds which can cause issues
 # with git prompt on larger repos.
-command_timeout = 1000
+command_timeout = 2000
 
 # replace the "❯" symbol in the prompt with "$", keeping it old skool.
 [character]
