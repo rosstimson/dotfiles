@@ -701,7 +701,11 @@ is included by default with Emacs since version 29.1.
            (clojure-mode . eglot-ensure)
            (go-mode . eglot-ensure)
            (python-mode . eglot-ensure)
-           (rust-mode . eglot-ensure)))
+           (rust-mode . eglot-ensure)
+           (terraform-mode . eglot-ensure))
+    :config
+    (add-to-list 'eglot-server-programs
+                 '(terraform-mode . ("terraform-ls" "serve"))))
 #+end_src
 
 ** ElDoc
