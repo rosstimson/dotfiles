@@ -267,7 +267,6 @@ Allow easy movement between windows/splits.
                               ".*-autoloads\\.el\\'"
                               "/tmp"
                               "/ssh:"
-                              "company-statistics-cache\.el"
                               "custom\.el"))
   (recentf-mode t))
 #+END_SRC
@@ -444,29 +443,6 @@ display of major and minor modes in the mode line.
   (use-package blackout :demand t)
   (elpaca-wait)
 #+end_src
-
-** Company
-
-Auto-completion via [[https://company-mode.github.io/][Company]].
-
-#+BEGIN_SRC emacs-lisp
-  (use-package company
-    :init (global-company-mode)
-    :blackout
-    :config
-    (setq company-tooltip-align-annotations t
-          company-tooltip-flip-when-above t
-          ;; Easy navigation to candidates with M-<n>
-          company-show-numbers t))
-#+END_SRC
-
-[[https://github.com/rafalcieslak/emacs-company-terraform][Company-terraform]] is a Company backend for Terraform files.
-
-#+BEGIN_SRC emacs-lisp
-(use-package company-terraform
-  :after company
-  :config (company-terraform-init))
-#+END_SRC
 
 ** Consult
 
@@ -1312,13 +1288,6 @@ for Python.
     (add-hook 'python-mode-hook 'anaconda-eldoc-mode)))
 #+END_SRC
 
-[[https://github.com/proofit404/company-anaconda][company-anaconda]] is an Anaconda backend for Company.
-
-#+BEGIN_SRC emacs-lisp
-(use-package company-anaconda
-  :init (add-to-list 'company-backends 'company-anaconda))
-#+END_SRC
-
 ** Jinja2
 
 [[https://melpa.org/#/jinja2-mode][Jinja2 Mode]] is a major mode for the jinja2 templating language.
@@ -1480,7 +1449,7 @@ indentation back to spaces.
 
 #+begin_src emacs-lisp
   (use-package tide
-    :after (typescript-mode company flycheck)
+    :after (typescript-mode flycheck)
     :hook ((typescript-mode . tide-setup)
            (typescript-mode . tide-hl-identifier-mode)
            (before-save . tide-format-before-save)))
