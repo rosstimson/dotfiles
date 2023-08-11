@@ -255,20 +255,21 @@ Allow easy movement between windows/splits.
 ** Recent files
 
 #+BEGIN_SRC emacs-lisp
-(use-package recentf
-  :elpaca nil
-  :config
-  (setq recentf-max-saved-items 50
-        recentf-auto-cleanup 100
-        recentf-exclude (list "/\\.git/.*\\'" ; Git contents
-                              "/elpa/.*\\'"   ; Package files
-                              ".*\\.gz\\'"
-                              "TAGS"
-                              ".*-autoloads\\.el\\'"
-                              "/tmp"
-                              "/ssh:"
-                              "custom\.el"))
-  (recentf-mode t))
+  (use-package recentf
+    :elpaca nil
+    :config
+    (setq recentf-max-saved-items 50
+          recentf-auto-cleanup 100
+          recentf-exclude (list "/\\.git/.*\\'" ; Git contents
+                                "/elpa/.*\\'"   ; Package files
+                                "/elpaca/.*\\'" ; More package files
+                                ".*\\.gz\\'"
+                                "TAGS"
+                                ".*-autoloads\\.el\\'"
+                                "/tmp"
+                                "/ssh:"
+                                "custom\.el"))
+    (recentf-mode t))
 #+END_SRC
 
 ** iBuffer
