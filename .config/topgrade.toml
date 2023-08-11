@@ -65,7 +65,11 @@ arguments = "--rebase --autostash"
 # Commands to run before anything
 [pre_commands]
 #"Emacs Snapshot" = "rm -rf ~/.emacs.d/elpa.bak && cp -rl ~/.emacs.d/elpa ~/.emacs.d/elpa.bak"
-"Emacs: straight-pull-all" = "emacsclient --eval '(straight-pull-all)'"
+
+# TODO: The Straight one here worked fine but Elpaca one doesn't.
+#"Emacs: straight-pull-all" = "emacsclient --eval '(straight-pull-all)'"
+#"Emacs: update all packages with elpaca" = "emacsclient --eval '(elpaca-update-all)'"
+
 
 # Custom commands
 [commands]
