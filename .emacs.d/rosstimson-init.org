@@ -1089,12 +1089,11 @@ the official collection of snippets for many languages.
     ;; Load extra Org modules from contrib
     (add-to-list 'org-modules 'org-protocol)
     (add-to-list 'org-modules 'org-crypt)
-    (add-to-list 'org-modules 'org-habit)
     (add-to-list 'org-modules 'ox-beamer)
 
     :config
     (setq org-startup-indented t
-          org-ellipsis "  " ;; folding symbol
+          org-ellipsis " » " ;; folding symbol
           org-pretty-entities t
           org-hide-emphasis-markers t
           ;; show actually italicized text instead of /italicized text/
