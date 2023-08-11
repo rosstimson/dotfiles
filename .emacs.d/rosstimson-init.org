@@ -754,20 +754,6 @@ Edit multiple regions in the same way simultaneously with [[https://github.com/v
   :bind ("C-;" . iedit-mode))
 #+END_SRC
 
-** Debug Adapter Protocol (DAP)
-
-[[https://emacs-lsp.github.io/dap-mode][DAP Mode]] - Emacs client/library for Debug Adapter Protocol is a wire
-protocol for communication between client and Debug Server. It's
-similar to the LSP but provides integration with debug server.
-
-#+begin_src emacs-lisp
-  (use-package dap-mode
-    :config
-    (dap-auto-configure-mode)
-    (add-hook 'dap-stopped-hook
-              (lambda (arg) (call-interactively #'dap-hydra))))
-#+end_src
-
 ** Magit
 
 [[https://magit.vc/][Magit]] the one and only Git frontend.
