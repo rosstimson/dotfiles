@@ -34,6 +34,9 @@
 #	side-by-side = true
 	syntax-theme = GitHub
 
+[branch]
+	autoSetupMerge = simple
+
 [pull]
 	ff = only
 
@@ -112,4 +115,3 @@
 	t = tag
 	undo = reset --soft HEAD^
 	unstage = reset HEAD --
-
