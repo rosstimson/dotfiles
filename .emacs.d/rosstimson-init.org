@@ -84,6 +84,11 @@ Completion settings, see [[https://www.gnu.org/software/emacs/manual/html_node/e
 #+begin_src emacs-lisp
   (setq completion-styles '(substring orderless basic))
   (setq completion-ignore-case t)
+  ;; TAB cycle if there are only few candidates
+  (setq completion-cycle-threshold 3)
+  ;; Enable indentation+completion using the TAB key.
+  ;; `completion-at-point' is often bound to M-TAB.
+  (setq tab-always-indent 'complete)
 #+end_src
 
 ** Personal information
@@ -540,6 +545,20 @@ function with ~consult-line~.
   (use-package consult-flycheck
     :bind (:map flycheck-command-map
                 ("!" . consult-flycheck)))
+#+end_src
+
+** Corfu
+
+[[https://github.com/minad/corfu][Corfu]] enhances in-buffer completion with a small completion popup. The
+current candidates are shown in a popup below or above the point. The
+candidates can be selected by moving up and down. Corfu is the
+minimalistic in-buffer completion counterpart of the Vertico
+minibuffer UI.
+
+#+begin_src emacs-lisp
+  (use-package corfu
+    :init
+    (global-corfu-mode))
 #+end_src
 
 ** Crux
