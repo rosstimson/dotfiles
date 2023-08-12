@@ -593,7 +593,7 @@ minibuffer UI.
     ("C-x C-l" . crux-downcase-region))
 #+end_src
 
-** Cut/Copy/Comment current line if no region selected
+** Cut/Copy/Comment
 
 In many editors cut and copy act on the current line if no text is
 visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master/whole-line-or-region.el][whole-line-or-region]] does just that for Emacs.
