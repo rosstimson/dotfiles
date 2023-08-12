@@ -621,39 +621,6 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
     (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
 #+end_src
 
-** Denote
-
-[[https://protesilaos.com/emacs/denote][Denote]] is a simple note-taking tool. It is based on the idea that
-notes should follow a predictable and descriptive file-naming
-scheme. The file name must offer a clear indication of what the note
-is about, without reference to any other metadata. Denote basically
-streamlines the creation of such files while providing facilities to
-link between them.
-
-#+begin_src emacs-lisp
-  (use-package denote
-    :hook (dired-mode . denote-dired-mode-in-directories)
-    :bind
-    ("C-c n n" . denote)
-    ("C-c n N" . denote-type)
-    ("C-c n d" . denote-date)
-    ("C-c n s" . denote-subdirectory)
-    ("C-c n t" . denote-template)
-    ("C-c n i" . denote-link)
-    ("C-c n I" . denote-link-add-links)
-    ("C-c n l" . denote-link-find-file)
-    ("C-c n b" . denote-link-backlinks)
-    ("C-c n r" . denote-rename-file)
-    ("C-c n R" . denote-rename-file-using-front-matter)
-    :config
-    (setq denote-directory (expand-file-name "~/Documents/notes/"))
-    (setq denote-known-keywords '("emacs" "java" "journal" "k8s" "metanote" "sre"))
-    (setq denote-infer-keywords t)
-    (setq denote-sort-keywords t)
-    (setq denote-file-type nil) ; Org is the default, set others here
-    (setq denote-prompts '(title keywords)))
-#+end_src
-
 ** Dired
 
 Dired is the directory listing / file manager.  When on BSD it will
