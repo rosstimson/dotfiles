@@ -353,14 +353,6 @@ Make C-l clear eshell screen just as it would a normal shell.
   (local-set-key (kbd "C-l") 'eshell-clear-buffer)))
 #+END_SRC
 
-** Hippie-expand
-
-[[https://www.emacswiki.org/emacs/HippieExpand][HippieExpand]] looks at the word before point and tries to expand it in various ways.
-
-#+BEGIN_SRC emacs-lisp
-(global-set-key [remap dabbrev-expand] 'hippie-expand)
-#+END_SRC
-
 ** Global Key Bindings
 
 I often split the window and nearly always want to switch to the new
@@ -612,6 +604,22 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
    :config
    (whole-line-or-region-global-mode t))
 #+END_SRC
+
+** Dabbrev
+
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Dynamic-Abbrevs.html][Dabbrev]] -- Dynamic Abbreviations
+
+#+begin_src emacs-lisp
+  ;; Use Dabbrev with Corfu!
+  (use-package dabbrev
+    :elpaca nil
+    ;; Swap M-/ and C-M-/
+    :bind (("M-/" . dabbrev-completion)
+           ("C-M-/" . dabbrev-expand))
+    ;; Other useful Dabbrev configurations.
+    :custom
+    (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
+#+end_src
 
 ** Denote
 
@@ -1046,11 +1054,9 @@ in-buffer completion.
 
 #+begin_src emacs-lisp
   (use-package tempel
-    ;; Require trigger prefix before template name when completing.
-    ;; :custom
-    ;; (tempel-trigger-prefix "<")
-
     :custom
+    ;; Require trigger prefix before template name when completing.
+    (tempel-trigger-prefix "<")
     (tempel-path (expand-file-name "snippets/*.eld" user-emacs-directory))
 
     :bind (("M-+" . tempel-complete) ;; Alternative tempel-expand
@@ -1291,7 +1297,6 @@ Set active Org Babel languages
      (sql        . t)))
 #+end_src
 
-
 *** Org Superstar
 
 [[https://github.com/integral-dw/org-superstar-mode][Org Superstar]] makes bullets prettier, it is a direct descendant of
@@ -1304,6 +1309,12 @@ org-bullets.
           org-superstar-headline-bullets-list '(" "))
     (add-hook 'org-mode-hook (lambda ()
                                (org-superstar-mode 1))))
+#+end_src
+
+*** Org-roam
+
+#+begin_src emacs-lisp
+  
 #+end_src
 
 ** Markdown
