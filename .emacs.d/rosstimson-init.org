@@ -353,6 +353,14 @@ Make C-l clear eshell screen just as it would a normal shell.
   (local-set-key (kbd "C-l") 'eshell-clear-buffer)))
 #+END_SRC
 
+** Hippie-expand
+
+[[https://www.emacswiki.org/emacs/HippieExpand][HippieExpand]] looks at the word before point and tries to expand it in various ways.
+
+#+BEGIN_SRC emacs-lisp
+(global-set-key [remap dabbrev-expand] 'hippie-expand)
+#+END_SRC
+
 ** Global Key Bindings
 
 I often split the window and nearly always want to switch to the new
