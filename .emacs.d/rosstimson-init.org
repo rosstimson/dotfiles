@@ -1195,7 +1195,7 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
     (setq org-src-fontify-natively t
           org-src-tab-acts-natively t)
 
-    (setq org-directory "~/Documents/org")
+    (setq org-directory (expand-file-name "~/Documents/notes"))
     (setq org-default-notes-file (concat org-directory "/notes.org"))
     (setq org-log-done 'time)
     (setq org-log-done-with-time t)
@@ -1257,7 +1257,9 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 
 
     ;; org-agenda
-    (setq org-agenda-files '("~/org/todo.org" "~/org/someday-maybe.org" "~/org/cal.org")
+    (setq org-agenda-files '((concat org-directory "/todo.org")
+                             (concat org-directory "/someday-maybe.org")
+                             (concat org-directory "/cal.org"))
           org-agenda-skip-deadline-if-done t
           org-agenda-skip-scheduled-if-done t)
 
@@ -1288,6 +1290,9 @@ Set active Org Babel languages
      (shell      . t)
      (sql        . t)))
 #+end_src
+
+
+*** Org Superstar
 
 [[https://github.com/integral-dw/org-superstar-mode][Org Superstar]] makes bullets prettier, it is a direct descendant of
 org-bullets.
