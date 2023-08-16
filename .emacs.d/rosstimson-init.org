@@ -1308,7 +1308,7 @@ Set active Org Babel languages
      (sql        . t)))
 #+end_src
 
-*** Org-CV
+*** Org CV
 
 #+begin_src emacs-lisp
   (use-package ox-moderncv
@@ -1328,6 +1328,21 @@ TODO / FIXME
   ;;   :config
   ;;   (org-export-to-file 'awesomecv "awesomecv.tex")
   ;;   (org-latex-compile "awesomecv.tex"))
+#+end_src
+
+*** Org Remark
+
+[[https://nobiot.github.io/org-remark/#Installation][Org-remark]] lets you highlight and annotate text files, websites, and
+EPUB books with using Org mode.
+
+#+begin_src emacs-lisp
+  (use-package org-remark
+    :after org
+    :commands (org-remark-global-tracking-mode)
+    :bind (:map org-mode-map
+                ("C-c C-x R" . org-remark-mode))
+    :config
+    (org-remark-global-tracking-mode t))
 #+end_src
 
 *** Org Superstar
