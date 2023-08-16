@@ -1302,6 +1302,14 @@ org-bullets.
     (require 'org-roam-protocol))
 #+end_src
 
+*** Org-CV
+
+#+begin_src emacs-lisp
+  (use-package ox-moderncv
+      :load-path (expand-file-name "~/.emacs.d/elisp/org-cv/")
+      :init (require 'ox-moderncv))
+#+end_src
+
 ** Markdown
 
 [[http://jblevins.org/projects/markdown-mode/][Markdown Mode]] is a major mode for Markdown offering syntax highlighting
