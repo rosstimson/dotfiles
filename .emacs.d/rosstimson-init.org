@@ -1308,20 +1308,6 @@ Set active Org Babel languages
      (sql        . t)))
 #+end_src
 
-*** Org Superstar
-
-[[https://github.com/integral-dw/org-superstar-mode][Org Superstar]] makes bullets prettier, it is a direct descendant of
-org-bullets.
-
-#+begin_src emacs-lisp
-  (use-package org-superstar
-    :config
-    (setq org-superstar-special-todo-items t
-          org-superstar-headline-bullets-list '(" "))
-    (add-hook 'org-mode-hook (lambda ()
-                               (org-superstar-mode 1))))
-#+end_src
-
 *** Org-CV
 
 #+begin_src emacs-lisp
@@ -1342,6 +1328,20 @@ TODO / FIXME
   ;;   :config
   ;;   (org-export-to-file 'awesomecv "awesomecv.tex")
   ;;   (org-latex-compile "awesomecv.tex"))
+#+end_src
+
+*** Org Superstar
+
+[[https://github.com/integral-dw/org-superstar-mode][Org Superstar]] makes bullets prettier, it is a direct descendant of
+org-bullets.
+
+#+begin_src emacs-lisp
+  (use-package org-superstar
+    :config
+    (setq org-superstar-special-todo-items t
+          org-superstar-headline-bullets-list '(" "))
+    (add-hook 'org-mode-hook (lambda ()
+                               (org-superstar-mode 1))))
 #+end_src
 
 ** Markdown
