@@ -649,7 +649,7 @@ link between them.
     (setq denote-directory (expand-file-name "~/Documents/notes/"))
     (setq denote-infer-keywords t)
     (setq denote-sort-keywords t)
-    ;;(setq denote-file-type nil) ; Org is the default, set others here
+    (setq denote-file-type org)
     (setq denote-prompts '(title keywords)))
 #+end_src
 
@@ -756,6 +756,18 @@ is included by default with Emacs since version 29.1.
     :config
     (add-to-list 'eglot-server-programs
                  '(terraform-mode . ("terraform-ls" "serve"))))
+#+end_src
+
+*** Eglot Orderless
+
+#+begin_src emacs-lisp
+  (use-package eglot-orderless
+    :elpaca nil
+    :no-require t
+    :after (eglot orderless)
+    :config
+    (add-to-list 'completion-category-overrides
+                 '(eglot (styles orderless basic))))
 #+end_src
 
 ** ElDoc
@@ -1314,8 +1326,22 @@ org-bullets.
 
 #+begin_src emacs-lisp
   (use-package ox-moderncv
-      :load-path (expand-file-name "~/.emacs.d/elisp/org-cv/")
-      :init (require 'ox-moderncv))
+    :elpaca nil
+    :load-path "elisp/org-cv"
+    :init (require 'ox-moderncv))
+#+end_src
+
+Export to [[https://github.com/posquit0/Awesome-CV][Awesome CV]].
+
+TODO / FIXME
+#+begin_src emacs-lisp
+  ;; (use-package awesome-cv
+  ;;   :elpaca nil
+  ;;   :no-require t
+  ;;   :after (org ox-moderncv)
+  ;;   :config
+  ;;   (org-export-to-file 'awesomecv "awesomecv.tex")
+  ;;   (org-latex-compile "awesomecv.tex"))
 #+end_src
 
 ** Markdown
