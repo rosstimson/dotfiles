@@ -621,6 +621,38 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
     (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
 #+end_src
 
+** Denote
+
+[[https://protesilaos.com/emacs/denote][Denote]] is a simple note-taking tool. It is based on the idea that
+notes should follow a predictable and descriptive file-naming
+scheme. The file name must offer a clear indication of what the note
+is about, without reference to any other metadata. Denote basically
+streamlines the creation of such files while providing facilities to
+link between them.
+
+#+begin_src emacs-lisp
+  (use-package denote
+    :hook (dired-mode . denote-dired-mode-in-directories)
+    :bind
+    ("C-c n n" . denote)
+    ("C-c n N" . denote-type)
+    ("C-c n d" . denote-date)
+    ("C-c n s" . denote-subdirectory)
+    ("C-c n t" . denote-template)
+    ("C-c n i" . denote-link)
+    ("C-c n I" . denote-link-add-links)
+    ("C-c n l" . denote-link-find-file)
+    ("C-c n b" . denote-link-backlinks)
+    ("C-c n r" . denote-rename-file)
+    ("C-c n R" . denote-rename-file-using-front-matter)
+    :config
+    (setq denote-directory (expand-file-name "~/Documents/notes/"))
+    (setq denote-infer-keywords t)
+    (setq denote-sort-keywords t)
+    ;;(setq denote-file-type nil) ; Org is the default, set others here
+    (setq denote-prompts '(title keywords)))
+#+end_src
+
 ** Dired
 
 Dired is the directory listing / file manager.  When on BSD it will
@@ -1276,30 +1308,6 @@ org-bullets.
           org-superstar-headline-bullets-list '(" "))
     (add-hook 'org-mode-hook (lambda ()
                                (org-superstar-mode 1))))
-#+end_src
-
-*** Org-roam
-
-[[https://www.orgroam.com/][Org-roam]] -- A plain-text personal knowledge management system.
-
-#+begin_src emacs-lisp
-  (use-package org-roam
-    :ensure t
-    :custom
-    (org-roam-directory (file-truename "~/Documents/notes/"))
-    :bind (("C-c n l" . org-roam-buffer-toggle)
-           ("C-c n f" . org-roam-node-find)
-           ("C-c n g" . org-roam-graph)
-           ("C-c n i" . org-roam-node-insert)
-           ("C-c n c" . org-roam-capture)
-           ;; Dailies
-           ("C-c n j" . org-roam-dailies-capture-today))
-    :config
-    ;; If you're using a vertical completion framework, you might want a more informative completion interface
-    (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-    (org-roam-db-autosync-mode)
-    ;; If using org-roam-protocol
-    (require 'org-roam-protocol))
 #+end_src
 
 *** Org-CV
