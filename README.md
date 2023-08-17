@@ -1,6 +1,9 @@
 Ross Timson's Dotfiles
 ======================
 
+> **Note:** This repo has been moved to [sourcehut](https://git.sr.ht/~rosstimson/.dotfiles "repo moved to sourcehut").
+
+
 $HOME Sweet $HOME -- My dotfiles.
 
 ## Install
