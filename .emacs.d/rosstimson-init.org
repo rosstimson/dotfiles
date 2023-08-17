@@ -1178,6 +1178,8 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 
 ** Xeft
 
+[[https://sr.ht/~casouri/xeft/][Xeft]] -- Fast, incremental note searching in Emacs using [[https://xapian.org/][Xapian]].
+
 #+begin_src emacs-lisp
   (use-package xeft
     :bind ("C-c n x" . xeft)
