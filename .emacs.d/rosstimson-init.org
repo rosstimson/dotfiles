@@ -1315,6 +1315,9 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 
     (setq org-tags-exclude-from-inheritance (quote ("crypt")))
 
+    ;; imenu
+    (setq org-imenu-depth 4)
+
     ;; GPG key to use for encryption
     ;; Either the Key ID or set to nil to use symmetric encryption.
     (setq org-crypt-key "0x4799AD5040FF28FB5F3D71D7667A3481E4BB34F3"))
