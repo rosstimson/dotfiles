@@ -1355,6 +1355,16 @@ Set active Org Babel languages
      (sql        . t)))
 #+end_src
 
+*** Org AI
+
+#+begin_src emacs-lisp
+  (use-package org-ai
+    :config
+    (org-ai-global-mode)
+    (setq org-ai-image-directory (expand-file-name "~/Documents/notes/org-ai-images/"))
+    :hook (org-mode . org-ai-mode))
+#+end_src
+
 *** Org CV
 
 #+begin_src emacs-lisp
