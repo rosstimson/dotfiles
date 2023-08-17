@@ -1176,6 +1176,18 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
   (global-whitespace-cleanup-mode t)) ; Enabled globally
 #+END_SRC
 
+** Xeft
+
+#+begin_src emacs-lisp
+  (use-package xeft
+    :bind ("C-c n x" . xeft)
+    :custom
+    (xeft-database (expand-file-name "~/.emacs.d/xeft.db"))
+    (xeft-default-extension "org")
+    (xeft-directory (expand-file-name "~/Documents/notes"))
+    (xeft-recusive 'follow-symlinks))
+#+end_src
+
 
 * Major Modes / Language Specific Stuff
 ** Org

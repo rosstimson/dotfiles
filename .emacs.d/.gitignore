@@ -13,3 +13,5 @@ projectile.cache
 recentf
 rosstimson-init.el
 smex-items
+tree-sitter/
+xeft.db
