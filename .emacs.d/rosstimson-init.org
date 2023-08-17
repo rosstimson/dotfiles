@@ -1240,8 +1240,13 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
              "* TODO %?\n  %i\n" :empty-lines 1)
             ("s" "Someday / Maybe" entry (file+headline ,(concat org-directory "/someday-maybe.org") "Inbox")
              "* TODO %?\n  %i\n" :empty-lines 1)
-            ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "Inbox")
-             "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n" :empty-lines 1)
+            ("n" "New note (with Denote)" plain
+             (file denote-last-path)
+             #'denote-org-capture
+             :no-save t
+             :immediate-finish nil
+             :kill-buffer t
+             :jump-to-captured t)
             ("l" "Protocol Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox")
              "* [[%:link][%:description]] \n\n%i\n%?\nCaptured On: %U" :empty-lines 1)
             ("j" "Journal entry" entry (function org-journal-find-location)
