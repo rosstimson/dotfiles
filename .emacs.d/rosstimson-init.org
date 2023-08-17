@@ -1224,6 +1224,16 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
     (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELLED(c@)")))
 
+    ;; Function needed to integrate org-journal with org capture.
+    ;; https://github.com/bastibe/org-journal/#journal-capture-template
+    (defun org-journal-find-location ()
+      ;; Open today's journal, but specify a non-nil prefix argument in order to
+      ;; inhibit inserting the heading; org-capture will insert the heading.
+      (org-journal-new-entry t)
+      ;; Position point on the journal's top-level heading so that org-capture
+      ;; will add the new entry as a child entry.
+      (goto-char (point-min)))
+
     ;; Capture templates
     (setq org-capture-templates
           `(("t" "Todo" entry (file+headline ,(concat org-directory "/todo.org") "Inbox")
@@ -1233,7 +1243,9 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
             ("n" "Notes" entry (file+headline ,(concat org-directory "/notes.org") "Inbox")
              "* %^{NOTES} \n%<%Y-%m-%d %H:%M>\n %?\n %i\n" :empty-lines 1)
             ("l" "Protocol Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox")
-             "* [[%:link][%:description]] \n\n%i\n%?\nCaptured On: %U" :empty-lines 1)))
+             "* [[%:link][%:description]] \n\n%i\n%?\nCaptured On: %U" :empty-lines 1)
+            ("j" "Journal entry" entry (function org-journal-find-location)
+             "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?" :empty-lines 1)))
 
     ;; Refile targets
     (setq org-refile-targets
@@ -1288,6 +1300,42 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
     ;; Either the Key ID or set to nil to use symmetric encryption.
     (setq org-crypt-key "0x4799AD5040FF28FB5F3D71D7667A3481E4BB34F3"))
 #+END_SRC
+
+Org Journal
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-journal
+    :after org
+    :bind ("C-c T" . org-journal-new-entry)
+    :config
+    (defun org-journal-file-header-func (time)
+      "Custom function to create journal header."
+      (concat
+       (pcase org-journal-file-type
+         (`daily "#+TITLE: Daily Journal\n#+STARTUP: showeverything")
+         (`weekly "#+TITLE: Weekly Journal\n#+STARTUP: folded")
+         (`monthly "#+TITLE: Monthly Journal\n#+STARTUP: folded")
+         (`yearly "#+TITLE: Yearly Journal\n#+STARTUP: folded"))))
+
+    (defun org-journal-save-entry-and-exit()
+      "Simple convenience function.
+    Saves the buffer of the current day's entry and kills the window
+    Similar to org-capture like behavior"
+      (interactive)
+      (save-buffer)
+      (kill-buffer-and-window))
+
+    ;; Key binding for the above function
+    (define-key org-journal-mode-map (kbd "C-x C-s") 'org-journal-save-entry-and-exit)
+
+    (setq org-journal-file-header 'org-journal-file-header-func)
+    :custom
+    (org-journal-file-type 'monthly)
+    (org-journal-date-format "%A, %d %B %Y")
+    (org-journal-dir (format (concat org-directory "/journal/") (format-time-string "%Y")))
+    (org-journal-enable-encryption t))
+#+END_SRC
+
 
 Set active Org Babel languages
 
