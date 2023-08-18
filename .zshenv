@@ -63,6 +63,7 @@ path=($HOME/.local/bin
 	  /usr/local/MacGPG2/bin(N-/)
 	  /opt/homebrew/bin(N-/)
 	  /Applications/Postgres.app/Contents/Versions/latest/bin(N-/)
+	  /Library/TeX/texbin/(N-/)
 	  /usr/local/{bin,sbin}
 	  /usr/{bin,sbin}
 	  /{bin,sbin}
