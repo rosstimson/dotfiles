@@ -1212,6 +1212,8 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
           org-fontify-done-headline t
           org-fontify-quote-and-verse-blocks t)
 
+    (setq org-latex-compiler "xelatex")
+
     ;; Syntax highlight code blocks and make tabs work as expected.
     (setq org-src-fontify-natively t
           org-src-tab-acts-natively t)
@@ -1334,21 +1336,12 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 #+begin_src emacs-lisp
   (use-package ox-awesomecv
     :elpaca (org-cv :host gitlab :repo "Titan-C/org-cv")
-    :init (require 'ox-awesomecv))
-#+end_src
-
-Export to [[https://github.com/posquit0/Awesome-CV][Awesome CV]].
-
-TODO / FIXME
-#+begin_src emacs-lisp
-  (use-package awesome-cv
-    :elpaca nil
-    :no-require t
-    :after (org ox-awesomecv)
+    :init (require 'ox-awesomecv)
     :config
-    (org-export-to-file 'awesomecv "awesomecv.tex")
-    ;;(org-latex-compile "awesomecv.tex")
-    )
+    (defun rt/compile-cv ()
+      (interactive)
+      (org-export-to-file 'awesomecv "awesomecv.tex")
+      (org-latex-compile "awesomecv.tex")))
 #+end_src
 
 *** Org Journal
