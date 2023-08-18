@@ -44,8 +44,18 @@
   ;; Assume :elpaca t unless otherwise specified.
   (setq elpaca-use-package-by-default t))
 
+;; Blackout (https://github.com/radian-software/blackout) is a package
+;; which allows you to hide or customize the display of major and minor
+;; modes in the mode line.
+;;
+;; NOTE: This needs to be here before the 'elpaca-wait' to make the
+;; ':blackout' keyword available for usage with 'use-package' in my main
+;; config 'rosstimson-init.org'.
+(elpaca 'blackout)
+
 ;; Block until current queue processed.
 (elpaca-wait)
+
 
 ;; Local Variables:
 ;; no-byte-compile: t

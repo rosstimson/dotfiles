@@ -428,16 +428,6 @@ Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy
     (beacon-mode 1))
 #+end_src
 
-** Blackout
-
-[[https://github.com/radian-software/blackout][Blackout]] is a package which allows you to hide or customize the
-display of major and minor modes in the mode line.
-
-#+begin_src emacs-lisp
-  (use-package blackout :demand t)
-  (elpaca-wait)
-#+end_src
-
 ** Cape
 
 Cape provides Completion At Point Extensions which can be used in
@@ -1149,10 +1139,10 @@ rg.el also integrates with wgrep out of the box.
 [[https://github.com/justbur/emacs-which-key][which-key]] is a package that displays available keybindings in popup.
 
 #+BEGIN_SRC emacs-lisp
-(use-package which-key
-  :config
-  (which-key-mode t)
-  :blackout)
+  (use-package which-key
+    :config
+    (which-key-mode t)
+    :blackout)
 #+END_SRC
 
 ** Whitespace
@@ -1238,15 +1228,20 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
     (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELLED(c@)")))
 
-    ;; Function needed to integrate org-journal with org capture.
-    ;; https://github.com/bastibe/org-journal/#journal-capture-template
-    (defun org-journal-find-location ()
-      ;; Open today's journal, but specify a non-nil prefix argument in order to
-      ;; inhibit inserting the heading; org-capture will insert the heading.
-      (org-journal-new-entry t)
-      ;; Position point on the journal's top-level heading so that org-capture
-      ;; will add the new entry as a child entry.
-      (goto-char (point-min)))
+    ;; Set active Org Babel languages
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((clojure    . t)
+       (css        . t)
+       (emacs-lisp . t)
+       (java       . t)
+       (js         . t)
+       (makefile   . t)
+       (org        . t)
+       (python     . t)
+       (ruby       . t)
+       (shell      . t)
+       (sql        . t)))
 
     ;; Capture templates
     (setq org-capture-templates
@@ -1312,7 +1307,6 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 
     ;; org-crypt
     (org-crypt-use-before-save-magic)
-
     (setq org-tags-exclude-from-inheritance (quote ("crypt")))
 
     ;; imenu
@@ -1323,64 +1317,11 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
     (setq org-crypt-key "0x4799AD5040FF28FB5F3D71D7667A3481E4BB34F3"))
 #+END_SRC
 
-Org Journal
-
-#+BEGIN_SRC emacs-lisp
-  (use-package org-journal
-    :after org
-    :bind ("C-c T" . org-journal-new-entry)
-    :config
-    (defun org-journal-file-header-func (time)
-      "Custom function to create journal header."
-      (concat
-       (pcase org-journal-file-type
-         (`daily "#+TITLE: Daily Journal\n#+STARTUP: showeverything")
-         (`weekly "#+TITLE: Weekly Journal\n#+STARTUP: folded")
-         (`monthly "#+TITLE: Monthly Journal\n#+STARTUP: folded")
-         (`yearly "#+TITLE: Yearly Journal\n#+STARTUP: folded"))))
-
-    (defun org-journal-save-entry-and-exit()
-      "Simple convenience function.
-    Saves the buffer of the current day's entry and kills the window
-    Similar to org-capture like behavior"
-      (interactive)
-      (save-buffer)
-      (kill-buffer-and-window))
-
-    ;; Key binding for the above function
-    (define-key org-journal-mode-map (kbd "C-x C-s") 'org-journal-save-entry-and-exit)
-
-    (setq org-journal-file-header 'org-journal-file-header-func)
-    :custom
-    (org-journal-file-type 'monthly)
-    (org-journal-date-format "%A, %d %B %Y")
-    (org-journal-dir (format (concat org-directory "/journal/") (format-time-string "%Y")))
-    (org-journal-enable-encryption t))
-#+END_SRC
-
-
-Set active Org Babel languages
-
-#+begin_src emacs-lisp
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((clojure    . t)
-     (css        . t)
-     (emacs-lisp . t)
-     (java       . t)
-     (js         . t)
-     (makefile   . t)
-     (org        . t)
-     (python     . t)
-     (ruby       . t)
-     (shell      . t)
-     (sql        . t)))
-#+end_src
-
 *** Org AI
 
 #+begin_src emacs-lisp
   (use-package org-ai
+    :blackout
     :config
     (org-ai-global-mode)
     (setq org-ai-image-directory (expand-file-name "~/Documents/notes/org-ai-images/"))
@@ -1407,6 +1348,18 @@ TODO / FIXME
     (org-export-to-file 'awesomecv "awesomecv.tex")
     ;;(org-latex-compile "awesomecv.tex")
     )
+#+end_src
+
+*** Org Journal
+
+#+begin_src emacs-lisp
+  (use-package org-journal
+    :after org
+    :bind ("C-c j" . org-journal-new-entry)
+    :custom
+    (org-journal-file-type 'monthly)
+    (org-journal-date-format "%A, %d %B %Y")
+    (org-journal-dir (concat (concat org-directory "/journal/") (format-time-string "%Y"))))
 #+end_src
 
 *** Org Remark
