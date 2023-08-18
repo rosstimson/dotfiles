@@ -422,6 +422,7 @@ Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy
 
 #+begin_src emacs-lisp
   (use-package beacon
+    :blackout
     :custom
     (beacon-size 60)
     :config
