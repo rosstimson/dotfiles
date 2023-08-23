@@ -1335,13 +1335,14 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 
 #+begin_src emacs-lisp
   (use-package ox-awesomecv
-    :elpaca (org-cv :host gitlab :repo "Titan-C/org-cv")
+    ;; My fork of org-cv
+    :elpaca (org-cv :host "git.sr.ht" :repo "~rosstimson/org-cv")
     :init (require 'ox-awesomecv)
     :config
     (defun rt/compile-cv ()
       (interactive)
-      (org-export-to-file 'awesomecv "awesomecv.tex")
-      (org-latex-compile "awesomecv.tex")))
+      (org-export-to-file 'awesomecv "rosstimson-cv.tex")
+      (org-latex-compile "rosstimson-cv.tex")))
 #+end_src
 
 *** Org Journal
