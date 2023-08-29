@@ -1162,9 +1162,10 @@ rg.el also integrates with wgrep out of the box.
 Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/whitespace-cleanup-mode][whitespace-cleanup-mode]]. 
 
 #+BEGIN_SRC emacs-lisp
-(use-package whitespace-cleanup-mode
-  :init
-  (global-whitespace-cleanup-mode t)) ; Enabled globally
+  (use-package whitespace-cleanup-mode
+    :blackout
+    :init
+    (global-whitespace-cleanup-mode t)) ; Enabled globally
 #+END_SRC
 
 ** Xeft
