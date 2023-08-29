@@ -403,6 +403,16 @@ in Dirvish etc.
     :if (display-graphic-p))
 #+end_src
 
+** Auto Revert
+
+#+begin_src emacs-lisp
+  (use-package autorevert
+    :elpaca nil
+    :blackout
+    :config
+    (global-auto-revert-mode t))
+#+end_src
+
 ** Avy
 
 Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy]].
