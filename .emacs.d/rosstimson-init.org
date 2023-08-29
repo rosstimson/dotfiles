@@ -1345,6 +1345,12 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
       (org-latex-compile "rosstimson-cv.tex")))
 #+end_src
 
+*** Org Indent
+
+#+begin_src emacs-lisp
+  (use-package org-indent :elpaca nil :ensure nil :after org :blackout)
+#+end_src
+
 *** Org Journal
 
 #+begin_src emacs-lisp
