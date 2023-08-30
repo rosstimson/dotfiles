@@ -1212,6 +1212,10 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
     (add-to-list 'org-modules 'org-crypt)
     (add-to-list 'org-modules 'ox-beamer)
 
+    :custom
+    (org-goto-interface 'outline-path-completion)
+    (org-goto-max-level 3)
+
     :config
     (setq org-startup-indented t
           org-ellipsis " » " ;; folding symbol
