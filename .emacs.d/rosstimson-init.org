@@ -1351,7 +1351,7 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 #+begin_src emacs-lisp
   (use-package ox-awesomecv
     ;; My fork of org-cv
-    :elpaca (org-cv :host "git.sr.ht" :repo "~rosstimson/org-cv")
+    :elpaca (org-cv :host sourcehut :repo "rosstimson/org-cv")
     :init (require 'ox-awesomecv)
     :config
     (defun rt/compile-cv ()
