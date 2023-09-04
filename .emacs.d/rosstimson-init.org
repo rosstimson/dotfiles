@@ -1393,7 +1393,9 @@ EPUB books with using Org mode.
     :bind (:map org-mode-map
                 ("C-c C-x R" . org-remark-mode))
     :config
-    (org-remark-global-tracking-mode t))
+    (org-remark-global-tracking-mode t)
+    :custom
+    (org-remark-notes-file-name 'org-remark-notes-file-name-function))
 #+end_src
 
 *** Org Superstar
