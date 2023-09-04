@@ -1363,6 +1363,23 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
       (org-latex-compile "rosstimson-cv.tex")))
 #+end_src
 
+*** Org Download
+
+[[https://github.com/abo-abo/org-download][org-download]] - Drag and drop images to Emacs org-mode.
+
+#+begin_src emacs-lisp
+  (use-package org-download
+    :after org
+    :bind (:map org-mode-map
+                ("C-c C-x C" . org-download-clipboard)
+                ("C-c C-x Y" . org-download-yank))
+    :custom
+    (org-download-method 'directory)
+    (org-download-screenshot-method "screencapture -i %s")
+    (org-download-heading-lvl 1)
+    (org-download-image-dir "./img"))
+#+end_src
+
 *** Org Indent
 
 #+begin_src emacs-lisp
