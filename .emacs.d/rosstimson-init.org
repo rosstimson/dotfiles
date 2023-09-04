@@ -405,6 +405,9 @@ in Dirvish etc.
 
 ** Auto Revert
 
+Keep buffers up to date automatically if they are edited by another
+program with [[https://emacsdocs.org/docs/emacs/Auto-Revert][Auto Revert]].
+
 #+begin_src emacs-lisp
   (use-package autorevert
     :elpaca nil
