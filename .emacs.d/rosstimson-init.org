@@ -1349,6 +1349,39 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
     :hook (org-mode . org-ai-mode))
 #+end_src
 
+*** Org Citar
+
+[[https://github.com/emacs-citar/citar][Citar]] is an Emacs package to quickly find and act on bibliographic
+references, and edit org, markdown, and latex academic documents.
+
+#+begin_src emacs-lisp
+  (use-package citar
+    :custom
+    (citar-bibliography '("~/Documents/notes/references.bib"))
+    :hook
+    (LaTeX-mode . citar-capf-setup)
+    (org-mode . citar-capf-setup))
+#+end_src
+
+[[https://github.com/pprevos/citar-denote/][citar-denote]] is an Emacs package to create and retrieve bibliography
+notes with the Citar and Denote packages.
+
+#+begin_src emacs-lisp
+  (use-package citar-denote
+    :after citar denote
+    :config (citar-denote-mode))
+#+end_src
+
+The [[https://github.com/emacs-citar/citar#embark][citar-embark]] package adds contextual access actions in the
+minibuffer and at-point via the citar-embark-mode minor mode.
+
+#+begin_src emacs-lisp
+  (use-package citar-embark
+    :after citar embark
+    :no-require
+    :config (citar-embark-mode))
+#+end_src
+
 *** Org CV
 
 #+begin_src emacs-lisp
