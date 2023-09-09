@@ -1593,7 +1593,6 @@ convenient bindings for running Cargo commands.
     :hook ((clojure-mode . eldoc-mode)
            (clojure-mode . subword-mode)
            (clojure-mode . smartparens-strict-mode)
-           (clojure-mode . rainbow-delimiters-mode)
            (clojure-mode . clj-refactor-mode))
     :config (require 'flycheck-clj-kondo))
 #+END_SRC
