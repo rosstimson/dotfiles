@@ -1463,6 +1463,22 @@ org-bullets.
                                (org-superstar-mode 1))))
 #+end_src
 
+*** Org Transclusion
+
+[[https://github.com/nobiot/org-transclusion#installation][Org-transclusion]] lets you insert a copy of text content via a file
+link or ID link within an Org file. It lets you have the same content
+present in different buffers at the same time without copy-and-pasting
+it. Edit the source of the content, and you can refresh the
+transcluded copies to the up-to-date state. Org-transclusion keeps
+your files clear of the transcluded copies, leaving only the links to
+the original content.<<whatis>>
+
+#+begin_src emacs-lisp
+  (use-package org-transclusion
+    :after org
+    :bind ("C-c t" . org-transclusion-add))
+#+end_src
+
 ** Markdown
 
 [[http://jblevins.org/projects/markdown-mode/][Markdown Mode]] is a major mode for Markdown offering syntax highlighting
