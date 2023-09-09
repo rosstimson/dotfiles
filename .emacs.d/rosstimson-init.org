@@ -1479,6 +1479,27 @@ the original content.<<whatis>>
     :bind ("C-c t" . org-transclusion-add))
 #+end_src
 
+*** Org Web Tools
+
+[[https://github.com/alphapapa/org-web-tools][org-web-tools]] contains library functions and commands useful for
+retrieving web page content and processing it into Org-mode content.
+
+For example, you can copy a URL to the clipboard or kill-ring, then
+run a command that downloads the page, isolates the “readable” content
+with eww-readable, converts it to Org-mode content with Pandoc, and
+displays it in an Org-mode buffer. Another command does all of that
+but inserts it as an Org entry instead of displaying it in a new
+buffer.
+
+#+begin_src emacs-lisp
+  (use-package org-web-tools
+    :after org
+    :commands (org-web-tools-insert-link-for-url
+               org-web-tools-insert-web-page-as-entry
+               org-web-tools-read-url-as-org
+               org-web-tools-convert-links-to-page-entries))
+#+end_src
+
 ** Markdown
 
 [[http://jblevins.org/projects/markdown-mode/][Markdown Mode]] is a major mode for Markdown offering syntax highlighting
