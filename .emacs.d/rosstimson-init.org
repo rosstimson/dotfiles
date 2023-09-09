@@ -1198,6 +1198,14 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 
 
 * Major Modes / Language Specific Stuff
+** Emacs Lisp
+
+#+begin_src emacs-lisp
+  (use-package emacs-lisp-mode
+    :elpaca nil
+    :hook (emacs-lisp-mode . smartparens-strict-mode))
+#+end_src
+
 ** Org
 
 [[http://orgmode.org/][Org mode]] - Your life in plain text.
