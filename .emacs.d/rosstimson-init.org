@@ -993,6 +993,20 @@ Rust.
     (rg-enable-default-bindings))
 #+end_src
 
+** Sly
+
+[[https://github.com/joaotavora/sly][SLY]] is Sylvester the Cat's Common Lisp IDE for Emacs.
+
+SLY is a fork of [[https://slime.common-lisp.dev/][SLIME]]. We tracks its bugfixes, particularly to the
+implementation backends. All SLIME's familiar features (debugger,
+inspector, xref, etc...) are still available, with improved overall
+UX.
+
+#+begin_src emacs-lisp
+  (use-package sly
+    :mode "\\.lisp\\'")
+#+end_src
+
 ** Smart Mode Line
 
 Prettify the mode line with [[https://github.com/Malabarba/smart-mode-line][Smart Mode Line]].
