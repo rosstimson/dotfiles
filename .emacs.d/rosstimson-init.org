@@ -392,6 +392,24 @@ Quickly follow links with [[https://github.com/abo-abo/ace-link][Ace-link]].
   (define-key org-mode-map (kbd "M-o") 'ace-link-org))
 #+END_SRC
 
+** Aggressive Indent
+
+[[https://github.com/Malabarba/aggressive-indent-mode][aggressive-indent-mode]] - ~electric-indent-mode~ is enough to keep your
+code nicely aligned when all you do is type. However, once you start
+shifting blocks around, transposing lines, or slurping and barfing
+sexps, indentation is bound to go wrong.
+
+~aggressive-indent-mode~ is a minor mode that keeps your code *always*
+indented. It reindents after every change, making it more reliable
+than ~electric-indent-mode~.
+
+#+begin_src emacs-lisp
+  (use-package aggressive-indent
+    :blackout
+    :hook (emacs-lisp-mode . aggressive-indent-mode)
+          (clojure-mode . aggressive-indent-mode))
+#+end_src
+
 ** All The Icons
 
 [[https://github.com/domtronn/all-the-icons.el][All the Icons]] is a utility package to collect various Icon Fonts and
