@@ -268,7 +268,8 @@ Allow easy movement between windows/splits.
                                 ".*-autoloads\\.el\\'"
                                 "/tmp"
                                 "/ssh:"
-                                "custom\.el"))
+                                "custom\.el"
+                                "~/Documents/bookmarks"))
     (recentf-mode t))
 #+END_SRC
 
@@ -460,6 +461,23 @@ Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy
     (beacon-size 60)
     :config
     (beacon-mode 1))
+#+end_src
+
+** Bookmarks
+
+[[https://emacsdocs.org/docs/emacs/Bookmarks][Bookmarks]] - Bookmarks are somewhat like registers in that they record
+positions you can jump to. Unlike registers, they have long names, and
+they persist automatically from one Emacs session to the next. The
+prototypical use of bookmarks is to record where you were reading in
+various files.
+
+#+begin_src emacs-lisp
+  (use-package bookmark
+    :elpaca nil
+    :defer t
+    :custom
+    (bookmark-default-file "~/Documents/bookmarks")
+    (bookmark-save-flag 1))
 #+end_src
 
 ** Cape
