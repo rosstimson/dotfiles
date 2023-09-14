@@ -431,7 +431,9 @@ program with [[https://emacsdocs.org/docs/emacs/Auto-Revert][Auto Revert]].
     :elpaca nil
     :blackout
     :config
-    (global-auto-revert-mode t))
+    (global-auto-revert-mode t)
+    ;; Revert Dired and other buffers
+    (setq global-auto-revert-non-file-buffers t))
 #+end_src
 
 ** Avy
