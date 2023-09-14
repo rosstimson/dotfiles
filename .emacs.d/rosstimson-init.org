@@ -646,6 +646,47 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
     (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
 #+end_src
 
+** Dashboard
+
+[[https://github.com/emacs-dashboard/emacs-dashboard][Emacs Dashboard]] An extensible emacs startup screen showing you what’s
+most important.
+
+Features:
+
+1. Displays an awesome Emacs banner!
+2. Recent files
+3. Bookmarks list
+4. Recent projects list (Depends on `projectile` or `project.el` package)
+5. Org mode agenda
+6. Register list
+7. Supports both all-the-icons and nerd-icons
+
+#+begin_src emacs-lisp
+  (use-package dashboard
+    :config
+    (dashboard-setup-startup-hook)
+
+    (setq dashboard-projects-backend 'project-el)
+
+    (setq dashboard-items '((recents  . 5)
+                            (bookmarks . 5)
+                            (projects . 5)))
+
+
+    ;; Value can be
+    ;; - nil to display no banner
+    ;; - 'official which displays the official emacs logo
+    ;; - 'logo which displays an alternative emacs logo
+    ;; - 1, 2 or 3 which displays one of the text banners
+    ;; - "path/to/your/image.gif", "path/to/your/image.png" or "path/to/your/text.txt" which displays whatever gif/image/text you would prefer
+    ;; - a cons of '("path/to/your/image.png" . "path/to/your/text.txt")
+    (setq dashboard-startup-banner 'logo)
+
+    ;; Use icons
+    (setq dashboard-icon-type 'all-the-icons)
+    (setq dashboard-set-file-icons t))
+#+end_src
+
 ** Denote
 
 [[https://protesilaos.com/emacs/denote][Denote]] is a simple note-taking tool. It is based on the idea that
