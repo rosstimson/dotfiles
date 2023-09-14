@@ -539,10 +539,11 @@ function with ~consult-line~.
     ;; Load immediately so I can use recent file search or search stuff on startup.
     :demand t
     ;; Replace bindings. Lazily loaded due by `use-package'.
-    :bind (("C-x f" . consult-recent-file)
-           ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
-           ("M-y" . consult-yank-pop)                ;; orig. yank-pop
-           ("<help> a" . consult-apropos)            ;; orig. apropos-command
+    :bind (("C-x f"   . consult-recent-file)
+           ("C-x b"   . consult-buffer)              ;; orig. switch-to-buffer
+           ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
+           ("M-y"     . consult-yank-pop)            ;; orig. yank-pop
+           ("C-c C-j" . consult-org-heading)         ;; orig. org-goto
            ;; M-g bindings (goto-map)
            ("M-g e" . consult-compile-error)
            ("M-g g" . consult-goto-line)             ;; orig. goto-line
@@ -550,7 +551,6 @@ function with ~consult-line~.
            ("M-g m" . consult-mark)
            ("M-g k" . consult-global-mark)
            ("M-g i" . consult-imenu)
-           ("C-*"   . consult-org-heading)
            ("M-g I" . consult-project-imenu)
            ;; M-s bindings (search-map)
            ("M-s f" . consult-find)
