@@ -915,8 +915,8 @@ Persist history over Emacs restarts. Vertico sorts by history position.
 #+begin_src emacs-lisp
   (use-package savehist
     :elpaca nil
-    :init
-    (savehist-mode))
+    :config
+    (savehist-mode t))
 #+end_src
 
 ** Orderless
