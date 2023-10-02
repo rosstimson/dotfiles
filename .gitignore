@@ -16,6 +16,7 @@
 .emacs.d/spell-fu
 .emacs.d/straight/
 .emacs.d/transient/
+.emacs.d/url/cookies
 
 .gnupg/*
 !.gnupg/gpg-agent.conf
