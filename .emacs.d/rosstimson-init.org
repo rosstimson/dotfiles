@@ -543,7 +543,6 @@ function with ~consult-line~.
            ("C-x b"   . consult-buffer)              ;; orig. switch-to-buffer
            ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
            ("M-y"     . consult-yank-pop)            ;; orig. yank-pop
-           ("C-c C-j" . consult-org-heading)         ;; orig. org-goto
            ;; M-g bindings (goto-map)
            ("M-g e" . consult-compile-error)
            ("M-g g" . consult-goto-line)             ;; orig. goto-line
@@ -733,7 +732,9 @@ link between them.
     (setq denote-directory (expand-file-name "~/Documents/notes/"))
     (setq denote-infer-keywords t)
     (setq denote-sort-keywords t)
-    (setq denote-prompts '(title keywords)))
+    (setq denote-prompts '(title keywords))
+    :custom
+    (denote-known-keywords '("emacs" "programming" "sre")))
 #+end_src
 
 ** Dired
@@ -1310,7 +1311,8 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
     :bind (("C-c a" . org-agenda)
            ("C-c c" . org-capture)
            ("C-c l" . org-store-link)
-           ("C-c C-," . org-insert-structure-template))
+           ("C-c C-," . org-insert-structure-template)
+           ("C-c C-j" . consult-org-heading))
     :init
     ;; Load extra Org modules from contrib
     (add-to-list 'org-modules 'org-protocol)
@@ -1349,7 +1351,7 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
     (setq org-return-follows-link t)
 
     (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELLED(c@)")))
+          '((sequence "TODO(t)" "NEXT(n)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELLED(c@)")))
 
     ;; Set active Org Babel languages
     (org-babel-do-load-languages
