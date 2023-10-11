@@ -197,7 +197,7 @@ source $(brew --prefix)/opt/asdf/libexec/asdf.sh
 # pnpm (https://pnpm.io/)
 # --------------------------------------------------------------------
 
-export PNPM_HOME="/Users/rosstimson/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
