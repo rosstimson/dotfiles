@@ -7,10 +7,11 @@ else
    alias _='sudo '
 fi
 
-alias ~='cd $HOME'
 alias -- -='cd -'
-alias ..="cd .."
+alias ....="cd ../../.."
 alias ...="cd ../.."
+alias ..="cd .."
+alias //='cd $(git root)'
 alias bup='brew update && brew upgrade'
 alias cg='cargo'
 alias g='git'
@@ -22,12 +23,13 @@ alias l='exa -agl --git'
 alias less='less -i'
 alias ls='exa'
 alias pwup='cd $HOME/.password-store && git push -u origin master && cd -'
-alias serve='python -m http.server 8080'
 alias ru='rustup'
 alias rup='rustup update'
 alias sc='shellcheck'
+alias serve='python -m http.server 8080'
 alias showpath="echo \$PATH | tr -s ':' '\n'"
 alias t='tmux new-session -A -s rt'
+alias ~='cd $HOME'
 
 # Bundler
 alias bi='bundle install'
