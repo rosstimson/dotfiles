@@ -1182,23 +1182,6 @@ Quickly switch between windows with [[https://github.com/dimitri/switch-window][
   (setq switch-window-threshold 2))
 #+END_SRC
 
-** Treesit-Auto
-
-Emacs 29, while featuring treesit.el and a convenient
-treesit-install-language-grammar, will not feature an intelligent way
-to choose between a default mode, such as python-mode, and its
-tree-sitter enhanced version, python-ts-mode.  [[https://github.com/renzmann/treesit-auto][treesit-auto]] aims to
-remedy this by automatically switching to the tree-sitter mode if the
-grammar is installed and will try to install the grammar if not
-already present.
-
-#+begin_src emacs-lisp
-  (use-package treesit-auto
-    :config
-    (setq treesit-auto-install 'prompt)
-    (global-treesit-auto-mode))
-#+end_src
-
 ** Undo Fu
 
 [[https://gitlab.com/ideasman42/emacs-undo-fu][Undo Fu]] - Simple,
