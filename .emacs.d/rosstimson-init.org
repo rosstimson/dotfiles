@@ -523,7 +523,14 @@ completion backends used by ~completion-at-point~ are so called
     ;;(add-to-list 'completion-at-point-functions #'cape-dict)
     ;;(add-to-list 'completion-at-point-functions #'cape-symbol)
     ;;(add-to-list 'completion-at-point-functions #'cape-line)
-  )
+
+    (defun rt/eglot-capf ()
+      (setq-local completion-at-point-functions
+                  (list (cape-super-capf
+                         #'eglot-completion-at-point
+                         #'cape-file))))
+
+    (add-hook 'eglot-managed-mode-hook #'rt/eglot-capf))
 #+end_src
 
 ** Consult
@@ -854,6 +861,7 @@ is included by default with Emacs since version 29.1.
     :hook (
            (clojure-mode . eglot-ensure)
            (go-mode . eglot-ensure)
+           (javascript-mode. eglot-ensure)
            (python-mode . eglot-ensure)
            (rust-mode . eglot-ensure)
            (terraform-mode . eglot-ensure))
@@ -1689,7 +1697,6 @@ work with.  This persuades Emacs to use makefile mode for ~justfile~.
     :mode ("\\.go\\'" . go-mode)
     :init
     (setq compile-command "go build -v && go test -v")
-    (setq compilation-read-command nil)
     :hook (before-save . gofmt-before-save))
 #+END_SRC
 
