@@ -1097,34 +1097,6 @@ UX.
     :mode "\\.lisp\\'")
 #+end_src
 
-** Smart Mode Line
-
-Prettify the mode line with [[https://github.com/Malabarba/smart-mode-line][Smart Mode Line]].
-
-#+BEGIN_SRC emacs-lisp
-(use-package smart-mode-line
-  :config
-  (setq sml/no-confirm-load-theme t)
-  (setq sml/theme 'respectful)
-  (sml/setup)
-
-  ;; Shorten certain paths with 'directory prefixes'.
-  (add-to-list 'sml/replacer-regexp-list '("^~/code/dotfiles/" ":DOT:") t))
-#+END_SRC
-
-** Smart Tabs
-
-Use [[https://www.emacswiki.org/emacs/SmartTabs][Smart Tabs]] for certain langs/modes.  Smart Tabs offers semantic
-way of using tab characters in source code: tabs for indentation,
-spaces for alignment.
-
-#+BEGIN_SRC emacs-lisp
-(use-package smart-tabs-mode
-  :config
-  (smart-tabs-insinuate 'c 'c++ 'java 'javascript)
-)
-#+END_SRC
-
 ** Smartparens
 
 Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartparens]].
@@ -1688,10 +1660,10 @@ work with.  This persuades Emacs to use makefile mode for ~justfile~.
 [[https://github.com/rust-lang/rust-mode][Rust-mode]] -- A major mode for Rust.
 
 #+BEGIN_SRC emacs-lisp
-(use-package rust-mode
-  :mode ("\\.rs\\'" . rust-mode)
-  :config
-  (setq rust-format-on-save t))
+  (use-package rust-mode
+    :mode ("\\.rs\\'" . rust-mode)
+    :config
+    (setq rust-format-on-save t))
 #+END_SRC
 
 [[https://github.com/kwrooijen/cargo.el][Cargo.el]] -- A minor mode for Cargo the Rust build tool, it adds some

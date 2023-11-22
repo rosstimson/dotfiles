@@ -10,6 +10,7 @@
 .cargo/*
 !.cargo/config
 
+.emacs.d/*.sqlite
 .emacs.d/eln-cache
 .emacs.d/forge-database.sqlite
 .emacs.d/history
