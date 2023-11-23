@@ -36,7 +36,7 @@ alias ~='cd $HOME'
 
 # Cleans up git branches that are no longer on the remote, quick and easy way
 # to get rid of local branches once PRs are merged.
-alias gbcleanup='git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d'
+alias gbcleanup='git fetch -p ; git branch -r | awk '\''{print $1}'\'' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '\''{print $1}'\'' | xargs git branch -d'
 
 
 # Bundler
