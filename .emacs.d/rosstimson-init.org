@@ -759,7 +759,7 @@ link between them.
     (setq denote-directory (expand-file-name "~/Documents/notes/"))
     (setq denote-infer-keywords t)
     (setq denote-sort-keywords t)
-    (setq denote-prompts '(title keywords))
+    (setq denote-prompts '(title keywords subdirectory))
     :custom
     (denote-known-keywords '("emacs" "programming" "sre")))
 #+end_src
