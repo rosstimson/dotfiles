@@ -1,4 +1,4 @@
-#+STARTUP: content
+#+startup: content
 
 * General
 ** System settings
@@ -434,7 +434,9 @@ program with [[https://emacsdocs.org/docs/emacs/Auto-Revert][Auto Revert]].
     :config
     (global-auto-revert-mode t)
     ;; Revert Dired and other buffers
-    (setq global-auto-revert-non-file-buffers t))
+    (setq global-auto-revert-non-file-buffers t)
+    ;; Keep vc-mode branch in modeline up to date automatically.
+    (setq auto-revert-check-vc-info t))
 #+end_src
 
 ** Avy
