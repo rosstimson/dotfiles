@@ -393,6 +393,27 @@ Quickly follow links with [[https://github.com/abo-abo/ace-link][Ace-link]].
   (define-key org-mode-map (kbd "M-o") 'ace-link-org))
 #+END_SRC
 
+** Age
+
+[[https://github.com/anticomputer/age.el][age.el]] provides transparent [[https://github.com/FiloSottile/age][age]] file encryption and decryption in
+Emacs. It is based on the Emacs EasyPG code and offers similar Emacs
+file handling for age encrypted files.
+
+Using ~age.el~ you can, for example, maintain ~.org.age~ encrypted Org
+files, provide age encrypted authentication information out of
+~.authinfo.age~, and open/edit/save age encrypted files via TRAMP.
+
+#+begin_src emacs-lisp
+  (use-package age
+    :mode ("\\.age\\'" . age-encryption-mode)
+    :custom
+    (age-default-identity "~/.age/rosstimson.txt")
+    ;; My public age key
+    (age-default-recipient "age17ll5hultu5gpye40nlj7z7ktcxl8ne9xvtd6udzugkmwlmt83uns82smww")
+    :config
+    (age-file-enable))
+#+end_src
+
 ** Aggressive Indent
 
 [[https://github.com/Malabarba/aggressive-indent-mode][aggressive-indent-mode]] - ~electric-indent-mode~ is enough to keep your
