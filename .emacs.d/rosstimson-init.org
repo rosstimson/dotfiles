@@ -462,6 +462,7 @@ Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy
     :custom
     (beacon-size 60)
     :config
+    (add-to-list 'beacon-dont-blink-major-modes' 'ansi-term)
     (beacon-mode 1))
 #+end_src
 
