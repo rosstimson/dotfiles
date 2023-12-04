@@ -1365,8 +1365,6 @@ languages.
              :immediate-finish nil
              :kill-buffer t
              :jump-to-captured t)
-            ("l" "Protocol Link" entry (file+headline ,(concat org-directory "/links.org") "Inbox")
-             "* [[%:link][%:description]] \n\n%i\n%?\nCaptured On: %U" :empty-lines 1)
             ("j" "Journal entry" entry (function org-journal-find-location)
              "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?" :empty-lines 1)))
 
