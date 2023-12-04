@@ -1325,7 +1325,7 @@ languages.
           org-src-tab-acts-natively t)
 
     (setq org-directory (expand-file-name "~/Documents/notes"))
-    (setq org-default-notes-file (concat org-directory "/notes.org"))
+    (setq org-default-notes-file (concat org-directory "/capture.org"))
     (setq org-log-done 'time)
     (setq org-log-done-with-time t)
     (setq org-log-into-drawer t)
@@ -1354,10 +1354,8 @@ languages.
 
     ;; Capture templates
     (setq org-capture-templates
-          `(("t" "Todo" entry (file+headline ,(concat org-directory "/todo.org") "Inbox")
-             "* TODO %?\n  %i\n" :empty-lines 1)
-            ("s" "Someday / Maybe" entry (file+headline ,(concat org-directory "/someday-maybe.org") "Inbox")
-             "* TODO %?\n  %i\n" :empty-lines 1)
+          `(("c" "Quick Capture" entry (file ,(concat org-directory "/capture.org"))
+             "* %?\nCaptured on %U\n  %i\n" :empty-lines 1)
             ("n" "New note (with Denote)" plain
              (file denote-last-path)
              #'denote-org-capture
@@ -1366,7 +1364,11 @@ languages.
              :kill-buffer t
              :jump-to-captured t)
             ("j" "Journal entry" entry (function org-journal-find-location)
-             "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?" :empty-lines 1)))
+             "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?" :empty-lines 1)
+            ("t" "Todo" entry (file+headline ,(concat org-directory "/todo.org") "Inbox")
+             "* TODO %?\n  %i\n" :empty-lines 1)
+            ("s" "Someday / Maybe" entry (file+headline ,(concat org-directory "/someday-maybe.org") "Inbox")
+             "* TODO %?\n  %i\n" :empty-lines 1)))
 
     ;; Refile targets
     (setq org-refile-targets
