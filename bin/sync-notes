@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+
+function push() {
+  aws --profile notes \
+      --region eu-west-1 \
+      s3 sync --delete --sse --storage-class INTELLIGENT_TIERING . s3://notes-rosstimson
+}
+
+
+function pull() {
+  aws --profile notes \
+      --region eu-west-1 \
+      s3 sync s3://notes-rosstimson .
+}
+
+
+case $1 in
+    push)
+        push
+        ;;
+    # Defaults to pull if no argument is given.
+    pull | "")
+        pull
+        ;;
+    *)
+        echo "Invalid argument. Usage: $0 [push|pull]"
+        exit 1
+        ;;
+esac
+
+exit 0
