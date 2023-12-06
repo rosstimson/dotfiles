@@ -16,6 +16,7 @@ alias ...="cd ../.."
 alias ..="cd .."
 alias //='cd $(git root)'
 alias bup='brew update && brew upgrade'
+alias cdtmp='cd $(mktemp --directory)'
 alias cg='cargo'
 alias g='git'
 alias h='fc -li 1'
