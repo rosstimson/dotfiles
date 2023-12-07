@@ -6,14 +6,14 @@ set -euo pipefail
 function push() {
   aws --profile notes \
       --region eu-west-1 \
-      s3 sync --delete --sse --storage-class INTELLIGENT_TIERING . s3://notes-rosstimson
+      s3 sync --delete --sse --storage-class INTELLIGENT_TIERING ~/Documents/notes s3://notes-rosstimson
 }
 
 
 function pull() {
   aws --profile notes \
       --region eu-west-1 \
-      s3 sync s3://notes-rosstimson .
+      s3 sync s3://notes-rosstimson ~/Documents/notes
 }
 
 
