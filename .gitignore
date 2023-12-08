@@ -10,10 +10,15 @@
 .cargo/*
 !.cargo/config
 
+.config/gcloud/
+.config/gh/
+.config/hcp
+
 .emacs.d/*.sqlite
 .emacs.d/eln-cache
 .emacs.d/forge-database.sqlite
 .emacs.d/history
+.emacs.d/projects
 .emacs.d/spell-fu
 .emacs.d/straight/
 .emacs.d/transient/
