@@ -1647,6 +1647,15 @@ for Python.
     (add-hook 'python-mode-hook 'anaconda-eldoc-mode)))
 #+END_SRC
 
+Virtual envs with [[https://python-poetry.org/][Poetry]] / [[https://github.com/cybniv/poetry.el][poetry.el]]
+
+#+begin_src emacs-lisp
+  (use-package poetry
+    :hook
+    ;; activate poetry-tracking-mode when python-mode is active
+    (python-mode . poetry-tracking-mode))
+#+end_src
+
 ** Jinja2
 
 [[https://melpa.org/#/jinja2-mode][Jinja2 Mode]] is a major mode for the jinja2 templating language.
