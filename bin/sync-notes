@@ -17,12 +17,12 @@ function pull() {
 }
 
 
-case $1 in
+# Default to pull if no arguments given
+case ${1:-pull} in
     push)
         push
         ;;
-    # Defaults to pull if no argument is given.
-    pull | "")
+    pull)
         pull
         ;;
     *)
