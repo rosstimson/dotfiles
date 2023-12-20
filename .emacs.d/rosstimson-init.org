@@ -733,12 +733,12 @@ Features:
   (use-package dashboard
     :config
     (dashboard-setup-startup-hook)
+    :custom
+    (dashboard-projects-backend 'project-el)
 
-    (setq dashboard-projects-backend 'project-el)
-
-    (setq dashboard-items '((recents  . 5)
-                            (bookmarks . 5)
-                            (projects . 5)))
+    (dashboard-items '((recents  . 5)
+                       (bookmarks . 5)
+                       (projects . 5)))
 
 
     ;; Value can be
@@ -748,11 +748,16 @@ Features:
     ;; - 1, 2 or 3 which displays one of the text banners
     ;; - "path/to/your/image.gif", "path/to/your/image.png" or "path/to/your/text.txt" which displays whatever gif/image/text you would prefer
     ;; - a cons of '("path/to/your/image.png" . "path/to/your/text.txt")
-    (setq dashboard-startup-banner 'logo)
+    (dashboard-startup-banner 'logo)
+    (dashboard-banner-logo-title nil)
+
+    (dashboard-set-footer nil)
 
     ;; Use icons
-    (setq dashboard-icon-type 'all-the-icons)
-    (setq dashboard-set-file-icons t))
+    (dashboard-display-icons-p t)
+    (dashboard-icon-type 'all-the-icons)
+    (dashboard-set-heading-icons t)
+    (dashboard-set-file-icons t))
 #+end_src
 
 ** Denote
