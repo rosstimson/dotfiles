@@ -1,0 +1,99 @@
+decorations = "none"
+option_as_alt = "OnlyLeft"
+startup_mode = "SimpleFullscreen"
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "0x333333"
+blue = "0xa0aabd"
+cyan = "0xa0bdb3"
+green = "0xaabda0"
+magenta = "0xb3a0bd"
+red = "0xbda0aa"
+white = "0xffffff"
+yellow = "0xbdb3a0"
+
+[colors.hints.end]
+background = "#e9c46a"
+foreground = "#444444"
+
+[colors.hints.start]
+background = "#f4a261"
+foreground = "#444444"
+
+[colors.normal]
+black = "0x444444"
+blue = "0x5b6982"
+cyan = "0x5b8275"
+green = "0x69825b"
+magenta = "0x755b82"
+red = "0x825b69"
+white = "0xcacaca"
+yellow = "0x82755b"
+
+[colors.primary]
+background = "0xf2f0e6"
+foreground = "0x444444"
+
+[font]
+size = 13.0
+
+[font.bold]
+family = "FiraMono Nerd Font"
+style = "Regular"
+
+[font.bold_italic]
+family = "FiraMono Nerd Font"
+style = "Italic"
+
+[font.italic]
+family = "FiraMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "FiraMono Nerd Font"
+style = "Regular"
+
+[[hints.enabled]]
+command = "open"
+hyperlinks = true
+post_processing = true
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.binding]
+key = "U"
+mods = "Control|Shift"
+
+[hints.enabled.mouse]
+enabled = true
+mods = "None"
+
+[[keyboard.bindings]]
+chars = "\u001Bv"
+key = "V"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bw"
+key = "W"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bx"
+key = "X"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bq"
+key = "Q"
+mods = "Alt"
+
+[shell]
+args = ["new-session", "-A", "-s", "rt"]
+program = "/opt/homebrew/bin/tmux"
+
+[window.padding]
+x = 12
+y = 2
