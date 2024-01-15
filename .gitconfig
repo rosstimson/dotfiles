@@ -84,7 +84,6 @@
 	c = commit -v
 	cl = clone
 	co = checkout
-	com= checkout main
 	cp= cherry-pick
 	d = diff
 	ds = diff --staged
@@ -110,6 +109,7 @@
 	rv = revert
 	s = status
 	sh = show
+	sm = switch main
 	st = stash
 	stash-all = stash save --include-untracked
 	std = stash show -p
