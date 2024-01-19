@@ -1285,7 +1285,7 @@ languages.
     (xeft-database (expand-file-name "~/.emacs.d/xeft.db"))
     (xeft-default-extension "org")
     (xeft-directory (expand-file-name "~/Documents/notes"))
-    (xeft-recusive 'follow-symlinks))
+    (xeft-recursive t))
 #+end_src
 
 
