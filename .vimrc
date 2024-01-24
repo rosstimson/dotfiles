@@ -10,6 +10,7 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 " Add other plugins here.
 call minpac#add('NLKNguyen/papercolor-theme')
+call minpac#add('hashivim/vim-terraform')
 call minpac#add('lotabout/skim', { 'do': 'silent !./install' })
 call minpac#add('lotabout/skim.vim')
 call minpac#add('mileszs/ack.vim')
