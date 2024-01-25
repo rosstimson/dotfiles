@@ -41,9 +41,9 @@ LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=0;44:cd=30;43:su=30;41:sg=30;46:tw=3
 
 # exa colours (A modern replacement for ls written in Rust:  https://the.exa.website)
 # Turn off some of the colours as this many colours is just obnoxious.
-EXA_COLORS="uu=0:gu=0:ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0"
+EZA_COLORS="uu=0:gu=0:ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0"
 
-export LSCOLORS LS_COLORS EXA_COLORS
+export LSCOLORS LS_COLORS EZA_COLORS
 
 
 # SSH Agent
