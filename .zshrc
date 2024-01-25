@@ -103,7 +103,7 @@ export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=0;44:cd=30;43:su=30;41:sg=30;
 
 # exa colours (A modern replacement for ls written in Rust:  https://the.exa.website)
 # Turn off some of the colours as this many colours is just obnoxious.
-export EXA_COLORS="uu=0:gu=0:ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0"
+export EZA_COLORS="uu=0:gu=0:ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0"
 
 # Skim - Fuzzy finder written in Rust: https://github.com/lotabout/skim
 export SKIM_DEFAULT_OPTIONS='--layout=reverse --color=light,fg:8,bg:15,current_bg:7,matched_bg:10,current_match:8'
