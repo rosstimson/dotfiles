@@ -13,7 +13,7 @@ install:
 	#   * existing target is neither a link nor a directory: .bashrc
 	#   * existing target is neither a link nor a directory: .profile
 	#   * existing target is neither a link nor a directory: .ssh/config
-	rm -f ~/.bashrc ~/.profile ~/.ssh/config
+	rm -rf ~/.bashrc ~/.profile ~/.ssh/config ~/.gnupg
 
 	# Symlink all files with GNU Stow.
 	# Note: Stow doesn't seem to like `~` so using `$HOME`.
