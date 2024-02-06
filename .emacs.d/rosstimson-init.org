@@ -960,6 +960,32 @@ context:
   (add-hook 'html-mode-hook 'emmet-mode))
 #+END_SRC
 
+** Flycheck
+
+[[https://www.flycheck.org/en/latest/index.html][Flycheck]] is a modern on-the-fly syntax checking extension for GNU
+Emacs, intended as replacement for the older Flymake extension which
+is part of GNU Emacs.
+
+#+begin_src emacs-lisp
+  (use-package flycheck
+    :init (global-flycheck-mode))
+#+end_src
+
+[[https://github.com/intramurz/flycheck-eglot][flycheck-eglot]] - A simple “glue” minor mode that allows Flycheck and
+Eglot to work together. Thus, the Flycheck frontend can display the
+results of syntactic checks performed by the LSP server.
+
+Note that Eglot the Emacs built-in LSP package works with Flymake by
+default, this package disables Flymake in favour of Flycheck which is
+more capable.
+
+#+begin_src emacs-lisp
+  (use-package flycheck-eglot
+    :after (flycheck eglot)
+    :config
+    (global-flycheck-eglot-mode 1))
+#+end_src
+
 ** Iedit
 
 Edit multiple regions in the same way simultaneously with [[https://github.com/victorhge/iedit][Iedit]].
