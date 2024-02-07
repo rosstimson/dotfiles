@@ -1,4 +1,4 @@
-content: #+startup
+#+startup: content
 
 * General
 ** System settings
