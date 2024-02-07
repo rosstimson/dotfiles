@@ -1,4 +1,4 @@
-#+startup: content
+content: #+startup
 
 * General
 ** System settings
@@ -1838,14 +1838,14 @@ appropriately for embedded CSS or Javascript.
 #+begin_src emacs-lisp
   (use-package typescript-mode
     :elpaca nil
-    :nil (("\\.ts\\'" . typescript-ts-mode)
+    :mode (("\\.ts\\'" . typescript-ts-mode)
            ("\\.tsx\\'" . tsx-ts-mode)))
 #+end_src
 
 #+begin_src emacs-lisp
   (use-package javascript-mode
     :elpaca nil
-    :nil (("\\.js\\'" . js-ts-mode)
+    :mode (("\\.js\\'" . js-ts-mode)
            ("\\.jsx\\'" . js-ts-mode)))
 #+end_src
 
