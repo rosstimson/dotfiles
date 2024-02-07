@@ -896,13 +896,13 @@ is included by default with Emacs since version 29.1.
     :bind (:map eglot-mode-map
                 ("M-." . xref-find-definitions)
                 ("C-c h" . eglot-help-at-point))
-    :hook (
-           (clojure-mode . eglot-ensure)
+    :hook ((clojure-mode . eglot-ensure)
            (go-mode . eglot-ensure)
            (javascript-mode. eglot-ensure)
            (python-mode . eglot-ensure)
            (rust-mode . eglot-ensure)
-           (terraform-mode . eglot-ensure))
+           (terraform-mode . eglot-ensure)
+           (typescript-mode . eglot-ensure))
     :config
     (add-to-list 'eglot-server-programs
                  '(terraform-mode . ("terraform-ls" "serve"))))
@@ -1835,21 +1835,18 @@ appropriately for embedded CSS or Javascript.
 
 ** JavaScript / TypeScript
 
-[[https://github.com/mooz/js2-mode][JS2 Mode]] is an improved Javascript mode.
-
-Set indent-tabs-mode to true for JS files as Smart Tabs is enabled for
-JS.  Without this Smart Tabs would do its thing but then upon saving
-the globally enabled Whitespace Cleanup mode would set tabbed
-indentation back to spaces.
-
+#+begin_src emacs-lisp
+  (use-package typescript-mode
+    :elpaca nil
+    :nil (("\\.ts\\'" . typescript-ts-mode)
+           ("\\.tsx\\'" . tsx-ts-mode)))
+#+end_src
 
 #+begin_src emacs-lisp
-  (use-package js2-mode
-    :mode ("\\.js\\'")
-    :init
-    (add-hook 'js2-mode-hook
-              (lambda ()
-                (setq indent-tabs-mode t))))
+  (use-package javascript-mode
+    :elpaca nil
+    :nil (("\\.js\\'" . js-ts-mode)
+           ("\\.jsx\\'" . js-ts-mode)))
 #+end_src
 
 [[https://github.com/ananthakumaran/tide][Tide]] is the canonical way of using TypeScript within Emacs.
