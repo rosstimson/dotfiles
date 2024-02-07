@@ -1316,6 +1316,64 @@ languages.
 
 
 * Major Modes / Language Specific Stuff
+** C
+
+Similar to JS mode use Smart Tabs for C code and make sure Whitespace
+Cleanup doesn't clobber tabs upon save.
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (setq indent-tabs-mode t)))
+#+END_SRC
+
+** Clojure
+
+[[https://github.com/borkdude/clj-kondo/][clj-kondo]] a Clojure linter via flycheck.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck-clj-kondo)
+#+END_SRC
+
+[[https://github.com/clojure-emacs/clojure-mode][Clojure Mode]] is a major mode for Clojure.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package clojure-mode
+    :mode (("\\.clj\\'" . clojure-mode)
+           ("\\.cljs\\'" . clojurescript-mode)
+           ("\\.cljc\\'" . clojurec-mode)
+           ("\\.boot\\'" . clojure-mode))
+    :hook ((clojure-mode . eldoc-mode)
+           (clojure-mode . subword-mode)
+           (clojure-mode . smartparens-strict-mode)
+           (clojure-mode . clj-refactor-mode))
+    :config (require 'flycheck-clj-kondo))
+#+END_SRC
+
+[[https://cider.readthedocs.io/en/latest][CIDER]] is the Clojure(Script) Interactive Development Environment that Rocks!
+
+#+BEGIN_SRC emacs-lisp
+  (use-package cider
+    :after clojure-mode
+    :commands (cider cider-connect cider-jack-in)
+    :bind ("C-c M-j" . cider-jack-in)
+    :custom
+    (cider-boot-parameters "cider repl -s wait")
+    (cider-repl-display-help-banner nil)
+    (cider-repl-result-prefix "=> "))
+#+END_SRC
+
+[[https://github.com/clojure-emacs/clj-refactor.el][clj-refactor]] is a collection of functions for refactoring Clojure code.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package clj-refactor
+    :config
+    ;; This choice of keybinding leaves cider-macroexpand-1 unbound
+    (cljr-add-keybindings-with-prefix "C-c C-r")
+    (setq cljr-warn-on-eval nil)
+    :blackout)
+#+END_SRC
+
 ** Emacs Lisp
 
 #+begin_src emacs-lisp
@@ -1324,7 +1382,89 @@ languages.
     :hook (emacs-lisp-mode . smartparens-strict-mode))
 #+end_src
 
-** Org
+** Go
+
+[[https://github.com/dominikh/go-mode.el][Go mode]]
+
+#+BEGIN_SRC emacs-lisp
+  (use-package go-mode
+    :mode ("\\.go\\'" . go-mode)
+    :init
+    (setq compile-command "go build -v && go test -v")
+    :hook (before-save . gofmt-before-save))
+#+END_SRC
+
+** JavaScript / TypeScript
+
+#+begin_src emacs-lisp
+  (use-package typescript-mode
+    :elpaca nil
+    :mode (("\\.ts\\'" . typescript-ts-mode)
+           ("\\.tsx\\'" . tsx-ts-mode)))
+#+end_src
+
+#+begin_src emacs-lisp
+  (use-package javascript-mode
+    :elpaca nil
+    :mode (("\\.js\\'" . js-ts-mode)
+           ("\\.jsx\\'" . js-ts-mode)))
+#+end_src
+
+[[https://github.com/ananthakumaran/tide][Tide]] is the canonical way of using TypeScript within Emacs.
+
+#+begin_src emacs-lisp
+  (use-package tide
+    :after (typescript-mode flycheck)
+    :hook ((typescript-mode . tide-setup)
+           (typescript-mode . tide-hl-identifier-mode)
+           (before-save . tide-format-before-save)))
+#+end_src
+
+** Jinja2
+
+[[https://melpa.org/#/jinja2-mode][Jinja2 Mode]] is a major mode for the jinja2 templating language.
+
+#+BEGIN_SRC emacs-lisp
+(use-package jinja2-mode
+  :mode ("\\.j2\\'" . jinja2-mode))
+#+END_SRC
+
+** Just
+
+[[https://github.com/casey/just][Just]] is a command runner that is similar to Make but is a bit nicer to
+work with.  This persuades Emacs to use makefile mode for ~justfile~.
+
+#+begin_src emacs-lisp
+  (use-package make-mode
+    :elpaca nil
+    :mode (("justfile\\'" . makefile-mode)))
+#+end_src
+
+** Markdown
+
+[[http://jblevins.org/projects/markdown-mode/][Markdown Mode]] is a major mode for Markdown offering syntax highlighting
+and preview as well as other niceties.
+
+Markdown command is set to [[http://fletcherpenney.net/multimarkdown/][multimarkdown]] so that needs installed on the system.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode
+    :commands (markdown-mode gfm-mode)
+    :mode (("README\\.md\\'" . gfm-mode)
+           ("\\.md\\'" . markdown-mode)
+           ("\\.markdown\\'" . markdown-mode))
+    :init (setq markdown-command "pandoc")
+    :hook (markdown-mode . markdown-toc-mode))
+#+END_SRC
+
+Generate table of contents within Markdown files with [[https://github.com/ardumont/markdown-toc][markdown-toc]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-toc
+    :blackout)
+#+END_SRC
+
+** Nix** Org
 
 [[http://orgmode.org/][Org mode]] - Your life in plain text.
 
@@ -1628,41 +1768,6 @@ buffer.
                org-web-tools-convert-links-to-page-entries))
 #+end_src
 
-** Markdown
-
-[[http://jblevins.org/projects/markdown-mode/][Markdown Mode]] is a major mode for Markdown offering syntax highlighting
-and preview as well as other niceties.
-
-Markdown command is set to [[http://fletcherpenney.net/multimarkdown/][multimarkdown]] so that needs installed on the system.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package markdown-mode
-    :commands (markdown-mode gfm-mode)
-    :mode (("README\\.md\\'" . gfm-mode)
-           ("\\.md\\'" . markdown-mode)
-           ("\\.markdown\\'" . markdown-mode))
-    :init (setq markdown-command "pandoc")
-    :hook (markdown-mode . markdown-toc-mode))
-#+END_SRC
-
-Generate table of contents within Markdown files with [[https://github.com/ardumont/markdown-toc][markdown-toc]].
-
-#+BEGIN_SRC emacs-lisp
-  (use-package markdown-toc
-    :blackout)
-#+END_SRC
-
-** YAML
-
-[[https://www.emacswiki.org/emacs/YamlMode][Yaml mode]]
-
-#+BEGIN_SRC emacs-lisp
-(use-package yaml-mode
-  :mode (("\\.yml$" . yaml-mode)
-         ("\\.yaml$" . yaml-mode)
-         ("\\.sls$" . yaml-mode))) ; SaltStack
-#+END_SRC
-
 ** Python
 
 Setup Python mode
@@ -1697,37 +1802,14 @@ Virtual envs with [[https://python-poetry.org/][Poetry]] / [[https://github.com/
     (python-mode . poetry-tracking-mode))
 #+end_src
 
-** Jinja2
+** RestClient
 
-[[https://melpa.org/#/jinja2-mode][Jinja2 Mode]] is a major mode for the jinja2 templating language.
-
-#+BEGIN_SRC emacs-lisp
-(use-package jinja2-mode
-  :mode ("\\.j2\\'" . jinja2-mode))
-#+END_SRC
-
-** Just
-
-[[https://github.com/casey/just][Just]] is a command runner that is similar to Make but is a bit nicer to
-work with.  This persuades Emacs to use makefile mode for ~justfile~.
+Mode for working with REST APIs.
 
 #+begin_src emacs-lisp
-  (use-package make-mode
-    :elpaca nil
-    :mode (("justfile\\'" . makefile-mode)))
+(use-package restclient
+  :mode ("\\.http\\'" . restclient-mode))
 #+end_src
-
-** Go
-
-[[https://github.com/dominikh/go-mode.el][Go mode]]
-
-#+BEGIN_SRC emacs-lisp
-  (use-package go-mode
-    :mode ("\\.go\\'" . go-mode)
-    :init
-    (setq compile-command "go build -v && go test -v")
-    :hook (before-save . gofmt-before-save))
-#+END_SRC
 
 ** Rust
 
@@ -1748,51 +1830,15 @@ convenient bindings for running Cargo commands.
     :hook (rust-mode . cargo-minor-mode))
 #+end_src
 
-** Clojure
+** Shell
 
-[[https://github.com/borkdude/clj-kondo/][clj-kondo]] a Clojure linter via flycheck.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package flycheck-clj-kondo)
-#+END_SRC
-
-[[https://github.com/clojure-emacs/clojure-mode][Clojure Mode]] is a major mode for Clojure.
+Use tabs in shell scripts otherwise heredoc functionality around
+whitespace can be weird.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package clojure-mode
-    :mode (("\\.clj\\'" . clojure-mode)
-           ("\\.cljs\\'" . clojurescript-mode)
-           ("\\.cljc\\'" . clojurec-mode)
-           ("\\.boot\\'" . clojure-mode))
-    :hook ((clojure-mode . eldoc-mode)
-           (clojure-mode . subword-mode)
-           (clojure-mode . smartparens-strict-mode)
-           (clojure-mode . clj-refactor-mode))
-    :config (require 'flycheck-clj-kondo))
-#+END_SRC
-
-[[https://cider.readthedocs.io/en/latest][CIDER]] is the Clojure(Script) Interactive Development Environment that Rocks!
-
-#+BEGIN_SRC emacs-lisp
-  (use-package cider
-    :after clojure-mode
-    :commands (cider cider-connect cider-jack-in)
-    :bind ("C-c M-j" . cider-jack-in)
-    :custom
-    (cider-boot-parameters "cider repl -s wait")
-    (cider-repl-display-help-banner nil)
-    (cider-repl-result-prefix "=> "))
-#+END_SRC
-
-[[https://github.com/clojure-emacs/clj-refactor.el][clj-refactor]] is a collection of functions for refactoring Clojure code.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package clj-refactor
-    :config
-    ;; This choice of keybinding leaves cider-macroexpand-1 unbound
-    (cljr-add-keybindings-with-prefix "C-c C-r")
-    (setq cljr-warn-on-eval nil)
-    :blackout)
+(add-hook 'sh-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode t)))
 #+END_SRC
 
 ** Terraform
@@ -1833,64 +1879,18 @@ appropriately for embedded CSS or Javascript.
     '(("jinja2"    . "\\.j2\\'"))))
 #+END_SRC
 
-** JavaScript / TypeScript
+** YAML
 
-#+begin_src emacs-lisp
-  (use-package typescript-mode
-    :elpaca nil
-    :mode (("\\.ts\\'" . typescript-ts-mode)
-           ("\\.tsx\\'" . tsx-ts-mode)))
-#+end_src
-
-#+begin_src emacs-lisp
-  (use-package javascript-mode
-    :elpaca nil
-    :mode (("\\.js\\'" . js-ts-mode)
-           ("\\.jsx\\'" . js-ts-mode)))
-#+end_src
-
-[[https://github.com/ananthakumaran/tide][Tide]] is the canonical way of using TypeScript within Emacs.
-
-#+begin_src emacs-lisp
-  (use-package tide
-    :after (typescript-mode flycheck)
-    :hook ((typescript-mode . tide-setup)
-           (typescript-mode . tide-hl-identifier-mode)
-           (before-save . tide-format-before-save)))
-#+end_src
-
-** C
-
-Similar to JS mode use Smart Tabs for C code and make sure Whitespace
-Cleanup doesn't clobber tabs upon save.
+[[https://www.emacswiki.org/emacs/YamlMode][Yaml mode]]
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (setq indent-tabs-mode t)))
+(use-package yaml-mode
+  :mode (("\\.yml$" . yaml-mode)
+         ("\\.yaml$" . yaml-mode)
+         ("\\.sls$" . yaml-mode))) ; SaltStack
 #+END_SRC
 
-** RestClient
 
-Mode for working with REST APIs.
-
-#+begin_src emacs-lisp
-(use-package restclient
-  :mode ("\\.http\\'" . restclient-mode))
-#+end_src
-
-** Shell
-
-Use tabs in shell scripts otherwise heredoc functionality around
-whitespace can be weird.
-
-#+BEGIN_SRC emacs-lisp
-(add-hook 'sh-mode-hook
-          (lambda ()
-            (setq indent-tabs-mode t)))
-#+END_SRC
-
-** Nix
 
 [[https://github.com/NixOS/nix-mode/][Nix Mode]] -- An Emacs major mode for editing Nix expressions. There is
 also a manual available at nix-mode.org.
@@ -1902,16 +1902,8 @@ also a manual available at nix-mode.org.
 
 
 * Extras
-** Sqlite3
-
-[[https://github.com/pekingduck/emacs-sqlite3-api][sqlite3]] is a dynamic module for GNU Emacs 25+ that provides direct
-access to the core SQLite3 C API from Emacs Lisp.
-
-#+begin_src emacs-lisp
-  (use-package sqlite3)
-#+end_src
-
 ** Ediff
+
 
 #+begin_src emacs-lisp
 (use-package ediff
@@ -1928,3 +1920,11 @@ access to the core SQLite3 C API from Emacs Lisp.
   :hook (ediff-prepare-buffer . outline-show-all))
 #+end_src
 
+** Sqlite3
+
+[[https://github.com/pekingduck/emacs-sqlite3-api][sqlite3]] is a dynamic module for GNU Emacs 25+ that provides direct
+access to the core SQLite3 C API from Emacs Lisp.
+
+#+begin_src emacs-lisp
+  (use-package sqlite3)
+#+end_src
