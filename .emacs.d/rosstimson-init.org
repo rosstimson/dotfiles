@@ -1414,9 +1414,9 @@ Cleanup doesn't clobber tabs upon save.
 
 #+begin_src emacs-lisp
   (use-package tide
-    :after (typescript-mode flycheck)
-    :hook ((typescript-mode . tide-setup)
-           (typescript-mode . tide-hl-identifier-mode)
+    :after (typescript-ts-mode flycheck)
+    :hook ((typescript-ts-mode . tide-setup)
+           (typescript-ts-mode . tide-hl-identifier-mode)
            (before-save . tide-format-before-save)))
 #+end_src
 
