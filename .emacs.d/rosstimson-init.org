@@ -1024,78 +1024,6 @@ from the comfort of Magit and the rest of Emacs.
     (forge-topic-list-limit '(60 . 0) "Maximum of 60 open topics and 0 closed topics."))
 #+end_src
 
-** Vertico
-
-[[https://github.com/minad/vertico][Vertico]] provides a performant and minimalistic vertical completion UI
-based on the default completion system. The main focus of Vertico is
-to provide a UI which behaves correctly under all circumstances. By
-reusing the built-in facilities system, Vertico achieves full
-compatibility with built-in Emacs completion commands and completion
-tables.
-
-Note the keybinding being set here to ignore completion suggestions
-and just do.  Example of this issue is when trying to create a
-directory with dired called java but there is already a javascript
-directory, hitting return just uses the completion suggestion so you'd
-get an error about how you cannot create the directory as it already
-exists.  You can encounter this type of scenario frequently in other
-situations too. This Github issue has more details:
-[[https://github.com/minad/vertico/issues/211][https://github.com/minad/vertico/issues/211]]. The key binding should be
-there by default according to the Github issue but it doesn't seem to
-be set for me so I explicitly set it here.  The alternative to using
-this binding for ~vertico-exit-input~ would be to use C-p to put the
-line back up into the minibuffer text entry line rather than the
-completion suggestion.
-
-#+begin_src emacs-lisp
-  (use-package vertico
-    :bind ("M-<return>" . vertico-exit-input)
-    :init
-    (vertico-mode)
-
-    ;; Different scroll margin
-    ;; (setq vertico-scroll-margin 0)
-
-    ;; Show more candidates
-    ;; (setq vertico-count 20)
-
-    ;; Grow and shrink the Vertico minibuffer
-    ;; (setq vertico-resize t)
-
-    ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
-    ;; (setq vertico-cycle t)
-    )
-#+end_src
-
-Persist history over Emacs restarts. Vertico sorts by history position.
-
-#+begin_src emacs-lisp
-  (use-package savehist
-    :elpaca nil
-    :config
-    (savehist-mode t))
-#+end_src
-
-** Orderless
-
-[[https://github.com/oantolin/orderless][Orderless]] completion style that divides the pattern into
-space-separated components, and matches candidates that match all of
-the components in any order. Each component can match in any one of
-several ways: literally, as a regexp, as an initialism, in the flex
-style, or as multiple word prefixes. By default, regexp and literal
-matches are enabled.
-
-#+begin_src emacs-lisp
-  (use-package orderless
-    :init
-    ;; Configure a custom style dispatcher (see the Consult wiki)
-    ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
-    ;;       orderless-component-separator #'orderless-escapable-split-on-space)
-    (setq completion-styles '(orderless basic)
-          completion-category-defaults nil
-          completion-category-overrides '((file (styles partial-completion)))))
-#+end_src
-
 ** Marginalia
 
 Enable richer annotations using the [[https://github.com/minad/marginalia/][Marginalia]] package, this shows
@@ -1122,6 +1050,26 @@ short explanations next to items in the minibuffer.
     ;; switch between the annotators.
     ;; (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
   )
+#+end_src
+
+** Orderless
+
+[[https://github.com/oantolin/orderless][Orderless]] completion style that divides the pattern into
+space-separated components, and matches candidates that match all of
+the components in any order. Each component can match in any one of
+several ways: literally, as a regexp, as an initialism, in the flex
+style, or as multiple word prefixes. By default, regexp and literal
+matches are enabled.
+
+#+begin_src emacs-lisp
+  (use-package orderless
+    :init
+    ;; Configure a custom style dispatcher (see the Consult wiki)
+    ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+    ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+    (setq completion-styles '(orderless basic)
+          completion-category-defaults nil
+          completion-category-overrides '((file (styles partial-completion)))))
 #+end_src
 
 ** Rainbow delimiters
@@ -1234,6 +1182,58 @@ Emacs built-in undo system,
            ("C-M-/" . undo-fu-only-redo)))
 #+end_src
 
+** Vertico
+
+[[https://github.com/minad/vertico][Vertico]] provides a performant and minimalistic vertical completion UI
+based on the default completion system. The main focus of Vertico is
+to provide a UI which behaves correctly under all circumstances. By
+reusing the built-in facilities system, Vertico achieves full
+compatibility with built-in Emacs completion commands and completion
+tables.
+
+Note the keybinding being set here to ignore completion suggestions
+and just do.  Example of this issue is when trying to create a
+directory with dired called java but there is already a javascript
+directory, hitting return just uses the completion suggestion so you'd
+get an error about how you cannot create the directory as it already
+exists.  You can encounter this type of scenario frequently in other
+situations too. This Github issue has more details:
+[[https://github.com/minad/vertico/issues/211][https://github.com/minad/vertico/issues/211]]. The key binding should be
+there by default according to the Github issue but it doesn't seem to
+be set for me so I explicitly set it here.  The alternative to using
+this binding for ~vertico-exit-input~ would be to use C-p to put the
+line back up into the minibuffer text entry line rather than the
+completion suggestion.
+
+#+begin_src emacs-lisp
+  (use-package vertico
+    :bind ("M-<return>" . vertico-exit-input)
+    :init
+    (vertico-mode)
+
+    ;; Different scroll margin
+    ;; (setq vertico-scroll-margin 0)
+
+    ;; Show more candidates
+    ;; (setq vertico-count 20)
+
+    ;; Grow and shrink the Vertico minibuffer
+    ;; (setq vertico-resize t)
+
+    ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+    ;; (setq vertico-cycle t)
+    )
+#+end_src
+
+Persist history over Emacs restarts. Vertico sorts by history position.
+
+#+begin_src emacs-lisp
+  (use-package savehist
+    :elpaca nil
+    :config
+    (savehist-mode t))
+#+end_src
+
 ** Wgrep
 
 [[https://github.com/mhayashi1120/Emacs-wgrep][wgrep]]
@@ -1283,6 +1283,20 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
     (global-whitespace-cleanup-mode t)) ; Enabled globally
 #+END_SRC
 
+** Xeft
+
+[[https://sr.ht/~casouri/xeft/][Xeft]] -- Fast, incremental note searching in Emacs using [[https://xapian.org/][Xapian]].
+
+#+begin_src emacs-lisp
+  (use-package xeft
+    :bind ("C-c n x" . xeft)
+    :custom
+    (xeft-database (expand-file-name "~/.emacs.d/xeft.db"))
+    (xeft-default-extension "org")
+    (xeft-directory (expand-file-name "~/Documents/notes"))
+    (xeft-recursive t))
+#+end_src
+
 ** YASnippet
 
 [[https://github.com/joaotavora/yasnippet][YASnippet]] is a template system for Emacs.
@@ -1303,19 +1317,8 @@ languages.
   )
 #+end_src
 
-** Xeft
 
-[[https://sr.ht/~casouri/xeft/][Xeft]] -- Fast, incremental note searching in Emacs using [[https://xapian.org/][Xapian]].
 
-#+begin_src emacs-lisp
-  (use-package xeft
-    :bind ("C-c n x" . xeft)
-    :custom
-    (xeft-database (expand-file-name "~/.emacs.d/xeft.db"))
-    (xeft-default-extension "org")
-    (xeft-directory (expand-file-name "~/Documents/notes"))
-    (xeft-recursive t))
-#+end_src
 
 
 * Major Modes / Language Specific Stuff
