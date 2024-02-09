@@ -1464,7 +1464,17 @@ Generate table of contents within Markdown files with [[https://github.com/ardum
     :blackout)
 #+END_SRC
 
-** Nix** Org
+** Nix
+
+[[https://github.com/NixOS/nix-mode/][Nix Mode]] -- An Emacs major mode for editing Nix expressions. There is
+also a manual available at nix-mode.org.
+
+#+begin_src emacs-lisp
+  (use-package nix-mode
+    :mode "\\.nix\\'")
+#+end_src
+
+** Org
 
 [[http://orgmode.org/][Org mode]] - Your life in plain text.
 
