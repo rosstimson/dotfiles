@@ -1864,31 +1864,6 @@ whitespace can be weird.
           terraform-format-on-save t))
 #+END_SRC
 
-** Web Mode
-
-[[http://web-mode.org/][Web-mode]] for editing web templates -- can syntax highlight
-appropriately for embedded CSS or Javascript.
-
-#+BEGIN_SRC emacs-lisp
-(use-package web-mode
-  :mode (("\\.html\\'" . web-mode)
-         ("\\.css\\'" . web-mode)
-         ("\\.j2\\'" . web-mode))
-  :config
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-
-  (setq web-mode-enable-auto-pairing t)
-  (setq web-mode-enable-auto-expanding t)
-  (setq web-mode-enable-css-colorization t)
-  (setq web-mode-enable-current-element-highlight t)
-  (setq web-mode-enable-current-column-highlight t)
-
-  (setq web-mode-engines-alist
-    '(("jinja2"    . "\\.j2\\'"))))
-#+END_SRC
-
 ** YAML
 
 [[https://www.emacswiki.org/emacs/YamlMode][Yaml mode]]
