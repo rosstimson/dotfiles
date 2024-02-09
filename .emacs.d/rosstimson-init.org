@@ -1374,6 +1374,14 @@ Cleanup doesn't clobber tabs upon save.
     :blackout)
 #+END_SRC
 
+** CSS
+
+#+begin_src emacs-lisp
+  (use-package css-mode
+    :elpaca nil
+    :mode ("\\.css\\'" . css-ts-mode))
+#+end_src
+
 ** Emacs Lisp
 
 #+begin_src emacs-lisp
