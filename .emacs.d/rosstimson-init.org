@@ -443,6 +443,18 @@ in Dirvish etc.
     :if (display-graphic-p))
 #+end_src
 
+** Apheleia
+
+[[https://github.com/radian-software/apheleia][Apheleia]] - Run code formatter on buffer contents without moving point,
+using RCS patches and dynamic programming.
+
+#+begin_src emacs-lisp
+  (use-package apheleia
+    :blackout
+    :init
+    (apheleia-global-mode +1))
+#+end_src
+
 ** Auto Revert
 
 Keep buffers up to date automatically if they are edited by another
