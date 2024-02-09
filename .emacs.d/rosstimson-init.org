@@ -898,11 +898,11 @@ is included by default with Emacs since version 29.1.
                 ("C-c h" . eglot-help-at-point))
     :hook ((clojure-mode . eglot-ensure)
            (go-mode . eglot-ensure)
-           (javascript-mode. eglot-ensure)
-           (python-mode . eglot-ensure)
+           (javascript-ts-mode. eglot-ensure)
+           (python-ts-mode . eglot-ensure)
            (rust-mode . eglot-ensure)
            (terraform-mode . eglot-ensure)
-           (typescript-mode . eglot-ensure))
+           (typescript-ts-mode . eglot-ensure))
     :config
     (add-to-list 'eglot-server-programs
                  '(terraform-mode . ("terraform-ls" "serve"))))
