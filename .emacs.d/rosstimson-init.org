@@ -896,8 +896,11 @@ is included by default with Emacs since version 29.1.
     :bind (:map eglot-mode-map
                 ("M-." . xref-find-definitions)
                 ("C-c h" . eglot-help-at-point))
-    :hook ((clojure-mode . eglot-ensure)
+    :hook ((bash-ts-mode . eglot-ensure)
+           (clojure-mode . eglot-ensure)
+           (css-ts-mode . eglot-ensure)
            (go-mode . eglot-ensure)
+           (html-mode . eglot-ensure)
            (javascript-ts-mode. eglot-ensure)
            (python-ts-mode . eglot-ensure)
            (rust-mode . eglot-ensure)
@@ -1316,6 +1319,14 @@ languages.
 
 
 * Major Modes / Language Specific Stuff
+** BASH
+
+#+begin_src emacs-lisp
+  (use-package bash-ts-mode
+    :elpaca nil
+    :mode ("\\.sh\\'" . bash-ts-mode))
+#+end_src
+
 ** C
 
 Similar to JS mode use Smart Tabs for C code and make sure Whitespace
