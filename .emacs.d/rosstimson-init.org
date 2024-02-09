@@ -1792,8 +1792,8 @@ Setup Python mode
 
 #+BEGIN_SRC emacs-lisp
 (use-package python
-  :mode ("\\.py\\'" . python-mode)
-  :interpreter ("python" . python-mode)
+  :mode ("\\.py\\'" . python-ts-mode)
+  :interpreter ("python" . python-ts-mode)
   :config
   (setq fill-column 79)
   (setq python-check-command "flake8")
@@ -1807,8 +1807,8 @@ for Python.
 (use-package anaconda-mode
   :init
   (progn
-    (add-hook 'python-mode-hook 'anaconda-mode)
-    (add-hook 'python-mode-hook 'anaconda-eldoc-mode)))
+    (add-hook 'python-ts-mode-hook 'anaconda-mode)
+    (add-hook 'python-ts-mode-hook 'anaconda-eldoc-mode)))
 #+END_SRC
 
 Virtual envs with [[https://python-poetry.org/][Poetry]] / [[https://github.com/cybniv/poetry.el][poetry.el]]
@@ -1817,7 +1817,7 @@ Virtual envs with [[https://python-poetry.org/][Poetry]] / [[https://github.com/
   (use-package poetry
     :hook
     ;; activate poetry-tracking-mode when python-mode is active
-    (python-mode . poetry-tracking-mode))
+    (python-ts-mode . poetry-tracking-mode))
 #+end_src
 
 ** RestClient
