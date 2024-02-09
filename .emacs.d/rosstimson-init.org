@@ -1424,8 +1424,7 @@ Cleanup doesn't clobber tabs upon save.
   (use-package go-mode
     :mode ("\\.go\\'" . go-mode)
     :init
-    (setq compile-command "go build -v && go test -v")
-    :hook (before-save . gofmt-before-save))
+    (setq compile-command "go build -v && go test -v"))
 #+END_SRC
 
 ** JavaScript / TypeScript
@@ -1450,8 +1449,7 @@ Cleanup doesn't clobber tabs upon save.
   (use-package tide
     :after (typescript-ts-mode flycheck)
     :hook ((typescript-ts-mode . tide-setup)
-           (typescript-ts-mode . tide-hl-identifier-mode)
-           (before-save . tide-format-before-save)))
+           (typescript-ts-mode . tide-hl-identifier-mode)))
 #+end_src
 
 ** Jinja2
