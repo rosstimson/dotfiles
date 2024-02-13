@@ -167,7 +167,7 @@ Stop resizing the frame all the time and just start emacs maximised.
 
 #+BEGIN_SRC emacs-lisp
 (custom-set-variables
- '(initial-frame-alist (quote ((fullscreen . maximized)))))
+ '(default-frame-alist (quote ((fullscreen . maximized)))))
 #+END_SRC
 
 Short form yes/no questions.
