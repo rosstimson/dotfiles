@@ -1694,8 +1694,7 @@ minibuffer and at-point via the citar-embark-mode minor mode.
 
 #+begin_src emacs-lisp
   (use-package ox-awesomecv
-    ;; My fork of org-cv
-    :elpaca (org-cv :host sourcehut :repo "rosstimson/org-cv")
+    :elpaca (ox-awesomecv :host gitlab :repo "Titan-C/org-cv")
     :init (require 'ox-awesomecv)
     :config
     (defun rt/compile-cv ()
