@@ -1379,8 +1379,7 @@ Cleanup doesn't clobber tabs upon save.
            ("\\.boot\\'" . clojure-mode))
     :hook ((clojure-mode . eldoc-mode)
            (clojure-mode . subword-mode)
-           (clojure-mode . smartparens-strict-mode)
-           (clojure-mode . clj-refactor-mode))
+           (clojure-mode . smartparens-strict-mode))
     :config (require 'flycheck-clj-kondo))
 #+END_SRC
 
@@ -1395,17 +1394,6 @@ Cleanup doesn't clobber tabs upon save.
     (cider-boot-parameters "cider repl -s wait")
     (cider-repl-display-help-banner nil)
     (cider-repl-result-prefix "=> "))
-#+END_SRC
-
-[[https://github.com/clojure-emacs/clj-refactor.el][clj-refactor]] is a collection of functions for refactoring Clojure code.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package clj-refactor
-    :config
-    ;; This choice of keybinding leaves cider-macroexpand-1 unbound
-    (cljr-add-keybindings-with-prefix "C-c C-r")
-    (setq cljr-warn-on-eval nil)
-    :blackout)
 #+END_SRC
 
 ** CSS
