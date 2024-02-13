@@ -442,17 +442,6 @@ than ~electric-indent-mode~.
           (clojure-mode . aggressive-indent-mode))
 #+end_src
 
-** All The Icons
-
-[[https://github.com/domtronn/all-the-icons.el][All the Icons]] is a utility package to collect various Icon Fonts and
-propertize them within Emacs.  It is used for different filetype icons
-in Dirvish etc.
-
-#+begin_src emacs-lisp
-  (use-package all-the-icons
-    :if (display-graphic-p))
-#+end_src
-
 ** Apheleia
 
 [[https://github.com/radian-software/apheleia][Apheleia]] - Run code formatter on buffer contents without moving point,
@@ -867,6 +856,12 @@ warning message will appear.
 
 [[https://github.com/alexluigit/dirvish][Dirvish]] is a modern replacement for Dired.
 
+Install [[https://github.com/rainstormstudio/nerd-icons.el][nerd-icons]] first to use with Dirvish.
+
+#+begin_src emacs-lisp
+  (use-package nerd-icons)
+#+end_src
+
 #+begin_src emacs-lisp
   (use-package dirvish
     :init
@@ -879,10 +874,9 @@ warning message will appear.
        ("d" "~/Downloads/"    "Downloads")
        ("w" "~/code/work/"    "Work")
        ))
-    :config
-    (setq delete-by-moving-to-trash t)
-    (setq dirvish-attributes
-          '(all-the-icons file-time file-size collapse subtree-state))
+    (dirvish-attributes
+     '(nerd-icons file-time file-size collapse subtree-state))
+    (delete-by-moving-to-trash t)
     :bind ; Bind `dirvish|dirvish-side|dirvish-dwim' as you see fit
     (("C-c f" . dirvish-fd)
      :map dirvish-mode-map ; Dirvish inherits `dired-mode-map'
