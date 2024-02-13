@@ -779,7 +779,7 @@ Features:
 
     ;; Use icons
     (dashboard-display-icons-p t)
-    (dashboard-icon-type 'all-the-icons)
+    (dashboard-icon-type 'nerd-icons)
     (dashboard-set-heading-icons t)
     (dashboard-set-file-icons t))
 #+end_src
