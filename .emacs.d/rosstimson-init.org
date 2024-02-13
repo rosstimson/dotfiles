@@ -91,6 +91,16 @@ Completion settings, see [[https://www.gnu.org/software/emacs/manual/html_node/e
   (setq tab-always-indent 'complete)
 #+end_src
 
+Load my custom functions
+
+#+begin_src emacs-lisp
+  (use-package custom-functions
+    :elpaca nil
+    :load-path "~/.emacs.d/elisp"
+    :config
+    (require 'custom-functions))
+#+end_src
+
 ** Personal information
 
 #+BEGIN_SRC emacs-lisp
