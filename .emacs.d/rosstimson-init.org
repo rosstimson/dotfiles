@@ -131,12 +131,11 @@ Disk is cheap. Save lots.
 Remove a bunch of cruft from the interface.
 
 #+BEGIN_SRC emacs-lisp
-(setq inhibit-splash-screen t
-      inhibit-startup-message t
-      inihibt-startup-echo-area-message "rosstimson")
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+  (setq inhibit-splash-screen t
+        inhibit-startup-message t
+        inihibt-startup-echo-area-message "rosstimson")
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
 #+END_SRC
 
 Set some further UI options.
@@ -148,13 +147,6 @@ Set some further UI options.
   (line-number-mode t)
   (column-number-mode t)
   (setq-default indicate-empty-lines t)
-  ;; Setting cursor colour and no scrollbars for all inc. emacsclient,
-  ;; without these set standard emacs has was I want but when using
-  ;; emacsclient the cursor colour is almost white and the scrollbars
-  ;; show.
-  (setq default-frame-alist '((cursor-color . "#444")
-                              (vertical-scroll-bars . nil)
-                              (horizontal-scroll-bars . nil)))
 #+END_SRC
 
 Stop the annoying bloody beeping.
