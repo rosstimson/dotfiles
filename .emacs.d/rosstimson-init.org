@@ -1636,6 +1636,7 @@ also a manual available at nix-mode.org.
 
     ;; Custom function to quickly archive all done tasks.
     (defun rt/org-archive-done-tasks ()
+      "Archive tasks that are done."
       (interactive)
       (org-map-entries
        (lambda ()
@@ -1724,6 +1725,7 @@ minibuffer and at-point via the citar-embark-mode minor mode.
     :init (require 'ox-awesomecv)
     :config
     (defun rt/compile-cv ()
+      "Compile CV with LaTeX."
       (interactive)
       (org-export-to-file 'awesomecv "rosstimson-cv.tex")
       (org-latex-compile "rosstimson-cv.tex")))
