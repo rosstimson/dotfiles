@@ -462,7 +462,19 @@ using RCS patches and dynamic programming.
   (use-package apheleia
     :blackout
     :init
-    (apheleia-global-mode +1))
+    (apheleia-global-mode +1)
+    :config
+    (dolist
+        (formatter-cmd '((just-fmt . ("just" "--fmt" "--justfile" filepath))
+                         (biome . ("biome" "check" "--stdin-file-path" filepath))))
+      (add-to-list #'apheleia-formatters formatter-cmd))
+
+    (setf (alist-get 'python-mode apheleia-mode-alist) '(ruff ruff-isort))
+    (setf (alist-get 'python-ts-mode apheleia-mode-alist) '(ruff ruff-isort))
+    (setf (alist-get 'just-mode apheleia-mode-alist) '(just-fmt))
+    (setf (alist-get 'js-ts-mode apheleia-mode-alist) '(biome))
+    (setf (alist-get 'typescript-ts-mode apheleia-mode-alist) '(biome))
+    (setf (alist-get 'tsx-ts-mode apheleia-mode-alist) '(biome)))
 #+end_src
 
 ** Auto Revert
