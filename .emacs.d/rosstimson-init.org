@@ -294,16 +294,14 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
       ("Dired" (mode . dired-mode))
       ("Org" (or (mode . org-mode)
         (mode . org-agenda-mode)))
-      ("Programming" (or (mode . python-mode)
+      ("Programming" (or (mode . python-ts-mode)
                          (mode . go-mode)
                          (mode . rust-mode)
-                         (mode . clojure-mode)))
-      ("Web" (mode . web-mode))
+                         (mode . clojure-ts-mode)))
       ("Shell" (or (mode . eshell-mode)
         (mode . shell-mode)
         (mode . term-mode)))
       ("Magit" (name . "\*magit\*"))
-      ("Mu4e" (name . "\*mu4e\*"))
       ("Emacs" (or (name . "^\\*scratch\\*$")
         (name . "^\\*Messages\\*$")
         (name . "^\\*Warnings\\*$")
@@ -431,7 +429,7 @@ than ~electric-indent-mode~.
   (use-package aggressive-indent
     :blackout
     :hook (emacs-lisp-mode . aggressive-indent-mode)
-          (clojure-mode . aggressive-indent-mode))
+          (clojure-ts-mode . aggressive-indent-mode))
 #+end_src
 
 ** Apheleia
@@ -917,7 +915,7 @@ is included by default with Emacs since version 29.1.
                 ("M-." . xref-find-definitions)
                 ("C-c h" . eglot-help-at-point))
     :hook ((bash-ts-mode . eglot-ensure)
-           (clojure-mode . eglot-ensure)
+           (clojure-ts-mode . eglot-ensure)
            (css-ts-mode . eglot-ensure)
            (go-mode . eglot-ensure)
            (html-mode . eglot-ensure)
@@ -1365,36 +1363,38 @@ Cleanup doesn't clobber tabs upon save.
 
 [[https://github.com/borkdude/clj-kondo/][clj-kondo]] a Clojure linter via flycheck.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package flycheck-clj-kondo)
-#+END_SRC
+#+end_src
 
-[[https://github.com/clojure-emacs/clojure-mode][Clojure Mode]] is a major mode for Clojure.
+[[https://github.com/clojure-emacs/clojure-ts-mode][clojure-ts-mode]] - The next generation Clojure major mode for Emacs,
+powered by TreeSitter.
 
-#+BEGIN_SRC emacs-lisp
-  (use-package clojure-mode
-    :mode (("\\.clj\\'" . clojure-mode)
-           ("\\.cljs\\'" . clojurescript-mode)
-           ("\\.cljc\\'" . clojurec-mode)
-           ("\\.boot\\'" . clojure-mode))
-    :hook ((clojure-mode . eldoc-mode)
-           (clojure-mode . subword-mode)
-           (clojure-mode . smartparens-strict-mode))
+#+begin_src emacs-lisp
+  (use-package clojure-ts-mode
+    :mode (("\\.clj\\'" . clojure-ts-mode)
+           ("\\.cljs\\'" . clojure-ts-clojurescript-mode)
+           ("\\.cljc\\'" . clojure-ts-clojurec-mode)
+           ("\\.bb\\'" . clojure-ts-mode)
+           ("\\.boot\\'" . clojure-ts-mode))
+    :hook ((clojure-ts-mode . eldoc-mode)
+           (clojure-ts-mode . subword-mode)
+           (clojure-ts-mode . smartparens-strict-mode))
     :config (require 'flycheck-clj-kondo))
-#+END_SRC
+#+end_src
 
 [[https://cider.readthedocs.io/en/latest][CIDER]] is the Clojure(Script) Interactive Development Environment that Rocks!
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package cider
-    :after clojure-mode
+    :after clojure-ts-mode
     :commands (cider cider-connect cider-jack-in)
     :bind ("C-c M-j" . cider-jack-in)
     :custom
     (cider-boot-parameters "cider repl -s wait")
     (cider-repl-display-help-banner nil)
     (cider-repl-result-prefix "=> "))
-#+END_SRC
+#+end_src
 
 ** CSS
 
