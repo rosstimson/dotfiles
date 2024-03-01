@@ -1167,20 +1167,43 @@ something a bit nicer.
 
 ** Spelling
 
-Set location for personal dictionary.
+Use ~C-;~ for correcting spelling.
+
+*** iSpell
    
 #+begin_src emacs-lisp
-  (setq ispell-personal-dictionary "~/.aspell.en.pws")
+  (use-package ispell
+    :ensure nil
+    :custom
+    (ispell-program-name "/opt/homebrew/bin/aspell")
+    (ispell-dictionary "en_GB")
+    (ispell-personal-dictionary "~/.aspell.en.pws"))
 #+end_src
 
-Check my spelling on the fly with [[https://gitlab.com/ideasman42/emacs-spell-fu][spell-fu]]. Requires `aspell` to be installed.
+*** FlySpell
+
+Check my spelling on the fly with [[https://emacsdocs.org/docs/emacs/Spelling][Flyspell]]. Requires `aspell` to be installed.
 This also spellchecks spelling in programming mode but only within comments.
 
 #+begin_src emacs-lisp
-  (use-package spell-fu
-    :config (setq ispell-dictionary "en_GB")
-    :hook ((text-mode . spell-fu-mode)
-           (org-mode . spell-fu-mode)))
+  (use-package flyspell
+    :ensure nil
+    :after ispell
+    :bind (("C-c i b" . flyspell-buffer)
+           ("C-c i f" . flyspell-mode))
+    :hook ((text-mode . flyspell-mode)
+           (org-mode . flyspell-mode)))
+#+end_src
+
+*** FlySpell-Correct
+
+[[https://github.com/d12frosted/flyspell-correct][flyspell-correct]] - Distraction-free words correction with flyspell via
+selected interface.
+
+#+begin_src emacs-lisp
+  (use-package flyspell-correct
+    :after flyspell
+    :bind (:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper)))
 #+end_src
 
 ** Switch-window
