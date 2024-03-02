@@ -1192,7 +1192,11 @@ This also spellchecks spelling in programming mode but only within comments.
     :bind (("C-c i b" . flyspell-buffer)
            ("C-c i f" . flyspell-mode))
     :hook ((text-mode . flyspell-mode)
-           (org-mode . flyspell-mode)))
+           (org-mode . flyspell-mode))
+    :config
+    ;; Unbind C-; as it clashes with iedit binding and I mostly use the
+    ;; C-. binding for flyspell-correct
+    (unbind-key "C-;" flyspell-mode-map))
 #+end_src
 
 *** FlySpell-Correct
@@ -1203,7 +1207,7 @@ selected interface.
 #+begin_src emacs-lisp
   (use-package flyspell-correct
     :after flyspell
-    :bind (:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper)))
+    :bind (:map flyspell-mode-map ("C-." . flyspell-correct-wrapper)))
 #+end_src
 
 ** Switch-window
