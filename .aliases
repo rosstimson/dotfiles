@@ -68,6 +68,12 @@ alias tfv='terraform validate'
 alias tfw='terraform workspace'
 
 
+# Terraform
+# ----------------------------------------------------------------------------
+alias p='pulumi'
+alias pu='pulumi up'
+
+
 # Docker
 # ----------------------------------------------------------------------------
 alias d='docker'
