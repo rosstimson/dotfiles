@@ -1,7 +1,6 @@
 pipx
 poetry
 pre-commit
-proselint
 python-lsp-server
 ruff-lsp
 
