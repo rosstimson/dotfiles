@@ -954,7 +954,8 @@ is included by default with Emacs since version 29.1.
 ** ElDoc
 
 #+BEGIN_SRC emacs-lisp
-(use-package eldoc)
+  (use-package eldoc
+    :blackout)
 #+END_SRC
 
 ** Embark
@@ -1189,6 +1190,7 @@ This also spellchecks spelling in programming mode but only within comments.
   (use-package flyspell
     :ensure nil
     :after ispell
+    :blackout " Spell"
     :bind (("C-c i b" . flyspell-buffer)
            ("C-c i f" . flyspell-mode))
     :hook ((text-mode . flyspell-mode)
@@ -1358,9 +1360,9 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 
 #+begin_src emacs-lisp
   (use-package yasnippet
+    :blackout yas-minor-mode
     :config
-    (yas-global-mode 1)
-  )
+    (yas-global-mode 1))
 #+end_src
 
 [[https://github.com/AndreaCrotti/yasnippet-snippets/][YASnippet-snippets]] the official collection of snippets for many
@@ -1714,6 +1716,7 @@ notes with the Citar and Denote packages.
 #+begin_src emacs-lisp
   (use-package citar-denote
     :after citar denote
+    :blackout
     :config (citar-denote-mode))
 #+end_src
 
