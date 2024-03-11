@@ -10,7 +10,7 @@ Pseudo-package for Emacs itself.
     :ensure nil
     :custom
     (use-package-always-ensure t)
-    )
+    (explicit-shell-file-name "/opt/homebrew/bin/zsh"))
 #+end_src
 
 #+BEGIN_SRC emacs-lisp
