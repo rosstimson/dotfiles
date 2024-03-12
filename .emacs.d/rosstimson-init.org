@@ -10,7 +10,12 @@ Pseudo-package for Emacs itself.
     :ensure nil
     :custom
     (use-package-always-ensure t)
-    (explicit-shell-file-name "/opt/homebrew/bin/zsh"))
+    (explicit-shell-file-name "/opt/homebrew/bin/zsh")
+    (world-clock-list '(("America/Los_Angeles" "San Francisco")
+                        ("America/New_York" "New York")
+                        ("Europe/London" "London")
+                        ("Europe/Paris" "Paris")
+                        ("Europe/Athens" "Athens"))))
 #+end_src
 
 #+BEGIN_SRC emacs-lisp
