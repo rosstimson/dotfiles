@@ -19,4 +19,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:weight regular :height 150 :family "Iosevka Term"))))
+ '(org-level-1 ((t (:inherit modus-themes-heading-1 :extend t :weight semibold))))
+ '(org-level-2 ((t (:inherit modus-themes-heading-2 :extend t :weight medium))))
+ '(org-level-3 ((t (:inherit modus-themes-heading-3 :extend t :weight medium))))
+ '(org-level-4 ((t (:inherit modus-themes-heading-4 :extend t :weight medium))))
  '(variable-pitch ((t (:weight regular :family "Iosevka")))))
