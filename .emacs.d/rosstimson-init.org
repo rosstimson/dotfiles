@@ -11,6 +11,7 @@ Pseudo-package for Emacs itself.
     :custom
     (use-package-always-ensure t)
     (explicit-shell-file-name "/opt/homebrew/bin/zsh")
+    (line-spacing 0.3)
     (world-clock-list '(("America/Los_Angeles" "San Francisco")
                         ("America/New_York" "New York")
                         ("Europe/London" "London")
