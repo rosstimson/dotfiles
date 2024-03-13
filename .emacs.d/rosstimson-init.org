@@ -1574,8 +1574,7 @@ also a manual available at nix-mode.org.
     (org-goto-max-level 3)
 
     :config
-    (setq org-startup-indented t
-          org-ellipsis " » " ;; folding symbol
+    (setq org-ellipsis " » " ;; folding symbol
           org-pretty-entities t
           org-hide-emphasis-markers t
           ;; show actually italicized text instead of /italicized text/
@@ -1769,12 +1768,6 @@ minibuffer and at-point via the citar-embark-mode minor mode.
     (org-download-image-dir "./img"))
 #+end_src
 
-*** Org Indent
-
-#+begin_src emacs-lisp
-  (use-package org-indent :ensure nil :after org :blackout)
-#+end_src
-
 *** Org Journal
 
 #+begin_src emacs-lisp
@@ -1785,6 +1778,18 @@ minibuffer and at-point via the citar-embark-mode minor mode.
     (org-journal-file-type 'monthly)
     (org-journal-date-format "%A, %d %B %Y")
     (org-journal-dir (concat (concat org-directory "/journal/") (format-time-string "%Y"))))
+#+end_src
+
+*** Org Modern
+
+[[https://github.com/minad/org-modern][Org Modern Style]] - 🦄 This package implements a modern style for your
+Org buffers using font locking and text properties.
+
+#+begin_src emacs-lisp
+  (use-package org-modern
+    :after org
+    :config
+    (global-org-modern-mode))
 #+end_src
 
 *** Org Remark
@@ -1802,20 +1807,6 @@ EPUB books with using Org mode.
     (org-remark-global-tracking-mode t)
     :custom
     (org-remark-notes-file-name 'org-remark-notes-file-name-function))
-#+end_src
-
-*** Org Superstar
-
-[[https://github.com/integral-dw/org-superstar-mode][Org Superstar]] makes bullets prettier, it is a direct descendant of
-org-bullets.
-
-#+begin_src emacs-lisp
-  (use-package org-superstar
-    :config
-    (setq org-superstar-special-todo-items t
-          org-superstar-headline-bullets-list '(" "))
-    (add-hook 'org-mode-hook (lambda ()
-                               (org-superstar-mode 1))))
 #+end_src
 
 *** Org Transclusion
