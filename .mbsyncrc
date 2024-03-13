@@ -1,28 +1,30 @@
-# Global config options
-Expunge Both
-Create Slave
-SyncState *
-
+# me@rosstimson.com (iCloud)
 # -------------------------------------------------------------
-# rosstimson@gmail.com
 
 IMAPAccount rosstimson
-Host imap.fastmail.com
+Host imap.mail.me.com
 Port 993
-User me@rosstimson.com
-PassCmd "pass Email/emacs-mbsync"
+User ross_timson@icloud.com
+PassCmd "op read op://personal/Apple/mu4e-isync-msmtp"
 SSLType IMAPS
-SSLVersions TLSv1.2
+AuthMechs PLAIN
+SSLVersions TLSv1.3
+SystemCertificates yes
 
 IMAPStore rosstimson-remote
 Account rosstimson
 
 MaildirStore rosstimson-local
+SubFolders Verbatim
 # The trailing "/" is important
-Path ~/.mail/rosstimson/
-Inbox ~/.mail/rosstimson/INBOX
+Path ~/.mail/rosstimson.com/
+Inbox ~/.mail/rosstimson.com/INBOX
 
 Channel rosstimson
-Master :rosstimson-remote:
-Slave :rosstimson-local:
-Patterns "Sent" "INBOX" "Archive" "Trash" "Drafts"
+Far :rosstimson-remote:
+Near :rosstimson-local:
+Patterns *
+Create Near
+Sync All
+SyncState *
+Expunge Both
