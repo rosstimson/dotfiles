@@ -23,4 +23,4 @@
  '(org-level-2 ((t (:inherit modus-themes-heading-2 :extend t :weight medium))))
  '(org-level-3 ((t (:inherit modus-themes-heading-3 :extend t :weight medium))))
  '(org-level-4 ((t (:inherit modus-themes-heading-4 :extend t :weight medium))))
- '(variable-pitch ((t (:weight regular :family "Iosevka")))))
+ '(variable-pitch ((t (:weight regular :family "Iosevka Aile")))))
