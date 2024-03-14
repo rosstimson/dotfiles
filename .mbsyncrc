@@ -17,8 +17,8 @@ Account rosstimson
 MaildirStore rosstimson-local
 SubFolders Verbatim
 # The trailing "/" is important
-Path ~/.mail/rosstimson.com/
-Inbox ~/.mail/rosstimson.com/INBOX
+Path ~/.maildir/rosstimson.com/
+Inbox ~/.maildir/rosstimson.com/INBOX
 
 Channel rosstimson
 Far :rosstimson-remote:
