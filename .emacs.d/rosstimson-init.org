@@ -1176,8 +1176,9 @@ Use ~C-;~ for correcting spelling.
     :ensure nil
     :custom
     (ispell-program-name "/opt/homebrew/bin/aspell")
-    (ispell-dictionary "en_GB")
-    (ispell-personal-dictionary "~/.aspell.en.pws"))
+    (ispell-dictionary "en_GB-ise")
+    (ispell-personal-dictionary "~/.aspell.en.pws")
+    (ispell-extra-args '("--sug-mode=ultra" "--camel-case")))
 #+end_src
 
 *** FlySpell
