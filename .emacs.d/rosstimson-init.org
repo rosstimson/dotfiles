@@ -925,9 +925,7 @@ is included by default with Emacs since version 29.1.
                 ("C-c h" . eglot-help-at-point))
     :hook ((bash-ts-mode . eglot-ensure)
            (clojure-ts-mode . eglot-ensure)
-           (css-ts-mode . eglot-ensure)
            (go-mode . eglot-ensure)
-           (html-mode . eglot-ensure)
            (javascript-ts-mode. eglot-ensure)
            (python-ts-mode . eglot-ensure)
            (rust-mode . eglot-ensure)
@@ -1933,6 +1931,34 @@ whitespace can be weird.
     (setq terraform-indent-level 2
           terraform-format-on-save t))
 #+END_SRC
+
+** Web Mode
+
+[[http://web-mode.org/][Web-mode]] for editing web templates -- can syntax highlight
+appropriately for embedded CSS or Javascript.
+
+#+begin_src emacs-lisp
+  (use-package web-mode
+    :mode (("\\.html\\'" . web-mode)
+           ("\\.css\\'" . web-mode)
+           ("\\.j2\\'" . web-mode))
+    :init
+    ;; Astro - https://astro.build
+    (define-derived-mode astro-mode web-mode "astro")
+    (setq auto-mode-alist
+          (append '((".*\\.astro\\'" . astro-mode))
+                  auto-mode-alist))
+    :config
+    (setq web-mode-markup-indent-offset 2
+          web-mode-code-indent-offset 2
+          web-mode-css-indent-offset 2
+          web-mode-enable-auto-pairing t
+          web-mode-enable-auto-expanding t
+          web-mode-enable-css-colorization t
+          web-mode-enable-current-element-highlight t
+          web-mode-enable-current-column-highlight t
+          web-mode-engines-alist '(("jinja2"    . "\\.j2\\'"))))
+#+end_src
 
 ** YAML
 
