@@ -824,6 +824,16 @@ link between them.
     (denote-known-keywords '("emacs" "programming" "sre")))
 #+end_src
 
+** Diff-hl
+
+[[https://github.com/dgutov/diff-hl][diff-hl]] - Highlights uncommitted changes in the gutter.
+
+#+begin_src emacs-lisp
+  (use-package diff-hl
+    :config
+    (global-diff-hl-mode))
+#+end_src
+
 ** Dired
 
 Dired is the directory listing / file manager.  When on BSD it will
