@@ -1015,6 +1015,15 @@ more capable.
     (global-flycheck-eglot-mode 1))
 #+end_src
 
+** Hydra
+
+[[https://github.com/abo-abo/hydra][Hydra]] - Can be used to tie related commands into a family of short
+bindings with a common prefix - a Hydra.
+
+#+begin_src emacs-lisp
+  (use-package hydra)
+#+end_src
+
 ** Iedit
 
 Edit multiple regions in the same way simultaneously with [[https://github.com/victorhge/iedit][Iedit]].
