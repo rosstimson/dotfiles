@@ -489,19 +489,6 @@ program with [[https://emacsdocs.org/docs/emacs/Auto-Revert][Auto Revert]].
     (setq auto-revert-check-vc-info t))
 #+end_src
 
-** Avy
-
-Quick navigation by jumping to things with [[https://github.com/abo-abo/avy][Avy]].
-
-#+BEGIN_SRC emacs-lisp
-(use-package avy
-  :bind (("M-g c" . avy-goto-char)
-         ("M-g w" . avy-goto-word-1)
-         ("M-g l" . avy-goto-line))
-  :config
-  (avy-setup-default))
-#+END_SRC
-
 ** Beacon
 
 [[https://github.com/Malabarba/beacon][Beacon]] - A light that follows your cursor around so you don't lose it.
