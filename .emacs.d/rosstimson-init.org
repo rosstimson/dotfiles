@@ -1021,7 +1021,47 @@ more capable.
 bindings with a common prefix - a Hydra.
 
 #+begin_src emacs-lisp
-  (use-package hydra)
+  (use-package hydra
+    :config
+    (defhydra hydra-zoom (global-map "C-x r z")
+      "zoom"
+      ("g" text-scale-increase "in")
+      ("l" text-scale-decrease "out")
+      ("q" nil "cancel"))
+
+    (defhydra smerge-hydra
+      (:color pink :hint nil :post (smerge-auto-leave))
+      "
+  ^Move^       ^Keep^               ^Diff^                 ^Other^
+  ^^-----------^^-------------------^^---------------------^^-------
+  _n_ext       _b_ase               _<_: upper/base        _C_ombine
+  _p_rev       _u_pper / mine       _=_: upper/lower       _r_esolve
+  ^^           _l_ower / other      _>_: base/lower        _k_ill current
+  ^^           _a_ll                _R_efine
+  ^^           _RET_: current       _E_diff
+  "
+      ("n" smerge-next)
+      ("p" smerge-prev)
+      ("b" smerge-keep-base)
+      ("u" smerge-keep-upper)
+      ("l" smerge-keep-lower)
+      ("a" smerge-keep-all)
+      ("RET" smerge-keep-current)
+      ("\C-m" smerge-keep-current)
+      ("<" smerge-diff-base-upper)
+      ("=" smerge-diff-upper-lower)
+      (">" smerge-diff-base-lower)
+      ("R" smerge-refine)
+      ("E" smerge-ediff)
+      ("C" smerge-combine-with-next)
+      ("r" smerge-resolve)
+      ("k" smerge-kill-current)
+      ("ZZ" (lambda ()
+              (interactive)n
+              (save-buffer)
+              (bury-buffer))
+       "Save and bury buffer" :color blue)
+      ("q" nil "cancel" :color blue)))
 #+end_src
 
 ** Iedit
@@ -1165,11 +1205,16 @@ Smerge is a handy tool that helps resolve merge conflicts, however the
 default command prefix key binding is rather cumbersome so set it to
 something a bit nicer.
 
+Also create a Hydra to make working with Smerge easier.
+
 #+begin_src emacs-lisp
   (use-package smerge-mode
     :ensure nil
-    :init
-    (setq smerge-command-prefix "\C-cv"))
+    :custom
+    (smerge-command-prefix "\C-cv")
+    :hook (magit-diff-visit-file . (lambda ()
+                                     (when smerge-mode
+                                       (smerge-hydra/body)))))
 #+end_src
 
 ** Spelling
