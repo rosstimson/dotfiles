@@ -2001,8 +2001,7 @@ appropriately for embedded CSS or Javascript.
     :load-path "/opt/homebrew/share/emacs/site-lisp/mu/mu4e"
     :commands (mu4e mu4e-compose-new)
     :config
-    (setq mu4e-root-maildir (expand-file-name "~/.maildir/rosstimson.com")
-          mu4e-get-mail-command (concat (executable-find "mbsync") " -a")
+    (setq mu4e-get-mail-command (concat (executable-find "mbsync") " -a")
           mu4e-update-interval 600 ;; In seconds = 10 mins
           mu4e-sent-folder "/Sent Messages"
           mu4e-drafts-folder "/Drafts"
