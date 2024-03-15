@@ -1020,6 +1020,10 @@ more capable.
 [[https://github.com/abo-abo/hydra][Hydra]] - Can be used to tie related commands into a family of short
 bindings with a common prefix - a Hydra.
 
+The Smerge Hydra has been pinched from [[https://github.com/alphapapa/unpackaged.el][unpackaged.el]], I couldn't get
+it to work in the `:config` of smerge but seems fine here and it kinda
+makes sense to keep all Hydras here.
+
 #+begin_src emacs-lisp
   (use-package hydra
     :config
