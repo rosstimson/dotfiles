@@ -1990,7 +1990,7 @@ whitespace can be weird.
 ** Web Mode
 
 [[http://web-mode.org/][Web-mode]] for editing web templates -- can syntax highlight
-appropriately for embedded CSS or Javascript.
+appropriately for embedded CSS or JavaScript.
 
 #+begin_src emacs-lisp
   (use-package web-mode
@@ -2007,8 +2007,10 @@ appropriately for embedded CSS or Javascript.
       "A major mode derived from web-mode, for editing .vue files with LSP support.")
 
     (setq auto-mode-alist
-          (append '((".*\\.astro\\'" . astro-mode))
+          (append '((".*\\.astro\\'" . astro-mode)
+                    ("\\.vue\\'" . vue-mode))
                   auto-mode-alist))
+
     :config
     (setq web-mode-markup-indent-offset 2
           web-mode-code-indent-offset 2
