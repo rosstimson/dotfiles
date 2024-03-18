@@ -1087,7 +1087,11 @@ Edit multiple regions in the same way simultaneously with [[https://github.com/v
     ;; without it magit does not get loaded and you edit the commit
     ;; message without magit's extras.
     :demand t
-    :bind ("C-c g" . magit-status))
+    :bind ("C-c g" . magit-status)
+    :hook
+    ;; Refresh diff-hl status after committing changes in Magit.
+    (magit-pre-refresh  . diff-hl-magit-pre-refresh)
+    (magit-post-refresh . diff-hl-magit-post-refresh))
 #+end_src
 
 [[https://magit.vc/manual/forge.html][Forge]] allows you to work with Git forges, such as Github and Gitlab,
