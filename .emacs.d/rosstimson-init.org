@@ -339,6 +339,15 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
   (setq ibuffer-show-empty-filter-groups nil))
 #+END_SRC
 
+*** Nerd Icons Ibuffer
+
+[[https://github.com/seagle0128/nerd-icons-ibuffer/][nerd-icons-ibuffer]] - Display nerd icons in ibuffer.
+
+#+begin_src emacs-lisp
+  (use-package nerd-icons-ibuffer
+    :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
+#+end_src
+
 ** Eshell
 
 #+BEGIN_SRC emacs-lisp
@@ -679,7 +688,7 @@ minibuffer UI.
     (global-corfu-mode))
 #+end_src
 
-** Corfu Nerd Icons
+*** Nerd Icons Corfu
 
 [[https://github.com/LuigiPiucco/nerd-icons-corfu/][nerd-icons-corfu]] - A library for adding icons to completions in
 Corfu. It uses nerd-icons.el under the hood and, as such, works on
