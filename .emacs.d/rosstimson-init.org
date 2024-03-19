@@ -1985,10 +1985,7 @@ whitespace can be weird.
 #+BEGIN_SRC emacs-lisp
   (use-package terraform-mode
     :config
-    ;; Need to add this hook for formatting via 'terraform fmt' to work.
-    (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode)
-    (setq terraform-indent-level 2
-          terraform-format-on-save t))
+    (setq terraform-indent-level 2))
 #+END_SRC
 
 ** Web Mode
