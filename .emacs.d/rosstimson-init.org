@@ -679,6 +679,18 @@ minibuffer UI.
     (global-corfu-mode))
 #+end_src
 
+** Corfu Nerd Icons
+
+[[https://github.com/LuigiPiucco/nerd-icons-corfu/][nerd-icons-corfu]] - A library for adding icons to completions in
+Corfu. It uses nerd-icons.el under the hood and, as such, works on
+both GUI and terminal.
+
+#+begin_src emacs-lisp
+  (use-package nerd-icons-corfu
+    :after corfu
+    :init (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+#+end_src
+
 ** Crux
 
 [[https://github.com/bbatsov/crux][Crux]] -- A Collection of Ridiculously Useful eXtensions for Emacs.
