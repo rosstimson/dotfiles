@@ -1787,6 +1787,16 @@ minibuffer and at-point via the citar-embark-mode minor mode.
     :config (citar-embark-mode))
 #+end_src
 
+*** Org Contacts
+
+[[https://repo.or.cz/org-contacts.git][org-contacts.el]] - is a contacts management system for Org Mode.
+
+#+begin_src emacs-lisp
+  (use-package org-contacts
+    :ensure (org-contacts :host "repo.or.cz" :repo "org-contacts" :main "org-contacts.el"))
+#+end_src
+
+
 *** Org CV
 
 #+begin_src emacs-lisp
