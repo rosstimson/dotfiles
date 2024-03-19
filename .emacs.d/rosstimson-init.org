@@ -906,8 +906,12 @@ extra config and need for tag files.
 is included by default with Emacs since version 29.1.
 
 #+begin_src emacs-lisp
+  ;; Needed so it updates as latest eglot needs a newer version than the
+  ;; builtin version.
+  (use-package jsonrpc)
+
   (use-package eglot
-    :ensure nil
+    ;;:ensure nil
     :bind (:map eglot-mode-map
                 ("M-." . xref-find-definitions)
                 ("C-c h" . eglot-help-at-point))
