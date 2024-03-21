@@ -1095,6 +1095,23 @@ Edit multiple regions in the same way simultaneously with [[https://github.com/v
 
 [[https://magit.vc/][Magit]] the one and only Git frontend.
 
+
+Need this to update transient package needs it otherwise Magit
+operations often show the error:
+
+~transient-setup: Symbol’s function definition is void: transient-prefix-object~
+
+It also completely breaks Forge.
+
+This can probably be removed in future once a new version of Emacs is
+released, currently on 29.2.
+
+https://github.com/magit/magit/issues/5059
+
+#+begin_src emacs-lisp
+  (use-package transient)
+#+end_src
+
 #+begin_src emacs-lisp
   (use-package magit
     ;; Don't lazy load, force loading to occur immediately and not
