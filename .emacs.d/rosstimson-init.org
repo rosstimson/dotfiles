@@ -1211,6 +1211,14 @@ Rust.
     (rg-enable-default-bindings))
 #+end_src
 
+** Simple HTTPD
+
+[[https://github.com/skeeto/emacs-web-server][simple-httpd]] - A simple Emacs web server.
+
+#+begin_src emacs-lisp
+  (use-package simple-httpd)
+#+end_src
+
 ** Sly
 
 [[https://github.com/joaotavora/sly][SLY]] is Sylvester the Cat's Common Lisp IDE for Emacs.
