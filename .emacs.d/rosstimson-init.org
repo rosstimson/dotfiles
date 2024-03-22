@@ -818,7 +818,7 @@ link between them.
     ("C-c n r" . denote-rename-file)
     ("C-c n R" . denote-rename-file-using-front-matter)
     :config
-    (setq denote-directory (expand-file-name "~/Documents/notes/"))
+    (setq denote-directory (expand-file-name "Documents/notes/" (getenv "HOME")))
     (setq denote-infer-keywords t)
     (setq denote-sort-keywords t)
     (setq denote-prompts '(title keywords subdirectory))
@@ -879,12 +879,11 @@ Install [[https://github.com/rainstormstudio/nerd-icons.el][nerd-icons]] first t
     (dirvish-override-dired-mode)
     :custom
     (dirvish-quick-access-entries
-     '(("h" "~/"              "Home")
-       ("c" "~/code/"         "Code")
-       ("." "~/.dotfiles/"    "Dotfiles")
-       ("d" "~/Downloads/"    "Downloads")
-       ("w" "~/code/work/"    "Work")
-       ))
+     `(("h" ,(expand-file-name (getenv "HOME")) "Home")
+       ("c" ,(expand-file-name "code/" (getenv "HOME")) "Code")
+       ("." ,(expand-file-name ".dotfiles/" (getenv "HOME")) "Dotfiles")
+       ("d" ,(expand-file-name "Downloads/" (getenv "HOME")) "Downloads")
+       ("w" ,(expand-file-name "code/work/" (getenv "HOME")) "Work")))
     (dirvish-attributes
      '(nerd-icons file-time file-size collapse subtree-state))
     (delete-by-moving-to-trash t)
@@ -918,7 +917,7 @@ extra config and need for tag files.
 #+BEGIN_SRC emacs-lisp
   (use-package dumb-jump
     :config
-    (setq dumb-jump-default-project "~/code"
+    (setq dumb-jump-default-project (expand-file-name "code" (getenv "HOME"))
           dumb-jump-selector 'completing-read
           dumb-jump-prefer-searcher 'rg)
     :hook (xref-backend-functions . dumb-jump-xref-activate))
@@ -1278,7 +1277,7 @@ Use ~C-;~ for correcting spelling.
     :custom
     (ispell-program-name "/opt/homebrew/bin/aspell")
     (ispell-dictionary "en_GB-ise")
-    (ispell-personal-dictionary "~/.aspell.en.pws")
+    (ispell-personal-dictionary (expand-file-name ".aspell.en.pws" (getenv "HOME")))
     (ispell-extra-args '("--sug-mode=ultra" "--camel-case")))
 #+end_src
 
@@ -1692,7 +1691,7 @@ also a manual available at nix-mode.org.
     (setq org-src-fontify-natively t
           org-src-tab-acts-natively t)
 
-    (setq org-directory (expand-file-name "~/Documents/notes"))
+    (setq org-directory (expand-file-name "Documents/notes" (getenv "HOME")))
     (setq org-default-notes-file (concat org-directory "/capture.org"))
     (setq org-log-done 'time)
     (setq org-log-done-with-time t)
@@ -1802,7 +1801,7 @@ also a manual available at nix-mode.org.
     :blackout
     :config
     (org-ai-global-mode)
-    (setq org-ai-image-directory (expand-file-name "~/Documents/notes/org-ai-images/"))
+    (setq org-ai-image-directory (expand-file-name "org-ai-images/" org-directory))
     :hook (org-mode . org-ai-mode))
 #+end_src
 
@@ -1814,7 +1813,7 @@ references, and edit org, markdown, and latex academic documents.
 #+begin_src emacs-lisp
   (use-package citar
     :custom
-    (citar-bibliography '("~/Documents/notes/references.bib"))
+    (citar-bibliography `(,(expand-file-name "references.bib" org-directory)))
     :hook
     (LaTeX-mode . citar-capf-setup)
     (org-mode . citar-capf-setup))
