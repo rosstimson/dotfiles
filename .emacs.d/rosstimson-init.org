@@ -290,7 +290,7 @@ Allow easy movement between windows/splits.
                                 "/tmp"
                                 "/ssh:"
                                 "custom\.el"
-                                "~/Documents/bookmarks"))
+                                (locate-user-emacs-file ".bookmarks.el")))
     (recentf-mode t))
 #+END_SRC
 
@@ -528,7 +528,7 @@ various files.
     :ensure nil
     :defer t
     :custom
-    (bookmark-default-file "~/Documents/bookmarks")
+    (bookmark-default-file (locate-user-emacs-file ".bookmarks.el"))
     (bookmark-save-flag 1))
 #+end_src
 
