@@ -22,7 +22,7 @@ Pseudo-package for Emacs itself.
                         ("Europe/Athens" "Athens"))))
 #+end_src
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 ;; i18n
 (prefer-coding-system 'utf-8)
 
@@ -32,7 +32,7 @@ Pseudo-package for Emacs itself.
 
 ;; Warn when opening files bigger than 100MB
 (setq large-file-warning-threshold 100000000)
-#+END_SRC
+#+end_src
 
 Auto-saving does not cooperate with org-crypt.el: so you need
 to turn it off if you plan to use org-crypt.el quite often.
@@ -63,7 +63,7 @@ changes up to the remote via Magit.
 
 Set some defaults
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (setq-default
    ad-redefinition-action 'accept                   ; Silence warnings for redefinition
    cursor-in-non-selected-windows t                 ; Hide the cursor in inactive windows
@@ -79,7 +79,7 @@ Set some defaults
   )                       
 
   (cd (getenv "HOME"))                              ; Start in $HOME
-#+END_SRC
+#+end_src
 
 Use GNU ~ls~ from the ~coreutils~ package when on macOS.
 
@@ -122,78 +122,78 @@ Load my custom functions
 
 ** Personal information
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (setq user-full-name "Ross Timson"
       user-mail-address "me@rosstimson.com")
-#+END_SRC
+#+end_src
 
 ** Backups
 
 Put backups in a sensible location rather than scattered all over the place.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (setq backup-directory-alist `(("." . ,(expand-file-name "backups" user-emacs-directory))))
-#+END_SRC
+#+end_src
 
 Disk is cheap. Save lots.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (setq backup-by-copying t)    ; Don't delink hardlings
 (setq version-control t)      ; Use version numbers on backups
 (setq delete-old-versions t)  ; Automatically delete excess backups
 (setq kept-new-versions 20)   ; How many of the newest versions to keep
 (setq kept-old-versions 5)    ; How many of the oldest version to keep
-#+END_SRC
+#+end_src
 
 ** Interface
 
 Remove a bunch of cruft from the interface.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (setq inhibit-splash-screen t
         inhibit-startup-message t
         inihibt-startup-echo-area-message "rosstimson")
   (menu-bar-mode -1)
   (tool-bar-mode -1)
-#+END_SRC
+#+end_src
 
 Set some further UI options.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (show-paren-mode 1)
   (blink-cursor-mode -1)
   (global-hl-line-mode t)
   (line-number-mode t)
   (column-number-mode t)
   (setq-default indicate-empty-lines t)
-#+END_SRC
+#+end_src
 
 Stop the annoying bloody beeping.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (setq visible-bell t)
-#+END_SRC
+#+end_src
 
 Stop resizing the frame all the time and just start emacs maximised.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (custom-set-variables
  '(default-frame-alist (quote ((fullscreen . maximized)))))
-#+END_SRC
+#+end_src
 
 Short form yes/no questions.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (fset 'yes-or-no-p #'y-or-n-p)
-#+END_SRC
+#+end_src
 
 Smooth scrolling.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (setq scroll-margin 5
       scroll-conservatively 9999
       scroll-step 1)
-#+END_SRC
+#+end_src
 
 Add my custom colour theme.
 
@@ -207,10 +207,10 @@ Add my custom colour theme.
 
 Get other nice themes.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package base16-theme)
   (use-package ef-themes)
-#+END_SRC
+#+end_src
 
 Configure my main theme.
 
@@ -269,13 +269,13 @@ mode at nighttime.
 
 Allow easy movement between windows/splits.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (windmove-default-keybindings)
-#+END_SRC
+#+end_src
 
 ** Recent files
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package recentf
     :ensure nil
     :config
@@ -292,14 +292,14 @@ Allow easy movement between windows/splits.
                                 "custom\.el"
                                 (locate-user-emacs-file ".bookmarks.el")))
     (recentf-mode t))
-#+END_SRC
+#+end_src
 
 ** iBuffer
 
 Use [[https://www.emacswiki.org/emacs/IbufferMode][ibuffer]] which is a better menu/switcher for buffers.  Most of this
 config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emacs-ibuffer.html][Tips for using Emacs Ibuffer]].
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (use-package ibuffer
   :ensure nil
   :bind ("C-x C-b" . ibuffer)
@@ -340,7 +340,7 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
 
   ;; Don't show empty filter groups.
   (setq ibuffer-show-empty-filter-groups nil))
-#+END_SRC
+#+end_src
 
 *** Nerd Icons Ibuffer
 
@@ -353,7 +353,7 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
 
 ** Eshell
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (use-package eshell
   :ensure nil
   :commands eshell
@@ -365,11 +365,11 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
   ;; Visual commands
   (setq eshell-visual-commands '("vi" "vim" "top" "htop" "less" "more" "tmux"))
   (setq eshell-visual-subcommands '(("git" "log" "diff" "show"))))
-#+END_SRC
+#+end_src
 
 Make C-l clear eshell screen just as it would a normal shell.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (defun eshell-clear-buffer ()
   "Clear terminal"
   (interactive)
@@ -380,7 +380,7 @@ Make C-l clear eshell screen just as it would a normal shell.
 (add-hook 'eshell-mode-hook
 #'(lambda()
   (local-set-key (kbd "C-l") 'eshell-clear-buffer)))
-#+END_SRC
+#+end_src
 
 ** Global Key Bindings
 
@@ -388,10 +388,10 @@ I often split the window and nearly always want to switch to the new
 window in order to open a new file.  This will switch automatically so
 I don't have the extra step.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
-#+END_SRC
+#+end_src
 
 Keyboard shortcut for quickly compiling code.
 
@@ -403,10 +403,10 @@ Keyboard shortcut for quickly compiling code.
 
 Default to spaces for indentation.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-#+END_SRC
+#+end_src
 
 
 * Minor Modes
@@ -414,12 +414,12 @@ Default to spaces for indentation.
 
 Quickly follow links with [[https://github.com/abo-abo/ace-link][Ace-link]].
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (use-package ace-link
   :config
   (ace-link-setup-default)
   (define-key org-mode-map (kbd "M-o") 'ace-link-org))
-#+END_SRC
+#+end_src
 
 ** Age
 
@@ -724,12 +724,12 @@ both GUI and terminal.
 In many editors cut and copy act on the current line if no text is
 visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master/whole-line-or-region.el][whole-line-or-region]] does just that for Emacs.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package whole-line-or-region
    :blackout whole-line-or-region-local-mode
    :config
    (whole-line-or-region-global-mode t))
-#+END_SRC
+#+end_src
 
 ** Dabbrev
 
@@ -843,25 +843,25 @@ complain: 'ls does not support --dired', rather than installing GNU
 Coreutils just for this just work around it with very minor
 limitations.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (when (string= system-type "berkeley-unix")
     (setq dired-use-ls-dired nil))
-#+END_SRC
+#+end_src
 
 Use human readable file sizes.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (setq dired-listing-switches
         "-l --all --human-readable --group-directories-first")
-#+END_SRC
+#+end_src
 
 Allow visiting of files via 'a' key which won't create multiple Dired
 buffers for each dir visited, this is disabled by default and a
 warning message will appear.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (put 'dired-find-alternate-file 'disabled nil)
-#+END_SRC
+#+end_src
 
 ** Dirvish
 
@@ -914,14 +914,14 @@ Install [[https://github.com/rainstormstudio/nerd-icons.el][nerd-icons]] first t
 [[https://github.com/jacktasia/dumb-jump][Dump Jump]] allows you to jump to definition similar to Etags but without the
 extra config and need for tag files.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package dumb-jump
     :config
     (setq dumb-jump-default-project (expand-file-name "code" (getenv "HOME"))
           dumb-jump-selector 'completing-read
           dumb-jump-prefer-searcher 'rg)
     :hook (xref-backend-functions . dumb-jump-xref-activate))
-#+END_SRC
+#+end_src
 
 ** Eglot
 
@@ -965,10 +965,10 @@ is included by default with Emacs since version 29.1.
 
 ** ElDoc
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package eldoc
     :blackout)
-#+END_SRC
+#+end_src
 
 ** Embark
 
@@ -995,14 +995,14 @@ context:
 
 ** Emmet
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (use-package emmet-mode
   :bind ("C-<return>" . emmet-expand-line)
   :config
   (add-hook 'web-mode-hook 'emmet-mode)
   (add-hook 'sgml-mode-hook 'emmet-mode)
   (add-hook 'html-mode-hook 'emmet-mode))
-#+END_SRC
+#+end_src
 
 ** Flycheck
 
@@ -1087,11 +1087,11 @@ makes sense to keep all Hydras here.
 
 Edit multiple regions in the same way simultaneously with [[https://github.com/victorhge/iedit][Iedit]].
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (use-package iedit
   :commands (iedit-mode iedit-rectangle-mode)
   :bind ("C-;" . iedit-mode))
-#+END_SRC
+#+end_src
 
 ** Magit
 
@@ -1191,10 +1191,10 @@ matches are enabled.
 
 Highlight parens etc. by depth with [[https://www.emacswiki.org/emacs/RainbowDelimiters][Rainbow Delimiters]].
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
-#+END_SRC
+#+end_src
 
 ** Ripgrep
 
@@ -1239,13 +1239,13 @@ UX.
 
 Deal with pairs of things with [[https://github.com/Fuco1/smartparens][Smartparens]].
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (use-package smartparens
   :commands (smartparens-mode smartparens-strict-mode)
   :config
   (require 'smartparens-config)
   (sp-use-smartparens-bindings))
-#+END_SRC
+#+end_src
 
 ** Smerge
 
@@ -1326,7 +1326,7 @@ selected interface.
 
 Quickly switch between windows with [[https://github.com/dimitri/switch-window][switch-window]].
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (use-package switch-window
   :bind ("C-x o" . switch-window)
   :config
@@ -1334,7 +1334,7 @@ Quickly switch between windows with [[https://github.com/dimitri/switch-window][
   (setq switch-window-qwerty-shortcuts
     '("a" "r" "s" "t" "n" "e" "i" "o"))
   (setq switch-window-threshold 2))
-#+END_SRC
+#+end_src
 
 ** Undo Fu
 
@@ -1421,34 +1421,34 @@ rg.el also integrates with wgrep out of the box.
 
 [[https://github.com/justbur/emacs-which-key][which-key]] is a package that displays available keybindings in popup.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package which-key
     :config
     (which-key-mode t)
     :blackout)
-#+END_SRC
+#+end_src
 
 ** Whitespace
 
 [[https://www.emacswiki.org/emacs/WhiteSpace][WhiteSpace]], a mode to toggle visibility of whitespace.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package whitespace
     :ensure nil
     :bind ("C-c w" . whitespace-mode)
     :config
     (setq whitespace-line-column 80)
     (setq whitespace-style '(face tabs spaces indentation lines-tail empty trailing)))
-#+END_SRC
+#+end_src
 
 Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/whitespace-cleanup-mode][whitespace-cleanup-mode]]. 
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package whitespace-cleanup-mode
     :blackout
     :init
     (global-whitespace-cleanup-mode t)) ; Enabled globally
-#+END_SRC
+#+end_src
 
 ** Xeft
 
@@ -1502,11 +1502,11 @@ languages.
 Similar to JS mode use Smart Tabs for C code and make sure Whitespace
 Cleanup doesn't clobber tabs upon save.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (add-hook 'c-mode-common-hook
           (lambda ()
             (setq indent-tabs-mode t)))
-#+END_SRC
+#+end_src
 
 ** Clojure
 
@@ -1565,12 +1565,12 @@ powered by TreeSitter.
 
 [[https://github.com/dominikh/go-mode.el][Go mode]]
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package go-mode
     :mode ("\\.go\\'" . go-mode)
     :init
     (setq compile-command "go build -v && go test -v"))
-#+END_SRC
+#+end_src
 
 ** JavaScript / TypeScript
 
@@ -1601,10 +1601,10 @@ powered by TreeSitter.
 
 [[https://melpa.org/#/jinja2-mode][Jinja2 Mode]] is a major mode for the jinja2 templating language.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (use-package jinja2-mode
   :mode ("\\.j2\\'" . jinja2-mode))
-#+END_SRC
+#+end_src
 
 ** Just
 
@@ -1624,7 +1624,7 @@ and preview as well as other niceties.
 
 Markdown command is set to [[http://fletcherpenney.net/multimarkdown/][multimarkdown]] so that needs installed on the system.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package markdown-mode
     :commands (markdown-mode gfm-mode)
     :mode (("README\\.md\\'" . gfm-mode)
@@ -1632,14 +1632,14 @@ Markdown command is set to [[http://fletcherpenney.net/multimarkdown/][multimark
            ("\\.markdown\\'" . markdown-mode))
     :init (setq markdown-command "pandoc")
     :hook (markdown-mode . markdown-toc-mode))
-#+END_SRC
+#+end_src
 
 Generate table of contents within Markdown files with [[https://github.com/ardumont/markdown-toc][markdown-toc]].
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package markdown-toc
     :blackout)
-#+END_SRC
+#+end_src
 
 ** Nix
 
@@ -1655,7 +1655,7 @@ also a manual available at nix-mode.org.
 
 [[http://orgmode.org/][Org mode]] - Your life in plain text.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package org
     :ensure nil
     :mode ("\\.org$'" . org-mode)
@@ -1792,7 +1792,7 @@ also a manual available at nix-mode.org.
     ;; GPG key to use for encryption
     ;; Either the Key ID or set to nil to use symmetric encryption.
     (setq org-crypt-key "0x4799AD5040FF28FB5F3D71D7667A3481E4BB34F3"))
-#+END_SRC
+#+end_src
 
 *** Org AI
 
@@ -1961,7 +1961,7 @@ buffer.
 
 Setup Python mode
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (use-package python
   :mode ("\\.py\\'" . python-ts-mode)
   :interpreter ("python" . python-ts-mode)
@@ -1969,18 +1969,18 @@ Setup Python mode
   (setq fill-column 79)
   (setq python-check-command "flake8")
   (setq tab-width 4))
-#+END_SRC
+#+end_src
 
 [[https://github.com/proofit404/anaconda-mode][Anaconde mode]] offers code navigation, documentation lookup, and completion
 for Python.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (use-package anaconda-mode
   :init
   (progn
     (add-hook 'python-ts-mode-hook 'anaconda-mode)
     (add-hook 'python-ts-mode-hook 'anaconda-eldoc-mode)))
-#+END_SRC
+#+end_src
 
 Virtual envs with [[https://python-poetry.org/][Poetry]] / [[https://github.com/cybniv/poetry.el][poetry.el]]
 
@@ -2004,12 +2004,12 @@ Mode for working with REST APIs.
 
 [[https://github.com/rust-lang/rust-mode][Rust-mode]] -- A major mode for Rust.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package rust-mode
     :mode ("\\.rs\\'" . rust-mode)
     :config
     (setq rust-format-on-save t))
-#+END_SRC
+#+end_src
 
 [[https://github.com/kwrooijen/cargo.el][Cargo.el]] -- A minor mode for Cargo the Rust build tool, it adds some
 convenient bindings for running Cargo commands.
@@ -2024,21 +2024,21 @@ convenient bindings for running Cargo commands.
 Use tabs in shell scripts otherwise heredoc functionality around
 whitespace can be weird.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (add-hook 'sh-mode-hook
           (lambda ()
             (setq indent-tabs-mode t)))
-#+END_SRC
+#+end_src
 
 ** Terraform
 
 [[https://github.com/syohex/emacs-terraform-mode][Terraform Mode]] is a major mode for editing Terraform files.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (use-package terraform-mode
     :config
     (setq terraform-indent-level 2))
-#+END_SRC
+#+end_src
 
 ** Web Mode
 
@@ -2080,12 +2080,12 @@ appropriately for embedded CSS or JavaScript.
 
 [[https://www.emacswiki.org/emacs/YamlMode][Yaml mode]]
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (use-package yaml-mode
   :mode (("\\.yml$" . yaml-mode)
          ("\\.yaml$" . yaml-mode)
          ("\\.sls$" . yaml-mode))) ; SaltStack
-#+END_SRC
+#+end_src
 
 
 * Extras
