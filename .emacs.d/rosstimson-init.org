@@ -10,7 +10,10 @@ Pseudo-package for Emacs itself.
     :ensure nil
     :custom
     (use-package-always-ensure t)
-    (explicit-shell-file-name "/opt/homebrew/bin/zsh")
+    (explicit-shell-file-name
+     (or (and (file-exists-p "/opt/homebrew/bin/zsh") "/opt/homebrew/bin/zsh")
+         (executable-find "zsh")
+         "/bin/sh"))
     (line-spacing 0.3)
     (world-clock-list '(("America/Los_Angeles" "San Francisco")
                         ("America/New_York" "New York")
@@ -75,8 +78,7 @@ Set some defaults
    create-lockfiles nil                             ; No lockfiles, don't need them and they mess with Terraform
   )                       
 
-
-  (cd "~/")                                         ; Start in $HOME
+  (cd (getenv "HOME"))                              ; Start in $HOME
 #+END_SRC
 
 Use GNU ~ls~ from the ~coreutils~ package when on macOS.
@@ -112,7 +114,8 @@ Load my custom functions
 #+begin_src emacs-lisp
   (use-package custom-functions
     :ensure nil
-    :load-path "~/.emacs.d/elisp"
+    :load-path
+    (lambda () (expand-file-name "elisp" user-emacs-directory))
     :config
     (require 'custom-functions))
 #+end_src
@@ -129,7 +132,7 @@ Load my custom functions
 Put backups in a sensible location rather than scattered all over the place.
 
 #+BEGIN_SRC emacs-lisp
-(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+  (setq backup-directory-alist `(("." . ,(expand-file-name "backups" user-emacs-directory))))
 #+END_SRC
 
 Disk is cheap. Save lots.
@@ -195,7 +198,7 @@ Smooth scrolling.
 Add my custom colour theme.
 
 #+begin_src emacs-lisp
-  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+  (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
   ;; Currently using modus themes as my default so I can toggle between
   ;; light and dark depending on time of day so don't load my theme by
   ;; default.
@@ -355,7 +358,7 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
   :ensure nil
   :commands eshell
   :init
-  (setq eshell-aliases-file (concat user-emacs-directory "eshell.aliases")
+  (setq eshell-aliases-file (expand-file-name "eshell.aliases" user-emacs-directory)
         eshell-cmpl-ignore-case t
         eshell-history-size 1024)
 
@@ -1456,9 +1459,9 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
   (use-package xeft
     :bind ("C-c n x" . xeft)
     :custom
-    (xeft-database (expand-file-name "~/.emacs.d/xeft.db"))
+    (xeft-database (expand-file-name "xeft.db" user-emacs-directory))
     (xeft-default-extension "org")
-    (xeft-directory (expand-file-name "~/Documents/notes"))
+    (xeft-directory (expand-file-name "Documents/notes" (getenv "HOME")))
     (xeft-recursive t))
 #+end_src
 
