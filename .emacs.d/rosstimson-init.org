@@ -435,7 +435,7 @@ files, provide age encrypted authentication information out of
   (use-package age
     :mode ("\\.age\\'" . age-encryption-mode)
     :custom
-    (age-default-identity "~/.age/rosstimson.txt")
+    (age-default-identity (expand-file-name ".age/rosstimson.txt" (getenv "HOME")))
     ;; My public age key
     (age-default-recipient "age17ll5hultu5gpye40nlj7z7ktcxl8ne9xvtd6udzugkmwlmt83uns82smww")
     :config
