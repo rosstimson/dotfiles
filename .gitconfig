@@ -77,6 +77,9 @@
 [gpg "ssh"]
 	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
+[sendemail]
+	smtpserver = /opt/homebrew/bin/msmtp
+
 [alias]
 	a = add
 	b = branch
