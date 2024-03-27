@@ -2129,7 +2129,8 @@ appropriately for embedded CSS or JavaScript.
     :commands (mu4e mu4e-compose-new)
     :config
     (setq mu4e-get-mail-command (concat (executable-find "mbsync") " -a")
-          mu4e-update-interval 600 ;; In seconds = 10 mins
+          mu4e-compose-format-flowed t
+          mml-secure-openpgp-signers '("4799AD5040FF28FB5F3D71D7667A3481E4BB34F3")
           mu4e-sent-folder "/Sent Messages"
           mu4e-drafts-folder "/Drafts"
           mu4e-trash-folder "/Deleted Messages"
