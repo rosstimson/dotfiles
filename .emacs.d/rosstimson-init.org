@@ -1167,6 +1167,17 @@ short explanations next to items in the minibuffer.
   )
 #+end_src
 
+** Olivetti
+
+[[https://github.com/rnkn/olivetti][Olivetti]] - Minor mode to automatically balance window margins to
+create a nice writing environment.
+
+#+begin_src emacs-lisp
+  (use-package olivetti
+    :custom
+    (olivetti-body-width 75))
+#+end_src
+
 ** Orderless
 
 [[https://github.com/oantolin/orderless][Orderless]] completion style that divides the pattern into
