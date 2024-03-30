@@ -1732,7 +1732,7 @@ also a manual available at nix-mode.org.
 
     ;; Capture templates
     (setq org-capture-templates
-          `(("c" "Quick Capture" entry (file ,(concat org-directory "/capture.org"))
+          `(("c" "Quick Capture" entry (file ,(expand-file-name "capture.org" org-directory))
              "* %?\nCaptured on %U\n  %i\n" :empty-lines 1)
             ("n" "New note (with Denote)" plain
              (file denote-last-path)
@@ -1743,9 +1743,9 @@ also a manual available at nix-mode.org.
              :jump-to-captured t)
             ("j" "Journal entry" entry (function org-journal-find-location)
              "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?" :empty-lines 1)
-            ("t" "Todo" entry (file+headline ,(concat org-directory "/todo.org") "Inbox")
+            ("t" "Todo" entry (file+headline ,(expand-file-name "todo.org" org-directory) "Inbox")
              "* TODO %?\n  %i\n" :empty-lines 1)
-            ("s" "Someday / Maybe" entry (file+headline ,(concat org-directory "/someday-maybe.org") "Inbox")
+            ("s" "Someday / Maybe" entry (file+headline ,(expand-file-name "someday-maybe.org" org-directory) "Inbox")
              "* TODO %?\n  %i\n" :empty-lines 1)))
 
     ;; Refile targets
