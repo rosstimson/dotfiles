@@ -13,7 +13,21 @@
 # Read when interactive.
 
 
-# Setup --------------------------------------------------------------
+# Helper
+# -----------------------------------------------------------------------------
+
+# Set correct path if on an Apple Silicon Mac, Homebrew uses
+# /opt/homebrew when on the arm64 (Apple Silicon) architecture whereas
+# any other time it'd be /usr/local.
+if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "arm64" ] ; then
+		homebrew_path='/opt/homebrew'
+else
+		homebrew_path='/usr/local'
+fi
+
+
+# Setup
+# -----------------------------------------------------------------------------
 
 # Path to search for autoloadable functions.
 fpath=( $HOME/.zsh/lib "$fpath[@]" )
@@ -179,6 +193,22 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#878787'
 # --------------------------------------------------------------------
 
 source $(brew --prefix)/opt/asdf/libexec/asdf.sh
+
+
+# Conda (https://docs.anaconda.com/free/miniconda/index.html)
+# -------------------------------------------------------------------
+
+__conda_setup="$("${homebrew_path}/Caskroom/miniconda/base/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+	eval "$__conda_setup"
+else
+	if [ -f "${homebrew_path}/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+		. "${homebrew_path}/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+	else
+		export PATH="${homebrew_path}/Caskroom/miniconda/base/bin:$PATH"
+	fi
+fi
+unset __conda_setup
 
 
 # Nix (https://nixos.org/)
