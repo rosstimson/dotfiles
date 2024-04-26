@@ -1732,7 +1732,7 @@ also a manual available at nix-mode.org.
 
     ;; Capture templates
     (setq org-capture-templates
-          `(("c" "Quick Capture" entry (file ,(expand-file-name "capture.org" org-directory))
+          `(("q" "Quick Capture" entry (file ,(expand-file-name "capture.org" org-directory))
              "* %?\nCaptured on %U\n  %i\n" :empty-lines 1)
             ("n" "New note (with Denote)" plain
              (file denote-last-path)
@@ -1746,8 +1746,19 @@ also a manual available at nix-mode.org.
             ("t" "Todo" entry (file+headline ,(expand-file-name "todo.org" org-directory) "Inbox")
              "* TODO %?\n  %i\n" :empty-lines 1)
             ("s" "Someday / Maybe" entry (file+headline ,(expand-file-name "someday-maybe.org" org-directory) "Inbox")
-             "* TODO %?\n  %i\n" :empty-lines 1)))
+             "* TODO %?\n  %i\n" :empty-lines 1)
+            ("c" "Contacts" entry (file ,(expand-file-name "contacts.org" org-directory))
+             "* %(org-contacts-template-name)
+  :PROPERTIES:
+  :EMAIL: %(org-contacts-template-email)
+  :PHONE:
+  :NICKNAME:
+  :NOTE:
+  :ADDRESS:
+  :BIRTHDAY:
+  :END:")))
 
+  
     ;; Refile targets
     (setq org-refile-targets
           '(("todo.org" :maxlevel . 3)
