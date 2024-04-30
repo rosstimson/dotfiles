@@ -1,18 +1,8 @@
-<<<<<<< Updated upstream
-personal_ws-1.1 en 6 
-||||||| Stash base
-personal_ws-1.1 en 2 
-=======
-personal_ws-1.1 en 3 
->>>>>>> Stashed changes
+personal_ws-1.1 en 7
 Fargate
 Terraform
-<<<<<<< Updated upstream
 autostart
 filesystem
 filetypes
 systemd
-||||||| Stash base
-=======
 integrations
->>>>>>> Stashed changes
