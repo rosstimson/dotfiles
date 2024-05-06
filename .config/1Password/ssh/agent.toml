@@ -1,9 +1,10 @@
-# Add work SSH key for auth and git commit signing
-[[ssh-keys]]
-item = "Causaly: SSH Key"
-vault = "Work"
+account = "Ross Timson"
 
 # Add all keys from my Personal vault
 [[ssh-keys]]
 vault = "Personal"
-account = "Ross Timson"
+
+# Add work SSH key for auth and git commit signing
+[[ssh-keys]]
+item = "Causaly: SSH Key"
+vault = "Work"
