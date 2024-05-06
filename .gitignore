@@ -14,6 +14,7 @@
 .config/gh/
 .config/hcp
 .config/op/
+.config/rclone/
 
 .emacs.d/*.sqlite
 .emacs.d/eln-cache
@@ -23,7 +24,7 @@
 .emacs.d/spell-fu
 .emacs.d/straight/
 .emacs.d/transient/
-.emacs.d/url/cookies
+.emacs.d/url/
 
 .gnupg/*
 !.gnupg/gpg-agent.conf
