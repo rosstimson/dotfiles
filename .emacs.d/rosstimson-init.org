@@ -484,6 +484,20 @@ using RCS patches and dynamic programming.
     (setf (alist-get 'tsx-ts-mode apheleia-mode-alist) '(biome)))
 #+end_src
 
+** Auto Fill Mode
+
+[[https://emacsdocs.org/docs/emacs/Auto-Fill][Auto Fill Mode]] - Keep lines from getting too wide, save myself from
+using ~M-q~ constantly.
+
+#+begin_src emacs-lisp
+  (use-package auto-fill-mode
+    :ensure nil
+    :commands (auto-fill-mode)
+    :hook ((text-mode . auto-fill-mode)
+           (latex-mode . auto-fill-mode)))
+#+end_src
+
+
 ** Auto Revert
 
 Keep buffers up to date automatically if they are edited by another
