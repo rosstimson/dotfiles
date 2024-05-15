@@ -497,7 +497,6 @@ using ~M-q~ constantly.
            (latex-mode . auto-fill-mode)))
 #+end_src
 
-
 ** Auto Revert
 
 Keep buffers up to date automatically if they are edited by another
@@ -1497,6 +1496,7 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
   (use-package yasnippet
     :blackout yas-minor-mode
     :config
+    (setq yas-snippet-dirs (list (expand-file-name "snippets" user-emacs-directory)))
     (yas-global-mode 1))
 #+end_src
 
