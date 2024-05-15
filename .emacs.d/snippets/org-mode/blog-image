@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: blog image
+# key: bimg
+# --
+#+caption: ${1:caption of the image}
+#+name:   fig:${2:name of the image}
+#+attr_html: :alt ${1:html alt text of the image}
+[[file:$3]]
+$0
