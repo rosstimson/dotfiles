@@ -1770,9 +1770,10 @@ also a manual available at nix-mode.org.
   :NOTE:
   :ADDRESS:
   :BIRTHDAY:
+  :WEB:
   :END:")))
 
-  
+
     ;; Refile targets
     (setq org-refile-targets
           '(("todo.org" :maxlevel . 3)
