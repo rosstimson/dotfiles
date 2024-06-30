@@ -17,6 +17,7 @@
 .config/rclone/
 
 .emacs.d/*.sqlite
+.emacs.d/.bookmarks.el
 .emacs.d/eln-cache
 .emacs.d/forge-database.sqlite
 .emacs.d/history
