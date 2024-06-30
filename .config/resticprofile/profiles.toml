@@ -12,53 +12,58 @@ run-before = [
   "echo  AWS_SECRET_ACCESS_KEY=\"$(op read 'op://personal/Restic Backup/aws_secret_access_key')\" >> {{ env }}",
 ]
 
-exclude-caches = true
 initialize = true
-one-file-system = true
 password-command = "op read 'op://personal/Restic Backup/password'"
 prevent-sleep = true
 priority = "low"
-source = [ "~" ]
 
-[global.retention]
-after-backup = true
-keep-last = 5
+    [global.retention]
+    after-backup = true
+    keep-last = 5
 
-[global.backup]
-exclude = [
-  "**/.DS_Store",
-  "**/.Spotlight-V100",
-  "**/.git",
-  "**/.svn",
-  "**/node_modules",
-  "*.swp",
-  "*.tmp",
-  "*~",
-  "~/.Trash",
-  "~/.gradle",
-  "~/.maven",
-  "~/.npm",
-  "~/.yarn",
-  "~/Downloads",
-  "~/Dropbox",
-  "~/Google Drive",
-  "~/Library/Application Support/Homebrew",
-  "~/Library/Logs",
-  "~/Music/iTunes",
-  "~/OneDrive",
-  "~/Parallels",
-  "~/Pictures/Photos Library.photoslibrary",
-  "~/VMware",
-  "~/VirtualBox VMs",
-]
+
+    [global.backup]
+    no-error-on-warning = true
+    one-file-system = true
+    schedule = "weekly"
+    schedule-after-network-online = true
+    schedule-lock-wait = "2h"
+    schedule-permission = "user"
+    source = [ "/Users/rosstimson" ]
+
+    exclude-caches = true
+    exclude = [
+        "**/.DS_Store",
+        "**/.Spotlight-V100",
+        "**/.git",
+        "**/.svn",
+        "**/node_modules",
+        "*.swp",
+        "*.tmp",
+        "*~",
+        "~/.Trash",
+        "~/.gradle",
+        "~/.maven",
+        "~/.npm",
+        "~/.yarn",
+        "~/Downloads",
+        "~/Dropbox",
+        "~/Google Drive",
+        "~/Library/Application Support/Homebrew",
+        "~/Library/Logs",
+        "~/Music/iTunes",
+        "~/OneDrive",
+        "~/Parallels",
+        "~/Pictures/Photos Library.photoslibrary",
+        "~/VMware",
+        "~/VirtualBox VMs",
+    ]
+
 
 [default]
 inherit = "global"
 lock = "/tmp/resticprofile-default.lock"
 repository = "s3:s3.us-east-005.backblazeb2.com/rosstimson-backup"
 
-[default.backup]
-schedule = "weekly"
-schedule-after-network-online = true
-schedule-log = "~/Library/Logs/resticprofile-default-scheduled.log"
-schedule-permission = "user"
+    [default.backup]
+    schedule-log = "~/Library/Logs/resticprofile-default-scheduled.log"
