@@ -12,6 +12,7 @@
 
 .config/gcloud/
 .config/gh/
+.config/helix/runtime/
 .config/hcp
 .config/op/
 .config/rclone/
