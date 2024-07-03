@@ -1,0 +1,8 @@
+/Users/rosstimson/.dotfiles
+/Users/rosstimson/Desktop
+/Users/rosstimson/Documents
+/Users/rosstimson/Library/Mobile\ Documents/com\~apple\~CloudDocs
+/Users/rosstimson/Music
+/Users/rosstimson/Pictures
+/Users/rosstimson/Sites
+/Users/rosstimson/code

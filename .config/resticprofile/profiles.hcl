@@ -29,7 +29,7 @@ global {
 default {
   inherit = "global"
   lock = "/tmp/resticprofile-default.lock"
-  repository = "s3:s3.us-east-005.backblazeb2.com/rosstimson-backup"
+  repository = "s3:s3.us-east-005.backblazeb2.com/rosstimson-backup/laptop"
 
   backup = {
     files-from = "~/.config/restic/include.txt"
