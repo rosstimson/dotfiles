@@ -12,7 +12,7 @@ global {
 
   backup = {
     exclude-caches = true
-    exclude-file = "~/.config/restic/exclude.txt"
+    exclude-file = "~/.config/restic/global-exclude.txt"
     no-error-on-warning = true
     one-file-system = true
     schedule = "weekly"
@@ -23,7 +23,7 @@ global {
 }
 
 
-# Default Backup for Laptop
+# Default Backup - Laptop
 # -----------------------------------------------------------------------------
 
 default {
@@ -32,8 +32,27 @@ default {
   repository = "s3:s3.us-east-005.backblazeb2.com/rosstimson-backup/laptop"
 
   backup = {
-    files-from = "~/.config/restic/include.txt"
+    files-from = "~/.config/restic/default-include.txt"
     schedule-log = "~/Library/Logs/resticprofile-default-scheduled.log"
+  }
+
+  cache = {
+    cleanup = true
+  }
+}
+
+
+# External Drive Backup - LaCie Ext Drive with Music and Photos
+# -----------------------------------------------------------------------------
+
+ext-storage {
+  inherit = "global"
+  lock = "/tmp/resticprofile-ext-storage.lock"
+  repository = "s3:s3.us-east-005.backblazeb2.com/rosstimson-backup/ext-storage"
+
+  backup = {
+    files-from = "~/.config/restic/ext-storage-include.txt"
+    schedule-log = "~/Library/Logs/resticprofile-ext-storage-scheduled.log"
   }
 
   cache = {
