@@ -15,7 +15,6 @@
 .config/helix/runtime/
 .config/hcp
 .config/op/
-.config/rclone/
 
 .emacs.d/*.sqlite
 .emacs.d/.bookmarks.el
