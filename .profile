@@ -83,3 +83,6 @@ fi
 # Skim - Fuzzy finder written in Rust: https://github.com/lotabout/skim
 SKIM_DEFAULT_OPTIONS='--layout=reverse --color=light,fg:8,bg:15,current_bg:7,matched_bg:10,current_match:8'
 export SKIM_DEFAULT_OPTIONS
+
+# Rclone config encryption password: https://rclone.org/docs/#configuration-encryption
+export RCLONE_PASSWORD_COMMAND='op read op://personal/Rclone/password'
