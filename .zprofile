@@ -41,6 +41,10 @@ export LIBRARY_PATH=/opt/homebrew/lib
 #      export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 export RUBY_CONFIGURE_OPTS='--with-openssl-dir=/opt/homebrew/opt/openssl@1.1'
 
+# For Rclone creds
+export RCLONE_CONFIG_PASS="$(op read 'op://personal/Rclone/password')"
+
+
 # PATH
 # -------------------------------------------------------------------
 
