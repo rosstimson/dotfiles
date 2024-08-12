@@ -141,7 +141,6 @@ Load my custom functions
           (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 #+end_src
 
-
 ** Personal information
 
 #+begin_src emacs-lisp
@@ -1851,7 +1850,7 @@ also a manual available at nix-mode.org.
 
     ;; GPG key to use for encryption
     ;; Either the Key ID or set to nil to use symmetric encryption.
-    (setq org-crypt-key "0x4799AD5040FF28FB5F3D71D7667A3481E4BB34F3"))
+    (setq org-crypt-key "0x667A3481E4BB34F3"))
 #+end_src
 
 *** Org AI
@@ -1949,6 +1948,7 @@ minibuffer and at-point via the citar-embark-mode minor mode.
     :custom
     (org-journal-file-type 'monthly)
     (org-journal-date-format "%A, %d %B %Y")
+    (org-journal-encrypt-journal t)
     (org-journal-dir (concat (concat org-directory "/journal/") (format-time-string "%Y"))))
 #+end_src
 
