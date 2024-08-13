@@ -42,36 +42,16 @@ alias ~='cd $HOME'
 alias gbcleanup='git fetch -p ; git branch -r | awk '\''{print $1}'\'' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '\''{print $1}'\'' | xargs git branch -d'
 
 
+
+# ============================================================================
+# Tool Specific
+# ============================================================================
+
+
 # Bundler
 # ----------------------------------------------------------------------------
 alias bi='bundle install'
 alias be='bundle exec'
-
-
-# Rails
-# ----------------------------------------------------------------------------
-alias r='rails'
-alias rcon='rails console'
-alias rmig='rails db:migrate'
-alias rgen='rails generate'
-
-
-# Terraform
-# ----------------------------------------------------------------------------
-alias tf='terraform'
-alias tfa='terraform apply'
-alias tfi='terraform init'
-alias tfl='tflint --config=$(git rev-parse --show-toplevel)/.tflint.hcl'
-alias tfp='terraform plan'
-alias tfs='terraform state'
-alias tfv='terraform validate'
-alias tfw='terraform workspace'
-
-
-# Terraform
-# ----------------------------------------------------------------------------
-alias p='pulumi'
-alias pu='pulumi up'
 
 
 # Docker
@@ -99,20 +79,46 @@ alias dsa='docker stop $(docker ps -a -q)'      # Stop all containers
 alias dt='docker tag'
 
 
+# Fun / Silly
+# ----------------------------------------------------------------------------
+alias matrix='while :; do echo $LINES $COLUMNS $(( $RANDOM % $COLUMNS)) $(printf "\U$(($RANDOM % 500))");sleep 0.05;done|awk '"'"'{a[$3]=0;for (x in a){o=a[x];a[x]=a[x]+1;printf "\033[%s;%sH\033[2;32m%s",o,x,$4;printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,$4;if (a[x]>=$1){a[x]=0;}}}'"'"''
+
+
 # Kubernetes
 # ----------------------------------------------------------------------------
 alias k8s-start='colima start --runtime containerd --with-kubernetes'
 alias k8s-stop='colima stop'
 
 
-# Fun / Silly
+# Pulumi
 # ----------------------------------------------------------------------------
-alias matrix='while :; do echo $LINES $COLUMNS $(( $RANDOM % $COLUMNS)) $(printf "\U$(($RANDOM % 500))");sleep 0.05;done|awk '"'"'{a[$3]=0;for (x in a){o=a[x];a[x]=a[x]+1;printf "\033[%s;%sH\033[2;32m%s",o,x,$4;printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,$4;if (a[x]>=$1){a[x]=0;}}}'"'"''
+alias p='pulumi'
+alias pu='pulumi up'
+
+
+# Rails
+# ----------------------------------------------------------------------------
+alias r='rails'
+alias rcon='rails console'
+alias rmig='rails db:migrate'
+alias rgen='rails generate'
 
 
 # Rclone
 # ----------------------------------------------------------------------------
 alias rclone='rclone --password-command "op read op://personal/Rclone/password"'
+
+
+# Terraform
+# ----------------------------------------------------------------------------
+alias tf='terraform'
+alias tfa='terraform apply'
+alias tfi='terraform init'
+alias tfl='tflint --config=$(git rev-parse --show-toplevel)/.tflint.hcl'
+alias tfp='terraform plan'
+alias tfs='terraform state'
+alias tfv='terraform validate'
+alias tfw='terraform workspace'
 
 
 # Work
