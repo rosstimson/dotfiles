@@ -7,4 +7,11 @@
 #    nukehost <NUM>
 #
 
-sed -i "$1d" ~/.ssh/known_hosts
+# Determine the correct sed command based on the OS
+if [ "$(uname)" = "Darwin" ]; then
+	SED_CMD="gsed"
+else
+	SED_CMD="sed"
+fi
+
+$SED_CMD -i "$1d" ~/.ssh/known_hosts
