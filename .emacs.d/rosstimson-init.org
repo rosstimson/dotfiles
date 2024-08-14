@@ -1777,7 +1777,7 @@ also a manual available at nix-mode.org.
              :immediate-finish nil
              :kill-buffer t
              :jump-to-captured t)
-            ("j" "Journal entry" entry (function org-journal-find-location)
+            ("j" "Journal entry" entry (function rt/org-journal-find-location)
              "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?" :empty-lines 1)
             ("t" "Todo" entry (file+headline ,(expand-file-name "todo.org" org-directory) "Inbox")
              "* TODO %?\n  %i\n" :empty-lines 1)
