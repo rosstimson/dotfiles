@@ -4,12 +4,12 @@ set -euo pipefail
 
 
 function push() {
-	rclone sync ~/Documents/notes notes-rosstimson:notes-rosstimson
+	rclone sync --password-command "op read op://personal/Rclone/password" ~/Documents/notes notes-rosstimson:notes-rosstimson
 }
 
 
 function pull() {
-	rclone sync notes-rosstimson:notes-rosstimson ~/Documents/notes
+	rclone sync --password-command "op read op://personal/Rclone/password" notes-rosstimson:notes-rosstimson ~/Documents/notes
 }
 
 
