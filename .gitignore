@@ -16,6 +16,13 @@
 .config/hcp
 .config/op/
 
+# Zed Editor (https://zed.dev)
+# Ignore all except the config files
+.config/zed/*
+!.config/zed/keymap.json
+!.config/zed/settings.json
+
+
 .emacs.d/*.sqlite
 .emacs.d/.bookmarks.el
 .emacs.d/eln-cache
