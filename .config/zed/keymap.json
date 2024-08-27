@@ -1,0 +1,34 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-w": "editor::Copy",
+      "alt-x": "command_palette::Toggle",
+      "ctrl-/": "editor::Undo",
+      "ctrl-a": "editor::MoveToBeginningOfLine",
+      "ctrl-alt-_": "editor::Redo",
+      "ctrl-e": "editor::MoveToEndOfLine",
+      "ctrl-g": "editor::Cancel",
+      "ctrl-k": "editor::CutToEndOfLine",
+      "ctrl-r": "buffer_search::Deploy",
+      "ctrl-s": "buffer_search::Deploy",
+      "ctrl-w": "editor::Cut",
+      "ctrl-x ctrl-f": "file_finder::Toggle",
+      "ctrl-x ctrl-s": "workspace::Save",
+      "ctrl-x h": "editor::SelectAll"
+    }
+  }
+]
