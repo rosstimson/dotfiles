@@ -7,6 +7,14 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "tab_bar": {
+    "show": false
+  },
+  "preview_tabs": {
+    "enabled": true,
+    "enable_preview_from_file_finder": true,
+    "enable_preview_from_code_navigation": true
+  },
   "base_keymap": "VSCode",
   "ui_font_size": 16,
   "buffer_font_size": 16,
