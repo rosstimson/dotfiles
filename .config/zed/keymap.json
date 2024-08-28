@@ -10,6 +10,7 @@
     "context": "Workspace",
     "bindings": {
       // "shift shift": "file_finder::Toggle"
+      "ctrl-o": "workspace::ActivatePreviousPane"
     }
   },
   {
@@ -28,7 +29,23 @@
       "ctrl-w": "editor::Cut",
       "ctrl-x ctrl-f": "file_finder::Toggle",
       "ctrl-x ctrl-s": "workspace::Save",
-      "ctrl-x h": "editor::SelectAll"
+      "ctrl-x h": "editor::SelectAll",
+      "alt-g g": "go_to_line::Toggle",
+      "alt-;": [
+        "editor::ToggleComments",
+        {
+          "advance_downwards": false
+        }
+      ]
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-x 0": "pane::CloseActiveItem",
+      "ctrl-x 1": "workspace::ToggleZoom",
+      "ctrl-x 2": "pane::SplitDown",
+      "ctrl-x 3": "pane::SplitRight"
     }
   }
 ]
