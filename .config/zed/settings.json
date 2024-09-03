@@ -22,5 +22,10 @@
     "mode": "system",
     "light": "One Light",
     "dark": "One Dark"
+  },
+  "languages": {
+    "Python": {
+      "language_servers": ["pyright", "ruff"]
+    }
   }
 }
