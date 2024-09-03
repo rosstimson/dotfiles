@@ -9,8 +9,10 @@
   {
     "context": "Workspace",
     "bindings": {
-      // "shift shift": "file_finder::Toggle"
-      "ctrl-o": "workspace::ActivatePreviousPane"
+      "ctrl-x ctrl-f": "file_finder::Toggle",
+      "ctrl-x b": "file_finder::Toggle",
+      "ctrl-o": "workspace::ActivatePreviousPane",
+      "ctrl-g": "menu::Cancel"
     }
   },
   {
@@ -27,7 +29,9 @@
       "ctrl-r": "buffer_search::Deploy",
       "ctrl-s": "buffer_search::Deploy",
       "ctrl-w": "editor::Cut",
+      "ctrl-y": "editor::Paste",
       "ctrl-x ctrl-f": "file_finder::Toggle",
+      "ctrl-x b": "file_finder::Toggle",
       "ctrl-x ctrl-s": "workspace::Save",
       "ctrl-x h": "editor::SelectAll",
       "alt-g g": "go_to_line::Toggle",
@@ -36,7 +40,27 @@
         {
           "advance_downwards": false
         }
-      ]
+      ],
+      "alt-backspace": "editor::DeleteToPreviousSubwordStart",
+      "alt-<": "editor::MoveToBeginning",
+      "alt->": "editor::MoveToEnd",
+      "alt-b": "editor::MoveToPreviousWordStart",
+      "alt-f": "editor::MoveToNextWordEnd",
+      "alt-{": "editor::MoveToStartOfParagraph",
+      "alt-}": "editor::MoveToEndOfParagraph",
+      "ctrl-v": [
+        "editor::MovePageDown",
+        {
+          "center_cursor": true
+        }
+      ],
+      "cmd-v": [
+        "editor::MovePageUp",
+        {
+          "center_cursor": true
+        }
+      ],
+      "ctrl-x h": "editor::SelectAll"
     }
   },
   {
