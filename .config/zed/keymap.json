@@ -54,7 +54,7 @@
           "center_cursor": true
         }
       ],
-      "cmd-v": [
+      "alt-v": [
         "editor::MovePageUp",
         {
           "center_cursor": true
