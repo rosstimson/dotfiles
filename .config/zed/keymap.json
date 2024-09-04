@@ -7,12 +7,22 @@
 // from the command palette.
 [
   {
+    "bindings": {
+      "ctrl-g": "menu::Cancel",
+      "ctrl-x 5 2": "workspace::NewWindow",
+      "ctrl-x 5 0": "workspace::CloseWindow",
+      "ctrl-x ctrl-c": "zed::Quit",
+      "ctrl-x ctrl-f": "workspace::Open",
+      "ctrl-x o": "workspace::ActivateNextPane",
+      // Project
+      "ctrl-x p p": "projects::OpenRecent"
+    }
+  },
+  {
     "context": "Workspace",
     "bindings": {
       "ctrl-x ctrl-f": "file_finder::Toggle",
-      "ctrl-x b": "file_finder::Toggle",
-      "ctrl-o": "workspace::ActivatePreviousPane",
-      "ctrl-g": "menu::Cancel"
+      "ctrl-x b": "file_finder::Toggle"
     }
   },
   {
