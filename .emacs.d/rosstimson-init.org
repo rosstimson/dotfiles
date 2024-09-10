@@ -1947,6 +1947,7 @@ minibuffer and at-point via the citar-embark-mode minor mode.
     :custom
     (org-journal-file-type 'monthly)
     (org-journal-date-format "%A, %d %B %Y")
+    (org-journal-time-format "")
     (org-journal-encrypt-journal t)
     (org-journal-encryption-extension "age")
     (org-journal-dir (concat (concat org-directory "/journal/") (format-time-string "%Y"))))
