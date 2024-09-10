@@ -69,8 +69,7 @@
         {
           "center_cursor": true
         }
-      ],
-      "ctrl-x h": "editor::SelectAll"
+      ]
     }
   },
   {
