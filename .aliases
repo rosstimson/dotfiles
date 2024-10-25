@@ -121,6 +121,17 @@ alias tfv='terraform validate'
 alias tfw='terraform workspace'
 
 
+# Terragrunt
+# ----------------------------------------------------------------------------
+alias tg='terragrunt'
+alias tga='terragrunt apply'
+alias tgaa='terragrunt apply-all'
+alias tgi='terragrunt init'
+alias tgp='terragrunt plan'
+alias tgpa='terragrunt plan-all'
+alias tgs='terragrunt state'
+
+
 # Work
 # ----------------------------------------------------------------------------
 alias unaws='unset $(env | grep "^AWS_" | egrep -o "^[^=]+")'
