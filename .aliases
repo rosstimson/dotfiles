@@ -125,10 +125,10 @@ alias tfw='terraform workspace'
 # ----------------------------------------------------------------------------
 alias tg='terragrunt'
 alias tga='terragrunt apply'
-alias tgaa='terragrunt apply-all'
+alias tgaa='terragrunt run-all apply'
 alias tgi='terragrunt init'
 alias tgp='terragrunt plan'
-alias tgpa='terragrunt plan-all'
+alias tgpa='terragrunt run-all plan'
 alias tgs='terragrunt state'
 
 
