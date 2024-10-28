@@ -91,7 +91,9 @@ chars = "\u001Bq"
 key = "Q"
 mods = "Alt"
 
-[shell]
+[terminal]
+
+[terminal.shell]
 args = ["new-session", "-A", "-s", "rt"]
 program = "/opt/homebrew/bin/tmux"
 
