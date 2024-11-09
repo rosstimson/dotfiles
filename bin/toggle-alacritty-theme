@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euxo pipefail
+
+CONFIG_PATH=~/.config/alacritty/alacritty.toml
+TIMEOUT=3000
+
+grep -q ashes_light $CONFIG_PATH &&
+    gsed -i "s/ashes_light/ashes_dark/" $CONFIG_PATH &&
+    exit
+
+grep -q ashes_dark $CONFIG_PATH &&
+    gsed -i "s/ashes_dark/ashes_light/" $CONFIG_PATH

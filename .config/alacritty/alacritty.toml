@@ -1,6 +1,6 @@
 [general]
 import = [
-    "~/.config/alacritty/themes/themes/rosstimson-muted.toml"
+    "~/.config/alacritty/themes/themes/ashes_dark.toml"
 ]
 
 [window]
