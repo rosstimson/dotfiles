@@ -7,7 +7,7 @@ command_timeout = 2000
 
 # replace the "❯" symbol in the prompt with "$", keeping it old skool.
 [character]
-success_symbol = "[\\$](black)"
+success_symbol = "\\$"
 error_symbol = "x"
 
 [cmd_duration]
