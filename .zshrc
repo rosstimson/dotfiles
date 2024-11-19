@@ -171,21 +171,11 @@ export KUBECTX_CURRENT_BGCOLOR=$(tput setab 7) # white background
 eval "$(zoxide init zsh)"
 
 
-
 # Prompt
 # --------------------------------------------------------------------
 
 # Starship (https://starship.rs)
 eval "$(starship init zsh)"
-
-
-# Auto Suggestions
-# --------------------------------------------------------------------
-
-# https://github.com/zsh-users/zsh-autosuggestions
-# Set the colour for the autosuggestion completions.  The tool/lib itself has
-# been installed simply by its inclusion in ~/.zsh/lib
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#878787'
 
 
 # asdf (https://asdf-vm.com)
