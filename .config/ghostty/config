@@ -1,0 +1,4 @@
+command = /opt/homebrew/bin/tmux new-session -A -s rt
+confirm-close-surface = false
+macos-titlebar-style = hidden
+window-theme = auto
