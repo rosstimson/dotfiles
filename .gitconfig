@@ -31,8 +31,6 @@
 [delta]
 	line-numbers = true
 	navigate = true
-#	side-by-side = true
-	syntax-theme = GitHub
 
 [branch]
 	autoSetupMerge = simple
