@@ -12,8 +12,9 @@
 
 .config/gcloud/
 .config/gh/
-.config/helix/runtime/
+.config/github-copilot/
 .config/hcp
+.config/helix/runtime/
 .config/op/
 
 # Zed Editor (https://zed.dev)
