@@ -2143,10 +2143,12 @@ appropriately for embedded CSS or JavaScript.
 [[https://www.emacswiki.org/emacs/YamlMode][Yaml mode]]
 
 #+begin_src emacs-lisp
-(use-package yaml-mode
-  :mode (("\\.yml$" . yaml-mode)
-         ("\\.yaml$" . yaml-mode)
-         ("\\.sls$" . yaml-mode))) ; SaltStack
+  (use-package yaml-mode
+    :mode (("\\.yml$" . yaml-mode)
+           ("\\.yaml$" . yaml-mode)
+           ("\\.sls$" . yaml-mode)) ; SaltStack
+    :hook (yaml-mode . (lambda ()
+                         (auto-fill-mode -1))))
 #+end_src
 
 
