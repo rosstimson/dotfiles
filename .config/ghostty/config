@@ -11,3 +11,4 @@ keybind = alt+v=scroll_page_up
 keybind = ctrl+v=scroll_page_down
 keybind = alt+shift+,=scroll_to_top
 keybind = alt+shift+.=scroll_to_bottom
+
