@@ -105,6 +105,7 @@
 	r = remote
 	rb = rebase
 	re = restore
+	res = restore --staged
 	root = rev-parse --show-toplevel
 	rs = reset
 	rv = revert
