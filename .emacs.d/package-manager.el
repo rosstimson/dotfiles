@@ -56,6 +56,11 @@
 ;; config 'rosstimson-init.org'.
 (elpaca 'blackout)
 
+;; Setup org before we try to load org-babel, this ensures we use the
+;; latest org rather than the built-in one.
+(elpaca (org :ensure t)
+  (require 'org))
+
 ;; Block until current queue processed.
 (elpaca-wait)
 
