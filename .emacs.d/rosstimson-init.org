@@ -1946,6 +1946,11 @@ minibuffer and at-point via the citar-embark-mode minor mode.
 #+begin_src emacs-lisp
   (use-package org-journal
     :after org
+    ;; Need to use this fork & branch until maintainer merges:
+    ;; https://github.com/bastibe/org-journal/pull/442
+    :elpaca (:host github 
+                   :repo "fapdash/org-journal"
+                   :branch "add-age-encryption")
     :bind ("C-c j" . org-journal-new-entry)
     :custom
     (org-journal-file-type 'monthly)
