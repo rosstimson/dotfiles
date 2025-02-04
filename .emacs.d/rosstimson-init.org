@@ -1712,7 +1712,11 @@ also a manual available at nix-mode.org.
            ("C-c a" . org-agenda)
            ("C-c c" . org-capture)
            ("C-c l" . org-store-link)
-           ("C-c v" . (lambda () (interactive) (org-link-preview 1)))
+           ("C-c v" . (lambda () 
+                        (interactive)
+                        (if (org-link-preview--get-overlays (point-min) (point-max))
+                            (org-link-preview '(4))  ; If previews exist, hide them
+                          (org-link-preview 1))))    ; If no previews, show them
            ("C-c C-," . org-insert-structure-template)
            ("C-c C-j" . consult-org-heading))
     :init
