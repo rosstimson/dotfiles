@@ -4,12 +4,26 @@ set -euo pipefail
 
 
 function push() {
-	rclone sync \
-		   --interactive \
-		   --update \
-		   --verbose \
-		   --password-command "op read op://personal/Rclone/password" \
-		   ~/Documents/notes notes-rosstimson:notes-rosstimson
+    rclone sync \
+           --dry-run \
+           --verbose \
+           --track-renames \
+           --backup-dir "rclone-backup/$(date +%Y-%m-%d)" \
+           --password-command "op read op://personal/Rclone/password" \
+           ~/Documents/notes notes-rosstimson:notes-rosstimson
+
+    echo "Above is a dry run. Continue with actual sync? (y/N)"
+    read -r response
+    if [[ "$response" =~ ^[Yy]$ ]]; then
+        rclone sync \
+               --interactive \
+               --update \
+               --verbose \
+               --track-renames \
+               --backup-dir "rclone-backup/$(date +%Y-%m-%d)" \
+               --password-command "op read op://personal/Rclone/password" \
+               ~/Documents/notes notes-rosstimson:notes-rosstimson
+    fi
 }
 
 
