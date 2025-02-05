@@ -341,7 +341,8 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
              ("Shell" (or (mode . eshell-mode)
                           (mode . shell-mode)
                           (mode . term-mode)))
-             ("Terraform" (mode . terraform-mode))
+             ("Terraform" (or  (mode . terraform-mode)
+                               (mode . hcl-mode)))
              ("Magit" (name . "\*magit\*"))
              ("Emacs" (or
                        (name . "^\\*scratch\\*$")
