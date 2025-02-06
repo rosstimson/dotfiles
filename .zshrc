@@ -178,13 +178,6 @@ eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 
-# asdf (https://asdf-vm.com)
-# Manage multiple runtime versions with a single CLI tool
-# --------------------------------------------------------------------
-
-source $(brew --prefix)/opt/asdf/libexec/asdf.sh
-
-
 # Conda (https://docs.anaconda.com/free/miniconda/index.html)
 # -------------------------------------------------------------------
 

@@ -55,7 +55,8 @@ export RUBY_CONFIGURE_OPTS='--with-openssl-dir=/opt/homebrew/opt/openssl@1.1'
 #  /   : ignore files
 #  t   : tail of the path
 
-path=($HOME/.local/bin
+path=($HOME/.asdf/shims
+	  $HOME/.local/bin
 	  $GOPATH/bin
 	  $HOME/.cargo/bin
 	  $HOME/.npm-global/bin
