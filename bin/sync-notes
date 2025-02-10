@@ -8,7 +8,7 @@ function push() {
            --dry-run \
            --verbose \
            --track-renames \
-           --backup-dir "rclone-backup/$(date +%Y-%m-%d)" \
+           --backup-dir "notes-rosstimson:notes-backups/$(date +%Y-%m-%d)" \
            --password-command "op read op://personal/Rclone/password" \
            ~/Documents/notes notes-rosstimson:notes-rosstimson
 
@@ -16,11 +16,10 @@ function push() {
     read -r response
     if [[ "$response" =~ ^[Yy]$ ]]; then
         rclone sync \
-               --interactive \
                --update \
                --verbose \
                --track-renames \
-               --backup-dir "rclone-backup/$(date +%Y-%m-%d)" \
+               --backup-dir "notes-rosstimson:notes-backups/$(date +%Y-%m-%d)" \
                --password-command "op read op://personal/Rclone/password" \
                ~/Documents/notes notes-rosstimson:notes-rosstimson
     fi
@@ -28,12 +27,25 @@ function push() {
 
 
 function pull() {
-	rclone sync \
-		   --interactive \
-		   --update \
-		   --verbose \
-		   --password-command "op read op://personal/Rclone/password" \
-		   notes-rosstimson:notes-rosstimson ~/Documents/notes
+    rclone sync \
+           --dry-run \
+           --verbose \
+           --track-renames \
+           --backup-dir "${HOME}/notes-backups/$(date +%Y-%m-%d)" \
+           --password-command "op read op://personal/Rclone/password" \
+           notes-rosstimson:notes-rosstimson ~/Documents/notes
+
+    echo "Above is a dry run. Continue with actual sync? (y/N)"
+    read -r response
+    if [[ "$response" =~ ^[Yy]$ ]]; then
+        rclone sync \
+               --update \
+               --verbose \
+               --track-renames \
+               --backup-dir "${HOME}/notes-backups/$(date +%Y-%m-%d)" \
+               --password-command "op read op://personal/Rclone/password" \
+           notes-rosstimson:notes-rosstimson ~/Documents/notes
+    fi
 }
 
 
