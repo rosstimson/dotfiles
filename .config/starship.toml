@@ -17,6 +17,13 @@ style = "cyan"
 style = "green"
 
 
+# Enable (modules that are disabled by default)
+# ----------------------------------------------------------------------------
+
+[direnv]
+disabled = false
+
+
 # Disabled
 # ----------------------------------------------------------------------------
 
