@@ -23,6 +23,11 @@ style = "green"
 [direnv]
 disabled = false
 
+[custom.TGENVIRONMENT]
+command = 'echo ${TG_CSP}\|${TG_CUSTOMER}\|${TG_ENVTYPE}\|${TG_ENV}'
+when = ''' test -f $(git root)/root.hcl '''
+format = '[\[🐽 $output\]](blue) '
+
 
 # Disabled
 # ----------------------------------------------------------------------------
