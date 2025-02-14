@@ -23,6 +23,11 @@ style = "green"
 [direnv]
 disabled = false
 
+[custom.kubernetes]
+format = '[\[⛵ $output\]](cyan) '
+command =  'kubectl config current-context'
+when = ''' test -S ${HOME}/.ssh-master '''
+
 [custom.TGENVIRONMENT]
 command = 'echo ${TG_CSP}\|${TG_CUSTOMER}\|${TG_ENVTYPE}\|${TG_ENV}'
 when = ''' test -f $(git root)/root.hcl '''
