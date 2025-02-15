@@ -335,7 +335,7 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
              ("Org" (or (mode . org-mode)
                         (mode . org-agenda-mode)))
              ("Programming" (or (mode . python-ts-mode)
-                                (mode . go-mode)
+                                (mode . go-ts-mode)
                                 (mode . rust-mode)
                                 (mode . clojure-ts-mode)))
              ("Shell" (or (mode . eshell-mode)
@@ -500,12 +500,13 @@ using RCS patches and dynamic programming.
                          (biome . ("biome" "check" "--stdin-file-path" filepath))))
       (add-to-list #'apheleia-formatters formatter-cmd))
 
+    (setf (alist-get 'go-ts-mode apheleia-mode-alist) '(gofmt))
+    (setf (alist-get 'js-ts-mode apheleia-mode-alist) '(biome))
+    (setf (alist-get 'just-mode apheleia-mode-alist) '(just-fmt))
     (setf (alist-get 'python-mode apheleia-mode-alist) '(ruff ruff-isort))
     (setf (alist-get 'python-ts-mode apheleia-mode-alist) '(ruff ruff-isort))
-    (setf (alist-get 'just-mode apheleia-mode-alist) '(just-fmt))
-    (setf (alist-get 'js-ts-mode apheleia-mode-alist) '(biome))
-    (setf (alist-get 'typescript-ts-mode apheleia-mode-alist) '(biome))
-    (setf (alist-get 'tsx-ts-mode apheleia-mode-alist) '(biome)))
+    (setf (alist-get 'tsx-ts-mode apheleia-mode-alist) '(biome))
+    (setf (alist-get 'typescript-ts-mode apheleia-mode-alist) '(biome)))
 #+end_src
 
 ** Auto Fill Mode
@@ -977,7 +978,7 @@ is included by default with Emacs since version 29.1.
                 ("C-c h" . eglot-help-at-point))
     :hook ((bash-ts-mode . eglot-ensure)
            (clojure-ts-mode . eglot-ensure)
-           (go-mode . eglot-ensure)
+           (go-ts-mode . eglot-ensure)
            (javascript-ts-mode. eglot-ensure)
            (python-ts-mode . eglot-ensure)
            (rust-mode . eglot-ensure)
@@ -1613,13 +1614,20 @@ powered by TreeSitter.
 
 ** Go
 
-[[https://github.com/dominikh/go-mode.el][Go mode]]
-
 #+begin_src emacs-lisp
-  (use-package go-mode
-    :mode ("\\.go\\'" . go-mode)
+  (use-package go-ts-mode
+    :ensure nil
+    :mode (("\\.go\\'" . go-ts-mode)
+           ("/go\\.mod\\'" . go-mod-ts-mode))
+    :hook ((go-ts-mode . lsp-deferred)
+           (go-ts-mode . (lambda ()
+                           (setq indent-tabs-mode t
+                                 ;; Must be 8 to prevent extra tab insertion
+                                 ;; when Go expects 8 spaces worth of indent
+                                 tab-width 8))))
     :init
-    (setq compile-command "go build -v && go test -v"))
+    (add-to-list 'treesit-language-source-alist '(go "https://github.com/tree-sitter/tree-sitter-go"))
+    (add-to-list 'treesit-language-source-alist '(gomod "https://github.com/camdencheek/tree-sitter-go-mod")))
 #+end_src
 
 ** JavaScript / TypeScript
