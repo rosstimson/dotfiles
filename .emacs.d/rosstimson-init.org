@@ -129,6 +129,7 @@ Load my custom functions
           (css "https://github.com/tree-sitter/tree-sitter-css")
           (elisp "https://github.com/Wilfred/tree-sitter-elisp")
           (go "https://github.com/tree-sitter/tree-sitter-go")
+          (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
           (html "https://github.com/tree-sitter/tree-sitter-html")
           (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
           (json "https://github.com/tree-sitter/tree-sitter-json")
@@ -1627,10 +1628,7 @@ powered by TreeSitter.
     ;; the default of 8 an extra tab was being added to make it up to 8,
     ;; feels like a bug and was very annoying and took ages to
     ;; troubleshoot.
-    (go-ts-mode-indent-offset 4)
-    :init
-    (add-to-list 'treesit-language-source-alist '(go "https://github.com/tree-sitter/tree-sitter-go"))
-    (add-to-list 'treesit-language-source-alist '(gomod "https://github.com/camdencheek/tree-sitter-go-mod")))
+    (go-ts-mode-indent-offset 4))
 #+end_src
 
 ** JavaScript / TypeScript
