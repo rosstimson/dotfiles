@@ -28,10 +28,19 @@ format = '[\[⛵ $output\]](cyan) '
 command =  'kubectl config current-context'
 when = ''' test -S ${HOME}/.ssh-master '''
 
-[custom.TGENVIRONMENT]
-command = 'echo ${TG_CSP}\|${TG_CUSTOMER}\|${TG_ENVTYPE}\|${TG_ENV}'
+[custom.causaly_env]
+require_repo = true
 when = ''' test -f $(git root)/root.hcl '''
-format = '[\[🐽 $output\]](blue) '
+command = '''
+v1="$(git root)/config/"
+v2=$(pwd)
+if [[ "${v2}" == "${v1}"* ]]
+then
+  stub=${v2#$v1}
+  IFS=/ read -r csp customer envtype env discard <<< ${stub}
+  echo "[🐽 (${csp})${customer:+" "$customer}${envtype:+" "$envtype}${env:+" "$env}]"
+fi
+'''
 
 
 # Disabled
