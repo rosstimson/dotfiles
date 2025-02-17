@@ -15,6 +15,9 @@
   (sort-regexp-fields reverse "\\_<.*?\\_>" "\\&" beg end))
 
 
+;; Org Journal
+;; -----------------------------------------------------------------------------
+
 (defun rt/org-journal-find-location ()
   ;; Open today's journal, but specify a non-nil prefix argument in order to
   ;; inhibit inserting the heading; org-capture will insert the heading.
@@ -26,6 +29,20 @@
 (setq org-capture-templates '(("j" "Journal entry" plain (function org-journal-find-location)
                                "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"
                                :jump-to-captured t :immediate-finish t)))
+
+
+(defun rt/set-org-journal-mode (&rest _)
+  "Enable org-journal-mode after decrypting an age file in the journal directory."
+  (when (and buffer-file-name
+             (string-match-p
+              (expand-file-name "Documents/notes/journal" (getenv "HOME"))
+              buffer-file-name))
+    (org-journal-mode)))
+
+;; Along with the function above this allows me to open up journal
+;; files and have org-journal-mode set automatically, without this
+;; they just open in fundamental-mode
+(advice-add 'age-file-insert-file-contents :after #'rt/set-org-journal-mode)
 
 
 
