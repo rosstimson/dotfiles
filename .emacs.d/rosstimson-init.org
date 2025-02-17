@@ -918,10 +918,12 @@ Install [[https://github.com/rainstormstudio/nerd-icons.el][nerd-icons]] first t
     (dirvish-override-dired-mode)
     :custom
     (dirvish-quick-access-entries
-     `(("h" ,(expand-file-name (getenv "HOME")) "Home")
+     `(("." ,(expand-file-name ".dotfiles/" (getenv "HOME")) "Dotfiles")
        ("c" ,(expand-file-name "code/" (getenv "HOME")) "Code")
-       ("." ,(expand-file-name ".dotfiles/" (getenv "HOME")) "Dotfiles")
        ("d" ,(expand-file-name "Downloads/" (getenv "HOME")) "Downloads")
+       ("h" ,(expand-file-name (getenv "HOME")) "Home")
+       ("j" ,(expand-file-name "Documents/notes/journal/" (getenv "HOME")) "Journal")
+       ("n" ,(expand-file-name "Documents/notes/" (getenv "HOME")) "Notes")
        ("w" ,(expand-file-name "code/work/" (getenv "HOME")) "Work")))
     (dirvish-attributes
      '(nerd-icons file-time file-size collapse subtree-state))
