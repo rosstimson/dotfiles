@@ -40,6 +40,29 @@
 ;; (https://github.com/progfolio/elpaca)
 (setq package-enable-at-startup nil)
 
+;; Set path early doors as otherwise native compilation blows up for some reason.
+(setenv "PATH" (concat (getenv "HOME") "/Library/pnpm:"
+                       "/opt/homebrew/Caskroom/miniconda/base/bin:"
+                       "/opt/homebrew/Caskroom/miniconda/base/condabin:"
+                       (getenv "HOME") "/.asdf/shims:"
+                       (getenv "HOME") "/.local/bin:"
+                       (getenv "HOME") "/code/go/bin:"
+                       (getenv "HOME") "/.cargo/bin:"
+                       (getenv "HOME") "/.npm-global/bin:"
+                       (getenv "HOME") "/.krew/bin:"
+                       (getenv "HOME") "/bin:"
+                       "/usr/local/MacGPG2/bin:"
+                       "/opt/homebrew/bin:"
+                       "/Applications/Postgres.app/Contents/Versions/latest/bin:"
+                       "/Library/TeX/texbin:"
+                       "/usr/local/bin:"
+                       "/usr/local/sbin:"
+                       "/usr/bin:"
+                       "/usr/sbin:"
+                       "/bin:"
+                       "/sbin"))
+
+(setq exec-path (split-string (getenv "PATH") path-separator))
 
 ;; Local Variables:
 ;; no-byte-compile: t
