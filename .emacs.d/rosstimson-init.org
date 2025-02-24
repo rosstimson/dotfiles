@@ -43,24 +43,6 @@ start Org.
   (setq auto-save-default nil)
 #+end_src
 
-Emacs might need access to executables that are stored in some custom
-locations, for example a Rust tool installed via ~cargo~ or a Python
-tool installed via ~pip install --user~.  ~exec-path~ is essentially
-the Emacs equivalent of your system's ~$PATH~ and [[https://github.com/purcell/exec-path-from-shell][exec-path-from-shell]]
-lets you set the Emacs ~exec-path~ using the same settings as the
-shell env.  I also grab the ~ssh-agent~ env vars so that I don't have
-to keep entering SSH key passphrases for actions such as pushing Git
-changes up to the remote via Magit.
-
-#+begin_src emacs-lisp
-  (use-package exec-path-from-shell
-    :config
-    (exec-path-from-shell-initialize)
-    (exec-path-from-shell-copy-env "SSH_AGENT_PID")
-    (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
-    (exec-path-from-shell-copy-env "DICPATH"))
-#+end_src
-
 Set some defaults
 
 #+begin_src emacs-lisp
@@ -976,6 +958,7 @@ with version control systems.
 
 #+begin_src emacs-lisp
   (use-package editorconfig
+    :ensure nil
     :config
     (editorconfig-mode 1))
 #+end_src
@@ -986,18 +969,15 @@ with version control systems.
 is included by default with Emacs since version 29.1.
 
 #+begin_src emacs-lisp
-  ;; Needed so it updates as latest eglot needs a newer version than the
-  ;; builtin version.
-  (use-package jsonrpc)
-
   (use-package eglot
-    ;;:ensure nil
+    :ensure nil
     :bind (:map eglot-mode-map
                 ("M-." . xref-find-definitions)
                 ("C-c h" . eglot-help-at-point))
     :hook ((bash-ts-mode . eglot-ensure)
            (clojure-ts-mode . eglot-ensure)
            (go-ts-mode . eglot-ensure)
+           (html-ts-mode . eglot-ensure)
            (javascript-ts-mode . eglot-ensure)
            (markdown-mode . eglot-ensure)
            (python-ts-mode . eglot-ensure)
@@ -1026,6 +1006,7 @@ is included by default with Emacs since version 29.1.
 
 #+begin_src emacs-lisp
   (use-package eldoc
+    :ensure nil
     :blackout)
 #+end_src
 
@@ -1055,12 +1036,10 @@ context:
 ** Emmet
 
 #+begin_src emacs-lisp
-(use-package emmet-mode
-  :bind ("C-<return>" . emmet-expand-line)
-  :config
-  (add-hook 'web-mode-hook 'emmet-mode)
-  (add-hook 'sgml-mode-hook 'emmet-mode)
-  (add-hook 'html-mode-hook 'emmet-mode))
+  (use-package emmet-mode
+    :bind ("C-<return>" . emmet-expand-line)
+    :hook ((sgml-mode . emmet-mode)
+           (html-ts-mode . emmet-mode)))
 #+end_src
 
 ** Flycheck
@@ -1493,6 +1472,7 @@ rg.el also integrates with wgrep out of the box.
 
 #+begin_src emacs-lisp
   (use-package which-key
+    :ensure nil
     :config
     (which-key-mode t)
     :blackout)
@@ -1649,6 +1629,14 @@ powered by TreeSitter.
     ;; feels like a bug and was very annoying and took ages to
     ;; troubleshoot.
     (go-ts-mode-indent-offset 4))
+#+end_src
+
+** HTML
+
+#+begin_src emacs-lisp
+  (use-package html-mode
+    :ensure nil
+    :mode ("\\.html\\'" . html-ts-mode))
 #+end_src
 
 ** JavaScript / TypeScript
