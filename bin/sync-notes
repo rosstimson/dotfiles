@@ -4,63 +4,64 @@ set -euo pipefail
 
 
 function push() {
-    rclone sync \
-           --dry-run \
-           --verbose \
-           --track-renames \
-           --backup-dir "notes-rosstimson:notes-backups/$(date +%Y-%m-%d)" \
-           --password-command "op read op://personal/Rclone/password" \
-           ~/Documents/notes notes-rosstimson:notes-rosstimson
+	rclone sync \
+		   --dry-run \
+		   --update \
+		   --verbose \
+		   --track-renames \
+		   --password-command "op read op://personal/Rclone/password" \
+		   ~/Documents/notes notes-rosstimson:notes-rosstimson
 
-    echo "Above is a dry run. Continue with actual sync? (y/N)"
-    read -r response
-    if [[ "$response" =~ ^[Yy]$ ]]; then
-        rclone sync \
-               --update \
-               --verbose \
-               --track-renames \
-               --backup-dir "notes-rosstimson:notes-backups/$(date +%Y-%m-%d)" \
-               --password-command "op read op://personal/Rclone/password" \
-               ~/Documents/notes notes-rosstimson:notes-rosstimson
-    fi
+	echo "Above is a dry run. Continue with actual sync? (y/N)"
+	read -r response
+	if [[ "$response" =~ ^[Yy]$ ]]; then
+		rclone sync \
+			   --update \
+			   --verbose \
+			   --track-renames \
+			   --password-command "op read op://personal/Rclone/password" \
+		   ~/Documents/notes notes-rosstimson:notes-rosstimson
+	fi
 }
 
 
 function pull() {
-    rclone sync \
-           --dry-run \
-           --verbose \
-           --track-renames \
-           --backup-dir "${HOME}/notes-backups/$(date +%Y-%m-%d)" \
-           --password-command "op read op://personal/Rclone/password" \
-           notes-rosstimson:notes-rosstimson ~/Documents/notes
+	local backup_path="$HOME/Documents/notes-backups/$(date +%Y-%m-%d)"
+	rclone sync \
+		   --dry-run \
+		   --update \
+		   --verbose \
+		   --track-renames \
+		   --backup-dir "${backup_path}" \
+		   --password-command "op read op://personal/Rclone/password" \
+		   notes-rosstimson:notes-rosstimson ~/Documents/notes
 
-    echo "Above is a dry run. Continue with actual sync? (y/N)"
-    read -r response
-    if [[ "$response" =~ ^[Yy]$ ]]; then
-        rclone sync \
-               --update \
-               --verbose \
-               --track-renames \
-               --backup-dir "${HOME}/notes-backups/$(date +%Y-%m-%d)" \
-               --password-command "op read op://personal/Rclone/password" \
-           notes-rosstimson:notes-rosstimson ~/Documents/notes
-    fi
+	echo "Above is a dry run. Continue with actual sync? (y/N)"
+	read -r response
+	if [[ "$response" =~ ^[Yy]$ ]]; then
+		rclone sync \
+			   --update \
+			   --verbose \
+			   --track-renames \
+			   --backup-dir "${backup_path}" \
+			   --password-command "op read op://personal/Rclone/password" \
+		   notes-rosstimson:notes-rosstimson ~/Documents/notes
+	fi
 }
 
 
 # Default to pull if no arguments given
 case ${1:-pull} in
-    push)
-        push
-        ;;
-    pull)
-        pull
-        ;;
-    *)
-        echo "Invalid argument. Usage: $0 [push|pull]"
-        exit 1
-        ;;
+	push)
+		push
+		;;
+	pull)
+		pull
+		;;
+	*)
+		echo "Invalid argument. Usage: $0 [push|pull]"
+		exit 1
+		;;
 esac
 
 exit 0
