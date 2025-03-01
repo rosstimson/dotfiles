@@ -397,8 +397,8 @@ window in order to open a new file.  This will switch automatically so
 I don't have the extra step.
 
 #+begin_src emacs-lisp
-(global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
-(global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
+  (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
+  (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
 #+end_src
 
 Keyboard shortcut for quickly compiling code.
@@ -2187,6 +2187,29 @@ whitespace can be weird.
             (:maildir "/Sent Messages"     :key  ?s))))
 #+end_src
 
+** GPTel / AI
+
+#+begin_src emacs-lisp
+  (use-package gptel
+    :commands (gptel gptel-send gptel-rewrite)
+    :config
+    (setq gptel-debug t)
+    (setq
+     gptel-model 'claude-3-sonnet-20240229
+     gptel-backend (gptel-make-anthropic "Claude"
+                     :stream t
+                     :key #'rt/get-anthropic-key))
+    :hook
+    ;; Auto-scroll as responses come in
+    (gptel-post-stream . gptel-auto-scroll)
+    ;; Move cursor after response
+    (gptel-post-response-functions . gptel-end-of-response)
+
+    :bind
+    ("C-c RET" . gptel-send)
+    ("C-c G" . gptel)
+    ("C-c r" . gptel-rewrite))
+#+end_src
 ** Sqlite3
 
 [[https://github.com/pekingduck/emacs-sqlite3-api][sqlite3]] is a dynamic module for GNU Emacs 25+ that provides direct
