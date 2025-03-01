@@ -45,6 +45,20 @@
 (advice-add 'age-file-insert-file-contents :after #'rt/set-org-journal-mode)
 
 
+;; gptel
+;; -----------------------------------------------------------------------------
+
+(defun rt/get-anthropic-key ()
+  "Retrieve the Anthropic API key from auth-source.
+Searches for an entry with host 'api.anthropic.com' and user 'apikey'."
+  (let ((secret (plist-get (car (auth-source-search :host "api.anthropic.com"
+                                                    :user "apikey"))
+                           :secret)))
+    (when secret
+      (if (functionp secret)
+          (funcall secret)
+        secret))))
+
 
 (provide 'custom-functions)
 
