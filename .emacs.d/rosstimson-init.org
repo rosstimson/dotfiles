@@ -2070,15 +2070,6 @@ for Python.
     (add-hook 'python-ts-mode-hook 'anaconda-eldoc-mode)))
 #+end_src
 
-Virtual envs with [[https://python-poetry.org/][Poetry]] / [[https://github.com/cybniv/poetry.el][poetry.el]]
-
-#+begin_src emacs-lisp
-  (use-package poetry
-    :hook
-    ;; activate poetry-tracking-mode when python-mode is active
-    (python-ts-mode . poetry-tracking-mode))
-#+end_src
-
 ** RestClient
 
 Mode for working with REST APIs.
