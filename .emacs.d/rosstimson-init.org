@@ -2059,6 +2059,8 @@ Setup Python mode
   (setq tab-width 4))
 #+end_src
 
+*** Anaconda
+
 [[https://github.com/proofit404/anaconda-mode][Anaconde mode]] offers code navigation, documentation lookup, and completion
 for Python.
 
@@ -2068,6 +2070,13 @@ for Python.
   (progn
     (add-hook 'python-ts-mode-hook 'anaconda-mode)
     (add-hook 'python-ts-mode-hook 'anaconda-eldoc-mode)))
+#+end_src
+
+*** UV
+
+#+begin_src emacs-lisp
+  (use-package uv-mode
+    :hook (python-ts-mode . uv-mode-auto-activate-hook))
 #+end_src
 
 ** RestClient
