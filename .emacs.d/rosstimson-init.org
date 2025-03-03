@@ -2074,6 +2074,11 @@ for Python.
 
 *** UV
 
+[[https://github.com/z80dev/uv-mode][UV mode]] provides seamless integration between uv (the Python package
+installer) and Emacs python-mode. Unlike pyenv-mode which manages
+multiple Python versions, UV Mode focuses on managing project-specific
+virtual environments created by uv.
+
 #+begin_src emacs-lisp
   (use-package uv-mode
     :hook (python-ts-mode . uv-mode-auto-activate-hook))
