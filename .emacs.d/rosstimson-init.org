@@ -19,7 +19,11 @@ Pseudo-package for Emacs itself.
                         ("America/New_York" "New York")
                         ("Europe/London" "London")
                         ("Europe/Paris" "Paris")
-                        ("Europe/Athens" "Athens"))))
+                        ("Europe/Athens" "Athens")))
+    (auth-sources '("~/.authinfo.age"
+                    "~/.authinfo.gpg"
+                    "~/.authinfo"
+                    "~/.netrc")))
 #+end_src
 
 #+begin_src emacs-lisp
@@ -2209,7 +2213,6 @@ whitespace can be weird.
   (use-package gptel
     :commands (gptel gptel-send gptel-rewrite)
     :config
-    (setq gptel-debug t)
     (setq
      gptel-model 'claude-3-sonnet-20240229
      gptel-backend (gptel-make-anthropic "Claude"
