@@ -2187,6 +2187,17 @@ whitespace can be weird.
             (:maildir "/Sent Messages"     :key  ?s))))
 #+end_src
 
+** Envrc
+
+[[https://github.com/purcell/envrc][envrc.el]] - buffer-local direnv integration for Emacs.
+
+*Note*: As per the docs this should remain near the bottom of the init.el.
+
+#+begin_src emacs-lisp
+  (use-package envrc
+    :hook (after-init . envrc-global-mode))
+#+end_src
+
 ** GPTel / AI
 
 #+begin_src emacs-lisp
