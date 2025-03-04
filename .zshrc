@@ -178,22 +178,6 @@ eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 
-# Conda (https://docs.anaconda.com/free/miniconda/index.html)
-# -------------------------------------------------------------------
-
-__conda_setup="$("${homebrew_path}/Caskroom/miniconda/base/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-	eval "$__conda_setup"
-else
-	if [ -f "${homebrew_path}/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-		. "${homebrew_path}/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-	else
-		export PATH="${homebrew_path}/Caskroom/miniconda/base/bin:$PATH"
-	fi
-fi
-unset __conda_setup
-
-
 # Nix (https://nixos.org/)
 # --------------------------------------------------------------------
 
