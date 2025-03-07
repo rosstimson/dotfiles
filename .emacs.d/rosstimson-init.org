@@ -332,7 +332,7 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
                         (mode . org-agenda-mode)))
              ("Programming" (or (mode . python-ts-mode)
                                 (mode . go-ts-mode)
-                                (mode . rust-mode)
+                                (mode . rust-ts-mode)
                                 (mode . clojure-ts-mode)))
              ("Shell" (or (mode . eshell-mode)
                           (mode . shell-mode)
@@ -994,7 +994,7 @@ is included by default with Emacs since version 29.1.
            (javascript-ts-mode . eglot-ensure)
            (markdown-mode . eglot-ensure)
            (python-ts-mode . eglot-ensure)
-           (rust-mode . eglot-ensure)
+           (rust-ts-mode . eglot-ensure)
            (terraform-mode . eglot-ensure)
            (typescript-ts-mode . eglot-ensure)
            (yaml-ts-mode . eglot-ensure))
@@ -1633,8 +1633,7 @@ powered by TreeSitter.
     :ensure nil
     :mode (("\\.go\\'" . go-ts-mode)
            ("/go\\.mod\\'" . go-mod-ts-mode))
-    :hook ((go-ts-mode . lsp-deferred)
-           (go-ts-mode . (lambda ()
+    :hook ((go-ts-mode . (lambda ()
                            (setq indent-tabs-mode t))))
     :custom
     ;; This must be set to same size as my default tab-width (4) as with
@@ -2112,7 +2111,7 @@ Mode for working with REST APIs.
 
 #+begin_src emacs-lisp
   (use-package rust-mode
-    :mode ("\\.rs\\'" . rust-mode)
+    :mode ("\\.rs\\'" . rust-ts-mode)
     :config
     (setq rust-format-on-save t))
 #+end_src
