@@ -1,6 +1,7 @@
 command = /opt/homebrew/bin/tmux new-session -A -s rt
 confirm-close-surface = false
 macos-titlebar-style = hidden
+macos-option-as-alt = true
 scrollback-limit = 20000
 theme = light:dawnfox,dark:terafox
 window-theme = auto
@@ -12,3 +13,5 @@ keybind = ctrl+v=scroll_page_down
 keybind = alt+shift+,=scroll_to_top
 keybind = alt+shift+.=scroll_to_bottom
 
+# Cut 'n' Paste
+keybind = ctrl+y=paste_from_clipboard
