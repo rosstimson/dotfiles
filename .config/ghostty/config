@@ -1,12 +1,29 @@
-command = /opt/homebrew/bin/tmux new-session -A -s rt
-confirm-close-surface = false
-macos-titlebar-style = hidden
+# General Settings
+# -----------------------------------------------------------------------------
+
+#command = /opt/homebrew/bin/tmux new-session -A -s rt
+#confirm-close-surface = false
+#macos-titlebar-style = hidden
 macos-option-as-alt = true
 scrollback-limit = 20000
 theme = light:dawnfox,dark:terafox
 window-theme = auto
 window-padding-x = 12
 maximize = true
+
+
+# Keybindings
+# -----------------------------------------------------------------------------
+
+keybind = ctrl+a>c=new_tab
+keybind = ctrl+a>p=previous_tab
+keybind = ctrl+a>n=next_tab
+keybind = ctrl+a>&=close_tab
+
+keybind = ctrl+a>v=new_split:right
+keybind = ctrl+a>s=new_split:down
+keybind = ctrl+a>x=close_surface
+keybind = ctrl+a>o=goto_split:next
 
 keybind = alt+v=scroll_page_up
 keybind = ctrl+v=scroll_page_down
