@@ -6,7 +6,7 @@ scrollback-limit = 20000
 theme = light:dawnfox,dark:terafox
 window-theme = auto
 window-padding-x = 12
-window-padding-y = 8
+maximize = true
 
 keybind = alt+v=scroll_page_up
 keybind = ctrl+v=scroll_page_down
