@@ -2223,7 +2223,7 @@ whitespace can be weird.
     :commands (gptel gptel-send gptel-rewrite)
     :config
     (setq
-     gptel-model 'claude-3-sonnet-20240229
+     gptel-model 'claude-3-7-sonnet-20250219
      gptel-backend (gptel-make-anthropic "Claude"
                      :stream t
                      :key #'rt/get-anthropic-key))
