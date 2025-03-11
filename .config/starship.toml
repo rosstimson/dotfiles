@@ -38,7 +38,7 @@ if [[ "${v2}" == "${v1}"* ]]
 then
   stub=${v2#$v1}
   IFS=/ read -r csp customer envtype env discard <<< ${stub}
-  echo "[🐽 (${csp})${customer:+" "$customer}${envtype:+" "$envtype}${env:+" "$env}]"
+  echo "[🐽 (☁️${csp})${customer:+" "$customer}:${envtype:$envtype}:${env:$env}]"
 fi
 '''
 
