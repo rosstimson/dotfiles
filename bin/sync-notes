@@ -27,22 +27,20 @@ function push() {
 
 function pull() {
 	local backup_path="$HOME/Documents/notes-backups/$(date +%Y-%m-%d)"
-	rclone sync \
+	rclone copy \
 		   --dry-run \
 		   --update \
 		   --verbose \
-		   --track-renames \
 		   --backup-dir "${backup_path}" \
 		   --password-command "op read op://personal/Rclone/password" \
 		   notes-rosstimson:notes-rosstimson ~/Documents/notes
 
-	echo "Above is a dry run. Continue with actual sync? (y/N)"
+	echo "Above is a dry run. Continue with actual copy? (y/N)"
 	read -r response
 	if [[ "$response" =~ ^[Yy]$ ]]; then
-		rclone sync \
+		rclone copy \
 			   --update \
 			   --verbose \
-			   --track-renames \
 			   --backup-dir "${backup_path}" \
 			   --password-command "op read op://personal/Rclone/password" \
 		   notes-rosstimson:notes-rosstimson ~/Documents/notes
