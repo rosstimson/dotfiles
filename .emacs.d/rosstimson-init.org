@@ -1982,7 +1982,8 @@ minibuffer and at-point via the citar-embark-mode minor mode.
 #+begin_src emacs-lisp
   (use-package org-journal
     :after org
-    :bind ("C-c j" . org-journal-new-entry)
+    :bind (("C-c j" . org-journal-new-entry)
+           ("C-c d" . org-journal-new-date-entry))
     :custom
     (org-journal-file-type 'monthly)
     (org-journal-date-format "%A, %d %B %Y")
