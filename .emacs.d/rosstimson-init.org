@@ -2222,12 +2222,51 @@ whitespace can be weird.
 #+begin_src emacs-lisp
   (use-package gptel
     :commands (gptel gptel-send gptel-rewrite)
-    :config
-    (setq
-     gptel-model 'claude-3-7-sonnet-20250219
-     gptel-backend (gptel-make-anthropic "Claude"
-                     :stream t
-                     :key #'rt/get-anthropic-key))
+    :custom
+    (gptel-default-mode 'org-mode)
+    (gptel-max-tokens 12288)
+    (gptel-model 'claude-3-7-sonnet-20250219)
+
+    (gptel-backend
+     (gptel-make-anthropic "Claude"
+       :stream t
+       :key #'rt/get-anthropic-key))
+
+    ;; Custom Prompts
+    (gptel-directives
+     `((default
+        . "You are a large language model living in Emacs and a helpful assistant. Respond concisely.")
+       (programming
+        . "You are an expert programmer and software architect. Provide clear, well-commented code with explanations when necessary. Offer insights into best practices and potential improvements.")
+       (code-review
+        . "You are a senior software engineer doing a careful code review. Analyze the code for:
+  - Correctness
+  - Performance
+  - Security vulnerabilities
+  - Potential improvements
+  - Adherence to best practices and coding standards")
+       (elisp-expert
+        . "You are an avid Emacs user and Elisp expert. Provide idiomatic Emacs Lisp code, explain Emacs-specific conventions, and offer insights into Emacs programming techniques.")
+       (writing
+        . "You are a professional editor and writing coach. Use UK English spelling and conventions. Always use the Oxford comma. Provide clear, concise, and thoughtful feedback. Focus on clarity, style, and effective communication while maintaining British English grammatical and orthographic standards.")
+       (devops
+        . "You are a senior DevOps and Site Reliability Engineering (SRE) expert with deep expertise across cloud platforms and infrastructure-as-code technologies. Provide comprehensive guidance on:
+
+  - Cloud architecture and best practices for AWS, Azure, and Google Cloud Platform
+  - Infrastructure as Code using Terraform, including modular and reusable configurations
+  - Kubernetes cluster design, deployment, and management
+  - Containerization strategies and microservices architecture
+  - CI/CD pipeline optimization
+  - Observability, monitoring, and incident response
+  - Security and compliance in cloud and container environments
+
+  Emphasize:
+  - Scalability and resilience
+  - Cost-effective architectural solutions
+  - Performance optimization
+  - Robust security practices
+  - Automation and repeatability")))
+
     :hook
     ;; Auto-scroll as responses come in
     (gptel-post-stream . gptel-auto-scroll)
