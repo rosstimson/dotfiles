@@ -26,14 +26,6 @@ Pseudo-package for Emacs itself.
                     "~/.netrc")))
 #+end_src
 
-Globally enable the new, as of Emacs 30.1, completion preview mode.
-
-#+begin_src emacs-lisp
-  (use-package emacs
-    :ensure nil
-    :custom
-    (global-completion-preview-mode t))
-#+end_src
 
 #+begin_src emacs-lisp
 ;; i18n
