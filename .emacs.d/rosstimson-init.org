@@ -684,6 +684,23 @@ function with ~consult-line~.
                 ("!" . consult-flycheck)))
 #+end_src
 
+*** Consult-Notes
+
+[[https://github.com/mclear-tools/consult-notes][Consult-notes]] - Easily search and select notes via Consult.
+
+#+begin_src emacs-lisp
+  (use-package consult-notes
+    :commands (consult-notes
+               consult-notes-search-in-all-notes)
+    :bind ("C-c n c" . consult-notes)
+    :config
+    (setq consult-notes-file-dir-sources 
+          `(("Notes" ?n ,(expand-file-name "Documents/notes/" (getenv "HOME")))))
+    (when (locate-library "denote")
+      (consult-notes-denote-mode))
+    (setq consult-notes-denote-files-function (lambda () (denote-directory-files nil t t))))
+#+end_src
+
 ** Corfu
 
 [[https://github.com/minad/corfu][Corfu]] enhances in-buffer completion with a small completion popup. The
