@@ -1,0 +1,78 @@
+# ~/.zshrc-work
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/opt/homebrew/share/zsh/site-functions/_google_cloud_sdk' ]; then . '/opt/homebrew/share/zsh/site-functions/_google_cloud_sdk'; fi
+
+# Terragrunt & K8s Helper Function
+ce () {
+    if [[ $1 == "exit" ]]
+    then
+        unset TG_CSP
+        unset TG_CUSTOMER
+        unset TG_ENVTYPE
+        unset TG_ENV
+		ssh -S "${HOME}"/.ssh-master -O exit master > /dev/null 2>&1
+        return
+    fi
+
+	# Prompt for CSP if not provided
+    if [[ -z $1 ]]; then
+        read -r "TG_CSP?Enter CSP: "
+        export TG_CSP
+    else
+        export TG_CSP=$1
+    fi
+
+    # Prompt for customer if not provided
+    if [[ -z $2 ]]; then
+        read -r "TG_CUSTOMER?Enter customer: "
+        export TG_CUSTOMER
+    else
+        export TG_CUSTOMER=$2
+    fi
+
+    # Prompt for environment type if not provided
+    if [[ -z $3 ]]; then
+        read -r "TG_ENVTYPE?Enter environment type: "
+        export TG_ENVTYPE
+    else
+        export TG_ENVTYPE=$3
+    fi
+
+    # Prompt for environment if not provided
+    if [[ -z $4 ]]; then
+        read -r "TG_ENV?Enter environment: "
+        export TG_ENV
+    else
+        export TG_ENV=$4
+    fi
+
+	ssh -S "${HOME}"/.ssh-master -O exit master > /dev/null 2>&1
+    echo "Setting up Causaly Environment..."
+
+	gcloud beta compute ssh "${TG_CUSTOMER}"-"${TG_ENVTYPE}"-"${TG_ENV}"-tp01-vm \
+		   --project "${TG_CUSTOMER}"-"${TG_ENVTYPE}"-"${TG_ENV}"-tp01 \
+		   --zone us-east1-b -- \
+	       -L 8888:localhost:8888 -N -f -S "${HOME}"/.ssh-master -M -fN master > /dev/null 2>&1
+
+	kubectl config use-context "${TG_CSP}"-"${TG_CUSTOMER}"-"${TG_ENVTYPE}"-"${TG_ENV}" > /dev/null 2>&1
+}
+
+
+ssm-port-forward () {
+    local VM_NAME=$1
+    local REMOTE_PORT=${2:-8888}
+    local LOCAL_PORT=${3:-8888}
+
+	# AWS: csly-dev-pvd-ssm-bastion-tinyproxy
+	# GCP: csly-dev-pvd1-tp01-vm
+    INSTANCE_ID=$(aws ec2 describe-instances \
+        --filters "Name=tag:Name,Values=$VM_NAME" \
+        --query "Reservations[0].Instances[0].InstanceId" \
+        --output text)
+
+    aws ssm start-session \
+		--target "$INSTANCE_ID" \
+        --document-name AWS-StartPortForwardingSession \
+        --parameters "{\"portNumber\":[\"$REMOTE_PORT\"], \"localPortNumber\":[\"$LOCAL_PORT\"]}"
+}
