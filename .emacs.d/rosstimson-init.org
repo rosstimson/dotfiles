@@ -63,7 +63,7 @@ Set some defaults
    view-read-only t                                 ; Always open read-only buffers in view-mode
    calendar-week-start-day 1                        ; Start calendar on Monday not Sunday
    create-lockfiles nil                             ; No lockfiles, don't need them and they mess with Terraform
-  )                       
+  )
 
   (cd (getenv "HOME"))                              ; Start in $HOME
 #+end_src
@@ -735,7 +735,7 @@ function with ~consult-line~.
                consult-notes-search-in-all-notes)
     :bind ("C-c n c" . consult-notes)
     :config
-    (setq consult-notes-file-dir-sources 
+    (setq consult-notes-file-dir-sources
           `(("Notes" ?n ,(expand-file-name "Documents/notes/" (getenv "HOME")))))
     (when (locate-library "denote")
       (consult-notes-denote-mode))
@@ -1383,7 +1383,7 @@ Also create a Hydra to make working with Smerge easier.
 Use ~C-;~ for correcting spelling.
 
 *** iSpell
-   
+
 #+begin_src emacs-lisp
   (use-package ispell
     :ensure nil
@@ -1555,7 +1555,7 @@ rg.el also integrates with wgrep out of the box.
     (setq whitespace-style '(face tabs spaces indentation lines-tail empty trailing)))
 #+end_src
 
-Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/whitespace-cleanup-mode][whitespace-cleanup-mode]]. 
+Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/whitespace-cleanup-mode][whitespace-cleanup-mode]].
 
 #+begin_src emacs-lisp
   (use-package whitespace-cleanup-mode
@@ -1793,7 +1793,7 @@ also a manual available at nix-mode.org.
            ("C-c a" . org-agenda)
            ("C-c c" . org-capture)
            ("C-c l" . org-store-link)
-           ("C-c v" . (lambda () 
+           ("C-c v" . (lambda ()
                         (interactive)
                         (if (org-link-preview--get-overlays (point-min) (point-max))
                             (org-link-preview '(4))  ; If previews exist, hide them
