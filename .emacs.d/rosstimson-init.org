@@ -1809,6 +1809,7 @@ also a manual available at nix-mode.org.
     :custom
     (org-goto-interface 'outline-path-completion)
     (org-goto-max-level 3)
+    (org-confirm-babel-evaluate nil)
 
     :config
     (setq org-ellipsis " » " ;; folding symbol
