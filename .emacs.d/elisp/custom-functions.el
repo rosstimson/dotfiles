@@ -15,6 +15,14 @@
   (sort-regexp-fields reverse "\\_<.*?\\_>" "\\&" beg end))
 
 
+;; Used for literate programming/devops in org mode whereby temporary
+;; commands should be run in a tmp dir by setting a src block like so:
+;;     sh :dir (rt/mktemp-dir)
+(defun rt/mktemp-dir ()
+  "Create a temporary directory with a specific prefix."
+  (string-trim (shell-command-to-string "mktemp -d -t rosstimson-tmp")))
+
+
 ;; Org Journal
 ;; -----------------------------------------------------------------------------
 
