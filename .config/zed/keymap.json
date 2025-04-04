@@ -6,79 +6,79 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-  {
-    "bindings": {
-      "ctrl-g": "menu::Cancel",
-      "ctrl-x 5 2": "workspace::NewWindow",
-      "ctrl-x 5 0": "workspace::CloseWindow",
-      "ctrl-x ctrl-c": "zed::Quit",
-      "ctrl-x ctrl-f": "workspace::Open",
-      "ctrl-x o": "workspace::ActivateNextPane",
-      // Project
-      "ctrl-x p p": "projects::OpenRecent"
-    }
-  },
-  {
-    "context": "Workspace",
-    "bindings": {
-      "ctrl-x ctrl-f": "file_finder::Toggle",
-      "ctrl-x b": "file_finder::Toggle"
-    }
-  },
-  {
-    "context": "Editor",
-    "bindings": {
-      "alt-w": "editor::Copy",
-      "alt-x": "command_palette::Toggle",
-      "ctrl-/": "editor::Undo",
-      "ctrl-a": "editor::MoveToBeginningOfLine",
-      "ctrl-alt-_": "editor::Redo",
-      "ctrl-e": "editor::MoveToEndOfLine",
-      "ctrl-g": "editor::Cancel",
-      "ctrl-k": "editor::CutToEndOfLine",
-      "ctrl-r": "buffer_search::Deploy",
-      "ctrl-s": "buffer_search::Deploy",
-      "ctrl-w": "editor::Cut",
-      "ctrl-y": "editor::Paste",
-      "ctrl-x ctrl-f": "file_finder::Toggle",
-      "ctrl-x b": "file_finder::Toggle",
-      "ctrl-x ctrl-s": "workspace::Save",
-      "ctrl-x h": "editor::SelectAll",
-      "alt-g g": "go_to_line::Toggle",
-      "alt-;": [
-        "editor::ToggleComments",
-        {
-          "advance_downwards": false
-        }
-      ],
-      "alt-backspace": "editor::DeleteToPreviousSubwordStart",
-      "alt-<": "editor::MoveToBeginning",
-      "alt->": "editor::MoveToEnd",
-      "alt-b": "editor::MoveToPreviousWordStart",
-      "alt-f": "editor::MoveToNextWordEnd",
-      "alt-{": "editor::MoveToStartOfParagraph",
-      "alt-}": "editor::MoveToEndOfParagraph",
-      "ctrl-v": [
-        "editor::MovePageDown",
-        {
-          "center_cursor": true
-        }
-      ],
-      "alt-v": [
-        "editor::MovePageUp",
-        {
-          "center_cursor": true
-        }
-      ]
-    }
-  },
-  {
-    "context": "Pane",
-    "bindings": {
-      "ctrl-x 0": "pane::CloseActiveItem",
-      "ctrl-x 1": "workspace::ToggleZoom",
-      "ctrl-x 2": "pane::SplitDown",
-      "ctrl-x 3": "pane::SplitRight"
-    }
-  }
+  //   {
+  //     "bindings": {
+  //       "ctrl-g": "menu::Cancel",
+  //       "ctrl-x 5 2": "workspace::NewWindow",
+  //       "ctrl-x 5 0": "workspace::CloseWindow",
+  //       "ctrl-x ctrl-c": "zed::Quit",
+  //       "ctrl-x ctrl-f": "workspace::Open",
+  //       "ctrl-x o": "workspace::ActivateNextPane",
+  //       // Project
+  //       "ctrl-x p p": "projects::OpenRecent"
+  //     }
+  //   },
+  //   {
+  //     "context": "Workspace",
+  //     "bindings": {
+  //       "ctrl-x ctrl-f": "file_finder::Toggle",
+  //       "ctrl-x b": "file_finder::Toggle"
+  //     }
+  //   },
+  //   {
+  //     "context": "Editor",
+  //     "bindings": {
+  //       "alt-w": "editor::Copy",
+  //       "alt-x": "command_palette::Toggle",
+  //       "ctrl-/": "editor::Undo",
+  //       "ctrl-a": "editor::MoveToBeginningOfLine",
+  //       "ctrl-alt-_": "editor::Redo",
+  //       "ctrl-e": "editor::MoveToEndOfLine",
+  //       "ctrl-g": "editor::Cancel",
+  //       "ctrl-k": "editor::CutToEndOfLine",
+  //       "ctrl-r": "buffer_search::Deploy",
+  //       "ctrl-s": "buffer_search::Deploy",
+  //       "ctrl-w": "editor::Cut",
+  //       "ctrl-y": "editor::Paste",
+  //       "ctrl-x ctrl-f": "file_finder::Toggle",
+  //       "ctrl-x b": "file_finder::Toggle",
+  //       "ctrl-x ctrl-s": "workspace::Save",
+  //       "ctrl-x h": "editor::SelectAll",
+  //       "alt-g g": "go_to_line::Toggle",
+  //       "alt-;": [
+  //         "editor::ToggleComments",
+  //         {
+  //           "advance_downwards": false
+  //         }
+  //       ],
+  //       "alt-backspace": "editor::DeleteToPreviousSubwordStart",
+  //       "alt-<": "editor::MoveToBeginning",
+  //       "alt->": "editor::MoveToEnd",
+  //       "alt-b": "editor::MoveToPreviousWordStart",
+  //       "alt-f": "editor::MoveToNextWordEnd",
+  //       "alt-{": "editor::MoveToStartOfParagraph",
+  //       "alt-}": "editor::MoveToEndOfParagraph",
+  //       "ctrl-v": [
+  //         "editor::MovePageDown",
+  //         {
+  //           "center_cursor": true
+  //         }
+  //       ],
+  //       "alt-v": [
+  //         "editor::MovePageUp",
+  //         {
+  //           "center_cursor": true
+  //         }
+  //       ]
+  //     }
+  //   },
+  //   {
+  //     "context": "Pane",
+  //     "bindings": {
+  //       "ctrl-x 0": "pane::CloseActiveItem",
+  //       "ctrl-x 1": "workspace::ToggleZoom",
+  //       "ctrl-x 2": "pane::SplitDown",
+  //       "ctrl-x 3": "pane::SplitRight"
+  //     }
+  //   }
 ]
