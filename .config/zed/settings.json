@@ -7,7 +7,6 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
-  // General Settings
   "base_keymap": "Emacs",
   "ui_font_size": 14,
   "buffer_font_size": 14,
