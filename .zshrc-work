@@ -1,3 +1,5 @@
+# -*- mode: bash-ts; -*-
+
 # ~/.zshrc-work
 
 # The next line enables shell command completion for gcloud.
