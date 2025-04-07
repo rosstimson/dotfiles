@@ -1810,6 +1810,8 @@ also a manual available at nix-mode.org.
     (org-goto-interface 'outline-path-completion)
     (org-goto-max-level 3)
     (org-confirm-babel-evaluate nil)
+    (org-html-doctype "html5")
+    (org-html-html5-fancy t)
 
     :config
     (setq org-ellipsis " » " ;; folding symbol
