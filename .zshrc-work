@@ -66,10 +66,10 @@ ssm-port-forward () {
     local REMOTE_PORT=${2:-8888}
     local LOCAL_PORT=${3:-8888}
 
-	# AWS: csly-dev-pvd-ssm-bastion-tinyproxy
-	# GCP: csly-dev-pvd1-tp01-vm
+	# AWS: csly-dev-pvd2-ssm-bastion-tinyproxy
     INSTANCE_ID=$(aws ec2 describe-instances \
         --filters "Name=tag:Name,Values=$VM_NAME" \
+                 "Name=instance-state-name,Values=running" \
         --query "Reservations[0].Instances[0].InstanceId" \
         --output text)
 
