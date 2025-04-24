@@ -138,6 +138,7 @@ alias tgia='terragrunt run-all init'
 alias tgp='terragrunt plan'
 alias tgpa='terragrunt run-all plan'
 alias tgs='terragrunt state'
+alias tgv='terragrunt validate'
 
 
 # Work
