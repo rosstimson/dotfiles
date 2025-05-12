@@ -21,7 +21,7 @@
   // AI Assistant
   "assistant": {
     "default_model": {
-      "provider": "zed.dev",
+      "provider": "anthropic",
       "model": "claude-3-7-sonnet-latest"
     },
     "version": "2"
