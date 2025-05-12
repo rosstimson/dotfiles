@@ -159,7 +159,7 @@
       "ctrl-c ctrl-r": "editor::Rename",
 
       // Assistants
-      "ctrl-c ctrl-u": "assistant::NewChat",
+      "ctrl-c ctrl-u": "agent::NewThread",
       "ctrl-c a": "assistant::InlineAssist",
       "ctrl-c ctrl-a": "assistant::InlineAssist",
       "ctrl->": "assistant::QuoteSelection",
@@ -263,15 +263,11 @@
   {
     "context": "AssistantPanel",
     "bindings": {
-      // "ctrl-k c": "assistant::CopyCode",
-      // "ctrl-shift-e": "project_panel::ToggleFocus",
-      // "ctrl-g": "search::SelectNextMatch",
-      // "ctrl-shift-g": "search::SelectPrevMatch",
       "ctrl-alt-/": "assistant::ToggleModelSelector",
-      "ctrl-c h": "assistant::DeployHistory",
-      "ctrl-c p": "assistant::OpenPromptLibrary",
-      "ctrl-c n": "assistant::NewChat",
-      "enter": "assistant::ConfirmCommand"
+      "ctrl-c h": "agent::OpenHistory",
+      "ctrl-c p": "assistant::OpenRulesLibrary",
+      "ctrl-c n": "agent::NewThread",
+      "enter": "assistant::Assist"
     }
   },
   {
@@ -405,31 +401,6 @@
       "alt-<": "menu::SelectFirst",
       "alt->": "menu::SelectLast",
       "ctrl-s": "project_panel::NewSearchInDirectory"
-
-      // "alt-ctrl-n": "project_panel::NewDirectory",
-      // "cut": "project_panel::Cut",
-      // "ctrl-x": "project_panel::Cut",
-      // "copy": "project_panel::Copy",
-      // "ctrl-insert": "project_panel::Copy",
-      // "ctrl-c": "project_panel::Copy",
-      // "paste": "project_panel::Paste",
-      // "shift-insert": "project_panel::Paste",
-      // "ctrl-v": "project_panel::Paste",
-      // "alt-copy": "project_panel::CopyPath",
-      // "ctrl-alt-c": "project_panel::CopyPath",
-      // "alt-shift-copy": "workspace::CopyRelativePath",
-      // "alt-ctrl-shift-c": "workspace::CopyRelativePath",
-      // "enter": "project_panel::Rename",
-      // "f2": "project_panel::Rename",
-      // "backspace": ["project_panel::Trash", { "skip_prompt": false }],
-      // "shift-delete": ["project_panel::Delete", { "skip_prompt": false }],
-      // "ctrl-backspace": ["project_panel::Delete", { "skip_prompt": false }],
-      // "ctrl-delete": ["project_panel::Delete", { "skip_prompt": false }],
-      // "alt-ctrl-r": "project_panel::RevealInFileManager",
-      // "ctrl-shift-enter": "project_panel::OpenWithSystem",
-      // "shift-find": "project_panel::NewSearchInDirectory",
-      // "shift-down": "menu::SelectNext",
-      // "shift-up": "menu::SelectPrev"
     }
   },
   {
@@ -534,10 +505,9 @@
   {
     "context": "PromptEditor",
     "bindings": {
-      "ctrl-[": "assistant::CyclePreviousInlineAssist",
-      "ctrl-]": "assistant::CycleNextInlineAssist",
+      "ctrl-[": "agent::CyclePreviousInlineAssist",
+      "ctrl-]": "agent::CycleNextInlineAssist",
       "ctrl-alt-e": "agent::RemoveAllContext",
-      // "enter": "agent::NewPromptEditor", broken in 182.9
       "enter": "agent::NewThread",
       "ctrl-c ctrl-a": "assistant::InlineAssist"
     }
