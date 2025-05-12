@@ -18,8 +18,8 @@
     "dark": "One Dark"
   },
 
-  // AI Assistant
-  "assistant": {
+  // AI Agent
+  "agent": {
     "default_model": {
       "provider": "anthropic",
       "model": "claude-3-7-sonnet-latest"
