@@ -263,9 +263,9 @@
   {
     "context": "AssistantPanel",
     "bindings": {
-      "ctrl-alt-/": "assistant::ToggleModelSelector",
+      "ctrl-alt-/": "agent::ToggleModelSelector",
       "ctrl-c h": "agent::OpenHistory",
-      "ctrl-c p": "assistant::OpenRulesLibrary",
+      "ctrl-c p": "agent::OpenRulesLibrary",
       "ctrl-c n": "agent::NewThread",
       "enter": "assistant::Assist"
     }
@@ -277,7 +277,7 @@
       "ctrl-shift-enter": "assistant::Edit",
       "ctrl->": "assistant::QuoteSelection",
       "ctrl-<": "assistant::InsertIntoEditor",
-      "ctrl-c m": "assistant::ToggleModelSelector",
+      "ctrl-c m": "agent::ToggleModelSelector",
       "shift-enter": "assistant::Split",
       "ctrl-r": "assistant::CycleMessageRole",
       "enter": "assistant::ConfirmCommand"
@@ -343,8 +343,8 @@
       // "foo-bar": ["task::Spawn", { "task_name": "MyTask", "reveal_target": "dock" }]
 
       // Side panels
-      "ctrl-z i": "assistant::ToggleFocus",
-      "ctrl-z ctrl-i": "assistant::ToggleFocus",
+      "ctrl-z i": "agent::ToggleFocus",
+      "ctrl-z ctrl-i": "agent::ToggleFocus",
       "ctrl-z p": "project_panel::ToggleFocus",
       "ctrl-z ctrl-p": "project_panel::ToggleFocus",
       "ctrl-z o": "outline_panel::ToggleFocus",
