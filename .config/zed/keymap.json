@@ -365,7 +365,10 @@
       "ctrl-x 2": "pane::SplitDown", // split-window-below
       "ctrl-x 3": "pane::SplitRight", // split-window-right
       "ctrl-x ctrl-f": "file_finder::Toggle", // find-file
-      "ctrl-x s": "workspace::SaveAll" // save-some-buffers
+      "ctrl-x s": "workspace::SaveAll", // save-some-buffers
+
+      // Magit type bindings
+      "ctrl-c g": "git_panel::ToggleFocus"
     }
   },
   {
