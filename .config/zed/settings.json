@@ -8,6 +8,9 @@
 // command palette
 {
   // General Settings
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
   "base_keymap": "Emacs",
   "buffer_font_family": "Dank Mono",
   "ui_font_size": 14,
