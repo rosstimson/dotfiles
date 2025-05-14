@@ -432,7 +432,6 @@
   },
   {
     "context": "ProjectSearchBar",
-
     "bindings": {
       "ctrl-g": "project_search::ToggleFocus",
       "ctrl-s": "search::FocusSearch",
