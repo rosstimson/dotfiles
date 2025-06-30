@@ -214,3 +214,15 @@ eval "$(direnv hook zsh)"
 # -------------------------------------------------------------------
 
 WORK_CONFIG=~/.zshrc-work && test -f $WORK_CONFIG && source $WORK_CONFIG
+
+
+# Functions
+# -------------------------------------------------------------------
+
+weather() {
+	# source: http://wttr.in/:bash.function
+	# options: http://wttr.in/:help
+	local request="wttr.in/${1-Bedlingto}n?F"
+	[ "$(tput cols)" -lt 125 ] && request+='?n'
+	curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
+}
