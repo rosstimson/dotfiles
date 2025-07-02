@@ -2272,6 +2272,15 @@ whitespace can be weird.
 
 ** GPTel / AI
 
+Let's not get left behind, editors like Cursor and Zed are awesome and
+the AI agentic help is a massive productivity boost, however Emacs is
+still the best editor in the world so let's just bring it into the new
+age by adding AI tools.
+
+[[https://github.com/karthink/gptel][gptel]] - is a simple Large Language Model chat client for Emacs, with
+support for multiple models and backends. It works in the spirit of
+Emacs, available at any time and uniformly in any buffer.
+
 #+begin_src emacs-lisp
   (use-package gptel
     :commands (gptel gptel-send gptel-rewrite)
@@ -2331,6 +2340,24 @@ whitespace can be weird.
     ("C-c G" . gptel)
     ("C-c r" . gptel-rewrite))
 #+end_src
+
+*** MCP
+
+[[https://github.com/lizqwerscott/mcp.el][mcp.el]] -  Emacs client for interfacing with [[https://modelcontextprotocol.io][MCP]], supporting connections to MCP servers.
+
+#+begin_src emacs-lisp
+  (use-package mcp
+    :elpaca (:host github :repo "lizqwerscott/mcp.el")
+    :after gptel
+    :custom (mcp-hub-servers
+             `(("filesystem" . (:command "npx"
+                                         :args ("-y" "@modelcontextprotocol/server-filesystem"
+                                                ,(getenv "HOME"))))
+               ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))))
+    :config (require 'mcp-hub)
+    :hook (after-init . mcp-hub-start-all-server))
+#+end_src
+
 ** Sqlite3
 
 [[https://github.com/pekingduck/emacs-sqlite3-api][sqlite3]] is a dynamic module for GNU Emacs 25+ that provides direct
