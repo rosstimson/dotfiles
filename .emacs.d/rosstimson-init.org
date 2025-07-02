@@ -2353,7 +2353,8 @@ Emacs, available at any time and uniformly in any buffer.
              `(("filesystem" . (:command "npx"
                                          :args ("-y" "@modelcontextprotocol/server-filesystem"
                                                 ,(getenv "HOME"))))
-               ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))))
+               ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))
+               ("git" . (:command "uvx" :args ("mcp-server-git")))))
     :config (require 'mcp-hub)
     :hook (after-init . mcp-hub-start-all-server))
 #+end_src
