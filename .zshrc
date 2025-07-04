@@ -56,6 +56,9 @@ fpath=($HOME/.zsh/completions $fpath)
 # Zsh settings
 # --------------------------------------------------------------------
 
+# Stop bloody beeping!!!
+unsetopt BEEP
+
 # Need these for autocompletion
 autoload -U compinit
 compinit
