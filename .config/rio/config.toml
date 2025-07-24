@@ -1,0 +1,9 @@
+confirm-before-quit = false
+
+[adaptive-theme]
+light = "dayfox"
+dark  = "terafox"
+
+[shell]
+program = "/opt/homebrew/bin/tmux"
+args = ["new-session", "-A", "-s", "rt"]
