@@ -2,79 +2,105 @@
 
 # ~/.zshrc-work
 
+# Set Python interpreter for Google CLI including gsutil.
+export CLOUDSDK_PYTHON=/Users/ross.timson/.local/share/uv/python/cpython-3.9.22-macos-aarch64-none/bin/python3.9
+
 # The next line enables shell command completion for gcloud.
 if [ -f '/opt/homebrew/share/zsh/site-functions/_google_cloud_sdk' ]; then . '/opt/homebrew/share/zsh/site-functions/_google_cloud_sdk'; fi
 
-# Terragrunt & K8s Helper Function
-ce () {
-    if [[ $1 == "exit" ]]
-    then
-        unset TG_CSP
-        unset TG_CUSTOMER
-        unset TG_ENVTYPE
-        unset TG_ENV
-		ssh -S "${HOME}"/.ssh-master -O exit master > /dev/null 2>&1
-        return
-    fi
+# Terragrunt Provider Cache
+export TG_PROVIDER_CACHE=1
+export TG_PROVIDER_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 
-	# Prompt for CSP if not provided
-    if [[ -z $1 ]]; then
-        read -r "TG_CSP?Enter CSP: "
-        export TG_CSP
-    else
-        export TG_CSP=$1
-    fi
 
-    # Prompt for customer if not provided
-    if [[ -z $2 ]]; then
-        read -r "TG_CUSTOMER?Enter customer: "
-        export TG_CUSTOMER
-    else
-        export TG_CUSTOMER=$2
-    fi
+# ssm-port-forward () {
+#     local VM_NAME=$1
+#     local REMOTE_PORT=${2:-8888}
+#     local LOCAL_PORT=${3:-8888}
 
-    # Prompt for environment type if not provided
-    if [[ -z $3 ]]; then
-        read -r "TG_ENVTYPE?Enter environment type: "
-        export TG_ENVTYPE
-    else
-        export TG_ENVTYPE=$3
-    fi
+# 	# AWS: csly-dev-pvd2-tinyproxy
+#     INSTANCE_ID=$(aws --profile csly-dev-pvd2-administrator \
+#                       ec2 describe-instances \
+# 					  --filters "Name=tag:Name,Values=$VM_NAME" \
+# 					  "Name=instance-state-name,Values=running" \
+# 					  --query "Reservations[0].Instances[0].InstanceId" \
+# 					  --output text)
 
-    # Prompt for environment if not provided
-    if [[ -z $4 ]]; then
-        read -r "TG_ENV?Enter environment: "
-        export TG_ENV
-    else
-        export TG_ENV=$4
-    fi
+#     aws --profile csly-dev-pvd2-administrator ssm start-session \
+# 		--target "$INSTANCE_ID" \
+#         --document-name AWS-StartPortForwardingSession \
+#         --parameters "{\"portNumber\":[\"$REMOTE_PORT\"], \"localPortNumber\":[\"$LOCAL_PORT\"]}"
+# }
 
-	ssh -S "${HOME}"/.ssh-master -O exit master > /dev/null 2>&1
-    echo "Setting up Causaly Environment..."
-
-	gcloud beta compute ssh "${TG_CUSTOMER}"-"${TG_ENVTYPE}"-"${TG_ENV}"-tp01-vm \
-		   --project "${TG_CUSTOMER}"-"${TG_ENVTYPE}"-"${TG_ENV}"-tp01 \
-		   --zone us-east1-b -- \
-	       -L 8888:localhost:8888 -N -f -S "${HOME}"/.ssh-master -M -fN master > /dev/null 2>&1
-
-	kubectl config use-context "${TG_CSP}"-"${TG_CUSTOMER}"-"${TG_ENVTYPE}"-"${TG_ENV}" > /dev/null 2>&1
+aws_proxy_session_id () {
+    echo $(aws ssm describe-sessions \
+        --state Active \
+        --output text \
+        --query "Sessions[?Reason==\`rtproxy-ac73498e-29f9-436a-b44e-3bc0d873108\`].SessionId")
 }
-
 
 ssm-port-forward () {
     local VM_NAME=$1
     local REMOTE_PORT=${2:-8888}
     local LOCAL_PORT=${3:-8888}
+	local SESSION_UUID="rtproxy-ac73498e-29f9-436a-b44e-3bc0d873108"
 
-	# AWS: csly-dev-pvd2-ssm-bastion-tinyproxy
+    # AWS: csly-dev-pvd2-tinyproxy
     INSTANCE_ID=$(aws ec2 describe-instances \
-					  --filters "Name=tag:Name,Values=$VM_NAME" \
-					  "Name=instance-state-name,Values=running" \
-					  --query "Reservations[0].Instances[0].InstanceId" \
-					  --output text)
+        --filters "Name=tag:Name,Values=$VM_NAME" \
+                  "Name=instance-state-name,Values=running" \
+        --query "Reservations[0].Instances[0].InstanceId" \
+        --output text)
 
     aws ssm start-session \
-		--target "$INSTANCE_ID" \
+        --target "$INSTANCE_ID" \
+        --reason "$SESSION_UUID" \
         --document-name AWS-StartPortForwardingSession \
-        --parameters "{\"portNumber\":[\"$REMOTE_PORT\"], \"localPortNumber\":[\"$LOCAL_PORT\"]}"
+        --parameters "{\"portNumber\":[\"$REMOTE_PORT\"], \"localPortNumber\":[\"$LOCAL_PORT\"]}" &
+}
+
+
+# Rename contexts like this:
+# kubectl config rename-context CONTEXT_NAME NEW_NAME
+ce() {
+  session_id=$(aws_proxy_session_id)
+
+  if [[ $1 == "exit" ]]
+  then
+    unset TG_CSP
+    unset TG_CUSTOMER
+    unset TG_ENVTYPE
+    unset TG_ENV
+
+    # Kill any SSH tunneling (to GCP) and Session Manager sessions with reason = "rtproxy-UUID" (for AWS)
+    ssh -S ${HOME}/.ssh-master -O exit master
+    aws ssm terminate-session --session-id $session_id
+  else
+    export TG_CSP=$1
+    export TG_CUSTOMER=$2
+    export TG_ENVTYPE=$3
+    export TG_ENV=$4
+
+    # Kill any SSH tunneling (to GCP) and Session Manager sessions with reason = "rtproxy-UUID" (for AWS)
+    ssh -S ${HOME}/.ssh-master -O exit master
+    aws ssm terminate-session --session-id $session_id
+
+    echo "Setting up Causaly Environment ${TG_CSP}-${TG_CUSTOMER}-${TG_ENVTYPE}-${TG_ENV}"
+
+    if [[ "${TG_CSP}" == "gcp" ]]
+    then
+        gcloud beta compute ssh ${TG_CUSTOMER}-${TG_ENVTYPE}-${TG_ENV}-tp01-vm \
+          --project ${TG_CUSTOMER}-${TG_ENVTYPE}-${TG_ENV}-tp01 \
+          --zone us-east1-b \
+          -- -L 8888:localhost:8888 -N -f -S ${HOME}/.ssh-master -M -fN master
+    fi
+
+    if [[ "${TG_CSP}" == "aws" ]]
+    then
+        ssm-port-forward ${TG_CUSTOMER}-${TG_ENVTYPE}-${TG_ENV}-tinyproxy &
+    fi
+
+
+    kubectl config use-context ${TG_CSP}-${TG_CUSTOMER}-${TG_ENVTYPE}-${TG_ENV}
+  fi
 }
