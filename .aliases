@@ -10,11 +10,19 @@ fi
 
 # General
 # ----------------------------------------------------------------------------
+
+# `//` is not a valid alias in BASH so check we're in ZSH and if not
+# set a more compatible alternative 'of `gr`.
+if [[ -n "$ZSH_VERSION" ]]; then
+    alias //='cd $(git root)'
+else
+    alias gr='cd $(git root)'
+fi
+
 alias -- -='cd -'
 alias ....="cd ../../.."
 alias ...="cd ../.."
 alias ..="cd .."
-alias //='cd $(git root)'
 alias bup='brew update && brew upgrade'
 alias cdtmp='cd $(mktemp --directory -t rosstimson-tmp)'
 alias cg='cargo'
