@@ -7,3 +7,7 @@ dark  = "terafox"
 [shell]
 program = "/opt/homebrew/bin/tmux"
 args = ["new-session", "-A", "-s", "rt"]
+
+[fonts]
+size = 16
+family = "Dank Mono"
