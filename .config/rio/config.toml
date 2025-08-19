@@ -1,4 +1,5 @@
 confirm-before-quit = false
+option-as-alt = 'left'
 
 [adaptive-theme]
 light = "dayfox"
@@ -10,4 +11,7 @@ args = ["new-session", "-A", "-s", "rt"]
 
 [fonts]
 size = 16
-family = "Dank Mono"
+family = "IBM Plex Mono"
+
+[window]
+mode = "Maximized"
