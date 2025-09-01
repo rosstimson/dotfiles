@@ -1,5 +1,6 @@
 confirm-before-quit = false
 option-as-alt = 'left'
+padding-x = 10
 
 [adaptive-theme]
 light = "dayfox"
@@ -15,3 +16,7 @@ family = "IBM Plex Mono"
 
 [window]
 mode = "Maximized"
+
+[bell]
+audio = false
+visual = false
