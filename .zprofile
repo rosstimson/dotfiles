@@ -63,7 +63,7 @@ path=($HOME/.asdf/shims
 	  $HOME/.krew/bin
 	  $HOME/bin
 	  /usr/local/MacGPG2/bin(N-/)
-	  /opt/homebrew/bin(N-/)
+	  /opt/homebrew/{bin,sbin}(N-/)
 	  /Applications/Postgres.app/Contents/Versions/latest/bin(N-/)
 	  /Library/TeX/texbin/(N-/)
 	  /usr/local/{bin,sbin}
