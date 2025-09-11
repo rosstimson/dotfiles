@@ -1995,7 +1995,7 @@ minibuffer and at-point via the citar-embark-mode minor mode.
 
 #+begin_src emacs-lisp
   (use-package org-contacts
-    :ensure (org-contacts :host "repo.or.cz" :repo "org-contacts" :main "org-contacts.el")
+    :ensure (org-contacts :host github :repo "emacsmirror/org-contacts" :main "org-contacts.el")
     :custom (org-contacts-files `(,(expand-file-name "contacts.org" org-directory))))
 #+end_src
 
@@ -2347,7 +2347,7 @@ Emacs, available at any time and uniformly in any buffer.
 
 #+begin_src emacs-lisp
   (use-package mcp
-    :elpaca (:host github :repo "lizqwerscott/mcp.el")
+    :ensure (mcp :host github :repo "lizqwerscott/mcp.el")
     :after gptel
     :custom (mcp-hub-servers
              `(("filesystem" . (:command "npx"
