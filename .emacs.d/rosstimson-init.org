@@ -120,6 +120,7 @@ Load my custom functions
           (html "https://github.com/tree-sitter/tree-sitter-html")
           (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
           (json "https://github.com/tree-sitter/tree-sitter-json")
+          (lua "https://github.com/tree-sitter-grammars/tree-sitter-lua")
           (make "https://github.com/alemuller/tree-sitter-make")
           (markdown "https://github.com/ikatyang/tree-sitter-markdown")
           (python "https://github.com/tree-sitter/tree-sitter-python")
@@ -331,12 +332,13 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
              ;; Programming Languages (with tree-sitter modes)
              ("Programming" (or
                              ;; Specific language modes
-                             (mode . python-ts-mode)
-                             (mode . go-ts-mode)
-                             (mode . rust-ts-mode)
                              (mode . clojure-ts-mode)
-                             (mode . typescript-ts-mode)
+                             (mode . go-ts-mode)
                              (mode . javascript-ts-mode)
+                             (mode . lua-ts-mode)
+                             (mode . python-ts-mode)
+                             (mode . rust-ts-mode)
+                             (mode . typescript-ts-mode)
 
                              ;; Generic programming modes
                              (mode . prog-mode)))
@@ -1043,6 +1045,7 @@ is included by default with Emacs since version 29.1.
            (go-ts-mode . eglot-ensure)
            (html-ts-mode . eglot-ensure)
            (javascript-ts-mode . eglot-ensure)
+           (lua-ts-mode . eglot-ensure)
            (markdown-mode . eglot-ensure)
            (python-ts-mode . eglot-ensure)
            (rust-ts-mode . eglot-ensure)
@@ -1745,6 +1748,14 @@ work with.  This persuades Emacs to use makefile mode for ~justfile~.
   (use-package make-mode
     :ensure nil
     :mode (("justfile\\'" . makefile-mode)))
+#+end_src
+
+** Lua
+
+#+begin_src emacs-lisp
+  (use-package lua-ts-mode
+    :ensure nil
+    :mode ("\\.lua\\'" . lua-ts-mode))
 #+end_src
 
 ** Markdown
