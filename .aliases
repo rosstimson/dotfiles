@@ -155,3 +155,17 @@ alias tgv='terragrunt validate'
 # ----------------------------------------------------------------------------
 alias unaws='unset $(env | grep "^AWS_" | egrep -o "^[^=]+")'
 
+alias tp-gke-prd-mgt1='gcloud beta compute ssh csly-prd-mgt1-tp01-vm \
+                         --project csly-prd-mgt1-tp01 \
+                         --zone us-east1-b \
+                         -- -L 8888:localhost:8888 -N -q -f'
+
+alias tp-gke-prd-mgt2='gcloud beta compute ssh csly-prd-mgt2-tp01-vm \
+                         --project csly-prd-mgt2-tp01 \
+                         --zone us-east1-b \
+                         -- -L 8888:localhost:8888 -N -q -f'
+
+alias tp-gke-dev-pvd1='gcloud beta compute ssh csly-dev-pvd1-tp01-vm \
+                         --project csly-dev-pvd1-tp01 \
+                         --zone us-east1-b \
+                         -- -L 8888:localhost:8888 -N -q -f'
