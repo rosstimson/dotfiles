@@ -3,7 +3,7 @@
 # ~/.zshrc-work
 
 # Set Python interpreter for Google CLI including gsutil.
-export CLOUDSDK_PYTHON=/Users/ross.timson/.local/share/uv/python/cpython-3.9.22-macos-aarch64-none/bin/python3.9
+export CLOUDSDK_PYTHON=/Users/ross.timson/.local/bin/python
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/opt/homebrew/share/zsh/site-functions/_google_cloud_sdk' ]; then . '/opt/homebrew/share/zsh/site-functions/_google_cloud_sdk'; fi
