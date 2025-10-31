@@ -12,7 +12,7 @@ args = ["new-session", "-A", "-s", "rt"]
 
 [fonts]
 size = 16
-family = "IBM Plex Mono"
+family = "BlexMono Nerd Font"
 
 [window]
 mode = "Maximized"
