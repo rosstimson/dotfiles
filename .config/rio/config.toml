@@ -12,7 +12,31 @@ args = ["new-session", "-A", "-s", "rt"]
 
 [fonts]
 size = 16
-family = "BlexMono Nerd Font"
+additional-dirs = ["/Users/ross.timson/Library/Fonts"]
+
+[fonts.regular]
+family = "BlexMono Nerd Font Mono"
+style  = "Normal"
+width  = "Normal"
+weight = 400
+
+[fonts.bold]
+family = "BlexMono Nerd Font Mono"
+style  = "Normal"
+width  = "Normal"
+weight = 700
+
+[fonts.italic]
+family = "BlexMono Nerd Font Mono"
+style  = "Italic"
+width  = "Normal"
+weight = 400
+
+[fonts.bold-italic]
+family = "BlexMono Nerd Font Mono"
+style  = "Italic"
+width  = "Normal"
+weight = 700
 
 [window]
 mode = "Maximized"
