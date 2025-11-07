@@ -16,6 +16,20 @@ style = "cyan"
 [directory]
 style = "green"
 
+[git_status]
+stashed = '\$'
+ahead = "↑"
+behind = "↓"
+up_to_date = ""
+diverged = "↕"
+conflicted = "="
+deleted = ""
+renamed = "»"
+modified = "!"
+staged = "+"
+untracked = "?"
+typechanged = ""
+
 
 # Enable (modules that are disabled by default)
 # ----------------------------------------------------------------------------
