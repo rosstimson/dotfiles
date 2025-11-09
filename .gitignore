@@ -16,6 +16,7 @@
 .config/github-copilot/
 .config/hcp
 .config/helix/runtime/
+.config/mozilla/
 .config/op/
 
 # Zed Editor (https://zed.dev)
