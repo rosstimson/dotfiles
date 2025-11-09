@@ -30,7 +30,7 @@
   "agent": {
     "default_model": {
       "provider": "anthropic",
-      "model": "claude-3-7-sonnet-latest"
+      "model": "claude-sonnet-4-latest"
     },
     "version": "2"
   },
