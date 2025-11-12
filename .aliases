@@ -47,6 +47,8 @@ alias sc='shellcheck'
 alias serve='python -m http.server 8080'
 alias showpath="echo \$PATH | tr -s ':' '\n'"
 alias t='tmux new-session -A -s rt'
+alias vi='nvim'
+alias vim='nvim'
 alias ~='cd $HOME'
 
 # Cleans up git branches that are no longer on the remote, quick and easy way
