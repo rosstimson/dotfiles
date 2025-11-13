@@ -20,7 +20,8 @@ disable = [
         "containers",
         "emacs",
 	"mas",
-        "nix"
+        "nix",
+	"vim"
         ]
 
 # Ignore failures for these steps
