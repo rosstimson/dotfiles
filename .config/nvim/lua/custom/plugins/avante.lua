@@ -8,8 +8,13 @@ return {
     'nvim-telescope/telescope.nvim',
   },
   opts = {
-    -- Start in manual mode; you can switch to "agentic" later
-    mode = 'legacy',
+    provider = 'opencode',
+    acp_providers = {
+      ['opencode'] = {
+        command = 'opencode',
+        args = { 'acp' },
+      },
+    },
   },
 }
 
