@@ -8,6 +8,7 @@ return {
     'nvim-telescope/telescope.nvim',
   },
   opts = {
+    instructions_file = "AGENTS.md",
     provider = 'opencode',
     acp_providers = {
       ['opencode'] = {
