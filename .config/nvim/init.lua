@@ -614,6 +614,17 @@ require('lazy').setup({
             },
           },
         },
+        yamlls = {
+          -- Basic YAML LSP setup to enable validation/formatting fallback
+          -- See https://github.com/redhat-developer/yaml-language-server for settings
+          settings = {
+            yaml = {
+              validate = true,
+              format = { enable = true },
+              schemaStore = { enable = true },
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -632,6 +643,9 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'prettierd',
+        'prettier',
+        'yaml-language-server',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -667,7 +681,7 @@ require('lazy').setup({
       },
     },
     opts = {
-      notify_on_error = false,
+      notify_on_error = true,
       format_on_save = function(bufnr)
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
@@ -677,13 +691,14 @@ require('lazy').setup({
           return nil
         else
           return {
-            timeout_ms = 500,
+            timeout_ms = 3000,
             lsp_format = 'fallback',
           }
         end
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        yaml = { 'prettierd', 'prettier', stop_after_first = true },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
