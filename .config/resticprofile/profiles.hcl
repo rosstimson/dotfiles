@@ -5,6 +5,7 @@ global {
   password-command = "op read 'op://personal/Restic Backup/password'"
   prevent-sleep = false
   priority = "low"
+  log = "~/Library/Logs/resticprofile/resticprofile.log"
   run-before = [
     "echo  AWS_ACCESS_KEY_ID=\"$(op read 'op://personal/Restic Backup/aws_access_key_id')\" >> {{ env }}",
     "echo  AWS_SECRET_ACCESS_KEY=\"$(op read 'op://personal/Restic Backup/aws_secret_access_key')\" >> {{ env }}",
