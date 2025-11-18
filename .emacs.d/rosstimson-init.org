@@ -1117,7 +1117,27 @@ is part of GNU Emacs.
 
 #+begin_src emacs-lisp
   (use-package flycheck
-    :init (global-flycheck-mode))
+    :init (global-flycheck-mode)
+    :config
+    ;; Disable Flycheck's default prose checker so Vale can take over.
+    (setq-default flycheck-disabled-checkers
+                  (append flycheck-disabled-checkers
+                          '(proselint)))
+    (flycheck-define-checker vale
+      "Lint prose with Vale (https://vale.sh)."
+      :command ("vale" "--output" "line" source)
+      :error-patterns
+      ((error line-start (file-name) ":" line ":" column ":" (id (one-or-more (not (any ":")))) ":" (message) line-end))
+      :modes (gfm-mode markdown-mode org-mode rst-mode text-mode))
+    (add-to-list 'flycheck-checkers 'vale 'append)
+
+    (defun rt/flycheck-prefer-vale ()
+      "Prefer Vale by default in prose-oriented buffers."
+      (when (and (derived-mode-p 'gfm-mode 'markdown-mode 'org-mode 'rst-mode 'text-mode)
+                 (flycheck-may-use-checker 'vale))
+        (setq-local flycheck-checker 'vale)))
+
+    (add-hook 'flycheck-mode-hook #'rt/flycheck-prefer-vale))
 #+end_src
 
 [[https://github.com/intramurz/flycheck-eglot][flycheck-eglot]] - A simple “glue” minor mode that allows Flycheck and
