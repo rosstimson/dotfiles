@@ -3,9 +3,12 @@
 
 global {
   password-command = "op read 'op://personal/Restic Backup/password'"
-  prevent-sleep = false
+  prevent-sleep = true
   priority = "low"
-  log = "~/Library/Logs/resticprofile/resticprofile.log"
+  log = "{{ .Env.HOME }}/Library/Logs/resticprofile/{{ .Profile.Name }}-{{ (.Now.Format \"20060102T150405\") }}.log"
+  schedule-defaults = {
+    log = "{{ .Env.HOME }}/Library/Logs/resticprofile/{{ .Profile.Name }}-schedule-{{ (.Now.Format \"20060102T150405\") }}.log"
+  }
   run-before = [
     "echo  AWS_ACCESS_KEY_ID=\"$(op read 'op://personal/Restic Backup/aws_access_key_id')\" >> {{ env }}",
     "echo  AWS_SECRET_ACCESS_KEY=\"$(op read 'op://personal/Restic Backup/aws_secret_access_key')\" >> {{ env }}",
@@ -13,7 +16,7 @@ global {
 
   backup = {
     exclude-caches = true
-    exclude-file = "~/.config/restic/global-exclude.txt"
+    exclude-file = "{{ .Env.HOME }}/.config/restic/global-exclude.txt"
     no-error-on-warning = true
     one-file-system = true
     # Every Monday at the specified time
@@ -34,8 +37,7 @@ default {
   repository = "s3:s3.us-east-005.backblazeb2.com/rosstimson-backup/laptop"
 
   backup = {
-    files-from = "~/.config/restic/default-include.txt"
-    schedule-log = "~/Library/Logs/resticprofile-default-scheduled.log"
+    files-from = "{{ .Env.HOME }}/.config/restic/default-include.txt"
   }
 
   cache = {
@@ -53,8 +55,7 @@ ext-storage {
   repository = "s3:s3.us-east-005.backblazeb2.com/rosstimson-backup/ext-storage"
 
   backup = {
-    files-from = "~/.config/restic/ext-storage-include.txt"
-    schedule-log = "~/Library/Logs/resticprofile-ext-storage-scheduled.log"
+    files-from = "{{ .Env.HOME }}/.config/restic/ext-storage-include.txt"
   }
 
   cache = {
