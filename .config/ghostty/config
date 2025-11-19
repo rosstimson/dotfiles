@@ -1,6 +1,12 @@
 # General Settings
 # -----------------------------------------------------------------------------
 
+font-family = "GohuFont 14 Nerd Font"
+font-size = 14
+# Disable antialiasing for GohuFont and also disable the OS's antialiasing with:
+#     defaults write com.mitchellh.ghostty AppleFontSmoothing -int 0
+freetype-load-flags = monochrome
+auto-update = download
 command = /opt/homebrew/bin/tmux new-session -A -s rt
 confirm-close-surface = false
 macos-option-as-alt = true
@@ -17,27 +23,5 @@ working-directory = home
 # Keybindings
 # -----------------------------------------------------------------------------
 
-# Reload Config
-# keybind = ctrl+a>r=reload_config
-
 # Cut 'n' Paste
 keybind = ctrl+y=paste_from_clipboard
-
-# # Tabs
-# keybind = ctrl+a>c=new_tab
-# keybind = ctrl+a>p=previous_tab
-# keybind = ctrl+a>n=next_tab
-# keybind = ctrl+a>&=close_tab
-# keybind = ctrl+a>,=change_title_prompt # TODO this hasn't been released yet, think it's in 1.2.0
-
-# # Splits
-# keybind = ctrl+a>v=new_split:right
-# keybind = ctrl+a>s=new_split:down
-# keybind = ctrl+a>x=close_surface
-# keybind = ctrl+a>o=goto_split:next
-
-# # Movement
-# keybind = alt+v=scroll_page_up
-# keybind = ctrl+v=scroll_page_down
-# keybind = alt+shift+,=scroll_to_top
-# keybind = alt+shift+.=scroll_to_bottom
