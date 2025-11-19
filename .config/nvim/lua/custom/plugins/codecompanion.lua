@@ -13,6 +13,15 @@ return {
             },
           })
         end,
+        opencode = function()
+          return require("codecompanion.adapters").extend("opencode", {
+            commands = {
+              default = {
+                "opencode",
+              },
+            },
+          })
+        end,
       },
     },
   },
