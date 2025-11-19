@@ -88,6 +88,9 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Allow saving with sudo via :w!!
+vim.cmd('cnoreabbrev w!! w !sudo tee > /dev/null %')
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
