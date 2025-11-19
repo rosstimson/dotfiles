@@ -11,6 +11,7 @@
 !.cargo/config
 
 .config/configstore/
+.config/exercism/
 .config/gcloud/
 .config/gh/
 .config/github-copilot/
