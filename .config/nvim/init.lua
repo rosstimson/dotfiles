@@ -652,6 +652,7 @@ require('lazy').setup({
         'prettierd',
         'prettier',
         'yaml-language-server',
+        'vale',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
