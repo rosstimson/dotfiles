@@ -10,33 +10,14 @@ dark  = "terafox"
 program = "/opt/homebrew/bin/tmux"
 args = ["new-session", "-A", "-s", "rt"]
 
+[editor]
+program = "nvim"
+
 [fonts]
 size = 16
+family = "Dank Mono"
 additional-dirs = ["/Users/ross.timson/Library/Fonts"]
-
-[fonts.regular]
-family = "BlexMono Nerd Font Mono"
-style  = "Normal"
-width  = "Normal"
-weight = 400
-
-[fonts.bold]
-family = "BlexMono Nerd Font Mono"
-style  = "Normal"
-width  = "Normal"
-weight = 700
-
-[fonts.italic]
-family = "BlexMono Nerd Font Mono"
-style  = "Italic"
-width  = "Normal"
-weight = 400
-
-[fonts.bold-italic]
-family = "BlexMono Nerd Font Mono"
-style  = "Italic"
-width  = "Normal"
-weight = 700
+extras = [{ family = "Symbols Nerd Font Mono" }]
 
 [window]
 mode = "Maximized"
