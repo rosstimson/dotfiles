@@ -16,9 +16,15 @@ vim.g.have_nerd_font = true
 
 -- Make line numbers default
 vim.o.number = true
+
 -- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
+-- Experiment for yourself to see if you like it!
 -- vim.o.relativenumber = true
+
+-- Set indentation to 2 spaces
+vim.o.expandtab = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
