@@ -4,11 +4,9 @@
 auto-update = download
 command = /opt/homebrew/bin/tmux new-session -A -s rt
 confirm-close-surface = false
-font-family = "GohuFont 14 Nerd Font"
-font-size = 14
-# Disable antialiasing for GohuFont and also disable the OS's antialiasing with:
-#     defaults write com.mitchellh.ghostty AppleFontSmoothing -int 0
-freetype-load-flags = monochrome
+font-family = "Dank Mono"
+font-family = "Symbols Nerd Font Mono"
+font-size = 16
 macos-option-as-alt = true
 macos-titlebar-style = hidden
 maximize = true
