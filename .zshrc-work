@@ -13,27 +13,10 @@ export TG_PROVIDER_CACHE=1
 export TG_PROVIDER_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 
 
-# ssm-port-forward () {
-#     local VM_NAME=$1
-#     local REMOTE_PORT=${2:-8888}
-#     local LOCAL_PORT=${3:-8888}
-
-# 	# AWS: csly-dev-pvd2-tinyproxy
-#     INSTANCE_ID=$(aws --profile csly-dev-pvd2-administrator \
-#                       ec2 describe-instances \
-# 					  --filters "Name=tag:Name,Values=$VM_NAME" \
-# 					  "Name=instance-state-name,Values=running" \
-# 					  --query "Reservations[0].Instances[0].InstanceId" \
-# 					  --output text)
-
-#     aws --profile csly-dev-pvd2-administrator ssm start-session \
-# 		--target "$INSTANCE_ID" \
-#         --document-name AWS-StartPortForwardingSession \
-#         --parameters "{\"portNumber\":[\"$REMOTE_PORT\"], \"localPortNumber\":[\"$LOCAL_PORT\"]}"
-# }
 
 aws_proxy_session_id () {
     echo $(aws ssm describe-sessions \
+        --profile "csly-dev-pvd2-administrator" \
         --state Active \
         --output text \
         --query "Sessions[?Reason==\`rtproxy-ac73498e-29f9-436a-b44e-3bc0d873108\`].SessionId")
@@ -43,16 +26,19 @@ ssm-port-forward () {
     local VM_NAME=$1
     local REMOTE_PORT=${2:-8888}
     local LOCAL_PORT=${3:-8888}
-	local SESSION_UUID="rtproxy-ac73498e-29f9-436a-b44e-3bc0d873108"
+    local SESSION_UUID="rtproxy-ac73498e-29f9-436a-b44e-3bc0d873108"
+    local PROFILE="csly-dev-pvd2-administrator"
 
     # AWS: csly-dev-pvd2-tinyproxy
     INSTANCE_ID=$(aws ec2 describe-instances \
+        --profile "$PROFILE" \
         --filters "Name=tag:Name,Values=$VM_NAME" \
                   "Name=instance-state-name,Values=running" \
         --query "Reservations[0].Instances[0].InstanceId" \
         --output text)
 
     aws ssm start-session \
+        --profile "$PROFILE" \
         --target "$INSTANCE_ID" \
         --reason "$SESSION_UUID" \
         --document-name AWS-StartPortForwardingSession \
@@ -74,7 +60,7 @@ ce() {
 
     # Kill any SSH tunneling (to GCP) and Session Manager sessions with reason = "rtproxy-UUID" (for AWS)
     ssh -S ${HOME}/.ssh-master -O exit master
-    aws ssm terminate-session --session-id $session_id
+    aws ssm terminate-session --profile "csly-dev-pvd2-administrator" --session-id $session_id
   else
     export TG_CSP=$1
     export TG_CUSTOMER=$2
@@ -83,7 +69,7 @@ ce() {
 
     # Kill any SSH tunneling (to GCP) and Session Manager sessions with reason = "rtproxy-UUID" (for AWS)
     ssh -S ${HOME}/.ssh-master -O exit master
-    aws ssm terminate-session --session-id $session_id
+    aws ssm terminate-session --profile "csly-dev-pvd2-administrator" --session-id $session_id
 
     echo "Setting up Causaly Environment ${TG_CSP}-${TG_CUSTOMER}-${TG_ENVTYPE}-${TG_ENV}"
 
