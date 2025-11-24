@@ -19,9 +19,9 @@ disable = [
         "asdf",
         "containers",
         "emacs",
-	"mas",
+        "mas",
         "nix",
-	"vim"
+        "vim"
         ]
 
 # Ignore failures for these steps
