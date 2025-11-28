@@ -10,6 +10,7 @@
 .cargo/*
 !.cargo/config
 
+.config/argocd/
 .config/configstore/
 .config/exercism/
 .config/gcloud/
