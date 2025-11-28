@@ -19,7 +19,6 @@ disable = [
         "asdf",
         "containers",
         "emacs",
-        "mas",
         "nix",
         "vim"
         ]
