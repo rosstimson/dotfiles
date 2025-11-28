@@ -71,7 +71,7 @@ vim.o.splitbelow = true
 --  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
 --   See `:help lua-options`
 --   and `:help lua-options-guide`
-vim.o.list = true
+vim.o.list = false
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣', eol = '$', extends = '>', precedes = '<' }
 
 -- Preview substitutions live, as you type!
@@ -89,7 +89,7 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 
 -- Allow saving with sudo via :w!!
-vim.cmd('cnoreabbrev w!! w !sudo tee > /dev/null %')
+vim.cmd 'cnoreabbrev w!! w !sudo tee > /dev/null %'
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
