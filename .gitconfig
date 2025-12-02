@@ -19,7 +19,8 @@
 	attributesfile = ~/.gitattributes
 	excludesfile = ~/.gitignore-global
 	autocrlf = input
-	editor = emacsclient -c -a=
+  #editor = emacsclient -c -a=
+	editor = nvim
 
 [pager]
 	diff = delta
