@@ -1,10 +1,10 @@
-account = "Ross Timson"
-
-# Add all keys from my Personal vault
-[[ssh-keys]]
-vault = "Personal"
-
-# Add work SSH key for auth and git commit signing
+# Work SSH key first (default for github.com)
 [[ssh-keys]]
 item = "Causaly: SSH Key"
 vault = "Work"
+account = "Ross Timson"
+
+# Personal keys second (use github-personal host alias)
+[[ssh-keys]]
+vault = "Personal"
+account = "Ross Timson"

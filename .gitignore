@@ -1,7 +1,9 @@
-# Ignore everything in ~/.ssh except ~/.ssh/config to avoid keys ending up in
-# git repo.
+# Ignore everything in ~/.ssh except config and public keys to avoid private
+# keys ending up in git repo.
 .ssh/*
 !.ssh/config
+!.ssh/personal_id_ed25519.pub
+!.ssh/causaly_id_ed25519.pub
 
 
 # Ignore transient junk
