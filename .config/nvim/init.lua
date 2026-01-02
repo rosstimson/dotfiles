@@ -607,6 +607,8 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
 
+        terraformls = {},
+
         -- An extremely fast Python type checker and language server, written in Rust.
         -- https://docs.astral.sh/ty/
         ty = {},
@@ -653,10 +655,11 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
-        'ty',
-        'prettierd',
         'prettier',
+        'prettierd',
+        'stylua', -- Used to format Lua code
+        'terraform-ls',
+        'ty',
         'vale',
         'yaml-language-server',
       })
