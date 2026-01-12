@@ -25,7 +25,7 @@ aws_proxy_session_id () {
 ssm-port-forward () {
     local VM_NAME=$1
     local REMOTE_PORT=${2:-8888}
-    local LOCAL_PORT=${3:-8888}
+    local LOCAL_PORT=${3:-8855}
     local SESSION_UUID="rtproxy-ac73498e-29f9-436a-b44e-3bc0d873108"
     local PROFILE="csly-dev-pvd2-administrator"
 
