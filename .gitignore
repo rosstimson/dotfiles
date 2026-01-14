@@ -12,6 +12,9 @@
 .cargo/*
 !.cargo/config
 
+.config/mole/*
+!.config/mole/whitelist_optimize
+
 .config/argocd/
 .config/configstore/
 .config/exercism/
@@ -20,7 +23,6 @@
 .config/github-copilot/
 .config/hcp
 .config/helix/runtime/
-.config/mole/
 .config/mozilla/
 .config/op/
 
