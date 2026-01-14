@@ -6,5 +6,5 @@ account = "Ross Timson"
 
 # Personal keys second (use github-personal host alias)
 [[ssh-keys]]
-vault = "Personal"
-account = "Ross Timson"
+vault = "Private"
+account = "Our Family"
