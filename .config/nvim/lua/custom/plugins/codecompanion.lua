@@ -1,12 +1,9 @@
 return {
   "olimorris/codecompanion.nvim",
   opts = {
-    strategies = {
+    interactions = {
       chat = {
-        adapter = {
-          name = "opencode",
-          model = "openai/gpt-5-codex",
-        },
+        adapter = "opencode",
       },
     },
   },
