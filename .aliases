@@ -159,6 +159,7 @@ alias tgv='terragrunt validate'
 # Work
 # ----------------------------------------------------------------------------
 alias unaws='unset $(env | grep "^AWS_" | egrep -o "^[^=]+")'
+alias kill-tunnels='pkill -9 -f aws; pkill -9 -f gcloud; ps -ef | rg "[a]ws|[g]cloud"'
 
 alias tp-gke-prd-mgt1='gcloud beta compute ssh csly-prd-mgt1-tp01-vm \
                          --project csly-prd-mgt1-tp01 \
