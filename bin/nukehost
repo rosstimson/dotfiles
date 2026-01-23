@@ -1,17 +1,15 @@
 #!/bin/sh
 
-# Helper script for removing lines from known_hosts file.
+# Helper script for removing all entries for a host from known_hosts file.
 #
 # Usage:
 #
-#    nukehost <NUM>
+#    nukehost <hostname>
 #
 
-# Determine the correct sed command based on the OS
-if [ "$(uname)" = "Darwin" ]; then
-	SED_CMD="gsed"
-else
-	SED_CMD="sed"
+if [ -z "$1" ]; then
+	echo "Usage: nukehost <hostname>" >&2
+	exit 1
 fi
 
-$SED_CMD -i "$1d" ~/.ssh/known_hosts
+ssh-keygen -R "$1"
