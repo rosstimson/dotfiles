@@ -10,5 +10,13 @@
       "url": "https://mcp.context7.com/mcp/oauth",
       "enabled": true
     }
+  },
+  "permission": {
+    "read": {
+      "~/.config/opencode/get-shit-done/*": "allow"
+    },
+    "external_directory": {
+      "~/.config/opencode/get-shit-done/*": "allow"
+    }
   }
 }
