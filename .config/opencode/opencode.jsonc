@@ -3,5 +3,12 @@
   "theme": "opencode",
   "model": "zai-coding-plan/glm-4.7",
   "small_model": "zai-coding-plan/glm-4.7-flash",
-  "autoupdate": true
+  "autoupdate": true,
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp/oauth",
+      "enabled": true
+    }
+  }
 }
