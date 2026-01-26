@@ -498,6 +498,23 @@ files, provide age encrypted authentication information out of
     (age-file-enable))
 #+end_src
 
+** Agent Shell
+
+[[https://github.com/xenodium/agent-shell][agent-shell]] - A native Emacs buffer for interacting with LLM agents
+via the Agent Client Protocol (ACP).
+
+#+begin_src emacs-lisp
+  (use-package agent-shell
+    :ensure-system-package
+    ((claude-code-acp . "npm install -g @zed-industries/claude-code-acp"))
+    :bind (("C-x a" . agent-shell))
+    :config
+    (setq agent-shell-anthropic-claude-environment
+          (agent-shell-make-environment-variables :inherit-env t))
+    (setq agent-shell-preferred-agent-config
+          (agent-shell-opencode-make-agent-config)))
+#+end_src
+
 ** Aggressive Indent
 
 [[https://github.com/Malabarba/aggressive-indent-mode][aggressive-indent-mode]] - ~electric-indent-mode~ is enough to keep your
