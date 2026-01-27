@@ -2166,6 +2166,7 @@ Setup Python mode
 
 #+begin_src emacs-lisp
 (use-package python
+  :ensure nil
   :mode ("\\.py\\'" . python-ts-mode)
   :interpreter ("python" . python-ts-mode)
   :config
