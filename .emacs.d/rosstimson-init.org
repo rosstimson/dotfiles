@@ -1218,7 +1218,7 @@ makes sense to keep all Hydras here.
       ("r" smerge-resolve)
       ("k" smerge-kill-current)
       ("ZZ" (lambda ()
-              (interactive)n
+              (interactive)
               (save-buffer)
               (bury-buffer))
        "Save and bury buffer" :color blue)
