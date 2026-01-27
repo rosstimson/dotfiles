@@ -10,13 +10,12 @@
 
 # Conditionally set work email when in work dir.
 [includeIf "gitdir:~/code/work/"]
-	path = ~/.gitconfig-work
+	path = ~/.config/git/config-work
 
 [github]
 	user = rosstimson
 
 [core]
-	attributesfile = ~/.gitattributes
 	autocrlf = input
 	#editor = emacsclient -c -a=
 	editor = nvim
