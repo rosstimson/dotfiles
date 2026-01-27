@@ -1,6 +1,3 @@
-# Created by https://www.toptal.com/developers/gitignore/api/macos,windows,linux,vim,emacs,intellij,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,linux,vim,emacs,intellij,visualstudiocode
-
 ### Emacs ###
 # -*- mode: gitignore; -*-
 *~
@@ -263,5 +260,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,vim,emacs,intellij,visualstudiocode
-
+# Claude Code
+**/.claude/settings.local.json

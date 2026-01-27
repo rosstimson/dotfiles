@@ -17,7 +17,6 @@
 
 [core]
 	attributesfile = ~/.gitattributes
-	excludesfile = ~/.gitignore-global
 	autocrlf = input
 	#editor = emacsclient -c -a=
 	editor = nvim
