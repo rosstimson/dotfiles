@@ -169,6 +169,10 @@ export KUBECTX_CURRENT_BGCOLOR=$(tput setab 7) # white background
 # Tools settings
 # --------------------------------------------------------------------
 
+# Vale (https://vale.sh/)
+# Use the symlinked global config at ~/.vale.ini.
+export VALE_CONFIG_PATH="$HOME/.vale.ini"
+
 # Zoxide (https://github.com/ajeetdsouza/zoxide)
 # Jump quickly to commonly used directories
 eval "$(zoxide init zsh)"
