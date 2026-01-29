@@ -546,7 +546,7 @@ using RCS patches and dynamic programming.
     :config
     (dolist
         (formatter-cmd '((just-fmt . ("just" "--fmt" "--justfile" filepath))
-                         (biome . ("biome" "check" "--stdin-file-path" filepath))))
+                         (biome . ("biome" "format" "--stdin-file-path" filepath))))
       (add-to-list #'apheleia-formatters formatter-cmd))
 
     (setf (alist-get 'go-ts-mode apheleia-mode-alist) '(gofmt))
