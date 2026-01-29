@@ -55,14 +55,15 @@ export RUBY_CONFIGURE_OPTS='--with-openssl-dir=/opt/homebrew/opt/openssl@1.1'
 #  /   : ignore files
 #  t   : tail of the path
 
-path=($HOME/.asdf/shims
-	  $HOME/.local/bin
-	  $GOPATH/bin
-	  $HOME/.cargo/bin
-	  $HOME/.npm-global/bin
-	  $HOME/.krew/bin
-	  $HOME/bin
+path=($HOME/.asdf/shims(N-/)
+	  $HOME/.local/bin(N-/)
+	  $GOPATH/bin(N-/)
+	  $HOME/.cargo/bin(N-/)
+	  $HOME/.npm-global/bin(N-/)
+	  $HOME/.krew/bin(N-/)
+	  $HOME/bin(N-/)
 	  /usr/local/MacGPG2/bin(N-/)
+	  /opt/zerobrew/prefix/bin(N-/)
 	  /opt/homebrew/{bin,sbin}(N-/)
 	  /Applications/Postgres.app/Contents/Versions/latest/bin(N-/)
 	  /Library/TeX/texbin/(N-/)
