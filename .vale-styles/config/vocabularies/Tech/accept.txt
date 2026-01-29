@@ -1,0 +1,12 @@
+(?i)Fargate
+(?i)GCP
+(?i)Kubernetes
+(?i)Serverless
+(?i)Terraform
+(?i)autostart
+(?i)filesystem
+(?i)filetypes
+(?i)integrations
+(?i)namespace
+(?i)reputational
+(?i)systemd

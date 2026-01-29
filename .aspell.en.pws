@@ -1,11 +1,13 @@
-personal_ws-1.1 en 10 
+personal_ws-1.1 en 12 
 Fargate
 GCP
 Kubernetes
+Serverless
 Terraform
 autostart
 filesystem
 filetypes
 integrations
+namespace
 reputational
 systemd

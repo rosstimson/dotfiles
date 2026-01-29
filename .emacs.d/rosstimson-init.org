@@ -551,6 +551,7 @@ using RCS patches and dynamic programming.
 
     (setf (alist-get 'go-ts-mode apheleia-mode-alist) '(gofmt))
     (setf (alist-get 'js-ts-mode apheleia-mode-alist) '(biome))
+    (setf (alist-get 'json-ts-mode apheleia-mode-alist) '(biome))
     (setf (alist-get 'just-mode apheleia-mode-alist) '(just-fmt))
     (setf (alist-get 'python-mode apheleia-mode-alist) '(ruff ruff-isort))
     (setf (alist-get 'python-ts-mode apheleia-mode-alist) '(ruff ruff-isort))
@@ -1732,6 +1733,17 @@ powered by TreeSitter.
     ;; feels like a bug and was very annoying and took ages to
     ;; troubleshoot.
     (go-ts-mode-indent-offset 4))
+#+end_src
+
+** JSON
+
+#+begin_src emacs-lisp
+  (use-package json-ts-mode
+    :ensure nil
+    :mode (("\\.json\\'" . json-ts-mode)
+           ("\\.jsonc\\'" . json-ts-mode)
+           ("\\.json5\\'" . json-ts-mode)
+           ("\\.webmanifest\\'" . json-ts-mode)))
 #+end_src
 
 ** HTML
