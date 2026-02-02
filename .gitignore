@@ -54,3 +54,9 @@
 !.local/rofi/themes
 
 .vim/pack/minpac/start
+
+
+# Potentially Sensitive
+# ------------------------------------------------------------------
+
+.config/causaly/
