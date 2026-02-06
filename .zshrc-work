@@ -12,6 +12,9 @@ if [ -f '/opt/homebrew/share/zsh/site-functions/_google_cloud_sdk' ]; then . '/o
 export TG_PROVIDER_CACHE=1
 export TG_PROVIDER_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 
+# Claude Code Default Model
+export ANTHROPIC_MODEL="claude-opus-4-6"
+
 
 
 aws_proxy_session_id () {
