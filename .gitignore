@@ -9,6 +9,8 @@
 # Ignore transient junk
 # ------------------------------------------------------------------
 
+.agent-shell/
+
 .cargo/*
 !.cargo/config
 
