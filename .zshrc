@@ -44,6 +44,9 @@ _zsh_compile_if_needed "$HOME"/.zprofile
 # Helper
 # -----------------------------------------------------------------------------
 
+# Check command existence via $commands hash — no fork needed.
+has() { (( $+commands[$1] )) }
+
 # Set correct path if on an Apple Silicon Mac, Homebrew uses
 # /opt/homebrew when on the arm64 (Apple Silicon) architecture whereas
 # any other time it'd be /usr/local.
@@ -212,14 +215,14 @@ export VALE_CONFIG_PATH="$HOME/.vale.ini"
 
 # Zoxide (https://github.com/ajeetdsouza/zoxide)
 # Jump quickly to commonly used directories
-eval "$(zoxide init zsh)"
+has zoxide && eval "$(zoxide init zsh)"
 
 
 # Prompt
 # --------------------------------------------------------------------
 
 # Starship (https://starship.rs)
-eval "$(starship init zsh)"
+has starship && eval "$(starship init zsh)"
 
 
 # Nix (https://nixos.org/)
@@ -232,7 +235,7 @@ eval "$(starship init zsh)"
 # problem and further potential fixes here, for now though this is a
 # quick fix: https://checkoway.net/musings/nix/
 
-[[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+! has nix && [[ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 
 
 # pnpm (https://pnpm.io/)
@@ -251,7 +254,7 @@ esac
 # with a new feature that can load and unload environment variables
 # depending on the current directory.
 # --------------------------------------------------------------------
-eval "$(direnv hook zsh)"
+has direnv && eval "$(direnv hook zsh)"
 
 
 # Work
