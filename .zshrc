@@ -61,7 +61,7 @@ fi
 # -----------------------------------------------------------------------------
 
 # Path to search for autoloadable functions.
-fpath=( $HOME/.zsh/functions $HOME/.zsh/lib "$fpath[@]" )
+fpath=( $HOME/.zsh/functions "$fpath[@]" )
 export FPATH
 # Only unique entries please.
 typeset -U fpath
