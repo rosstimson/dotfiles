@@ -13,6 +13,16 @@
 # Read when interactive.
 
 
+# Performance Debugging (needs to be at top)
+# -----------------------------------------------------------------------------
+
+# For helping to determine performance issues with zsh
+# Use with `DEBUG_ZSH_PERF=1 zsh -i`
+if (( ${+DEBUG_ZSH_PERF} )); then
+  zmodload zsh/zprof
+fi
+
+
 # Helper
 # -----------------------------------------------------------------------------
 
@@ -233,3 +243,10 @@ weather() {
 	[ "$(tput cols)" -lt 125 ] && request+='?n'
 	curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
 }
+
+# Performance Debugging (needs to be at bottom)
+# -----------------------------------------------------------------------------
+
+if (( ${+DEBUG_ZSH_PERF} )); then
+  zprof
+fi
