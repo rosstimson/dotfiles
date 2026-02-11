@@ -69,12 +69,18 @@ fpath=($HOME/.zsh/completions $fpath)
 # Stop bloody beeping!!!
 unsetopt BEEP
 
-# Need these for autocompletion
-autoload -U compinit
-compinit
-
-autoload bashcompinit
-bashcompinit
+# Autocompletion - defer to first prompt for faster startup.
+# Runs once via precmd hook then removes itself.
+autoload -Uz add-zsh-hook
+__deferred_compinit() {
+  autoload -U compinit
+  compinit -C
+  autoload bashcompinit  # needed by _resticprofile completion
+  bashcompinit
+  add-zsh-hook -d precmd __deferred_compinit
+  unfunction __deferred_compinit
+}
+add-zsh-hook precmd __deferred_compinit
 
 # Enables the negation ^ operator for displaying files
 setopt extendedglob
