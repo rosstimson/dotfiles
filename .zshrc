@@ -250,6 +250,7 @@ weather() {
 	curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
 }
 
+
 # Performance Debugging (needs to be at bottom)
 # -----------------------------------------------------------------------------
 
