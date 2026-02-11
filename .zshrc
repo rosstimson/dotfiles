@@ -61,10 +61,13 @@ fi
 # -----------------------------------------------------------------------------
 
 # Path to search for autoloadable functions.
-fpath=( $HOME/.zsh/lib "$fpath[@]" )
+fpath=( $HOME/.zsh/functions $HOME/.zsh/lib "$fpath[@]" )
 export FPATH
 # Only unique entries please.
 typeset -U fpath
+
+# Autoload functions - only loaded from disk on first invocation.
+autoload -U $HOME/.zsh/functions/*(:t)
 
 # Sourcing lib files
 for lib_file ($HOME/.zsh/lib/*.zsh); do
