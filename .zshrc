@@ -23,6 +23,24 @@ if (( ${+DEBUG_ZSH_PERF} )); then
 fi
 
 
+# Bytecode Compilation
+# -----------------------------------------------------------------------------
+
+# Compile zsh scripts to .zwc bytecode if source is newer.
+# Compiled files are loaded automatically by zsh when present.
+_zsh_compile_if_needed() {
+  local src=$1
+  [[ -n $src && -r $src ]] || return 1
+  if [[ ! -f ${src}.zwc || $src -nt ${src}.zwc ]]; then
+    zcompile "$src" 2>/dev/null
+  fi
+}
+
+# Compile main config files for next startup
+_zsh_compile_if_needed "$HOME"/.zshrc
+_zsh_compile_if_needed "$HOME"/.zprofile
+
+
 # Helper
 # -----------------------------------------------------------------------------
 
@@ -47,6 +65,7 @@ typeset -U fpath
 
 # Sourcing lib files
 for lib_file ($HOME/.zsh/lib/*.zsh); do
+  _zsh_compile_if_needed $lib_file
   . $lib_file
 done
 
@@ -57,9 +76,11 @@ fpath=($HOME/.zsh/completions $fpath)
 # --------------------------------------------------------------------
 # shellcheck source=/home/rosstimson/.aliases
 # Aliases first as functions might make use of them, e.g. sudo vs doas.
+_zsh_compile_if_needed "$HOME"/.aliases
 . "$HOME"/.aliases
 
 # shellcheck source=/home/rosstimson/.functions
+_zsh_compile_if_needed "$HOME"/.functions
 . "$HOME"/.functions
 
 

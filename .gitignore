@@ -57,6 +57,9 @@
 
 .vim/pack/minpac/start
 
+# ZSH byte compiled
+*.zwc
+
 
 # Potentially Sensitive
 # ------------------------------------------------------------------
