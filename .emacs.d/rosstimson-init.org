@@ -128,6 +128,7 @@ Load my custom functions
           (toml "https://github.com/tree-sitter/tree-sitter-toml")
           (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
           (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+          (typst "https://github.com/uben0/tree-sitter-typst")
           (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 #+end_src
 
@@ -2266,6 +2267,28 @@ whitespace can be weird.
   (use-package terraform-mode
     :config
     (setq terraform-indent-level 2))
+#+end_src
+
+** Typst
+
+[[https://codeberg.org/meow_king/typst-ts-mode][typst-ts-mode]] - Tree-sitter based major mode for editing Typst files.
+
+#+begin_src emacs-lisp
+  (use-package typst-ts-mode
+    :ensure (:type git :host codeberg :repo "meow_king/typst-ts-mode" :branch "main")
+    :mode ("\\.typ\\'" . typst-ts-mode)
+    :custom
+    (typst-ts-mode-enable-raw-blocks-highlight t))
+#+end_src
+
+[[https://github.com/havarddj/typst-preview.el][typst-preview]] - Live preview of Typst files using tinymist.
+
+#+begin_src emacs-lisp
+  (use-package typst-preview
+    :ensure (typst-preview :host github :repo "havarddj/typst-preview.el")
+    :after typst-ts-mode
+    :ensure-system-package
+    (tinymist . "cargo install tinymist"))
 #+end_src
 
 ** YAML
