@@ -2012,17 +2012,6 @@ also a manual available at nix-mode.org.
     (setq org-crypt-key "0x667A3481E4BB34F3"))
 #+end_src
 
-*** Org AI
-
-#+begin_src emacs-lisp
-  (use-package org-ai
-    :blackout
-    :config
-    (org-ai-global-mode)
-    (setq org-ai-image-directory (expand-file-name "org-ai-images/" org-directory))
-    :hook (org-mode . org-ai-mode))
-#+end_src
-
 *** Org Citar
 
 [[https://github.com/emacs-citar/citar][Citar]] is an Emacs package to quickly find and act on bibliographic
