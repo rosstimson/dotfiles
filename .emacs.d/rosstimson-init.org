@@ -1077,10 +1077,13 @@ is included by default with Emacs since version 29.1.
            (rust-ts-mode . eglot-ensure)
            (terraform-mode . eglot-ensure)
            (typescript-ts-mode . eglot-ensure)
+           (typst-ts-mode . eglot-ensure)
            (yaml-ts-mode . eglot-ensure))
     :config
     (add-to-list 'eglot-server-programs
-                 '(terraform-mode . ("terraform-ls" "serve"))))
+                 '(terraform-mode . ("terraform-ls" "serve")))
+    (add-to-list 'eglot-server-programs
+                 '(typst-ts-mode . ("tinymist"))))
 #+end_src
 
 *** Eglot Orderless
