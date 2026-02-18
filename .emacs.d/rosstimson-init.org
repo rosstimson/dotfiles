@@ -288,6 +288,7 @@ Allow easy movement between windows/splits.
 #+begin_src emacs-lisp
   (use-package recentf
     :ensure nil
+    :demand t
     :config
     (setq recentf-max-saved-items 50
           recentf-auto-cleanup 100
@@ -579,6 +580,7 @@ program with [[https://emacsdocs.org/docs/emacs/Auto-Revert][Auto Revert]].
 #+begin_src emacs-lisp
   (use-package autorevert
     :ensure nil
+    :demand t
     :blackout
     :config
     (global-auto-revert-mode t)
@@ -594,6 +596,7 @@ program with [[https://emacsdocs.org/docs/emacs/Auto-Revert][Auto Revert]].
 
 #+begin_src emacs-lisp
   (use-package beacon
+    :demand t
     :blackout
     :custom
     (beacon-size 60)
@@ -830,6 +833,7 @@ visually selected, [[https://github.com/purcell/whole-line-or-region/blob/master
 
 #+begin_src emacs-lisp
   (use-package whole-line-or-region
+   :demand t
    :blackout whole-line-or-region-local-mode
    :config
    (whole-line-or-region-global-mode t))
@@ -943,6 +947,7 @@ link between them.
 
 #+begin_src emacs-lisp
   (use-package diff-hl
+    :demand t
     :config
     (global-diff-hl-mode))
 #+end_src
@@ -1049,6 +1054,7 @@ with version control systems.
 #+begin_src emacs-lisp
   (use-package editorconfig
     :ensure nil
+    :demand t
     :config
     (editorconfig-mode 1))
 #+end_src
@@ -1577,6 +1583,7 @@ Persist history over Emacs restarts. Vertico sorts by history position.
 #+begin_src emacs-lisp
   (use-package savehist
     :ensure nil
+    :demand t
     :config
     (savehist-mode t))
 #+end_src
@@ -1652,6 +1659,7 @@ Automatically cleanup unnecessary whitespace with [[https://github.com/purcell/w
 
 #+begin_src emacs-lisp
   (use-package yasnippet
+    :demand t
     :blackout yas-minor-mode
     :config
     (setq yas-snippet-dirs (list (expand-file-name "snippets" user-emacs-directory)
