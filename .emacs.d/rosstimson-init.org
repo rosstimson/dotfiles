@@ -1421,6 +1421,24 @@ matches are enabled.
           completion-category-overrides '((file (styles partial-completion)))))
 #+end_src
 
+** Project
+
+Built-in ~project.el~ configuration. Use ~project-vc-extra-root-markers~
+to recognise projects by common marker files beyond just ~.git~.
+
+#+begin_src emacs-lisp
+  (use-package project
+    :ensure nil
+    :custom
+    ;; Jump straight to find-file when switching projects.
+    (project-switch-commands #'project-find-file)
+    :config
+    (setq project-vc-extra-root-markers
+          '(".project" ".projectile" "Cargo.toml" "go.mod"
+            "package.json" "pyproject.toml" "setup.py"
+            "Makefile" ".git")))
+#+end_src
+
 ** Rainbow delimiters
 
 Highlight parens etc. by depth with [[https://www.emacswiki.org/emacs/RainbowDelimiters][Rainbow Delimiters]].
