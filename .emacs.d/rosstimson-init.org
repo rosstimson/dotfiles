@@ -130,6 +130,38 @@ Load my custom functions
           (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 #+end_src
 
+Use ~major-mode-remap-alist~ to transparently activate tree-sitter variants
+for built-in modes, and ~auto-mode-alist~ for languages whose base modes are
+not built in to Emacs or require non-standard file extension associations.
+
+#+begin_src emacs-lisp
+  (setq major-mode-remap-alist
+        '((sh-mode         . bash-ts-mode)
+          (css-mode        . css-ts-mode)
+          (html-mode       . html-ts-mode)
+          (mhtml-mode      . html-ts-mode)
+          (javascript-mode . js-ts-mode)
+          (js-mode         . js-ts-mode)
+          (python-mode     . python-ts-mode)
+          (rust-mode       . rust-ts-mode)))
+
+  (dolist (entry '(("\\.go\\'"          . go-ts-mode)
+                   ("/go\\.mod\\'"      . go-mod-ts-mode)
+                   ("\\.jsx\\'"         . js-ts-mode)
+                   ("\\.json\\'"        . json-ts-mode)
+                   ("\\.jsonc\\'"       . json-ts-mode)
+                   ("\\.json5\\'"       . json-ts-mode)
+                   ("\\.webmanifest\\'" . json-ts-mode)
+                   ("\\.lua\\'"         . lua-ts-mode)
+                   ("\\.rs\\'"          . rust-ts-mode)
+                   ("\\.ts\\'"          . typescript-ts-mode)
+                   ("\\.tsx\\'"         . tsx-ts-mode)
+                   ("\\.yml\\'"         . yaml-ts-mode)
+                   ("\\.yaml\\'"        . yaml-ts-mode)
+                   ("\\.sls\\'"         . yaml-ts-mode)))
+    (add-to-list 'auto-mode-alist entry))
+#+end_src
+
 ** Personal information
 
 #+begin_src emacs-lisp
@@ -354,7 +386,7 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
                                 (mode . terraform-mode)
                                 (mode . hcl-mode)
                                 (mode . dockerfile-mode)
-                                (mode . yaml-mode)))
+                                (mode . yaml-ts-mode)))
 
              ;; Version Control
              ("Magit" (or
@@ -1697,14 +1729,6 @@ languages.
 
 
 * Major Modes / Language Specific Stuff
-** BASH
-
-#+begin_src emacs-lisp
-  (use-package bash-ts-mode
-    :ensure nil
-    :mode ("\\.sh\\'" . bash-ts-mode))
-#+end_src
-
 ** C
 
 Similar to JS mode use Smart Tabs for C code and make sure Whitespace
@@ -1753,14 +1777,6 @@ powered by TreeSitter.
     (cider-repl-result-prefix "=> "))
 #+end_src
 
-** CSS
-
-#+begin_src emacs-lisp
-  (use-package css-mode
-    :ensure nil
-    :mode ("\\.css\\'" . css-ts-mode))
-#+end_src
-
 ** Emacs Lisp
 
 #+begin_src emacs-lisp
@@ -1774,8 +1790,6 @@ powered by TreeSitter.
 #+begin_src emacs-lisp
   (use-package go-ts-mode
     :ensure nil
-    :mode (("\\.go\\'" . go-ts-mode)
-           ("/go\\.mod\\'" . go-mod-ts-mode))
     :hook ((go-ts-mode . (lambda ()
                            (setq indent-tabs-mode t))))
     :custom
@@ -1786,40 +1800,7 @@ powered by TreeSitter.
     (go-ts-mode-indent-offset 4))
 #+end_src
 
-** JSON
-
-#+begin_src emacs-lisp
-  (use-package json-ts-mode
-    :ensure nil
-    :mode (("\\.json\\'" . json-ts-mode)
-           ("\\.jsonc\\'" . json-ts-mode)
-           ("\\.json5\\'" . json-ts-mode)
-           ("\\.webmanifest\\'" . json-ts-mode)))
-#+end_src
-
-** HTML
-
-#+begin_src emacs-lisp
-  (use-package html-mode
-    :ensure nil
-    :mode ("\\.html\\'" . html-ts-mode))
-#+end_src
-
 ** JavaScript / TypeScript
-
-#+begin_src emacs-lisp
-  (use-package typescript-mode
-    :ensure nil
-    :mode (("\\.ts\\'" . typescript-ts-mode)
-           ("\\.tsx\\'" . tsx-ts-mode)))
-#+end_src
-
-#+begin_src emacs-lisp
-  (use-package javascript-mode
-    :ensure nil
-    :mode (("\\.js\\'" . js-ts-mode)
-           ("\\.jsx\\'" . js-ts-mode)))
-#+end_src
 
 [[https://github.com/ananthakumaran/tide][Tide]] is the canonical way of using TypeScript within Emacs.
 
@@ -1848,14 +1829,6 @@ work with.  This persuades Emacs to use makefile mode for ~justfile~.
   (use-package make-mode
     :ensure nil
     :mode (("justfile\\'" . makefile-mode)))
-#+end_src
-
-** Lua
-
-#+begin_src emacs-lisp
-  (use-package lua-ts-mode
-    :ensure nil
-    :mode ("\\.lua\\'" . lua-ts-mode))
 #+end_src
 
 ** Markdown
@@ -2220,7 +2193,6 @@ Setup Python mode
 #+begin_src emacs-lisp
 (use-package python
   :ensure nil
-  :mode ("\\.py\\'" . python-ts-mode)
   :interpreter ("python" . python-ts-mode)
   :config
   (setq fill-column 79)
@@ -2268,7 +2240,6 @@ Mode for working with REST APIs.
 
 #+begin_src emacs-lisp
   (use-package rust-mode
-    :mode ("\\.rs\\'" . rust-ts-mode)
     :config
     (setq rust-format-on-save t))
 #+end_src
@@ -2287,7 +2258,7 @@ Use tabs in shell scripts otherwise heredoc functionality around
 whitespace can be weird.
 
 #+begin_src emacs-lisp
-(add-hook 'sh-mode-hook
+(add-hook 'bash-ts-mode-hook
           (lambda ()
             (setq indent-tabs-mode t)))
 #+end_src
@@ -2331,9 +2302,6 @@ whitespace can be weird.
 #+begin_src emacs-lisp
   (use-package yaml-ts-mode
     :ensure nil
-    :mode (("\\.yml$" . yaml-ts-mode)
-           ("\\.yaml$" . yaml-ts-mode)
-           ("\\.sls$" . yaml-ts-mode)) ; SaltStack
     :hook (yaml-ts-mode . (lambda ()
                          (auto-fill-mode -1))))
 #+end_src
