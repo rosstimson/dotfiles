@@ -1604,6 +1604,7 @@ rg.el also integrates with wgrep out of the box.
 #+begin_src emacs-lisp
   (use-package which-key
     :ensure nil
+    :demand t
     :config
     (which-key-mode t)
     :blackout)
