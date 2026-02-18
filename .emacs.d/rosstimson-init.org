@@ -1608,6 +1608,51 @@ Quickly switch between windows with [[https://github.com/dimitri/switch-window][
   (setq switch-window-threshold 2))
 #+end_src
 
+** Tab-bar Workspaces
+
+Workspace management using built-in ~tab-bar-mode~. The tab bar is hidden
+visually — workspaces are displayed in the echo area and managed entirely
+through keybindings. See [[file:elisp/tab-workspaces.el][elisp/tab-workspaces.el]] for the implementation.
+
+| Binding     | Action                           |
+|-------------+----------------------------------|
+| ~C-x t t~   | Show workspaces in echo area     |
+| ~C-x t N~   | New blank workspace              |
+| ~C-x t P~   | Switch to project workspace      |
+| ~C-x t b~   | Switch buffer (workspace-scoped) |
+| ~C-x t K~   | Kill all buffers in workspace    |
+| ~C-x t 1-9~ | Jump to workspace by number      |
+
+#+begin_src emacs-lisp
+  (use-package tab-bar
+    :ensure nil
+    :demand t
+    :config
+    (setq tab-bar-show nil
+          tab-bar-new-tab-choice #'rt-workspace--fallback-buffer)
+    (tab-bar-mode 1)
+    (require 'tab-workspaces)
+    (add-hook 'emacs-startup-hook
+              (lambda ()
+                (tab-bar-rename-tab "main")
+                (rt-workspace-display)))
+    :bind (:map tab-prefix-map
+                ("t"   . rt-workspace-display)
+                ("N"   . rt-workspace-new)
+                ("P"   . rt-workspace-switch-to-project)
+                ("b"   . rt-workspace-switch-buffer)
+                ("K"   . rt-workspace-kill-all-buffers)
+                ("1"   . rt-workspace-switch-to-1)
+                ("2"   . rt-workspace-switch-to-2)
+                ("3"   . rt-workspace-switch-to-3)
+                ("4"   . rt-workspace-switch-to-4)
+                ("5"   . rt-workspace-switch-to-5)
+                ("6"   . rt-workspace-switch-to-6)
+                ("7"   . rt-workspace-switch-to-7)
+                ("8"   . rt-workspace-switch-to-8)
+                ("9"   . rt-workspace-switch-to-9)))
+#+end_src
+
 ** Undo Fu
 
 [[https://gitlab.com/ideasman42/emacs-undo-fu][Undo Fu]] - Simple,
