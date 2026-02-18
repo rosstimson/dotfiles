@@ -1632,6 +1632,12 @@ through keybindings. See [[file:elisp/tab-workspaces.el][elisp/tab-workspaces.el
           tab-bar-new-tab-choice #'rt-workspace--fallback-buffer)
     (tab-bar-mode 1)
     (require 'tab-workspaces)
+    ;; Ensure emacsclient frames never show the tab bar.  tab-bar
+    ;; updates default-frame-alist dynamically as tabs are added, so
+    ;; we must override the frame parameter explicitly on creation.
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (set-frame-parameter frame 'tab-bar-lines 0)))
     (add-hook 'emacs-startup-hook
               (lambda ()
                 (tab-bar-rename-tab "main")
