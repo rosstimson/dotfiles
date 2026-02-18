@@ -10,6 +10,8 @@ Pseudo-package for Emacs itself.
     :ensure nil
     :custom
     (use-package-always-ensure t)
+    (use-package-always-defer t)
+    (use-package-expand-minimally t)
     (explicit-shell-file-name
      (or (and (file-exists-p "/opt/homebrew/bin/zsh") "/opt/homebrew/bin/zsh")
          (executable-find "zsh")
