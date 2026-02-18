@@ -680,6 +680,11 @@ function with ~consult-line~.
   (use-package consult
     ;; Load immediately so I can use recent file search or search stuff on startup.
     :demand t
+    :custom
+    (consult-async-min-input 2)
+    (consult-async-refresh-delay 0.15)
+    (consult-async-input-throttle 0.2)
+    (consult-async-input-debounce 0.1)
     ;; Replace bindings. Lazily loaded due by `use-package'.
     :bind (("C-x f"   . consult-recent-file)
            ("C-x b"   . consult-buffer)              ;; orig. switch-to-buffer
@@ -737,9 +742,14 @@ function with ~consult-line~.
     ;; Both < and C-+ work reasonably well.
     (setq consult-narrow-key "<") ;; (kbd "C-+")
 
-    ;; Use `fd' for `consult-find', with the following arguments.
-    ;; Ignore case, include hidden, show absolute path, and never colour.
-    (setq consult-find-command "fd -i -H -a -c never OPTS ARG"))
+    (setq consult-ripgrep-args
+          (concat "rg --null --line-buffered --color=never "
+                  "--max-columns=1000 --path-separator / "
+                  "--smart-case --no-heading --line-number "
+                  "--hidden --glob !.git"))
+    (setq consult-fd-args
+          `(,(if (executable-find "fdfind") "fdfind" "fd")
+            "--color=never" "--hidden" "--exclude" ".git")))
 
   ;; Optionally add the `consult-flycheck' command.
   (use-package consult-flycheck
