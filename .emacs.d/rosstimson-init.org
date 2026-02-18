@@ -1083,6 +1083,12 @@ is included by default with Emacs since version 29.1.
            (typescript-ts-mode . eglot-ensure)
            (typst-ts-mode . eglot-ensure)
            (yaml-ts-mode . eglot-ensure))
+    :custom
+    (eglot-autoshutdown t)
+    (eglot-events-buffer-size 0)
+    (eglot-sync-connect nil)
+    (eglot-connect-timeout 10)
+    (eglot-ignored-server-capabilities '(:inlayHintProvider))
     :config
     (add-to-list 'eglot-server-programs
                  '(terraform-mode . ("terraform-ls" "serve")))
