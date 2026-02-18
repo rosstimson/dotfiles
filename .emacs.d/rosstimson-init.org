@@ -486,7 +486,7 @@ Elisp. Also integrates with eshell to handle visual commands.
                         ("terminfo/65" "terminfo/65/*")
                         ("integration" "integration/*")
                         (:exclude ".dir-locals.el" "*-tests.el")))
-    :bind ("C-x t" . eat)
+    :bind ("C--" . eat)
     :commands (eat eat-project)
     :hook (eshell-load . eat-eshell-mode))
 #+end_src
