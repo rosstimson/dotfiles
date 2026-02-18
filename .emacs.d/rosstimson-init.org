@@ -2130,6 +2130,7 @@ Org buffers using font locking and text properties.
 #+begin_src emacs-lisp
   (use-package org-modern
     :after org
+    :demand t
     :config
     (global-org-modern-mode))
 #+end_src
