@@ -376,7 +376,8 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
                              (mode . prog-mode)))
 
              ;; Terminal and Shell Environments
-             ("Shell" (or (mode . eshell-mode)
+             ("Shell" (or (mode . eat-mode)
+                          (mode . eshell-mode)
                           (mode . shell-mode)
                           (mode . term-mode)
                           (mode . vterm-mode)))
@@ -469,6 +470,24 @@ Make C-l clear eshell screen just as it would a normal shell.
 (add-hook 'eshell-mode-hook
 #'(lambda()
   (local-set-key (kbd "C-l") 'eshell-clear-buffer)))
+#+end_src
+
+** Eat
+
+[[https://codeberg.org/akib/emacs-eat][Eat]] (Emulate A Terminal) is a fast terminal emulator written in pure
+Elisp. Also integrates with eshell to handle visual commands.
+
+#+begin_src emacs-lisp
+  (use-package eat
+    :ensure (eat :host codeberg
+                :repo "akib/emacs-eat"
+                :files ("*.el" ("term" "term/*.el") "*.texi"
+                        "*.ti" ("terminfo/e" "terminfo/e/*")
+                        ("terminfo/65" "terminfo/65/*")
+                        ("integration" "integration/*")
+                        (:exclude ".dir-locals.el" "*-tests.el")))
+    :commands (eat eat-project)
+    :hook (eshell-load . eat-eshell-mode))
 #+end_src
 
 ** Global Key Bindings

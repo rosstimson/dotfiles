@@ -212,6 +212,10 @@ export KUBECTX_CURRENT_BGCOLOR=$(tput setab 7) # white background
 # Tools settings
 # --------------------------------------------------------------------
 
+# Eat Emacs shell integration (https://codeberg.org/akib/emacs-eat) 
+[ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
+  source "$EAT_SHELL_INTEGRATION_DIR/zsh"
+
 # Vale (https://vale.sh/)
 # Use the symlinked global config at ~/.vale.ini.
 export VALE_CONFIG_PATH="$HOME/.vale.ini"
