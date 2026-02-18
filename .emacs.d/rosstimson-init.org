@@ -31,10 +31,6 @@ Pseudo-package for Emacs itself.
 ;; i18n
 (prefer-coding-system 'utf-8)
 
-;; Reduce the frequency of garbage collection by making it happen on
-;; each 50MB of allocated data (the default is on every 0.76MB)
-(setq gc-cons-threshold 50000000)
-
 ;; Warn when opening files bigger than 100MB
 (setq large-file-warning-threshold 100000000)
 #+end_src
@@ -1182,6 +1178,23 @@ more capable.
     :after (flycheck eglot)
     :config
     (global-flycheck-eglot-mode 1))
+#+end_src
+
+** GCMH
+
+[[https://github.com/emacsmirror/gcmh][GCMH]] (Garbage Collector Magic Hack) enforces a sneaky-gcmh strategy for
+garbage collection: use a large GC threshold during normal editing to
+avoid pauses, then collect when Emacs is idle. Works in tandem with the
+startup optimisation in ~early-init.el~ which sets the threshold to max
+during init.
+
+#+begin_src emacs-lisp
+  (use-package gcmh
+    :hook (after-init . gcmh-mode)
+    :custom
+    (gcmh-idle-delay 'auto)
+    (gcmh-auto-idle-delay-factor 10)
+    (gcmh-high-cons-threshold (* 64 1024 1024)))
 #+end_src
 
 ** Hydra

@@ -36,6 +36,20 @@
 ;;
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Early-Init-File.html
 
+;; Maximize GC threshold and disable file-name-handler-alist during startup
+;; to reduce GC pauses and file handler overhead while loading init files.
+;; The file-name-handler-alist is restored after startup; gc-cons-threshold
+;; is managed thereafter by GCMH (see init config).
+(setq gc-cons-threshold most-positive-fixnum
+      gc-cons-percentage 0.6)
+
+(defvar rt-file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq file-name-handler-alist
+                  rt-file-name-handler-alist)))
+
 ;; Disable package.el, the built-in package manager, as using elpaca
 ;; (https://github.com/progfolio/elpaca)
 (setq package-enable-at-startup nil)
