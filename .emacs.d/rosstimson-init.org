@@ -642,21 +642,6 @@ program with [[https://emacsdocs.org/docs/emacs/Auto-Revert][Auto Revert]].
     (setq auto-revert-check-vc-info t))
 #+end_src
 
-** Beacon
-
-[[https://github.com/Malabarba/beacon][Beacon]] - A light that follows your cursor around so you don't lose it.
-
-#+begin_src emacs-lisp
-  (use-package beacon
-    :demand t
-    :blackout
-    :custom
-    (beacon-size 60)
-    :config
-    (add-to-list 'beacon-dont-blink-major-modes' 'ansi-term)
-    (beacon-mode 1))
-#+end_src
-
 ** Bookmarks
 
 [[https://emacsdocs.org/docs/emacs/Bookmarks][Bookmarks]] - Bookmarks are somewhat like registers in that they record
@@ -1457,6 +1442,21 @@ to recognise projects by common marker files beyond just ~.git~.
           '(".project" ".projectile" "Cargo.toml" "go.mod"
             "package.json" "pyproject.toml" "setup.py"
             "Makefile" ".git")))
+#+end_src
+
+** Pulsar
+
+[[https://protesilaos.com/emacs/pulsar][Pulsar]] - Pulse highlight on demand or after running select functions.
+
+#+begin_src emacs-lisp
+  (use-package pulsar
+    :demand t
+    :config
+    (add-hook 'consult-after-jump-hook #'pulsar-recenter-top)
+    (add-hook 'consult-after-jump-hook #'pulsar-reveal-entry)
+    (add-hook 'imenu-after-jump-hook #'pulsar-recenter-top)
+    (add-hook 'imenu-after-jump-hook #'pulsar-reveal-entry)
+    (pulsar-global-mode 1))
 #+end_src
 
 ** Rainbow delimiters
