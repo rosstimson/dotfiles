@@ -16,7 +16,6 @@
 
 # Disable specific steps - same options as the command line flag
 disable = [
-        "asdf",
         "containers",
         "emacs",
         "mas",
