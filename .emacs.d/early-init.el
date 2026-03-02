@@ -58,7 +58,7 @@
 (setenv "PATH" (concat (getenv "HOME") "/Library/pnpm:"
                        "/opt/homebrew/Caskroom/miniconda/base/bin:"
                        "/opt/homebrew/Caskroom/miniconda/base/condabin:"
-                       (getenv "HOME") "/.asdf/shims:"
+                       (getenv "HOME") "/.local/share/mise/shims:"
                        (getenv "HOME") "/.local/bin:"
                        (getenv "HOME") "/code/go/bin:"
                        (getenv "HOME") "/.cargo/bin:"
