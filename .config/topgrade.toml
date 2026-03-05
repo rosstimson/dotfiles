@@ -20,6 +20,7 @@ disable = [
         "emacs",
         "mas",
         "nix",
+        "tlmgr",
         "vim"
         ]
 
