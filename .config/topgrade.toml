@@ -46,7 +46,7 @@ disable = [
 # display_time = true
 
 # Don't ask for confirmations (no default value)
-# assume_yes = true
+assume_yes = true
 
 # Do not ask to retry failed steps (default: false)
 # no_retry = true
@@ -55,7 +55,7 @@ disable = [
 # run_in_tmux = true
 
 # Cleanup temporary or old files (default: false)
-# cleanup = true
+cleanup = true
 
 # Send a notification for every step (default: false)
 # notify_each_step = false
@@ -97,6 +97,7 @@ disable = [
 # "Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
 # "Custom command using interactive shell (unix)" = "-i vim_upgrade"
 "Determinate Nix" = "sudo determinate-nixd upgrade"
+"Elpaca" = "emacsclient --eval '(progn (elpaca-fetch-all) (elpaca-wait) (elpaca-merge-all))'"
 
 
 [python]
