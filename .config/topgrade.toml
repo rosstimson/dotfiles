@@ -16,6 +16,7 @@
 
 # Disable specific steps - same options as the command line flag
 disable = [
+        "colima",
         "containers",
         "emacs",
         "mas",
