@@ -50,6 +50,10 @@
 - **No Laziness**: Find root causes. No temporary fixes. Senior developer standards.
 - **Minimal Impact**: Changes should only touch what's necessary. Avoid introducing bugs.
 
+# Tool Preferences
+- **Always** prefer `rg` (ripgrep) over `grep` for searching file contents.
+- **Always** prefer `fd` over `find` for finding files and directories.
+
 # Context7 Rule
 **Always** use Context7 MCP when I need library/API documentation, code
 generation, setup or configuration steps without me having to
