@@ -2,6 +2,7 @@
 # -----------------------------------------------------------------------------
 
 auto-update = download
+bell-features = no-attention
 command = /opt/homebrew/bin/tmux new-session -A -s rt
 confirm-close-surface = false
 font-family = "Dank Mono"
