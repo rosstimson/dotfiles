@@ -221,6 +221,10 @@ export VALE_CONFIG_PATH="$HOME/.vale.ini"
 # Manage multiple runtime versions with a single CLI tool
 has mise && eval "$(mise activate zsh)"
 
+# jj (https://jj-vcs.dev/)
+# Jujutsu version control system
+has jj && source <(COMPLETE=zsh jj)
+
 # Zoxide (https://github.com/ajeetdsouza/zoxide)
 # Jump quickly to commonly used directories
 has zoxide && eval "$(zoxide init zsh)"
