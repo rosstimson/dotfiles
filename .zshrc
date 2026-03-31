@@ -104,6 +104,7 @@ __deferred_compinit() {
   compinit -C
   autoload bashcompinit  # needed by _resticprofile completion
   bashcompinit
+  has jj && source <(COMPLETE=zsh jj)
   add-zsh-hook -d precmd __deferred_compinit
   unfunction __deferred_compinit
 }
@@ -220,10 +221,6 @@ export VALE_CONFIG_PATH="$HOME/.vale.ini"
 # mise (https://mise.jdx.dev/)
 # Manage multiple runtime versions with a single CLI tool
 has mise && eval "$(mise activate zsh)"
-
-# jj (https://jj-vcs.dev/)
-# Jujutsu version control system
-has jj && source <(COMPLETE=zsh jj)
 
 # Zoxide (https://github.com/ajeetdsouza/zoxide)
 # Jump quickly to commonly used directories
