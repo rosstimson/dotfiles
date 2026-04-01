@@ -102,9 +102,12 @@ autoload -Uz add-zsh-hook
 __deferred_compinit() {
   autoload -U compinit
   compinit -C
-  autoload bashcompinit  # needed by _resticprofile completion
-  bashcompinit
-  has jj && source <(COMPLETE=zsh jj)
+  # carapace-bin (https://carapace-sh.github.io/carapace-bin/)
+  # Multi-shell multi-command argument completer, replaces most
+  # individual completion files.
+  export CARAPACE_BRIDGES='zsh,bash'
+  zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+  source <(carapace _carapace)
   add-zsh-hook -d precmd __deferred_compinit
   unfunction __deferred_compinit
 }
