@@ -26,6 +26,7 @@ export LC_ALL='en_GB.UTF-8'
 export PAGER='less -i'
 export TZ='Europe/London'
 export VISUAL='emacsclient -c'
+export XDG_CONFIG_HOME="${HOME}/.config"
 
 # For compiling stuff on Apple Silicon Macs.
 export CPATH=/opt/homebrew/include
