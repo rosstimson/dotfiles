@@ -18,8 +18,8 @@ Output: Milestone archived (roadmap + requirements), PROJECT.md evolved, git tag
 <execution_context>
 **Load these files NOW (before proceeding):**
 
-- @/Users/rosstimson/.config/opencode/get-shit-done/workflows/complete-milestone.md (main workflow)
-- @/Users/rosstimson/.config/opencode/get-shit-done/templates/milestone-archive.md (archive template)
+- @$HOME/.config/opencode/get-shit-done/workflows/complete-milestone.md (main workflow)
+- @$HOME/.config/opencode/get-shit-done/templates/milestone-archive.md (archive template)
   </execution_context>
 
 <context>

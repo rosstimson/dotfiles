@@ -127,6 +127,8 @@ Common types: Tech stack, Timeline, Budget, Dependencies, Compatibility, Perform
 <evolution>
 
 PROJECT.md evolves throughout the project lifecycle.
+These rules are embedded in the generated PROJECT.md (## Evolution section)
+and implemented by workflows/transition.md and workflows/complete-milestone.md.
 
 **After each phase transition:**
 1. Requirements invalidated? → Move to Out of Scope with reason
@@ -179,6 +181,6 @@ See: .planning/PROJECT.md (updated [date])
 **Current focus:** [Current phase name]
 ```
 
-This ensures Claude reads current PROJECT.md context.
+This ensures the agent reads current PROJECT.md context.
 
 </state_reference>

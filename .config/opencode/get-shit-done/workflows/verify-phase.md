@@ -1,243 +1,130 @@
 <purpose>
-Verify phase goal achievement through goal-backward analysis. Check that the codebase actually delivers what the phase promised, not just that tasks were completed.
+Verify phase goal achievement through goal-backward analysis. Check that the codebase delivers what the phase promised, not just that tasks completed.
 
-This workflow is executed by a verification subagent spawned from execute-phase.md.
+Executed by a verification subagent spawned from execute-phase.md.
 </purpose>
 
 <core_principle>
 **Task completion ≠ Goal achievement**
 
-A task "create chat component" can be marked complete when the component is a placeholder. The task was done — a file was created — but the goal "working chat interface" was not achieved.
+A task "create chat component" can be marked complete when the component is a placeholder. The task was done — but the goal "working chat interface" was not achieved.
 
-Goal-backward verification starts from the outcome and works backwards:
+Goal-backward verification:
 1. What must be TRUE for the goal to be achieved?
 2. What must EXIST for those truths to hold?
 3. What must be WIRED for those artifacts to function?
+4. What must TESTS PROVE for those truths to be evidenced?
 
 Then verify each level against the actual codebase.
 </core_principle>
 
 <required_reading>
-@~/.config/opencode/get-shit-done/references/verification-patterns.md
-@~/.config/opencode/get-shit-done/templates/verification-report.md
+@$HOME/.config/opencode/get-shit-done/references/verification-patterns.md
+@$HOME/.config/opencode/get-shit-done/templates/verification-report.md
 </required_reading>
 
 <process>
 
 <step name="load_context" priority="first">
-**Gather all verification context:**
+Load phase operation context:
 
 ```bash
-# Phase directory (match both zero-padded and unpadded)
-PADDED_PHASE=$(printf "%02d" ${PHASE_ARG} 2>/dev/null || echo "${PHASE_ARG}")
-PHASE_DIR=$(ls -d .planning/phases/${PADDED_PHASE}-* .planning/phases/${PHASE_ARG}-* 2>/dev/null | head -1)
-
-# Phase goal from ROADMAP
-grep -A 5 "Phase ${PHASE_NUM}" .planning/ROADMAP.md
-
-# Requirements mapped to this phase
-grep -E "^| ${PHASE_NUM}" .planning/REQUIREMENTS.md 2>/dev/null
-
-# All SUMMARY files (claims to verify)
-ls "$PHASE_DIR"/*-SUMMARY.md 2>/dev/null
-
-# All PLAN files (for must_haves in frontmatter)
-ls "$PHASE_DIR"/*-PLAN.md 2>/dev/null
+INIT=$(node "$HOME/.config/opencode/get-shit-done/bin/gsd-tools.cjs" init phase-op "${PHASE_ARG}")
+if [[ "$INIT" == @file:* ]]; then INIT=$(cat "${INIT#@file:}"); fi
 ```
 
-**Extract phase goal:** Parse ROADMAP.md for this phase's goal/description. This is the outcome to verify, not the tasks.
+Extract from init JSON: `phase_dir`, `phase_number`, `phase_name`, `has_plans`, `plan_count`.
 
-**Extract requirements:** If REQUIREMENTS.md exists, find requirements mapped to this phase. These become additional verification targets.
+Then load phase details and list plans/summaries:
+```bash
+node "$HOME/.config/opencode/get-shit-done/bin/gsd-tools.cjs" roadmap get-phase "${phase_number}"
+grep -E "^| ${phase_number}" .planning/REQUIREMENTS.md 2>/dev/null || true
+ls "$phase_dir"/*-SUMMARY.md "$phase_dir"/*-PLAN.md 2>/dev/null || true
+```
+
+Load full milestone phases for deferred-item filtering (Step 9b):
+```bash
+node "$HOME/.config/opencode/get-shit-done/bin/gsd-tools.cjs" roadmap analyze
+```
+
+Extract **phase goal** from ROADMAP.md (the outcome to verify, not tasks), **requirements** from REQUIREMENTS.md if it exists, and **all milestone phases** from roadmap analyze (for cross-referencing gaps against later phases).
 </step>
 
 <step name="establish_must_haves">
-**Determine what must be verified.**
-
 **Option A: Must-haves in PLAN frontmatter**
 
-Check if any PLAN.md has `must_haves` in frontmatter:
+Use gsd-tools to extract must_haves from each PLAN:
 
 ```bash
-grep -l "must_haves:" "$PHASE_DIR"/*-PLAN.md 2>/dev/null
+for plan in "$PHASE_DIR"/*-PLAN.md; do
+  MUST_HAVES=$(node "$HOME/.config/opencode/get-shit-done/bin/gsd-tools.cjs" frontmatter get "$plan" --field must_haves)
+  echo "=== $plan ===" && echo "$MUST_HAVES"
+done
 ```
 
-If found, extract and use:
-```yaml
-must_haves:
-  truths:
-    - "User can see existing messages"
-    - "User can send a message"
-  artifacts:
-    - path: "src/components/Chat.tsx"
-      provides: "Message list rendering"
-  key_links:
-    - from: "Chat.tsx"
-      to: "api/chat"
-      via: "fetch in useEffect"
+Returns JSON: `{ truths: [...], artifacts: [...], key_links: [...] }`
+
+Aggregate all must_haves across plans for phase-level verification.
+
+**Option B: Use Success Criteria from ROADMAP.md**
+
+If no must_haves in frontmatter (MUST_HAVES returns error or empty), check for Success Criteria:
+
+```bash
+PHASE_DATA=$(node "$HOME/.config/opencode/get-shit-done/bin/gsd-tools.cjs" roadmap get-phase "${phase_number}" --raw)
 ```
 
-**Option B: Derive from phase goal**
+Parse the `success_criteria` array from the JSON output. If non-empty:
+1. Use each Success Criterion directly as a **truth** (they are already written as observable, testable behaviors)
+2. Derive **artifacts** (concrete file paths for each truth)
+3. Derive **key links** (critical wiring where stubs hide)
+4. Document the must-haves before proceeding
 
-If no must_haves in frontmatter, derive using goal-backward process:
+Success Criteria from ROADMAP.md are the contract — they override PLAN-level must_haves when both exist.
 
-1. **State the goal:** Take phase goal from ROADMAP.md
+**Option C: Derive from phase goal (fallback)**
 
-2. **Derive truths:** Ask "What must be TRUE for this goal to be achieved?"
-   - List 3-7 observable behaviors from user perspective
-   - Each truth should be testable by a human using the app
-
-3. **Derive artifacts:** For each truth, ask "What must EXIST?"
-   - Map truths to concrete files (components, routes, schemas)
-   - Be specific: `src/components/Chat.tsx`, not "chat component"
-
-4. **Derive key links:** For each artifact, ask "What must be CONNECTED?"
-   - Identify critical wiring (component calls API, API queries DB)
-   - These are where stubs hide
-
-5. **Document derived must-haves** before proceeding to verification.
-
-<!-- Goal-backward derivation expertise is baked into the gsd-verifier agent -->
+If no must_haves in frontmatter AND no Success Criteria in ROADMAP:
+1. State the goal from ROADMAP.md
+2. Derive **truths** (3-7 observable behaviors, each testable)
+3. Derive **artifacts** (concrete file paths for each truth)
+4. Derive **key links** (critical wiring where stubs hide)
+5. Document derived must-haves before proceeding
 </step>
 
 <step name="verify_truths">
-**For each observable truth, determine if codebase enables it.**
+For each observable truth, determine if the codebase enables it.
 
-A truth is achievable if the supporting artifacts exist, are substantive, and are wired correctly.
+**Status:** ✓ VERIFIED (all supporting artifacts pass) | ✗ FAILED (artifact missing/stub/unwired) | ? UNCERTAIN (needs human)
 
-**Verification status:**
-- ✓ VERIFIED: All supporting artifacts pass all checks
-- ✗ FAILED: One or more supporting artifacts missing, stub, or unwired
-- ? UNCERTAIN: Can't verify programmatically (needs human)
+For each truth: identify supporting artifacts → check artifact status → check wiring → determine truth status.
 
-**For each truth:**
-
-1. Identify supporting artifacts (which files make this truth possible?)
-2. Check artifact status (see verify_artifacts step)
-3. Check wiring status (see verify_wiring step)
-4. Determine truth status based on supporting infrastructure
-
-**Example:**
-
-Truth: "User can see existing messages"
-
-Supporting artifacts:
-- Chat.tsx (renders messages)
-- /api/chat GET (provides messages)
-- Message model (defines schema)
-
-If Chat.tsx is a stub → Truth FAILED
-If /api/chat GET returns hardcoded [] → Truth FAILED
-If Chat.tsx exists, is substantive, calls API, renders response → Truth VERIFIED
+**Example:** Truth "User can see existing messages" depends on Chat.tsx (renders), /api/chat GET (provides), Message model (schema). If Chat.tsx is a stub or API returns hardcoded [] → FAILED. If all exist, are substantive, and connected → VERIFIED.
 </step>
 
 <step name="verify_artifacts">
-**For each required artifact, verify three levels:**
-
-### Level 1: Existence
+Use gsd-tools for artifact verification against must_haves in each PLAN:
 
 ```bash
-check_exists() {
-  local path="$1"
-  if [ -f "$path" ]; then
-    echo "EXISTS"
-  elif [ -d "$path" ]; then
-    echo "EXISTS (directory)"
-  else
-    echo "MISSING"
-  fi
-}
+for plan in "$PHASE_DIR"/*-PLAN.md; do
+  ARTIFACT_RESULT=$(node "$HOME/.config/opencode/get-shit-done/bin/gsd-tools.cjs" verify artifacts "$plan")
+  echo "=== $plan ===" && echo "$ARTIFACT_RESULT"
+done
 ```
 
-If MISSING → artifact fails, record and continue to next artifact.
+Parse JSON result: `{ all_passed, passed, total, artifacts: [{path, exists, issues, passed}] }`
 
-### Level 2: Substantive
+**Artifact status from result:**
+- `exists=false` → MISSING
+- `issues` not empty → STUB (check issues for "Only N lines" or "Missing pattern")
+- `passed=true` → VERIFIED (Levels 1-2 pass)
 
-Check that the file has real implementation, not a stub.
-
-**Line count check:**
+**Level 3 — Wired (manual check for artifacts that pass Levels 1-2):**
 ```bash
-check_length() {
-  local path="$1"
-  local min_lines="$2"
-  local lines=$(wc -l < "$path" 2>/dev/null || echo 0)
-  [ "$lines" -ge "$min_lines" ] && echo "SUBSTANTIVE ($lines lines)" || echo "THIN ($lines lines)"
-}
+grep -r "import.*$artifact_name" src/ --include="*.ts" --include="*.tsx"  # IMPORTED
+grep -r "$artifact_name" src/ --include="*.ts" --include="*.tsx" | grep -v "import"  # USED
 ```
-
-Minimum lines by type:
-- Component: 15+ lines
-- API route: 10+ lines
-- Hook/util: 10+ lines
-- Schema model: 5+ lines
-
-**Stub pattern check:**
-```bash
-check_stubs() {
-  local path="$1"
-
-  # Universal stub patterns
-  local stubs=$(grep -c -E "TODO|FIXME|placeholder|not implemented|coming soon" "$path" 2>/dev/null || echo 0)
-
-  # Empty returns
-  local empty=$(grep -c -E "return null|return undefined|return \{\}|return \[\]" "$path" 2>/dev/null || echo 0)
-
-  # Placeholder content
-  local placeholder=$(grep -c -E "will be here|placeholder|lorem ipsum" "$path" 2>/dev/null || echo 0)
-
-  local total=$((stubs + empty + placeholder))
-  [ "$total" -gt 0 ] && echo "STUB_PATTERNS ($total found)" || echo "NO_STUBS"
-}
-```
-
-**Export check (for components/hooks):**
-```bash
-check_exports() {
-  local path="$1"
-  grep -E "^export (default )?(function|const|class)" "$path" && echo "HAS_EXPORTS" || echo "NO_EXPORTS"
-}
-```
-
-**Combine level 2 results:**
-- SUBSTANTIVE: Adequate length + no stubs + has exports
-- STUB: Too short OR has stub patterns OR no exports
-- PARTIAL: Mixed signals (length OK but has some stubs)
-
-### Level 3: Wired
-
-Check that the artifact is connected to the system.
-
-**Import check (is it used?):**
-```bash
-check_imported() {
-  local artifact_name="$1"
-  local search_path="${2:-src/}"
-
-  # Find imports of this artifact
-  local imports=$(grep -r "import.*$artifact_name" "$search_path" --include="*.ts" --include="*.tsx" 2>/dev/null | wc -l)
-
-  [ "$imports" -gt 0 ] && echo "IMPORTED ($imports times)" || echo "NOT_IMPORTED"
-}
-```
-
-**Usage check (is it called?):**
-```bash
-check_used() {
-  local artifact_name="$1"
-  local search_path="${2:-src/}"
-
-  # Find usages (function calls, component renders, etc.)
-  local uses=$(grep -r "$artifact_name" "$search_path" --include="*.ts" --include="*.tsx" 2>/dev/null | grep -v "import" | wc -l)
-
-  [ "$uses" -gt 0 ] && echo "USED ($uses times)" || echo "NOT_USED"
-}
-```
-
-**Combine level 3 results:**
-- WIRED: Imported AND used
-- ORPHANED: Exists but not imported/used
-- PARTIAL: Imported but not used (or vice versa)
-
-### Final artifact status
+WIRED = imported AND used. ORPHANED = exists but not imported/used.
 
 | Exists | Substantive | Wired | Status |
 |--------|-------------|-------|--------|
@@ -246,369 +133,227 @@ check_used() {
 | ✓ | ✗ | - | ✗ STUB |
 | ✗ | - | - | ✗ MISSING |
 
-Record status and evidence for each artifact.
+**Export-level spot check (WARNING severity):**
+
+For artifacts that pass Level 3, spot-check individual exports:
+- Extract key exported symbols (functions, constants, classes — skip types/interfaces)
+- For each, grep for usage outside the defining file
+- Flag exports with zero external call sites as "exported but unused"
+
+This catches dead stores like `setPlan()` that exist in a wired file but are
+never actually called. Report as WARNING — may indicate incomplete cross-plan
+wiring or leftover code from plan revisions.
 </step>
 
 <step name="verify_wiring">
-**Verify key links between artifacts.**
-
-Key links are critical connections. If broken, the goal fails even with all artifacts present.
-
-### Pattern: Component → API
-
-Check if component actually calls the API:
+Use gsd-tools for key link verification against must_haves in each PLAN:
 
 ```bash
-verify_component_api_link() {
-  local component="$1"
-  local api_path="$2"
-
-  # Check for fetch/axios call to the API
-  local has_call=$(grep -E "fetch\(['\"].*$api_path|axios\.(get|post).*$api_path" "$component" 2>/dev/null)
-
-  if [ -n "$has_call" ]; then
-    # Check if response is used
-    local uses_response=$(grep -A 5 "fetch\|axios" "$component" | grep -E "await|\.then|setData|setState" 2>/dev/null)
-
-    if [ -n "$uses_response" ]; then
-      echo "WIRED: $component → $api_path (call + response handling)"
-    else
-      echo "PARTIAL: $component → $api_path (call exists but response not used)"
-    fi
-  else
-    echo "NOT_WIRED: $component → $api_path (no call found)"
-  fi
-}
+for plan in "$PHASE_DIR"/*-PLAN.md; do
+  LINKS_RESULT=$(node "$HOME/.config/opencode/get-shit-done/bin/gsd-tools.cjs" verify key-links "$plan")
+  echo "=== $plan ===" && echo "$LINKS_RESULT"
+done
 ```
 
-### Pattern: API → Database
+Parse JSON result: `{ all_verified, verified, total, links: [{from, to, via, verified, detail}] }`
 
-Check if API route queries database:
+**Link status from result:**
+- `verified=true` → WIRED
+- `verified=false` with "not found" → NOT_WIRED
+- `verified=false` with "Pattern not found" → PARTIAL
 
-```bash
-verify_api_db_link() {
-  local route="$1"
-  local model="$2"
+**Fallback patterns (if key_links not in must_haves):**
 
-  # Check for Prisma/DB call
-  local has_query=$(grep -E "prisma\.$model|db\.$model|$model\.(find|create|update|delete)" "$route" 2>/dev/null)
+| Pattern | Check | Status |
+|---------|-------|--------|
+| Component → API | fetch/axios call to API path, response used (await/.then/setState) | WIRED / PARTIAL (call but unused response) / NOT_WIRED |
+| API → Database | Prisma/DB query on model, result returned via res.json() | WIRED / PARTIAL (query but not returned) / NOT_WIRED |
+| Form → Handler | onSubmit with real implementation (fetch/axios/mutate/dispatch), not console.log/empty | WIRED / STUB (log-only/empty) / NOT_WIRED |
+| State → Render | useState variable appears in JSX (`{stateVar}` or `{stateVar.property}`) | WIRED / NOT_WIRED |
 
-  if [ -n "$has_query" ]; then
-    # Check if result is returned
-    local returns_result=$(grep -E "return.*json.*\w+|res\.json\(\w+" "$route" 2>/dev/null)
-
-    if [ -n "$returns_result" ]; then
-      echo "WIRED: $route → database ($model)"
-    else
-      echo "PARTIAL: $route → database (query exists but result not returned)"
-    fi
-  else
-    echo "NOT_WIRED: $route → database (no query for $model)"
-  fi
-}
-```
-
-### Pattern: Form → Handler
-
-Check if form submission does something:
-
-```bash
-verify_form_handler_link() {
-  local component="$1"
-
-  # Find onSubmit handler
-  local has_handler=$(grep -E "onSubmit=\{|handleSubmit" "$component" 2>/dev/null)
-
-  if [ -n "$has_handler" ]; then
-    # Check if handler has real implementation
-    local handler_content=$(grep -A 10 "onSubmit.*=" "$component" | grep -E "fetch|axios|mutate|dispatch" 2>/dev/null)
-
-    if [ -n "$handler_content" ]; then
-      echo "WIRED: form → handler (has API call)"
-    else
-      # Check for stub patterns
-      local is_stub=$(grep -A 5 "onSubmit" "$component" | grep -E "console\.log|preventDefault\(\)$|\{\}" 2>/dev/null)
-      if [ -n "$is_stub" ]; then
-        echo "STUB: form → handler (only logs or empty)"
-      else
-        echo "PARTIAL: form → handler (exists but unclear implementation)"
-      fi
-    fi
-  else
-    echo "NOT_WIRED: form → handler (no onSubmit found)"
-  fi
-}
-```
-
-### Pattern: State → Render
-
-Check if state is actually rendered:
-
-```bash
-verify_state_render_link() {
-  local component="$1"
-  local state_var="$2"
-
-  # Check if state variable exists
-  local has_state=$(grep -E "useState.*$state_var|\[$state_var," "$component" 2>/dev/null)
-
-  if [ -n "$has_state" ]; then
-    # Check if state is used in JSX
-    local renders_state=$(grep -E "\{.*$state_var.*\}|\{$state_var\." "$component" 2>/dev/null)
-
-    if [ -n "$renders_state" ]; then
-      echo "WIRED: state → render ($state_var displayed)"
-    else
-      echo "NOT_WIRED: state → render ($state_var exists but not displayed)"
-    fi
-  else
-    echo "N/A: state → render (no state var $state_var)"
-  fi
-}
-```
-
-### Aggregate key link results
-
-For each key link in must_haves:
-- Run appropriate verification function
-- Record status and evidence
-- WIRED / PARTIAL / STUB / NOT_WIRED
+Record status and evidence for each key link.
 </step>
 
 <step name="verify_requirements">
-**Check requirements coverage if REQUIREMENTS.md exists.**
-
+If REQUIREMENTS.md exists:
 ```bash
-# Find requirements mapped to this phase
-grep -E "Phase ${PHASE_NUM}" .planning/REQUIREMENTS.md 2>/dev/null
+grep -E "Phase ${PHASE_NUM}" .planning/REQUIREMENTS.md 2>/dev/null || true
 ```
 
-For each requirement:
-1. Parse requirement description
-2. Identify which truths/artifacts support it
-3. Determine status based on supporting infrastructure
-
-**Requirement status:**
-- ✓ SATISFIED: All supporting truths verified
-- ✗ BLOCKED: One or more supporting truths failed
-- ? NEEDS HUMAN: Can't verify requirement programmatically
+For each requirement: parse description → identify supporting truths/artifacts → status: ✓ SATISFIED / ✗ BLOCKED / ? NEEDS HUMAN.
 </step>
 
 <step name="scan_antipatterns">
-**Scan for anti-patterns across phase files.**
+Extract files modified in this phase from SUMMARY.md, scan each:
 
-Identify files modified in this phase:
+| Pattern | Search | Severity |
+|---------|--------|----------|
+| TODO/FIXME/XXX/HACK | `grep -n -E "TODO\|FIXME\|XXX\|HACK"` | ⚠️ Warning |
+| Placeholder content | `grep -n -iE "placeholder\|coming soon\|will be here"` | 🛑 Blocker |
+| Empty returns | `grep -n -E "return null\|return \{\}\|return \[\]\|=> \{\}"` | ⚠️ Warning |
+| Log-only functions | Functions containing only console.log | ⚠️ Warning |
+
+Categorize: 🛑 Blocker (prevents goal) | ⚠️ Warning (incomplete) | ℹ️ Info (notable).
+</step>
+
+<step name="audit_test_quality">
+**Verify that tests PROVE what they claim to prove.**
+
+This step catches test-level deceptions that pass all prior checks: files exist, are substantive, are wired, and tests pass — but the tests don't actually validate the requirement.
+
+**1. Identify requirement-linked test files**
+
+From PLAN and SUMMARY files, map each requirement to the test files that are supposed to prove it.
+
+**2. Disabled test scan**
+
+For ALL test files linked to requirements, search for disabled/skipped patterns:
+
 ```bash
-# Extract files from SUMMARY.md
-grep -E "^\- \`" "$PHASE_DIR"/*-SUMMARY.md | sed 's/.*`\([^`]*\)`.*/\1/' | sort -u
+grep -rn -E "it\.skip|describe\.skip|test\.skip|xit\(|xdescribe\(|xtest\(|@pytest\.mark\.skip|@unittest\.skip|#\[ignore\]|\.pending|it\.todo|test\.todo" "$TEST_FILE"
 ```
 
-Run anti-pattern detection:
+**Rule:** A disabled test linked to a requirement = requirement NOT tested.
+- 🛑 BLOCKER if the disabled test is the only test proving that requirement
+- ⚠️ WARNING if other active tests also cover the requirement
+
+**3. Circular test detection**
+
+Search for scripts/utilities that generate expected values by running the system under test:
+
 ```bash
-scan_antipatterns() {
-  local files="$@"
-
-  echo "## Anti-Patterns Found"
-  echo ""
-
-  for file in $files; do
-    [ -f "$file" ] || continue
-
-    # TODO/FIXME comments
-    grep -n -E "TODO|FIXME|XXX|HACK" "$file" 2>/dev/null | while read line; do
-      echo "| $file | $(echo $line | cut -d: -f1) | TODO/FIXME | ⚠️ Warning |"
-    done
-
-    # Placeholder content
-    grep -n -E "placeholder|coming soon|will be here" "$file" -i 2>/dev/null | while read line; do
-      echo "| $file | $(echo $line | cut -d: -f1) | Placeholder | 🛑 Blocker |"
-    done
-
-    # Empty implementations
-    grep -n -E "return null|return \{\}|return \[\]|=> \{\}" "$file" 2>/dev/null | while read line; do
-      echo "| $file | $(echo $line | cut -d: -f1) | Empty return | ⚠️ Warning |"
-    done
-
-    # Console.log only implementations
-    grep -n -B 2 -A 2 "console\.log" "$file" 2>/dev/null | grep -E "^\s*(const|function|=>)" | while read line; do
-      echo "| $file | - | Log-only function | ⚠️ Warning |"
-    done
-  done
-}
+grep -rn -E "writeFileSync|writeFile|fs\.write|open\(.*w\)" "$TEST_DIRS"
 ```
 
-Categorize findings:
-- 🛑 Blocker: Prevents goal achievement (placeholder renders, empty handlers)
-- ⚠️ Warning: Indicates incomplete (TODO comments, console.log)
-- ℹ️ Info: Notable but not problematic
+For each match, check if it also imports the system/service/module being tested. If a script both imports the system-under-test AND writes expected output values → CIRCULAR.
+
+**Circular test indicators:**
+- Script imports a service AND writes to fixture files
+- Expected values have comments like "computed from engine", "captured from baseline"
+- Script filename contains "capture", "baseline", "generate", "snapshot" in test context
+- Expected values were added in the same commit as the test assertions
+
+**Rule:** A test comparing system output against values generated by the same system is circular. It proves consistency, not correctness.
+
+**4. Expected value provenance** (for comparison/parity/migration requirements)
+
+When a requirement demands comparison with an external source ("identical to X", "matches Y", "same output as Z"):
+
+- Is the external source actually invoked or referenced in the test pipeline?
+- Do fixture files contain data sourced from the external system?
+- Or do all expected values come from the new system itself or from mathematical formulas?
+
+**Provenance classification:**
+- VALID: Expected value from external/legacy system output, manual capture, or independent oracle
+- PARTIAL: Expected value from mathematical derivation (proves formula, not system match)
+- CIRCULAR: Expected value from the system being tested
+- UNKNOWN: No provenance information — treat as SUSPECT
+
+**5. Assertion strength**
+
+For each test linked to a requirement, classify the strongest assertion:
+
+| Level | Examples | Proves |
+|-------|---------|--------|
+| Existence | `toBeDefined()`, `!= null` | Something returned |
+| Type | `typeof x === 'number'` | Correct shape |
+| Status | `code === 200` | No error |
+| Value | `toEqual(expected)`, `toBeCloseTo(x)` | Specific value |
+| Behavioral | Multi-step workflow assertions | End-to-end correctness |
+
+If a requirement demands value-level or behavioral-level proof and the test only has existence/type/status assertions → INSUFFICIENT.
+
+**6. Coverage quantity**
+
+If a requirement specifies a quantity of test cases (e.g., "30 calculations"), check if the actual number of active (non-skipped) test cases meets the requirement.
+
+**Reporting — add to VERIFICATION.md:**
+
+```markdown
+### Test Quality Audit
+
+| Test File | Linked Req | Active | Skipped | Circular | Assertion Level | Verdict |
+|-----------|-----------|--------|---------|----------|----------------|---------|
+
+**Disabled tests on requirements:** {N} → {BLOCKER if any req has ONLY disabled tests}
+**Circular patterns detected:** {N} → {BLOCKER if any}
+**Insufficient assertions:** {N} → {WARNING}
+```
+
+**Impact on status:** Any BLOCKER from test quality audit ��� overall status = `gaps_found`, regardless of other checks passing.
 </step>
 
 <step name="identify_human_verification">
-**Flag items that need human verification.**
+**Always needs human:** Visual appearance, user flow completion, real-time behavior (WebSocket/SSE), external service integration, performance feel, error message clarity.
 
-Some things can't be verified programmatically:
+**Needs human if uncertain:** Complex wiring grep can't trace, dynamic state-dependent behavior, edge cases.
 
-**Always needs human:**
-- Visual appearance (does it look right?)
-- User flow completion (can you do the full task?)
-- Real-time behavior (WebSocket, SSE updates)
-- External service integration (payments, email)
-- Performance feel (does it feel fast?)
-- Error message clarity
-
-**Needs human if uncertain:**
-- Complex wiring that grep can't trace
-- Dynamic behavior depending on state
-- Edge cases and error states
-
-**Format for human verification:**
-```markdown
-## Human Verification Required
-
-### 1. {Test Name}
-**Test:** {What to do}
-**Expected:** {What should happen}
-**Why human:** {Why can't verify programmatically}
-```
+Format each as: Test Name → What to do → Expected result → Why can't verify programmatically.
 </step>
 
 <step name="determine_status">
-**Calculate overall verification status.**
+Classify status using this decision tree IN ORDER (most restrictive first):
 
-**Status: passed**
-- All truths VERIFIED
-- All artifacts pass level 1-3
-- All key links WIRED
-- No blocker anti-patterns
-- (Human verification items are OK — will be prompted)
+1. IF any truth FAILED, artifact MISSING/STUB, key link NOT_WIRED, blocker found, **or test quality audit found blockers (disabled requirement tests, circular tests)**:
+   → **gaps_found**
 
-**Status: gaps_found**
-- One or more truths FAILED
-- OR one or more artifacts MISSING/STUB
-- OR one or more key links NOT_WIRED
-- OR blocker anti-patterns found
+2. IF the previous step produced ANY human verification items:
+   → **human_needed** (even if all truths VERIFIED and score is N/N)
 
-**Status: human_needed**
-- All automated checks pass
-- BUT items flagged for human verification
-- Can't determine goal achievement without human
+3. IF all checks pass AND no human verification items:
+   → **passed**
 
-**Calculate score:**
-```
-score = (verified_truths / total_truths)
-```
+**passed is ONLY valid when no human verification items exist.**
+
+**Score:** `verified_truths / total_truths`
+</step>
+
+<step name="filter_deferred_items">
+Before reporting gaps, cross-reference each gap against later phases in the milestone using the full roadmap data loaded in load_context (from `roadmap analyze`).
+
+For each potential gap identified in determine_status:
+1. Check if the gap's failed truth or missing item is covered by a later phase's goal or success criteria
+2. **Match criteria:** The gap's concern appears in a later phase's goal text, success criteria text, or the later phase's name clearly suggests it covers this area
+3. If a clear match is found → move the gap to a `deferred` list with the matching phase reference and evidence text
+4. If no match in any later phase → keep as a real `gap`
+
+**Important:** Be conservative. Only defer a gap when there is clear, specific evidence in a later phase. Vague or tangential matches should NOT cause deferral — when in doubt, keep it as a real gap.
+
+**Deferred items do NOT affect the status determination.** Recalculate after filtering:
+- If gaps list is now empty and no human items exist → `passed`
+- If gaps list is now empty but human items exist → `human_needed`
+- If gaps list still has items → `gaps_found`
+
+Include deferred items in VERIFICATION.md frontmatter (`deferred:` section) and body (Deferred Items table) for transparency. If no deferred items exist, omit these sections.
 </step>
 
 <step name="generate_fix_plans">
-**If gaps_found, recommend fix plans.**
+If gaps_found:
 
-Group related gaps into fix plans:
+1. **Cluster related gaps:** API stub + component unwired → "Wire frontend to backend". Multiple missing → "Complete core implementation". Wiring only → "Connect existing components".
 
-1. **Identify gap clusters:**
-   - API stub + component not wired → "Wire frontend to backend"
-   - Multiple artifacts missing → "Complete core implementation"
-   - Wiring issues only → "Connect existing components"
+2. **Generate plan per cluster:** Objective, 2-3 tasks (files/action/verify each), re-verify step. Keep focused: single concern per plan.
 
-2. **Generate plan recommendations:**
-
-```markdown
-### {phase}-{next}-PLAN.md: {Fix Name}
-
-**Objective:** {What this fixes}
-
-**Tasks:**
-1. {Task to fix gap 1}
-   - Files: {files to modify}
-   - Action: {specific fix}
-   - Verify: {how to confirm fix}
-
-2. {Task to fix gap 2}
-   - Files: {files to modify}
-   - Action: {specific fix}
-   - Verify: {how to confirm fix}
-
-3. Re-verify phase goal
-   - Run verification again
-   - Confirm all must-haves pass
-
-**Estimated scope:** {Small / Medium}
-```
-
-3. **Keep plans focused:**
-   - 2-3 tasks per plan
-   - Single concern per plan
-   - Include verification task
-
-4. **Order by dependency:**
-   - Fix missing artifacts before wiring
-   - Fix stubs before integration
-   - Verify after all fixes
+3. **Order by dependency:** Fix missing → fix stubs → fix wiring → **fix test evidence** → verify.
 </step>
 
 <step name="create_report">
-**Generate VERIFICATION.md using template.**
-
 ```bash
 REPORT_PATH="$PHASE_DIR/${PHASE_NUM}-VERIFICATION.md"
 ```
 
-Fill template sections:
-1. **Frontmatter:** phase, verified timestamp, status, score
-2. **Goal Achievement:** Truth verification table
-3. **Required Artifacts:** Artifact verification table
-4. **Key Link Verification:** Wiring verification table
-5. **Requirements Coverage:** If REQUIREMENTS.md exists
-6. **Anti-Patterns Found:** Scan results table
-7. **Human Verification Required:** Items needing human
-8. **Gaps Summary:** Critical and non-critical gaps
-9. **Recommended Fix Plans:** If gaps_found
-10. **Verification Metadata:** Approach, timing, counts
+Fill template sections: frontmatter (phase/timestamp/status/score), goal achievement, artifact table, wiring table, requirements coverage, anti-patterns, human verification, gaps summary, fix plans (if gaps_found), metadata.
 
-See ~/.config/opencode/get-shit-done/templates/verification-report.md for complete template.
+See $HOME/.config/opencode/get-shit-done/templates/verification-report.md for complete template.
 </step>
 
 <step name="return_to_orchestrator">
-**Return results to execute-phase orchestrator.**
+Return status (`passed` | `gaps_found` | `human_needed`), score (N/M must-haves), report path.
 
-**Return format:**
+If gaps_found: list gaps + recommended fix plan names.
+If human_needed: list items requiring human testing.
 
-```markdown
-## Verification Complete
-
-**Status:** {passed | gaps_found | human_needed}
-**Score:** {N}/{M} must-haves verified
-**Report:** .planning/phases/{phase_dir}/{phase}-VERIFICATION.md
-
-{If passed:}
-All must-haves verified. Phase goal achieved. Ready to proceed.
-
-{If gaps_found:}
-### Gaps Found
-
-{N} critical gaps blocking goal achievement:
-1. {Gap 1 summary}
-2. {Gap 2 summary}
-
-### Recommended Fixes
-
-{N} fix plans recommended:
-1. {phase}-{next}-PLAN.md: {name}
-2. {phase}-{next+1}-PLAN.md: {name}
-
-{If human_needed:}
-### Human Verification Required
-
-{N} items need human testing:
-1. {Item 1}
-2. {Item 2}
-
-Automated checks passed. Awaiting human verification.
-```
-
-The orchestrator will:
-- If `passed`: Continue to update_roadmap
-- If `gaps_found`: Create and execute fix plans, then re-verify
-- If `human_needed`: Present items to user, collect responses
+Orchestrator routes: `passed` → update_roadmap | `gaps_found` → create/execute fixes, re-verify | `human_needed` → present to user.
 </step>
 
 </process>
@@ -620,9 +365,11 @@ The orchestrator will:
 - [ ] All key links verified
 - [ ] Requirements coverage assessed (if applicable)
 - [ ] Anti-patterns scanned and categorized
+- [ ] Test quality audited (disabled tests, circular patterns, assertion strength, provenance)
 - [ ] Human verification items identified
 - [ ] Overall status determined
-- [ ] Fix plans generated (if gaps_found)
+- [ ] Deferred items filtered against later milestone phases (if gaps found)
+- [ ] Fix plans generated (if gaps_found after filtering)
 - [ ] VERIFICATION.md created with complete report
 - [ ] Results returned to orchestrator
 </success_criteria>

@@ -50,6 +50,18 @@
 - **No Laziness**: Find root causes. No temporary fixes. Senior developer standards.
 - **Minimal Impact**: Changes should only touch what's necessary. Avoid introducing bugs.
 
+# Iteration, focus, and communication
+Guidance distilled from session patterns (Claude Code transcript analysis).
+
+- **Act sooner**: Do not read more than 3–5 files before making a change. Get a basic understanding, make the change, then iterate.
+- **On correction**: When the user corrects you, stop and re-read their message. Quote back what they asked for and confirm before proceeding.
+- **When stuck**: Summarize what you have tried and ask the user for guidance instead of retrying the same approach.
+- **Last message**: Re-read the user’s last message before responding. Follow through on every instruction completely.
+- **Stay on goal**: Every few turns, re-read the original request so you have not drifted from the goal.
+- **Edits**: Read the full file before editing. Plan all changes, then make one complete edit. If you have edited a file three or more times, stop and re-read the user’s requirements.
+- **Tool failures**: After two consecutive tool failures, stop and change approach entirely. Explain what failed and try a different strategy.
+- **Before you ship**: Double-check output before presenting it. Verify that changes actually address what the user asked for.
+
 # Tool Preferences
 - **Always** prefer `rg` (ripgrep) over `grep` for searching file contents.
 - **Always** prefer `fd` over `find` for finding files and directories.
