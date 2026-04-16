@@ -19,10 +19,14 @@
 
 .config/argocd/
 .config/configstore/
+.config/cursor/
 .config/exercism/
+.config/helm/
 .config/gcloud/
 .config/gh/
 .config/github-copilot/
+# Jujutsu: keep config.toml, ignore local repo metadata cache
+.config/jj/repos/
 .config/hcp
 .config/helix/runtime/
 .config/mozilla/
