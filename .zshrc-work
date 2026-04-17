@@ -12,27 +12,81 @@ if [ -f '/opt/homebrew/share/zsh/site-functions/_google_cloud_sdk' ]; then . '/o
 export TG_PROVIDER_CACHE=1
 export TG_PROVIDER_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 
-# Claude Code Default Model
-export ANTHROPIC_MODEL="claude-opus-4-6"
 
-
-
-aws_proxy_session_id () {
-    echo $(aws ssm describe-sessions \
-        --profile "csly-dev-pvd2-administrator" \
-        --state Active \
-        --output text \
-        --query "Sessions[?Reason==\`rtproxy-ac73498e-29f9-436a-b44e-3bc0d873108\`].SessionId")
+# Resolve AWS CLI profile for SSM/EC2 helpers. Prefer explicit --profile, then
+# AWS_SSM_PROFILE (tool-specific), then standard AWS_PROFILE.
+__causaly_ssm_profile () {
+    local p="${AWS_SSM_PROFILE:-${AWS_PROFILE:-}}"
+    if [[ -z "$p" ]]; then
+        echo "ssm-port-forward: set AWS_PROFILE (or AWS_SSM_PROFILE), or pass --profile <name>" >&2
+        return 1
+    fi
+    echo "$p"
 }
 
+# Usage:
+#   ssm-port-forward [--profile <aws-profile>] [--remote-port <n>] [--local-port <n>] <tag:Name> [remote_port [local_port]]
+# With no --profile, uses AWS_SSM_PROFILE or AWS_PROFILE (same order as __causaly_ssm_profile).
+# Default remote (tinyproxy) / local (your laptop): 8888 / 8855 — override with flags, env, or positionals.
+#   SSM_PORT_FORWARD_REMOTE, SSM_PORT_FORWARD_LOCAL  (defaults before flags/positionals)
+# Each run sets SSM --reason to rtproxy-<uuidgen> unless SSM_PORT_FORWARD_REASON is already set
+# (export a fixed value if you need a stable tag for describe-sessions / scripts).
+# Concurrent clusters: give each forward a different local port, e.g.
+#   AWS_PROFILE=csly-dev-pvd2-administrator ssm-port-forward --local-port 8855 csly-dev-pvd2-tinyproxy &
+#   AWS_PROFILE=csly-dmo-dem1-administrator ssm-port-forward --local-port 8866 csly-dmo-dem1-tinyproxy &
+#   # or: SSM_PORT_FORWARD_LOCAL=8877 ssm-port-forward --profile … my-tinyproxy &
 ssm-port-forward () {
-    local VM_NAME=$1
-    local REMOTE_PORT=${2:-8888}
-    local LOCAL_PORT=${3:-8855}
-    local SESSION_UUID="rtproxy-ac73498e-29f9-436a-b44e-3bc0d873108"
-    local PROFILE="csly-dev-pvd2-administrator"
+    local PROFILE VM_NAME REMOTE_PORT LOCAL_PORT INSTANCE_ID SESSION_REASON
+    REMOTE_PORT="${SSM_PORT_FORWARD_REMOTE:-8888}"
+    LOCAL_PORT="${SSM_PORT_FORWARD_LOCAL:-8855}"
 
-    # AWS: csly-dev-pvd2-tinyproxy
+    if [[ -n "${SSM_PORT_FORWARD_REASON:-}" ]]; then
+        SESSION_REASON=$SSM_PORT_FORWARD_REASON
+    else
+        local u
+        u=$(uuidgen | tr '[:upper:]' '[:lower:]')
+        if [[ -z "$u" ]]; then
+            echo "ssm-port-forward: uuidgen failed (need a session reason)" >&2
+            return 1
+        fi
+        SESSION_REASON="rtproxy-$u"
+    fi
+
+    while [[ "$1" == -* ]]; do
+        case "$1" in
+            --profile)
+                [[ -n "${2:-}" ]] || { echo "ssm-port-forward: --profile needs a value" >&2; return 1; }
+                PROFILE=$2
+                shift 2
+                ;;
+            --remote-port|--remote)
+                [[ -n "${2:-}" ]] || { echo "ssm-port-forward: --remote-port needs a value" >&2; return 1; }
+                REMOTE_PORT=$2
+                shift 2
+                ;;
+            --local-port|--local)
+                [[ -n "${2:-}" ]] || { echo "ssm-port-forward: --local-port needs a value" >&2; return 1; }
+                LOCAL_PORT=$2
+                shift 2
+                ;;
+            *)
+                echo "ssm-port-forward: unknown option: $1" >&2
+                return 1
+                ;;
+        esac
+    done
+
+    VM_NAME=$1
+    [[ -n "$VM_NAME" ]] || { echo "ssm-port-forward: missing instance tag Name (see ~/.zshrc-work)" >&2; return 1; }
+    shift || true
+
+    if [[ -n "${1:-}" ]]; then REMOTE_PORT=$1; shift; fi
+    if [[ -n "${1:-}" ]]; then LOCAL_PORT=$1; shift; fi
+
+    if [[ -z "${PROFILE:-}" ]]; then
+        PROFILE=$(__causaly_ssm_profile) || return 1
+    fi
+
     INSTANCE_ID=$(aws ec2 describe-instances \
         --profile "$PROFILE" \
         --filters "Name=tag:Name,Values=$VM_NAME" \
@@ -40,56 +94,21 @@ ssm-port-forward () {
         --query "Reservations[0].Instances[0].InstanceId" \
         --output text)
 
+    if [[ -z "$INSTANCE_ID" || "$INSTANCE_ID" == "None" ]]; then
+        echo "ssm-port-forward: no running instance with Name=$VM_NAME (profile=$PROFILE)" >&2
+        return 1
+    fi
+
+    echo "ssm-port-forward: $VM_NAME ($PROFILE) 127.0.0.1:${LOCAL_PORT} -> instance:${REMOTE_PORT} ($INSTANCE_ID)" >&2
+
     aws ssm start-session \
         --profile "$PROFILE" \
         --target "$INSTANCE_ID" \
-        --reason "$SESSION_UUID" \
+        --reason "$SESSION_REASON" \
         --document-name AWS-StartPortForwardingSession \
         --parameters "{\"portNumber\":[\"$REMOTE_PORT\"], \"localPortNumber\":[\"$LOCAL_PORT\"]}" &
 }
 
-
-# Rename contexts like this:
-# kubectl config rename-context CONTEXT_NAME NEW_NAME
-ce() {
-  session_id=$(aws_proxy_session_id)
-
-  if [[ $1 == "exit" ]]
-  then
-    unset TG_CSP
-    unset TG_CUSTOMER
-    unset TG_ENVTYPE
-    unset TG_ENV
-
-    # Kill any SSH tunneling (to GCP) and Session Manager sessions with reason = "rtproxy-UUID" (for AWS)
-    ssh -S ${HOME}/.ssh-master -O exit master
-    aws ssm terminate-session --profile "csly-dev-pvd2-administrator" --session-id $session_id
-  else
-    export TG_CSP=$1
-    export TG_CUSTOMER=$2
-    export TG_ENVTYPE=$3
-    export TG_ENV=$4
-
-    # Kill any SSH tunneling (to GCP) and Session Manager sessions with reason = "rtproxy-UUID" (for AWS)
-    ssh -S ${HOME}/.ssh-master -O exit master
-    aws ssm terminate-session --profile "csly-dev-pvd2-administrator" --session-id $session_id
-
-    echo "Setting up Causaly Environment ${TG_CSP}-${TG_CUSTOMER}-${TG_ENVTYPE}-${TG_ENV}"
-
-    if [[ "${TG_CSP}" == "gcp" ]]
-    then
-        gcloud beta compute ssh ${TG_CUSTOMER}-${TG_ENVTYPE}-${TG_ENV}-tp01-vm \
-          --project ${TG_CUSTOMER}-${TG_ENVTYPE}-${TG_ENV}-tp01 \
-          --zone us-east1-b \
-          -- -L 8888:localhost:8888 -N -f -S ${HOME}/.ssh-master -M -fN master
-    fi
-
-    if [[ "${TG_CSP}" == "aws" ]]
-    then
-        ssm-port-forward ${TG_CUSTOMER}-${TG_ENVTYPE}-${TG_ENV}-tinyproxy &
-    fi
-
-
-    kubectl config use-context ${TG_CSP}-${TG_CUSTOMER}-${TG_ENVTYPE}-${TG_ENV}
-  fi
-}
+# Preset tinyproxy forwards (local ports differ so you can run several at once).
+alias aws-csly-dev-pvd2-tinyproxy='ssm-port-forward --profile csly-dev-pvd2-administrator --remote-port 8888 --local-port 8855 csly-dev-pvd2-tinyproxy'
+alias aws-csly-dmo-dem1-tinyproxy='ssm-port-forward --profile csly-dmo-dem1-administrator --remote-port 8888 --local-port 8866 csly-dmo-dem1-tinyproxy'
