@@ -18,6 +18,7 @@
 !.config/mole/whitelist_optimize
 
 .config/argocd/
+.config/carapace/
 .config/configstore/
 .config/cursor/
 .config/exercism/
