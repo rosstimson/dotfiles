@@ -112,3 +112,4 @@ ssm-port-forward () {
 # Preset tinyproxy forwards (local ports differ so you can run several at once).
 alias aws-csly-dev-pvd2-tinyproxy='ssm-port-forward --profile csly-dev-pvd2-administrator --remote-port 8888 --local-port 8855 csly-dev-pvd2-tinyproxy'
 alias aws-csly-dmo-dem1-tinyproxy='ssm-port-forward --profile csly-dmo-dem1-administrator --remote-port 8888 --local-port 8866 csly-dmo-dem1-tinyproxy'
+
