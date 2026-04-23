@@ -20,7 +20,7 @@ disable = [
         "containers",
         "emacs",
         "mas",
-        "microsoft_office"
+        "microsoft_office",
         "nix",
         "tlmgr",
         "vim"
