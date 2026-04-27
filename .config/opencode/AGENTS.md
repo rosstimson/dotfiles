@@ -71,6 +71,13 @@ Use the question tool whenever you need clarification, have questions,
 or need to gather user preferences or requirements before proceeding
 with a task.
 
+# Bash Tool: `description` parameter is required
+
+When calling the `bash` tool, you MUST pass a `description` parameter (5-10 words describing the command), otherwise you'll get a schema validation error.
+
+✅ bash(command="ls -la", description="List current directory files")
+❌ bash(command="ls -la")  ← will error with "description" invalid_type
+
 
 <!-- context7 -->
 Use the `ctx7` CLI to fetch current documentation whenever the user asks about a library, framework, SDK, API, CLI tool, or cloud service -- even well-known ones like React, Next.js, Prisma, Express, Tailwind, Django, or Spring Boot. This includes API syntax, configuration, version migration, library-specific debugging, setup instructions, and CLI tool usage. Use even when you think you know the answer -- your training data may not reflect recent changes. Prefer this over web search for library docs.
