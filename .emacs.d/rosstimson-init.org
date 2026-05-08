@@ -1,4 +1,5 @@
 #+startup: content
+#+PROPERTY: header-args:emacs-lisp :lexical t
 
 * General
 ** System settings
