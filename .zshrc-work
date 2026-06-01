@@ -12,6 +12,9 @@ if [ -f '/opt/homebrew/share/zsh/site-functions/_google_cloud_sdk' ]; then . '/o
 export TG_PROVIDER_CACHE=1
 export TG_PROVIDER_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 
+# Disable the millions of org-wide MCPs as I don't need most of em
+export ENABLE_CLAUDEAI_MCP_SERVERS=false
+
 
 # Resolve AWS CLI profile for SSM/EC2 helpers. Prefer explicit --profile, then
 # AWS_SSM_PROFILE (tool-specific), then standard AWS_PROFILE.
