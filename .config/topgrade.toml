@@ -27,7 +27,7 @@ disable = [
         ]
 
 # Ignore failures for these steps
-ignore_failures = ["claude_code"]
+ignore_failures = ["claude_code", "Elpaca"]
 
 # List of remote machines with Topgrade installed on them
 # remote_topgrades = ["toothless", "pi", "parnas"]
@@ -99,7 +99,7 @@ cleanup = true
 # "Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
 # "Custom command using interactive shell (unix)" = "-i vim_upgrade"
 "Determinate Nix" = "sudo determinate-nixd upgrade"
-"Elpaca" = "emacsclient -a '' --eval '(progn (elpaca-fetch-all) (elpaca-wait) (elpaca-merge-all) (elpaca-wait) \"Elpaca update complete\")'"
+"Elpaca" = "timeout 300 sh -c 'emacsclient -a \"\" --eval \"(progn (elpaca-fetch-all) (elpaca-wait) \\\"Elpaca fetch complete\\\")\"'"
 
 
 [python]
