@@ -250,16 +250,6 @@ has starship && eval "$(starship init zsh)"
 ! has nix && [[ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 
 
-# pnpm (https://pnpm.io/)
-# --------------------------------------------------------------------
-
-export PNPM_HOME="$HOME/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-
 # direnv (https://direnv.net/) - unclutter your .profile
 #
 # direnv is an extension for your shell. It augments existing shells
