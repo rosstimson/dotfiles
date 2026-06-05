@@ -27,7 +27,7 @@ disable = [
         ]
 
 # Ignore failures for these steps
-ignore_failures = ["claude_code", "Elpaca"]
+ignore_failures = ["claude_code", "custom_commands"]
 
 # List of remote machines with Topgrade installed on them
 # remote_topgrades = ["toothless", "pi", "parnas"]
