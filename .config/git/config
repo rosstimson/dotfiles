@@ -57,6 +57,13 @@
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 
+# Terminal structural diff. Invoked on demand via the `dft` alias; Kaleidoscope
+# stays the default graphical difftool (git dt / git difftool). Args use the
+# GIT_EXTERNAL_DIFF form so difft sees the real path ($MERGED) for language
+# detection. --color always because difft drops color when piped to a pager.
+[difftool "difftastic"]
+	cmd = difft --color always \"$MERGED\" \"$LOCAL\" abcdef1 100644 \"$REMOTE\" abcdef2 100644
+
 [difftool]
 	prompt = false
 
@@ -95,6 +102,9 @@
 	d = diff
 	ds = diff --staged
 	dt = difftool
+	# difftastic in the terminal; pager.difftool scoped to just this alias so
+	# `git dt` (Kaleidoscope) is unaffected.
+	dft = -c pager.difftool=true difftool -t difftastic
 	f = fetch
 	i = init
 	l = pull

@@ -3,3 +3,11 @@
 [user]
 name = "Ross Timson"
 email = "me@rosstimson.com"
+
+# difftastic in the terminal, on demand (the jj counterpart to `git dft`). jj
+# ships a built-in `difft` merge-tool, so `jj diff --tool difft` already works
+# and even passes --width/--color; this just adds a short alias. Default
+# `jj diff` stays jj's built-in color-words formatter. `--tool difft` also
+# works with `jj show` and `jj log -p`.
+[aliases]
+dft = ["diff", "--tool", "difft"]
