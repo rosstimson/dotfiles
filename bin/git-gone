@@ -1,0 +1,53 @@
+#!/bin/sh
+# git-gone — delete local branches whose work has landed on GitHub.
+#
+# Tier 1: branches whose upstream tracking ref is gone (pushed with
+#         tracking, PR merged, remote branch deleted after merge).
+# Tier 2: branches with no upstream at all. Agents tend to push with an
+#         explicit refspec (`git push origin branch`), which never sets
+#         tracking, so those branches can never go "gone". Deleted only
+#         when a MERGED PR has this branch as head AND the PR's head SHA
+#         matches the local tip exactly — never-pushed work, closed-but-
+#         unmerged PRs, and commits made after the merge all keep the
+#         branch. Requires gh; tier is skipped silently without it.
+#
+# Never touches the current branch, branches checked out in worktrees,
+# or anything on the remote.
+#
+# Usage: git gone [-n]    -n = dry run
+
+set -eu
+
+dry=false
+if [ "${1:-}" = "-n" ]; then dry=true; fi
+
+remove() {
+	if $dry; then
+		printf 'would delete %s\n' "$1"
+	else
+		git branch -D "$1"
+	fi
+}
+
+git fetch --prune
+
+have_gh=false
+if command -v gh >/dev/null 2>&1; then have_gh=true; fi
+
+tab=$(printf '\t')
+git for-each-ref refs/heads \
+	--format='%(refname:short)%09%(upstream)%09%(upstream:track)%09%(worktreepath)' |
+while IFS="$tab" read -r branch upstream track worktree; do
+	# current branch or checked out in another worktree
+	if [ -n "$worktree" ]; then continue; fi
+	if [ -n "$upstream" ]; then
+		if [ "$track" = '[gone]' ]; then remove "$branch"; fi
+	elif $have_gh; then
+		merged=$(gh pr list --head "$branch" --state merged --limit 10 \
+			--json headRefOid --jq '.[].headRefOid' 2>/dev/null) || merged=''
+		if [ -n "$merged" ] && printf '%s\n' "$merged" |
+			grep -qx "$(git rev-parse "refs/heads/$branch")"; then
+			remove "$branch"
+		fi
+	fi
+done

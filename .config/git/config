@@ -117,8 +117,6 @@
 	m = merge
 	mt = mergetool --no-prompt
 	p = push
-	# Delete local branches whose remote tracking branch is gone
-	gone = !git fetch --prune && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D
 	r = remote
 	rb = rebase
 	re = restore
