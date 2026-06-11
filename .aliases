@@ -159,7 +159,12 @@ alias tgv='terragrunt validate'
 # Work
 # ----------------------------------------------------------------------------
 alias cloudauth='gcloud auth login && gcloud auth application-default login && aws sso login --sso-session causaly'
-alias kill-tunnels='pkill -9 -f aws; pkill -9 -f gcloud; ps -ef | rg "[a]ws|[g]cloud"'
+# Kill ONLY jump-host tunnel processes (not every aws/gcloud process):
+#   AWS-StartPortForwardingSession  -> aws ssm port-forwards (aws cli + session-manager-plugin)
+#   [:=]localhost:8888              -> gcp/azure ssh -L forwards to a tinyproxy (8855/8866/8877/8888)
+#   start-iap-tunnel                -> gcloud IAP tunnel helpers (incl. ProxyCommand children)
+# SIGTERM is enough for all of these; rerun with pkill -9 if one ever wedges.
+alias kill-tunnels='pkill -f "AWS-StartPortForwardingSession|[:=]localhost:8888|start-iap-tunnel"; sleep 1; ps -ef | rg "[A]WS-StartPortForwardingSession|[:=]localhost:8888|[s]tart-iap-tunnel" || echo "no tunnel processes remain"'
 alias unaws='unset $(env | grep "^AWS_" | egrep -o "^[^=]+")'
 
 alias gcp-tinyproxy='gcloud beta compute ssh csly-prd-mgt1-tp01-vm \
