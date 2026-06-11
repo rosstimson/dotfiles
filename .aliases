@@ -172,3 +172,14 @@ alias gcp-tinyproxy='gcloud beta compute ssh csly-prd-mgt1-tp01-vm \
                          --zone us-east1-b \
                          -- -L 8888:localhost:8888 -N -q -f'
 
+# Azure jump host tinyproxy (csly-mgt-tp01-vm, proxy listens on 8888).
+# Local 8877 -> tp01 tinyproxy:8888; kubeconfig aks01 cluster uses
+# proxy-url http://localhost:8877. kill-tunnels catches it.
+# NB: backgrounded with & (not ssh -f) — az ssh wraps the ssh process to
+# manage its ephemeral Entra cert and never exits if ssh forks itself.
+alias azure-tinyproxy='az ssh vm \
+                           --subscription 035aac57-d2e0-464c-9b59-b38be09ad681 \
+                           --resource-group csly-mgt-tp01-rg \
+                           --name csly-mgt-tp01-vm \
+                           -- -L 8877:localhost:8888 -N -q &'
+
