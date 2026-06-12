@@ -1,5 +1,6 @@
 # Not everything that gets dumped in ~/.config wants tracked in Git.
 
+homebrew/trust.json.lock
 iterm2
 jgit
 raycast

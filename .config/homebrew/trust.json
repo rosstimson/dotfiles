@@ -1,5 +1,22 @@
 {
   "trustedformulae": [
-    "azure/kubelogin/kubelogin"
+    "anomalyco/tap/opencode",
+    "antoniorodr/memo/memo",
+    "azure/kubelogin/kubelogin",
+    "borkdude/brew/babashka",
+    "borkdude/brew/clj-kondo",
+    "buildpacks/tap/pack",
+    "d12frosted/emacs-plus/emacs-plus@31",
+    "determinatesystems/riff/riff",
+    "hashicorp/tap/sentinel",
+    "hashicorp/tap/terraform",
+    "hashicorp/tap/vault",
+    "hashicorp/tap/vlt",
+    "oven-sh/bun/bun",
+    "pulumi/tap/pulumi",
+    "vmware-tanzu/carvel/ytt"
+  ],
+  "trustedcasks": [
+    "steipete/tap/codexbar"
   ]
 }
