@@ -20,6 +20,7 @@ export ALTERNATE_EDITOR='mg'
 export EDITOR='emacsclient -t'
 export GOPATH="${HOME}/code/go"
 export GPG_TTY="$(tty)"
+export HOMEBREW_NO_ASK=1 # Homebrew 6 prompts before install/upgrade by default.
 export KEYID='0x667A3481E4BB34F3'
 export LANG='en_GB.UTF-8'
 export LC_ALL='en_GB.UTF-8'
