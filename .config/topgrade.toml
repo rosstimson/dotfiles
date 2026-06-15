@@ -99,13 +99,6 @@ cleanup = true
 # "Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
 # "Custom command using interactive shell (unix)" = "-i vim_upgrade"
 "Determinate Nix" = "sudo determinate-nixd upgrade"
-# Fetch Elpaca package updates. First ensure the (launchd-managed) Emacs daemon
-# is actually responsive: a stale/wedged daemon socket makes emacsclient hang on
-# "Server not responding" until the timeout. If the ping fails or times out,
-# restart the daemon via launchd, wait for it, then fetch.
-# NOTE: this only FETCHES. Run `M-x elpaca-merge-all` in Emacs to apply updates
-# (elpaca-update-all cannot drain its queue headless via emacsclient).
-"Elpaca" = '''timeout 300 sh -c 'label="gui/$(id -u)/homebrew.mxcl.emacs-plus@31"; if ! timeout 10 emacsclient -e "(+ 1 1)" >/dev/null 2>&1; then launchctl kickstart -k "$label" 2>/dev/null || brew services restart emacs-plus@31 >/dev/null 2>&1; until timeout 5 emacsclient -e "(+ 1 1)" >/dev/null 2>&1; do sleep 2; done; fi; emacsclient --eval "(progn (elpaca-fetch-all) (elpaca-wait) \"Elpaca fetch complete\")"' '''
 
 
 [python]
