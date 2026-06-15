@@ -18,5 +18,8 @@
   ],
   "trustedcasks": [
     "steipete/tap/codexbar"
+  ],
+  "trustedtaps": [
+    "d12frosted/emacs-plus"
   ]
 }
