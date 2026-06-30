@@ -20,6 +20,15 @@
 	#editor = emacsclient -c -a=
 	editor = nvim
 
+# For use with gh
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
 [pager]
 	diff = delta
 	log = delta
