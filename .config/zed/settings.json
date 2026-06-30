@@ -8,6 +8,18 @@
 // command palette
 {
   // General Settings
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
   "features": {
     "edit_prediction_provider": "zed"
   },
@@ -24,15 +36,6 @@
     "mode": "system",
     "dark": "Catppuccin Latte",
     "light": "Catppuccin Mocha"
-  },
-
-  // AI Agent
-  "agent": {
-    "default_model": {
-      "provider": "anthropic",
-      "model": "claude-sonnet-4-latest"
-    },
-    "version": "2"
   },
 
   "git": {
