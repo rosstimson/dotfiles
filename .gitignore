@@ -33,6 +33,7 @@
 .config/mozilla/
 .config/op/
 .config/opencode/cache/
+.config/opencode/plugins/
 
 # Zed Editor (https://zed.dev)
 # Ignore all except the config files
@@ -71,3 +72,4 @@
 # ------------------------------------------------------------------
 
 .config/causaly/
+.config/context7/
