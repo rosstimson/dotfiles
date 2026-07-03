@@ -289,3 +289,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+**/.claude/.cc-writes/
