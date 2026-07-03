@@ -1540,49 +1540,27 @@ Also create a Hydra to make working with Smerge easier.
 
 ** Spelling
 
-Use ~C-;~ for correcting spelling.
+[[https://github.com/minad/jinx][Jinx]] - a fast just-in-time spell-checker that checks all visible text
+using the [[https://rrthomas.github.io/enchant/][Enchant]] library. Enchant uses aspell as its English backend so
+my existing personal dictionary ~.aspell.en.pws~ is still read; new
+words saved when correcting go to ~.config/enchant/en_GB-ise.dic~.
+Requires ~enchant~ and ~pkgconf~ (Homebrew) to compile its native
+module. In programming modes only comments, strings, and docs are
+checked.
 
-*** iSpell
-
-#+begin_src emacs-lisp
-  (use-package ispell
-    :ensure nil
-    :custom
-    (ispell-program-name "/opt/homebrew/bin/aspell")
-    (ispell-dictionary "en_GB-ise")
-    (ispell-personal-dictionary (expand-file-name ".aspell.en.pws" (getenv "HOME")))
-    (ispell-extra-args '("--sug-mode=ultra" "--camel-case")))
-#+end_src
-
-*** FlySpell
-
-Check my spelling on the fly with [[https://emacsdocs.org/docs/emacs/Spelling][Flyspell]]. Requires `aspell` to be installed.
-This also spellchecks spelling in programming mode but only within comments.
+Use ~C-.~ or ~M-$~ for correcting spelling, ~C-u M-$~ corrects the
+whole buffer.
 
 #+begin_src emacs-lisp
-  (use-package flyspell
-    :ensure nil
-    :after ispell
+  (use-package jinx
     :blackout " Spell"
-    :bind (("C-c i b" . flyspell-buffer)
-           ("C-c i f" . flyspell-mode))
-    :hook ((text-mode . flyspell-mode)
-           (org-mode . flyspell-mode))
-    :config
-    ;; Unbind C-; as it clashes with iedit binding and I mostly use the
-    ;; C-. binding for flyspell-correct
-    (unbind-key "C-;" flyspell-mode-map))
-#+end_src
-
-*** FlySpell-Correct
-
-[[https://github.com/d12frosted/flyspell-correct][flyspell-correct]] - Distraction-free words correction with flyspell via
-selected interface.
-
-#+begin_src emacs-lisp
-  (use-package flyspell-correct
-    :after flyspell
-    :bind (:map flyspell-mode-map ("C-." . flyspell-correct-wrapper)))
+    :hook (elpaca-after-init . global-jinx-mode)
+    :bind (("M-$" . jinx-correct)
+           ("C-M-$" . jinx-languages)
+           :map jinx-mode-map
+           ("C-." . jinx-correct))
+    :custom
+    (jinx-languages "en_GB-ise"))
 #+end_src
 
 ** String Inflection
