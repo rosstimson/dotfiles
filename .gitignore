@@ -30,6 +30,9 @@
 .config/jj/repos/
 .config/hcp
 .config/helix/runtime/
+# Herdr: keep config.toml, ignore logs/sockets/session state
+.config/herdr/*
+!.config/herdr/config.toml
 .config/mozilla/
 .config/op/
 .config/opencode/cache/
