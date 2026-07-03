@@ -51,7 +51,6 @@
 .emacs.d/forge-database.sqlite
 .emacs.d/history
 .emacs.d/projects
-.emacs.d/straight/
 .emacs.d/transient/
 .emacs.d/url/
 
