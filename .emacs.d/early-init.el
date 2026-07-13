@@ -66,6 +66,8 @@
                        (getenv "HOME") "/.krew/bin:"
                        (getenv "HOME") "/bin:"
                        "/usr/local/MacGPG2/bin:"
+                       (getenv "HOME") "/.zerobrew/bin:"
+                       "/opt/zerobrew/bin:"
                        "/opt/homebrew/bin:"
                        "/Applications/Postgres.app/Contents/Versions/latest/bin:"
                        "/Library/TeX/texbin:"
