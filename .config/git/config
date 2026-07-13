@@ -23,11 +23,11 @@
 # For use with gh
 [credential "https://github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !/opt/zerobrew/bin/gh auth git-credential
 
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !/opt/zerobrew/bin/gh auth git-credential
 
 [pager]
 	diff = delta
@@ -98,7 +98,7 @@
 	allowedSignersFile = /Users/ross.timson/.config/git/allowed_signers
 
 [sendemail]
-	smtpserver = /opt/homebrew/bin/msmtp
+	sendmailCmd = msmtp
 
 [alias]
 	a = add
