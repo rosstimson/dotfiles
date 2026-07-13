@@ -7,7 +7,7 @@ light = "dayfox"
 dark  = "terafox"
 
 [shell]
-program = "/opt/homebrew/bin/tmux"
+program = "/opt/zerobrew/bin/tmux"
 args = ["new-session", "-A", "-s", "rt"]
 
 [editor]
