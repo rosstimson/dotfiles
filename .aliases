@@ -23,7 +23,6 @@ alias -- -='cd -'
 alias ....="cd ../../.."
 alias ...="cd ../.."
 alias ..="cd .."
-alias bup='brew update && brew upgrade'
 alias cdtmp='cd $(mktemp --directory -t rosstimson-tmp)'
 alias cg='cargo'
 alias exc='exercism'
