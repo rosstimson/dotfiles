@@ -80,6 +80,15 @@
 
 (setq exec-path (split-string (getenv "PATH") path-separator))
 
+;; emacs-plus bakes CC and LIBRARY_PATH into the app bundle's
+;; LSEnvironment (Info.plist) at build time; they dangle whenever brew
+;; upgrades gcc (e.g. gcc-15 was removed by the gcc-16 upgrade) and
+;; break anything honoring $CC, such as jinx's module compilation.
+;; Native compilation no longer needs them -- libgccjit locates its own
+;; driver -- so clear CC and align LIBRARY_PATH with .zprofile.
+(setenv "CC" nil)
+(setenv "LIBRARY_PATH" "/opt/zerobrew/lib:/opt/homebrew/lib")
+
 ;; Local Variables:
 ;; no-byte-compile: t
 ;; no-native-compile: t
