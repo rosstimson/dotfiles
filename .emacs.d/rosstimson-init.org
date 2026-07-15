@@ -107,59 +107,31 @@ Load my custom functions
     (require 'custom-functions))
 #+end_src
 
-[[https://tree-sitter.github.io/tree-sitter/][Tree-sitter]] grammar installation locations.
+[[https://tree-sitter.github.io/tree-sitter/][Tree-sitter]]: Emacs 31 ships pinned grammar recipes with each built-in
+ts-mode and prompts before installing a missing grammar
+(~treesit-auto-install-grammar~ defaults to ~ask~), so only grammars for
+third-party modes need declaring here.
 
 #+begin_src emacs-lisp
-  (setq treesit-language-source-alist
-        '((bash "https://github.com/tree-sitter/tree-sitter-bash")
-          (cmake "https://github.com/uyha/tree-sitter-cmake")
-          (css "https://github.com/tree-sitter/tree-sitter-css")
-          (elisp "https://github.com/Wilfred/tree-sitter-elisp")
-          (go "https://github.com/tree-sitter/tree-sitter-go")
-          (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
-          (html "https://github.com/tree-sitter/tree-sitter-html")
-          (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
-          (json "https://github.com/tree-sitter/tree-sitter-json")
-          (lua "https://github.com/tree-sitter-grammars/tree-sitter-lua")
-          (make "https://github.com/alemuller/tree-sitter-make")
-          (markdown "https://github.com/ikatyang/tree-sitter-markdown")
-          (python "https://github.com/tree-sitter/tree-sitter-python")
-          (rust "https://github.com/tree-sitter/tree-sitter-rust")
-          (toml "https://github.com/tree-sitter/tree-sitter-toml")
-          (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
-          (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
-          (typst "https://github.com/uben0/tree-sitter-typst")
-          (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+  (add-to-list 'treesit-language-source-alist
+               '(typst "https://github.com/uben0/tree-sitter-typst"))
 #+end_src
 
-Use ~major-mode-remap-alist~ to transparently activate tree-sitter variants
-for built-in modes, and ~auto-mode-alist~ for languages whose base modes are
-not built in to Emacs or require non-standard file extension associations.
+Emacs 31's ~treesit-enabled-modes~ replaces the old hand-maintained
+~major-mode-remap-alist~ / ~auto-mode-alist~ dance: setting it to ~t~
+remaps every base mode to its tree-sitter variant, and the built-in
+ts-modes register their own file associations.  It must be set with
+~setopt~ (not ~setq~) because the remapping happens in the option's
+custom setter.  Only file extensions Emacs doesn't know about still
+need adding to ~auto-mode-alist~ manually.
 
 #+begin_src emacs-lisp
-  (setq major-mode-remap-alist
-        '((sh-mode         . bash-ts-mode)
-          (css-mode        . css-ts-mode)
-          (html-mode       . html-ts-mode)
-          (mhtml-mode      . html-ts-mode)
-          (javascript-mode . js-ts-mode)
-          (js-mode         . js-ts-mode)
-          (python-mode     . python-ts-mode)
-          (rust-mode       . rust-ts-mode)))
+  (setopt treesit-enabled-modes t)
 
-  (dolist (entry '(("\\.go\\'"          . go-ts-mode)
-                   ("/go\\.mod\\'"      . go-mod-ts-mode)
-                   ("\\.jsx\\'"         . js-ts-mode)
-                   ("\\.json\\'"        . json-ts-mode)
+  (dolist (entry '(("\\.lua\\'"         . lua-ts-mode)
                    ("\\.jsonc\\'"       . json-ts-mode)
                    ("\\.json5\\'"       . json-ts-mode)
                    ("\\.webmanifest\\'" . json-ts-mode)
-                   ("\\.lua\\'"         . lua-ts-mode)
-                   ("\\.rs\\'"          . rust-ts-mode)
-                   ("\\.ts\\'"          . typescript-ts-mode)
-                   ("\\.tsx\\'"         . tsx-ts-mode)
-                   ("\\.yml\\'"         . yaml-ts-mode)
-                   ("\\.yaml\\'"        . yaml-ts-mode)
                    ("\\.sls\\'"         . yaml-ts-mode)))
     (add-to-list 'auto-mode-alist entry))
 #+end_src
@@ -368,7 +340,7 @@ config has been taken from [[http://martinowen.net/blog/2010/02/03/tips-for-emac
                              ;; Specific language modes
                              (mode . clojure-ts-mode)
                              (mode . go-ts-mode)
-                             (mode . javascript-ts-mode)
+                             (mode . js-ts-mode)
                              (mode . lua-ts-mode)
                              (mode . python-ts-mode)
                              (mode . rust-ts-mode)
@@ -1123,7 +1095,7 @@ is included by default with Emacs since version 29.1.
            (clojure-ts-mode . eglot-ensure)
            (go-ts-mode . eglot-ensure)
            (html-ts-mode . eglot-ensure)
-           (javascript-ts-mode . eglot-ensure)
+           (js-ts-mode . eglot-ensure)
            (lua-ts-mode . eglot-ensure)
            (markdown-mode . eglot-ensure)
            (python-ts-mode . eglot-ensure)
@@ -1139,6 +1111,11 @@ is included by default with Emacs since version 29.1.
     (eglot-connect-timeout 10)
     (eglot-ignored-server-capabilities '(:inlayHintProvider))
     :config
+    ;; mhtml-ts-mode lists js-mode among its parents, which matches
+    ;; eglot's JS/TS server entry before its HTML one -- pin it.
+    (add-to-list 'eglot-server-programs
+                 '((mhtml-ts-mode :language-id "html")
+                   . ("vscode-html-language-server" "--stdio")))
     (add-to-list 'eglot-server-programs
                  '(terraform-mode . ("terraform-ls" "serve")))
     (add-to-list 'eglot-server-programs
