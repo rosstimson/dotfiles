@@ -271,10 +271,13 @@ WORK_CONFIG=~/.zshrc-work && test -f $WORK_CONFIG && source $WORK_CONFIG
 if (( ${+DEBUG_ZSH_PERF} )); then
   zprof
 fi
-# >>> zerobrew >>>
+
+
+
 # zerobrew
-export ZEROBREW_DIR='/Users/rosstimson/.zerobrew'
-export ZEROBREW_BIN='/Users/rosstimson/.zerobrew/bin'
+# -----------------------------------------------------------------------------
+export ZEROBREW_DIR="$HOME/.zerobrew"
+export ZEROBREW_BIN="$HOME/.zerobrew/bin"
 export ZEROBREW_ROOT='/opt/zerobrew'
 export ZEROBREW_PREFIX='/opt/zerobrew'
 export PKG_CONFIG_PATH="$ZEROBREW_PREFIX/lib/pkgconfig:${PKG_CONFIG_PATH:-}"
@@ -318,4 +321,3 @@ _zb_path_append() {
 _zb_path_append "$ZEROBREW_BIN"
 _zb_path_append "$ZEROBREW_PREFIX/bin"
 
-# <<< zerobrew <<<
