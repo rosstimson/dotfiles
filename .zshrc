@@ -47,6 +47,15 @@ _zsh_compile_if_needed "$HOME"/.zprofile
 # Check command existence via $commands hash — no fork needed.
 has() { (( $+commands[$1] )) }
 
+# Set correct path if on an Apple Silicon Mac, Homebrew uses
+# /opt/homebrew when on the arm64 (Apple Silicon) architecture whereas
+# any other time it'd be /usr/local.
+if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "arm64" ] ; then
+		homebrew_path='/opt/homebrew'
+else
+		homebrew_path='/usr/local'
+fi
+
 
 # Setup
 # -----------------------------------------------------------------------------
@@ -264,8 +273,8 @@ if (( ${+DEBUG_ZSH_PERF} )); then
 fi
 # >>> zerobrew >>>
 # zerobrew
-export ZEROBREW_DIR='/Users/ross.timson/.zerobrew'
-export ZEROBREW_BIN='/Users/ross.timson/.zerobrew/bin'
+export ZEROBREW_DIR='/Users/rosstimson/.zerobrew'
+export ZEROBREW_BIN='/Users/rosstimson/.zerobrew/bin'
 export ZEROBREW_ROOT='/opt/zerobrew'
 export ZEROBREW_PREFIX='/opt/zerobrew'
 export PKG_CONFIG_PATH="$ZEROBREW_PREFIX/lib/pkgconfig:${PKG_CONFIG_PATH:-}"
@@ -275,9 +284,9 @@ if [ -z "${CURL_CA_BUNDLE:-}" ] || [ -z "${SSL_CERT_FILE:-}" ]; then
   if [ -f "$ZEROBREW_PREFIX/opt/ca-certificates/share/ca-certificates/cacert.pem" ]; then
     [ -z "${CURL_CA_BUNDLE:-}" ] && export CURL_CA_BUNDLE="$ZEROBREW_PREFIX/opt/ca-certificates/share/ca-certificates/cacert.pem"
     [ -z "${SSL_CERT_FILE:-}" ] && export SSL_CERT_FILE="$ZEROBREW_PREFIX/opt/ca-certificates/share/ca-certificates/cacert.pem"
-  elif [ -f "$ZEROBREW_PREFIX/etc/ca-certificates/cert.pem" ]; then
-    [ -z "${CURL_CA_BUNDLE:-}" ] && export CURL_CA_BUNDLE="$ZEROBREW_PREFIX/etc/ca-certificates/cert.pem"
-    [ -z "${SSL_CERT_FILE:-}" ] && export SSL_CERT_FILE="$ZEROBREW_PREFIX/etc/ca-certificates/cert.pem"
+  elif [ -f "$ZEROBREW_PREFIX/etc/ca-certificates/cacert.pem" ]; then
+    [ -z "${CURL_CA_BUNDLE:-}" ] && export CURL_CA_BUNDLE="$ZEROBREW_PREFIX/etc/ca-certificates/cacert.pem"
+    [ -z "${SSL_CERT_FILE:-}" ] && export SSL_CERT_FILE="$ZEROBREW_PREFIX/etc/ca-certificates/cacert.pem"
   elif [ -f "$ZEROBREW_PREFIX/etc/openssl/cert.pem" ]; then
     [ -z "${CURL_CA_BUNDLE:-}" ] && export CURL_CA_BUNDLE="$ZEROBREW_PREFIX/etc/openssl/cert.pem"
     [ -z "${SSL_CERT_FILE:-}" ] && export SSL_CERT_FILE="$ZEROBREW_PREFIX/etc/openssl/cert.pem"

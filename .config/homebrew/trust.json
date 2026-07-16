@@ -6,6 +6,7 @@
     "borkdude/brew/babashka",
     "borkdude/brew/clj-kondo",
     "buildpacks/tap/pack",
+    "creativeprojects/tap/resticprofile",
     "d12frosted/emacs-plus/emacs-plus@31",
     "determinatesystems/riff/riff",
     "hashicorp/tap/sentinel",
@@ -20,6 +21,7 @@
     "steipete/tap/codexbar"
   ],
   "trustedtaps": [
-    "d12frosted/emacs-plus"
+    "d12frosted/emacs-plus",
+    "dagger/tap"
   ]
 }
