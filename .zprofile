@@ -24,6 +24,9 @@ export HOMEBREW_NO_ASK=1 # Homebrew 6 prompts before install/upgrade by default.
 export KEYID='0x667A3481E4BB34F3'
 export LANG='en_GB.UTF-8'
 export LC_ALL='en_GB.UTF-8'
+# Set via env rather than in .npmrc: npm errors on 'prefix' when it reads
+# ~/.dotfiles/.npmrc as project config (any npm run with cwd inside ~/.dotfiles).
+export NPM_CONFIG_PREFIX="${HOME}/.npm-global"
 export PAGER='less -i'
 export TZ='Europe/London'
 export VISUAL='emacsclient -c'

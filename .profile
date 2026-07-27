@@ -12,12 +12,13 @@ GPG_TTY="$(tty)"
 KEYID='0x667A3481E4BB34F3'
 LANG='en_GB.UTF-8'
 LC_ALL='en_GB.UTF-8'
+NPM_CONFIG_PREFIX="$HOME/.npm-global"
 PAGER='less -i'
 PATH="$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$HOME/bin:$PATH"
 TZ='Europe/London'
 VISUAL='emacsclient -c'
 
-export ALTERNATE_EDITOR EDITOR GOPATH GPG_TTY KEYID LANG LC_ALL PAGER PATH PULSE_SERVER TZ VISUAL
+export ALTERNATE_EDITOR EDITOR GOPATH GPG_TTY KEYID LANG LC_ALL NPM_CONFIG_PREFIX PAGER PATH PULSE_SERVER TZ VISUAL
 
 # Source common aliases and functions
 # --------------------------------------------------------------------
