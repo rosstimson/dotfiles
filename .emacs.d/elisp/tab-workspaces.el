@@ -170,7 +170,7 @@ Reuses an existing workspace if one already exists for that project."
 
 (defun rt-workspace--track-buffer (&rest _)
   "Track the current buffer in the workspace's buffer list."
-  (when-let ((buf (current-buffer)))
+  (when-let* ((buf (current-buffer)))
     (unless (minibufferp buf)
       (rt-workspace--add-buffer buf))))
 

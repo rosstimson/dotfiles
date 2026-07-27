@@ -1,6 +1,10 @@
 #+startup: content
 #+PROPERTY: header-args:emacs-lisp :lexical t
 
+#+begin_src emacs-lisp
+;; -*- lexical-binding: t; -*-
+#+end_src
+
 * General
 ** System settings
 
