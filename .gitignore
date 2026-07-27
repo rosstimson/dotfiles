@@ -17,6 +17,9 @@
 .config/mole/*
 !.config/mole/whitelist_optimize
 
+# 1Password: keep ssh/agent.toml, ignore telemetry opt-in marker
+.config/1Password/telemetry-enabled
+
 .config/argocd/
 .config/carapace/
 .config/configstore/
