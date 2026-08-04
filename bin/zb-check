@@ -1,0 +1,124 @@
+#!/usr/bin/env bash
+# zb-check — detect zerobrew 0.3.2 upgrade damage. READ-ONLY; prints repair commands.
+#
+# Run after EVERY `zb upgrade` / topgrade. topgrade prints "Zerobrew: OK" even when
+# broken, because once the wedge is committed `zb outdated` reports all-up-to-date.
+#
+# Detects three distinct upstream bugs:
+#   A  link wedge      — DB commits new version, prefix links still point at old keg,
+#                        /opt/zerobrew/opt/<pkg> missing.  (upstream #331, #188)
+#   B  placeholders    — @@HOMEBREW_CELLAR@@ / @@HOMEBREW_PREFIX@@ left in LC_RPATH & shebangs.
+#   C  bare @rpath     — install names left as @rpath/... with no LC_RPATH to resolve them.
+#                        Invisible to the bug-B grep; only shows up at runtime.
+
+set -uo pipefail
+P=/opt/zerobrew
+C=$P/Cellar
+issues=0
+note() { printf '  %s\n' "$*"; }
+hdr()  { printf '\n\033[1m%s\033[0m\n' "$*"; }
+
+# NOTE: never use `ls` in these loops — it is aliased to eza, which links libgit2
+# and is itself a frequent casualty of bug A. Shell globs only.
+
+hdr "A1. kegs with more than one version (wedged upgrade, or orphan left behind)"
+for d in "$C"/*/; do
+  p=${d%/}; p=${p##*/}
+  set -- "$C/$p"/*/
+  if [ $# -gt 1 ]; then
+    db=$(zb info "$p" 2>/dev/null | awk '/^Version:/{print $2}')
+    note "$p: on-disk=[$(basename -a "$@" | tr '\n' ' ')] DB=$db"
+    issues=$((issues+1))
+  fi
+done
+[ $issues -eq 0 ] && note "none"
+
+hdr "A2. missing or dangling /opt/zerobrew/opt/<pkg> links  (the fatal one)"
+n=0
+for d in "$C"/*/; do
+  p=${d%/}; p=${p##*/}
+  [ -e "$P/opt/$p" ] || { note "MISSING  opt/$p"; n=$((n+1)); }
+done
+for l in "$P"/opt/*; do
+  [ -e "$l" ] || { note "DANGLING $l -> $(readlink "$l")"; n=$((n+1)); }
+done
+[ $n -eq 0 ] && note "none"; issues=$((issues+n))
+
+hdr "A3. broken symlinks in the prefix"
+b=$(find "$P"/bin "$P"/lib "$P"/include "$P"/share -maxdepth 3 -type l ! -exec test -e {} \; -print 2>/dev/null)
+if [ -n "$b" ]; then printf '%s\n' "$b" | head -20 | sed 's/^/  /'; issues=$((issues+1)); else note "none"; fi
+
+hdr "B. @@HOMEBREW placeholders  (mise + sbcl .fasl are known false positives — do NOT touch)"
+ph=$(rg -l -a '@@HOMEBREW' "$C" 2>/dev/null | rg -v '/(mise|sbcl)/')
+if [ -n "$ph" ]; then printf '%s\n' "$ph" | sed "s|$C/|  |"; issues=$((issues+1)); else note "none"; fi
+
+hdr "C. bare @rpath install names with no LC_RPATH to resolve them"
+# Only CROSS-PACKAGE @rpath deps are fatal (this is how glog broke watchman).
+# A dylib whose own LC_ID_DYLIB is @rpath/<itself> is benign: dyld resolves via the
+# absolute path the *consumer* requested, not via the ID. Those are listed as info.
+c=0; selfref=""
+while read -r f; do
+  case "$(file -b "$f" 2>/dev/null)" in Mach-O*) ;; *) continue;; esac
+  otool -l "$f" 2>/dev/null | grep -q 'cmd LC_RPATH' && continue   # has rpaths; assume ok
+  id=$(otool -D "$f" 2>/dev/null | tail -1)
+  d=$(otool -L "$f" 2>/dev/null | awk 'NR>1{print $1}' | grep '^@rpath/' | grep -Fxv "$id")
+  if [ -n "$d" ]; then
+    note "FATAL  ${f#$C/}  ->  $(printf '%s' "$d" | tr '\n' ' ')"; c=$((c+1))
+  else
+    case "$id" in @rpath/*) selfref="$selfref  info   ${f#$C/}  (own ID is $id — benign)"$'\n';; esac
+  fi
+done < <(rg -l -a '@rpath' "$C" 2>/dev/null)
+[ $c -eq 0 ] && note "no fatal cross-package @rpath deps"
+[ -n "$selfref" ] && printf '%s' "$selfref"
+issues=$((issues+c))
+
+hdr "D. smoke test (ground truth — only 'Library not loaded' means a real path fault)"
+for t in eza watchman thrift1 weechat git sqlite3 mongosh prettierd pyright; do
+  command -v "$t" >/dev/null 2>&1 || continue
+  o=$(timeout 20 "$t" --version 2>&1 | head -2)
+  case "$o" in
+    *"Library not loaded"*|*dyld*) note "BROKEN  $t :: $(printf '%s' "$o" | tr '\n' ' ' | cut -c1-110)"; issues=$((issues+1));;
+    *) note "ok      $t";;
+  esac
+done
+note "zerobrew node: $("$P"/bin/node --version 2>&1)   (PATH 'node' is mise's shim, not this)"
+
+hdr "zb doctor"
+zb doctor 2>&1 | tail -3 | sed 's/^/  /'
+
+if [ $issues -gt 0 ]; then
+  cat <<'EOF'
+
+──────────────────────────────────────────────────────────────────────
+REPAIR  (see comments at top for which bug is which)
+
+A) per wedged pkg, BOTTOM-UP in dependency order. Find dependents with:
+     rg -l -a "/opt/zerobrew/opt/<pkg>/" /opt/zerobrew/Cellar | cut -d/ -f5 | sort -u
+   then, for each old version:
+     find /opt/zerobrew -type l -lname "*/<pkg>/<oldver>/*" \
+          ! -path '/opt/zerobrew/Cellar/*' -delete
+     zb uninstall <pkg> && zb install <pkg>
+     readlink /opt/zerobrew/opt/<pkg>          # must show the DB version
+   then:  zb doctor --repair && zb gc
+     rm -rf /opt/zerobrew/Cellar/<pkg>/<oldver>   # gc does NOT remove orphan kegs
+
+   `zb install` re-pours the whole dep closure, so ALWAYS re-run this script
+   afterwards — it can re-break a previously-fine dependency via B or C.
+
+B) Mach-O: for each placeholder LC_RPATH
+     otool -l "$f" | awk '/cmd LC_RPATH/{r=1} r && /^ *path /{print $2; r=0}'
+     install_name_tool -rpath "$old" "$new" "$f"    # @@HOMEBREW_CELLAR@@ -> /opt/zerobrew/Cellar
+     codesign --force --sign - "$f"                 # MANDATORY: breaks arm64 sig otherwise
+   text/shebang:
+     LC_ALL=C sed -i '' -e 's|@@HOMEBREW_CELLAR@@|/opt/zerobrew/Cellar|g' \
+                        -e 's|@@HOMEBREW_PREFIX@@|/opt/zerobrew|g' "$f"
+
+C) find the correct absolute form from how other kegs reference the same dylib
+   (majority wins), then:
+     install_name_tool -id <abs> -change @rpath/<lib> <abs> "$f"
+     codesign --force --sign - "$f"
+──────────────────────────────────────────────────────────────────────
+EOF
+else
+  printf '\n\033[32mAll clear.\033[0m\n'
+fi
