@@ -2429,11 +2429,6 @@ Emacs, available at any time and uniformly in any buffer.
     (gptel-max-tokens 12288)
     (gptel-model 'claude-3-7-sonnet-20250219)
 
-    (gptel-backend
-     (gptel-make-anthropic "Claude"
-       :stream t
-       :key #'rt/get-anthropic-key))
-
     ;; Custom Prompts
     (gptel-directives
      `((default
@@ -2472,13 +2467,26 @@ Emacs, available at any time and uniformly in any buffer.
     :hook
     ;; Auto-scroll as responses come in
     (gptel-post-stream . gptel-auto-scroll)
-    ;; Move cursor after response
-    (gptel-post-response-functions . gptel-end-of-response)
 
     :bind
     ("C-c RET" . gptel-send)
     ("C-c G" . gptel)
-    ("C-c r" . gptel-rewrite))
+    ("C-c r" . gptel-rewrite)
+
+    :config
+    ;; 'gptel-backend' must not go through ':custom'.  use-package stores the
+    ;; value form unevaluated as a custom theme value, and gptel-request.el's
+    ;; own '(defcustom gptel-backend ...)' then evaluates it mid-load, where
+    ;; the 'gptel-make-anthropic' autoload requires gptel-request again --
+    ;; a recursive require that breaks 'M-x gptel' outright.
+    (setq gptel-backend (gptel-make-anthropic "Claude"
+                          :stream t
+                          :key #'rt/get-anthropic-key))
+
+    ;; Move cursor after response.  'gptel-post-response-functions' has no
+    ;; '-hook' suffix, so ':hook' would target a non-existent
+    ;; 'gptel-post-response-functions-hook' and never run.
+    (add-hook 'gptel-post-response-functions #'gptel-end-of-response))
 #+end_src
 
 *** MCP
