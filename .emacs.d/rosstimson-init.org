@@ -1190,6 +1190,12 @@ is part of GNU Emacs.
   (use-package flycheck
     :init (global-flycheck-mode)
     :config
+    ;; Report Eglot's LSP diagnostics through Flycheck rather than Flymake.
+    (global-flycheck-eglot-mode 1)
+
+    ;; Show diagnostics inline, next to the code (Error Lens style).
+    (global-flycheck-annotate-mode 1)
+
     ;; Disable Flycheck's default prose checker so Vale can take over.
     (setq-default flycheck-disabled-checkers
                   (append flycheck-disabled-checkers
@@ -1202,6 +1208,11 @@ is part of GNU Emacs.
       :modes (gfm-mode markdown-mode org-mode rst-mode text-mode))
     (add-to-list 'flycheck-checkers 'vale 'append)
 
+    ;; Vale only lints prose, so chain to the Eglot bridge to also get the
+    ;; LSP server's diagnostics (e.g. marksman's in Markdown).  Inert in
+    ;; prose buffers Eglot does not manage.
+    (flycheck-add-next-checker 'vale 'eglot-check)
+
     (defun rt/flycheck-prefer-vale ()
       "Prefer Vale by default in prose-oriented buffers."
       (when (and (derived-mode-p 'gfm-mode 'markdown-mode 'org-mode 'rst-mode 'text-mode)
@@ -1209,21 +1220,6 @@ is part of GNU Emacs.
         (setq-local flycheck-checker 'vale)))
 
     (add-hook 'flycheck-mode-hook #'rt/flycheck-prefer-vale))
-#+end_src
-
-[[https://github.com/intramurz/flycheck-eglot][flycheck-eglot]] - A simple “glue” minor mode that allows Flycheck and
-Eglot to work together. Thus, the Flycheck frontend can display the
-results of syntactic checks performed by the LSP server.
-
-Note that Eglot the Emacs built-in LSP package works with Flymake by
-default, this package disables Flymake in favour of Flycheck which is
-more capable.
-
-#+begin_src emacs-lisp
-  (use-package flycheck-eglot
-    :after (flycheck eglot)
-    :config
-    (global-flycheck-eglot-mode 1))
 #+end_src
 
 ** GCMH
