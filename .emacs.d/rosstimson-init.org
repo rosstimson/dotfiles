@@ -1232,7 +1232,7 @@ during init.
 
 #+begin_src emacs-lisp
   (use-package gcmh
-    :hook (after-init . gcmh-mode)
+    :hook (elpaca-after-init . gcmh-mode)
     :custom
     (gcmh-idle-delay 'auto)
     (gcmh-auto-idle-delay-factor 10)
@@ -2407,7 +2407,7 @@ whitespace can be weird.
 
 #+begin_src emacs-lisp
   (use-package envrc
-    :hook (after-init . envrc-global-mode))
+    :hook (elpaca-after-init . envrc-global-mode))
 #+end_src
 
 ** GPTel / AI
@@ -2495,8 +2495,12 @@ Emacs, available at any time and uniformly in any buffer.
                                                 ,(getenv "HOME"))))
                ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))
                ("git" . (:command "uvx" :args ("mcp-server-git")))))
-    :config (require 'mcp-hub)
-    :hook (after-init . mcp-hub-start-all-server))
+    ;; Start the servers when gptel loads rather than on a startup hook: a
+    ;; startup hook can never fire here, as ':after gptel' defers the
+    ;; add-hook until gptel loads, which is after the hook has already run.
+    :config
+    (require 'mcp-hub)
+    (mcp-hub-start-all-server))
 #+end_src
 
 ** Sqlite3
