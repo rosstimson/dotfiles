@@ -1,0 +1,13 @@
+# lazygit configuration
+#
+# Only the deviations from the defaults live here; run `lazygit --config` to
+# print the full default set for the installed version.
+
+os:
+  # Editor for the `e` command. Lazygit can usually infer this from
+  # 'git config core.editor', which is already nvim, but be explicit.
+  editPreset: nvim
+
+gui:
+  # Ghostty falls back to Symbols Nerd Font Mono, so the glyphs render.
+  nerdFontsVersion: "3"
