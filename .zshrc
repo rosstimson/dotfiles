@@ -108,6 +108,11 @@ __deferred_compinit() {
   export CARAPACE_BRIDGES='zsh,bash'
   zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
   source <(carapace _carapace)
+  # carapace prepends ~/.config/carapace/bin, a directory it never creates.
+  # This hook runs at the first prompt, i.e. after 'mise activate', so that
+  # phantom entry outranks mise's tool paths and trips 'mise doctor'. Drop
+  # every PATH entry that does not exist, order preserved.
+  path=(${^path}(N-/))
   add-zsh-hook -d precmd __deferred_compinit
   unfunction __deferred_compinit
 }
@@ -312,6 +317,10 @@ fi
 # Helper function to safely append to PATH
 _zb_path_append() {
     local argpath="$1"
+    # Skip directories that do not exist. This runs after 'mise activate',
+    # so prepending a phantom entry puts it ahead of mise's tool paths and
+    # trips 'mise doctor' with a warning that cannot be acted on.
+    [ -d "$argpath" ] || return 0
     case ":${PATH}:" in
         *:"$argpath":*) ;;
         *) export PATH="$argpath:$PATH" ;;
