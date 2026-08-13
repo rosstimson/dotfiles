@@ -7,6 +7,13 @@
 # Detects three distinct upstream bugs:
 #   A  link wedge      — DB commits new version, prefix links still point at old keg,
 #                        /opt/zerobrew/opt/<pkg> missing.  (upstream #331, #188)
+#                        CROSS-PACKAGE variant (found 2026-08-13): zb links libexec/
+#                        file-by-file into the shared prefix, so when two kegs ship the
+#                        SAME relative path the second one's install/upgrade dies with
+#                        "link conflict ... (owned by <other-pkg>)". Seen: every formula
+#                        with post_install ships libexec/post-install (ca-certificates vs
+#                        texinfo); perl formulas ship libexec/lib/perl5/<arch>/perllocal.pod
+#                        (lcov vs moreutils). A4 below watches the known contested paths.
 #   B  placeholders    — @@HOMEBREW_CELLAR@@ / @@HOMEBREW_PREFIX@@ left in LC_RPATH & shebangs.
 #   C  bare @rpath     — install names left as @rpath/... with no LC_RPATH to resolve them.
 #                        Invisible to the bug-B grep; only shows up at runtime.
@@ -47,6 +54,35 @@ done
 hdr "A3. broken symlinks in the prefix"
 b=$(find "$P"/bin "$P"/lib "$P"/include "$P"/share -maxdepth 3 -type l ! -exec test -e {} \; -print 2>/dev/null)
 if [ -n "$b" ]; then printf '%s\n' "$b" | head -20 | sed 's/^/  /'; issues=$((issues+1)); else note "none"; fi
+
+hdr "A4. contested shared paths (cross-package link conflicts; prefix links here are junk)"
+# Nothing resolves through these prefix links (venv stubs & scripts use absolute keg
+# paths), but while one exists the NEXT upgrade of any other keg shipping the same
+# relative path wedges at link time. Fix is simply: rm the prefix link.
+n=0
+for rel in libexec/post-install; do
+  owners=""; cnt=0
+  for f in "$C"/*/*/"$rel"; do
+    [ -e "$f" ] || continue
+    owners="$owners ${f#"$C"/}"; cnt=$((cnt+1))
+  done
+  if [ -L "$P/$rel" ] || [ -e "$P/$rel" ]; then
+    note "LINKED   $P/$rel -> $(readlink "$P/$rel" 2>/dev/null)"
+    note "         shipped by:$owners"
+    note "         next upgrade of any other shipper wedges — run: rm '$P/$rel'"
+    n=$((n+1))
+  elif [ "$cnt" -gt 1 ]; then
+    note "defused  $rel  (shipped by $cnt kegs, prefix link absent — ok)"
+  fi
+done
+for l in "$P"/libexec/lib/perl5/*/perllocal.pod; do
+  [ -L "$l" ] || continue
+  note "LINKED   $l -> $(readlink "$l")"
+  note "         next upgrade of any other perl-based pkg wedges — run: rm '$l'"
+  n=$((n+1))
+done
+[ $n -eq 0 ] && note "none"
+issues=$((issues+n))
 
 hdr "B. @@HOMEBREW placeholders  (mise + sbcl .fasl are known false positives — do NOT touch)"
 ph=$(rg -l -a '@@HOMEBREW' "$C" 2>/dev/null | rg -v '/(mise|sbcl)/')
@@ -104,6 +140,15 @@ A) per wedged pkg, BOTTOM-UP in dependency order. Find dependents with:
 
    `zb install` re-pours the whole dep closure, so ALWAYS re-run this script
    afterwards — it can re-break a previously-fine dependency via B or C.
+
+A4) cross-package conflict: the zb error names the contested file and its owner.
+     rm '<the prefix symlink named in the error>'
+     zb install <pkg>                 # now links cleanly and claims the path
+     rm '<same prefix symlink>'       # defuse it again for the OTHER package
+   ca-certificates only: rebuild the real bundle afterwards —
+     /opt/zerobrew/opt/ca-certificates/libexec/post-install \
+       /opt/zerobrew/opt/ca-certificates/share/ca-certificates/cacert.pem \
+       /opt/zerobrew/etc/ca-certificates/cert.pem
 
 B) Mach-O: for each placeholder LC_RPATH
      otool -l "$f" | awk '/cmd LC_RPATH/{r=1} r && /^ *path /{print $2; r=0}'
