@@ -66,8 +66,6 @@
                        (getenv "HOME") "/.krew/bin:"
                        (getenv "HOME") "/bin:"
                        "/usr/local/MacGPG2/bin:"
-                       (getenv "HOME") "/.zerobrew/bin:"
-                       "/opt/zerobrew/bin:"
                        "/opt/homebrew/bin:"
                        "/Applications/Postgres.app/Contents/Versions/latest/bin:"
                        "/Library/TeX/texbin:"
@@ -87,7 +85,7 @@
 ;; Native compilation no longer needs them -- libgccjit locates its own
 ;; driver -- so clear CC and align LIBRARY_PATH with .zprofile.
 (setenv "CC" nil)
-(setenv "LIBRARY_PATH" "/opt/zerobrew/lib:/opt/homebrew/lib")
+(setenv "LIBRARY_PATH" "/opt/homebrew/lib")
 
 ;; Local Variables:
 ;; no-byte-compile: t

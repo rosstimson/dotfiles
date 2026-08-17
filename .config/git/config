@@ -23,11 +23,11 @@
 # For use with gh
 [credential "https://github.com"]
 	helper = 
-	helper = !/opt/zerobrew/bin/gh auth git-credential
+	helper = !/opt/homebrew/bin/gh auth git-credential
 
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/opt/zerobrew/bin/gh auth git-credential
+	helper = !/opt/homebrew/bin/gh auth git-credential
 
 [pager]
 	diff = delta

@@ -3,7 +3,7 @@
 
 auto-update = download
 bell-features = no-attention
-command = /opt/zerobrew/bin/tmux new-session -A -s rt
+command = /opt/homebrew/bin/tmux new-session -A -s rt
 confirm-close-surface = false
 font-family = "Dank Mono"
 font-family = "Symbols Nerd Font Mono"

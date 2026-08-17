@@ -18,8 +18,7 @@ Pseudo-package for Emacs itself.
     (use-package-always-defer t)
     (use-package-expand-minimally t)
     (explicit-shell-file-name
-     (or (and (file-exists-p "/opt/zerobrew/bin/zsh") "/opt/zerobrew/bin/zsh")
-         (and (file-exists-p "/opt/homebrew/bin/zsh") "/opt/homebrew/bin/zsh")
+     (or (and (file-exists-p "/opt/homebrew/bin/zsh") "/opt/homebrew/bin/zsh")
          (executable-find "zsh")
          "/bin/sh"))
     (line-spacing 0.3)
@@ -2381,7 +2380,7 @@ whitespace can be weird.
 #+begin_src emacs-lisp
   (use-package mu4e
     :ensure nil
-    :load-path "/opt/zerobrew/share/emacs/site-lisp/mu/mu4e"
+    :load-path "/opt/homebrew/share/emacs/site-lisp/mu/mu4e"
     :commands (mu4e mu4e-compose-new)
     :config
     (setq mu4e-get-mail-command (concat (executable-find "mbsync") " -a")

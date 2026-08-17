@@ -33,8 +33,8 @@ export VISUAL='emacsclient -c'
 export XDG_CONFIG_HOME="${HOME}/.config"
 
 # For compiling stuff on Apple Silicon Macs.
-export CPATH=/opt/zerobrew/include:/opt/homebrew/include
-export LIBRARY_PATH=/opt/zerobrew/lib:/opt/homebrew/lib
+export CPATH=/opt/homebrew/include
+export LIBRARY_PATH=/opt/homebrew/lib
 
 
 # PATH
@@ -59,9 +59,6 @@ path=($HOME/.local/share/mise/shims(N-/)
 	  $HOME/.krew/bin(N-/)
 	  $HOME/bin(N-/)
 	  /usr/local/MacGPG2/bin(N-/)
-	  $HOME/.zerobrew/bin(N-/)
-	  /opt/zerobrew/bin(N-/)
-	  /opt/zerobrew/prefix/bin(N-/)
 	  /opt/homebrew/{bin,sbin}(N-/)
 	  /Applications/Postgres.app/Contents/Versions/latest/bin(N-/)
 	  /Library/TeX/texbin/(N-/)

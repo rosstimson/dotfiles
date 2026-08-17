@@ -65,7 +65,7 @@ mods = "Alt"
 
 [terminal.shell]
 args = ["new-session", "-A", "-s", "rt"]
-program = "/opt/zerobrew/bin/tmux"
+program = "/opt/homebrew/bin/tmux"
 
 [window.padding]
 x = 12

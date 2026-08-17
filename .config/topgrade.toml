@@ -23,7 +23,8 @@ disable = [
         "microsoft_office",
         "nix",
         "tlmgr",
-        "vim"
+        "vim",
+        "zerobrew"
         ]
 
 # Ignore failures for these steps
